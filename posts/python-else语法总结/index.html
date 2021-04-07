@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Python｜else 语法总结 | lan&#39;s blog.</title>
+
+    
+<link href="/me/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="lan" />
+<meta name="description" content="记录一个小知识…
+" />
+
+
+
+<meta name="generator" content="Hugo 0.82.0" />
+
+<link rel="canonical" href="https://abeelan.github.io/posts/python-else%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" />
+
+
+<meta property="og:title" content="Python｜else 语法总结" />
+<meta property="og:description" content="记录一个小知识…" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abeelan.github.io/posts/python-else%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-06T17:10:35&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-06T17:10:35&#43;08:00" />
+
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://abeelan.github.io/me/background.jpg"/>
+
+<meta name="twitter:title" content="Python｜else 语法总结"/>
+<meta name="twitter:description" content="记录一个小知识…"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:not(.ui.button):hover {
+    text-decoration: underline;
+  }
+
+  
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a:not(.ui.button),
+  .inverted a:not(.ui.button):hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: #fff;
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+
+  
+  body.dark {
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+</style>
+
+
+    
+
+
+
+<link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/tomorrow.min.css" />
+
+
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/css/custom.css" />
+    
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/abeelan.github.io\/'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui relaxed grid dream-grid dream-grid-single">
+  <aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside">
+    
+    
+    <div class="ui segment toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题">问题</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="ui segment actions">
+      <button
+        class="ui circular icon button save-as-image"
+        title="保存为图片"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </button>
+
+      <a href="https://twitter.com/intent/tweet?text=Python%ef%bd%9celse%20%e8%af%ad%e6%b3%95%e6%80%bb%e7%bb%93&url=https%3a%2f%2fabeelan.github.io%2fposts%2fpython-else%25E8%25AF%25AD%25E6%25B3%2595%25E6%2580%25BB%25E7%25BB%2593%2f" class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</a>
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fabeelan.github.io%2fposts%2fpython-else%25E8%25AF%25AD%25E6%25B3%2595%25E6%2580%25BB%25E7%25BB%2593%2f" class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</a>
+
+    </div>
+  </aside>
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <div class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/img/else.png);"></div>
+    </div>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">Python｜else 语法总结<div class="sub header">
+            @
+            
+              
+                lan
+              
+            
+
+            | 
+                星期二，四月 6 日，2021 年
+              
+
+            | 2 分钟阅读
+
+            | 更新于
+              
+                星期二，四月 6 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><p>记录一个小知识…</p>
+<h2 id="问题">问题</h2>
+<p>阅读别人代码，有点疑惑，精简后如下：</p>
+<pre><code>def code_example(arg=None):
+    for i in range(5):
+        if arg:
+            break
+    else:
+        print('else branch')
+</code></pre><p>循环语句后面直接跟了 else 语句，未报错，程序正常运行。一般 else 都是配合判断语句用，<strong>那么这里的 else 是什么作用呢</strong>？</p>
+<p><strong>尝试</strong></p>
+<pre><code>for i in range(2):
+    print(i)
+else:
+    print(&quot;else branch&quot;)
+
+&gt;&gt;&gt;
+0
+1
+else branch
+</code></pre><p>test01：根据打印信息发现，for 循环正常执行完成后执行了 else 分支；</p>
+<pre><code>for i in range(2):
+    continue
+else:
+    print(&quot;else branch&quot;)
+
+&gt;&gt;&gt;
+else branch
+</code></pre><p>test02：循环体内增加 continue 跳出，执行完成循环后，正常执行 else 分支；</p>
+<pre><code>for i in range(2):
+    break
+else:
+    print(&quot;else branch&quot;)
+
+&gt;&gt;&gt;
+</code></pre><p>test03：如果 break 掉循环，打断循环，没有任何输出，也就是不走 else 分支；</p>
+<pre><code>def test():
+    for i in range(2):
+        return
+    else:
+        print(&quot;else branch&quot;)
+
+&gt;&gt;&gt;
+</code></pre><p>test04：尝试 return 语句，打断循环，也是不走 else 分支。</p>
+<p><strong>结论</strong>
+for … else …</p>
+<ul>
+<li>仅当循环体全部执行完成，才执行 else 分支；</li>
+<li>当循环过程被打断，则不执行 else 分支。</li>
+</ul>
+<hr>
+<p><strong>扩展</strong>
+Python 支持 else 语句汇总：</p>
+<ul>
+<li><strong>for … else …</strong></li>
+<li><strong>while … else …</strong></li>
+<li><strong>try … except … else …</strong></li>
+<li><strong>if … elif … else …</strong></li>
+</ul>
+<p><strong>while</strong>
+与 for 循环相同步骤测试，结论一样</p>
+<p><strong>try</strong></p>
+<ol>
+<li>当 try 内无异常执行完成后，执行 else 分支；</li>
+<li>当 try 内出现异常，执行到 except，不再执行 else 分支。</li>
+</ol>
+<pre><code>def test_01():
+    try:
+        print(&quot;try&quot;)
+    except:
+        print(&quot;except&quot;)
+    else:
+        print(&quot;else&quot;)
+
+&gt;&gt;&gt;
+try
+else
+-----------------------
+def test02():
+    try:
+        5 / 0
+    except:
+        print(&quot;except&quot;)
+    else:
+        print(&quot;else&quot;)
+
+&gt;&gt;&gt;
+except
+</code></pre><h2 id="总结">总结</h2>
+<ul>
+<li>for、while 循环
+当循环语句全部正常执行完成(包括 continue)，会继续执行 else 分支；当循环语句被打断(break\return)，不再执行 else 分支</li>
+<li>try 异常处理
+当 try 语句无异常执行完成时，会继续执行 else 分支；当抛出异常后，不再执行 else 分支</li>
+<li>if 条件判断
+不符合 if 或者 elif，才执行 else 分支</li>
+</ul></article>
+    </section>
+
+    
+
+    
+    <article class="ui segment utterances-comments" data-html2canvas-ignore>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="abeelan/abeelan.github.io"
+        issue-term="og:title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </article>
+    
+
+    
+  </div>
+</div>
+
+
+            <footer class="ui basic center aligned segment" style="background-color: transparent;">
+              
+              <p>© 2021 lan&#39;s blog.</p>
+              
+
+              <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+              
+            </footer>
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/lan.jpg" alt="avatar" />
+    
+  </div>
+
+  <div class="content">
+    <h1 class="ui medium header">lan’s blog.<div class="sub header">Everything will be ok.</div>
+    </h1>
+
+    <article class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
+
+    
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/android/" title="Android">
+        Android
+      </a>
+    
+      <a class="ui label" href="/tags/blog/" title="blog">
+        blog
+      </a>
+    
+      <a class="ui label" href="/tags/git/" title="git">
+        git
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/python/" title="python">
+        python
+      </a>
+    
+      <a class="ui label" href="/tags/shell/" title="shell">
+        shell
+      </a>
+    
+    </article>
+    
+  </div>
+</header>
+
+
+<div class="ui relaxed grid dream-grid dream-back">
+  
+  
+  
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment markdown-body">
+      <div class="ui medium header">关于我</div>
+      <p>Hi，你好：</p>
+<p>我是一名测试小工，在这里记录并分享自己的学习笔记。</p>
+<p>微信公众号「懒人的日常生活」</p>
+<p><img class="ui image" src="/me/wechatcode.jpg" alt="wechat" /></p>
+<p>谢谢你这么好看，还愿意来关注我! ❤️</p>
+
+    </article>
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment">
+      <div class="ui medium header">社交链接</div>
+      <nav class="ui secondary menu dream-menu dream-socials">
+  
+  <div class="item">
+    <a href="/index.xml">
+      <i class="large rss square icon" title="RSS"></i>
+    </a>
+  </div>
+  
+
+  
+  <div class="item">
+    <a href="mailto:lanzy.nice@gmail.com">
+      <i class="large mail icon" title="Email"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="item">
+    <a href="https://github.com/abeelan" target="_blank">
+      <i class="large github icon" title="GitHub"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+</nav>
+
+    </article>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </div>
+
+  
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.defaultDark =  null 
+  window.backgroundDark =  null 
+  window.backgroundImageDark = "/me/background.jpg"
+  window.darkNav =  null 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/clojure.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
+    var lightTheme = "tomorrow"
+    var darkTheme = "tomorrow-night"
+    var theme = isDark === 'y' ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark === 'y' ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+    <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/abeelan.github.io\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on lan&#39;s blog.</title>
+    <link>https://abeelan.github.io/tags/blog/</link>
+    <description>Recent content in blog on lan&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 06 Apr 2021 17:10:35 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo｜发布博客对外访问</title>
+      <link>https://abeelan.github.io/posts/blog-%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%AF%B9%E5%A4%96%E8%AE%BF%E9%97%AE/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/blog-%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%AF%B9%E5%A4%96%E8%AE%BF%E9%97%AE/</guid>
+      <description>&lt;p&gt;博客静态页面搭建完成后，接下来就需要对外发布展示。但是还没有自己的服务器和注册域名，如何发布呢？&lt;/p&gt;
+&lt;p&gt;这里要感谢 github 提供的 &lt;code&gt;github.io&lt;/code&gt;，可以做到这一点，并且免费。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo｜搭建博客</title>
+      <link>https://abeelan.github.io/posts/blog-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/blog-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;p&gt;Hugo 是使用 Go 语言编写的 &lt;a href=&#34;https://gohugo.io/about/what-is-hugo/&#34;&gt;静态网站生成器&lt;/a&gt;，页面编译速度快，支持跨平台、皮肤自定义，方便部署。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

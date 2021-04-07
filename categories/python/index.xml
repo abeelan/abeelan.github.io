@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on lan&#39;s blog.</title>
+    <link>https://abeelan.github.io/categories/python/</link>
+    <description>Recent content in python on lan&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 06 Apr 2021 17:10:35 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python｜else 语法总结</title>
+      <link>https://abeelan.github.io/posts/python-else%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/python-else%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;记录一个小知识…&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python｜递归练习</title>
+      <link>https://abeelan.github.io/posts/python-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/python-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/</guid>
+      <description>&lt;p&gt;递归学习，通过汉诺塔游戏加强理解！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

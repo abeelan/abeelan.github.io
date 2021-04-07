@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on lan&#39;s blog.</title>
+    <link>https://abeelan.github.io/categories/android/</link>
+    <description>Recent content in Android on lan&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Thu, 21 Jan 2021 15:35:52 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/android/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android｜安装包加固后闪退</title>
+      <link>https://abeelan.github.io/posts/android-%E5%AE%89%E8%A3%85%E5%8C%85%E5%8A%A0%E5%9B%BA%E5%90%8E%E9%97%AA%E9%80%80/</link>
+      <pubDate>Thu, 21 Jan 2021 15:35:52 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/android-%E5%AE%89%E8%A3%85%E5%8C%85%E5%8A%A0%E5%9B%BA%E5%90%8E%E9%97%AA%E9%80%80/</guid>
+      <description>&lt;p&gt;这版本测试时，出现装包后启动 CRASH 的情况（仅在部分机型上面出现），出现该问题后，APP 一直无法正常启动，重新安装后，启动正常；尝试定位问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Android｜闪退日志提取</title>
+      <link>https://abeelan.github.io/posts/android-%E9%97%AA%E9%80%80%E6%97%A5%E5%BF%97%E6%8F%90%E5%8F%96/</link>
+      <pubDate>Thu, 21 Jan 2021 15:35:52 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/android-%E9%97%AA%E9%80%80%E6%97%A5%E5%BF%97%E6%8F%90%E5%8F%96/</guid>
+      <description>&lt;p&gt;安卓手机测试过程中，遇到应用闪退，通常需要在 &lt;code&gt;BUG&lt;/code&gt; 信息上附加崩溃日志，便于开发同学快速定位问题。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

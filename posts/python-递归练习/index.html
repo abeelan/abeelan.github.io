@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Python｜递归练习 | lan&#39;s blog.</title>
+
+    
+<link href="/me/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="lan" />
+<meta name="description" content="递归学习，通过汉诺塔游戏加强理解！
+" />
+
+
+
+<meta name="generator" content="Hugo 0.82.0" />
+
+<link rel="canonical" href="https://abeelan.github.io/posts/python-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/" />
+
+
+<meta property="og:title" content="Python｜递归练习" />
+<meta property="og:description" content="递归学习，通过汉诺塔游戏加强理解！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abeelan.github.io/posts/python-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-06T17:10:35&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-06T17:10:35&#43;08:00" />
+
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://abeelan.github.io/me/background.jpg"/>
+
+<meta name="twitter:title" content="Python｜递归练习"/>
+<meta name="twitter:description" content="递归学习，通过汉诺塔游戏加强理解！"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:not(.ui.button):hover {
+    text-decoration: underline;
+  }
+
+  
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a:not(.ui.button),
+  .inverted a:not(.ui.button):hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: #fff;
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+
+  
+  body.dark {
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+</style>
+
+
+    
+
+
+
+<link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/tomorrow.min.css" />
+
+
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/css/custom.css" />
+    
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/abeelan.github.io\/'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui relaxed grid dream-grid dream-grid-single">
+  <aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside">
+    
+    
+    <div class="ui segment toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#递归">递归</a></li>
+    <li><a href="#练习">练习</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="ui segment actions">
+      <button
+        class="ui circular icon button save-as-image"
+        title="保存为图片"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </button>
+
+      <a href="https://twitter.com/intent/tweet?text=Python%ef%bd%9c%e9%80%92%e5%bd%92%e7%bb%83%e4%b9%a0&url=https%3a%2f%2fabeelan.github.io%2fposts%2fpython-%25E9%2580%2592%25E5%25BD%2592%25E7%25BB%2583%25E4%25B9%25A0%2f" class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</a>
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fabeelan.github.io%2fposts%2fpython-%25E9%2580%2592%25E5%25BD%2592%25E7%25BB%2583%25E4%25B9%25A0%2f" class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</a>
+
+    </div>
+  </aside>
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <div class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/img/digui.jpeg);"></div>
+    </div>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">Python｜递归练习<div class="sub header">
+            @
+            
+              
+                lan
+              
+            
+
+            | 
+                星期二，四月 6 日，2021 年
+              
+
+            | 4 分钟阅读
+
+            | 更新于
+              
+                星期二，四月 6 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><p>递归学习，通过汉诺塔游戏加强理解！</p>
+<h2 id="递归">递归</h2>
+<p>在一个函数内部调用自身本身，就是递归函数。</p>
+<p><strong>阶乘</strong></p>
+<p>5 的阶乘为：<code>5*4*3*2*1</code></p>
+<p>n 的阶乘为：<code>1*2*3*…*(n-1)</code></p>
+<p>所以其实就是<code>n*(n-1)</code>的循环，只有当<code>n=1</code>时，需要特殊处理。</p>
+<pre><code># 递归实现，暂不考虑负数和零
+def fact(n):
+    if n == 1:
+        return 1
+    return n * (fact(n-1))
+
+&gt;&gt;&gt; fact(5)
+120
+</code></pre><p>当计算<code>fact(5)</code>时，函数运算过程如下：</p>
+<pre><code>&gt;&gt;&gt; fact(5)
+===&gt; 5 * fact(4)
+===&gt; 5 * (4 * fact(3))
+===&gt; 5 * (4 * (3 * fact(2)))
+===&gt; 5 * (4 * (3 * (2 * fact(1))))
+===&gt; 5 * (4 * (3 * (2 * 1)))
+===&gt; 5 * (4 * (3 * 2))
+===&gt; 5 * (4 * 6)
+===&gt; 5 * 24
+===&gt; 120
+</code></pre><p>递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。</p>
+<p>使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。</p>
+<p>Python 3.7 的最大递归深度为 998，如果超出就会报错，如：</p>
+<pre><code>&gt;&gt;&gt; fact(999)
+Traceback (most recent call last):
+File &quot;test.py&quot;, line 28, in fact
+    if n == 1:
+RecursionError: maximum recursion depth exceeded in comparison
+</code></pre><p>当然这个递归深度可以修改，998 只是一个默认值</p>
+<pre><code>import sys
+sys.setrecursionlimit(1000)  # 设置最大递归深度 1000
+
+# 源码解释 sys.py
+def setrecursionlimit(n): # real signature unknown; restored from __doc__
+    &quot;&quot;&quot;
+    setrecursionlimit(n)
+
+    Set the maximum depth of the Python interpreter stack to n.  This
+    limit prevents infinite recursion from causing an overflow of the C
+    stack and crashing Python.  The highest possible limit is platform-
+    dependent.
+    &quot;&quot;&quot;
+    pass
+</code></pre><h2 id="练习">练习</h2>
+<p>汉诺塔（http://www.hannuota.cn）</p>
+<p><strong>游戏介绍</strong>
+源于印度一个古老传说的益智玩具，大梵天创造世界的时候做了三根金刚石柱子，在一根柱子上从下往上按照大小顺序摞着 64 片黄金圆盘，并且预言当僧侣将 64 片圆盘从 A 柱移动到 C 柱时，世界就会在一声霹雳中毁灭。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eLf6QoB7yjde5s2EWlju7yRUvrbmHAqKUA8Y6WhMFoUM04ia9mics8VMJ9waCS9z0k3LQXZDeMogWh6khNiboCl3g/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片">大概就是这个样子</p>
+<p><strong>游戏规则</strong></p>
+<ul>
+<li>全部圆环从 A 柱移动到 C 柱视为完成</li>
+<li>每次只能移动一个圆环，必须在三个柱子间移动</li>
+<li>在小圆环上不能放大圆环，小圆环在上，大圆环在下</li>
+</ul>
+<p><strong>游戏原理</strong>
+当看到这个游戏规则时，可能会产生疑惑，这个跟递归有什么关系呢？先别着急，慢慢往下分析。</p>
+<p>当圆环数为 1 时，完成步骤：</p>
+<p>A &ndash;&gt; C</p>
+<p>非常简单，直接把圆环从 A 放到 C 就可以完成。</p>
+<p>增加难度，当圆环数为 2 时，完成步骤：</p>
+<p>A &ndash;&gt; B
+A &ndash;&gt; C</p>
+<p>为方便描述，P 代表圆盘，P2 &gt; P1</p>
+<p>当我们想把第 P2 移动到 C 柱时，由于每次只能移动一个圆环，所以先要把 P1 移动到 B 柱上，P2 才可以移动到 C 柱。</p>
+<p>继续增加难度，当圆环数为 3 时，目标是 P3 移动到 C 柱，反推一下：只有当 P3 上面没有其他圆盘时，才可以移动，所以 P2 和 P1 需要移动到 B 柱。</p>
+<ul>
+<li>P1 移动到 C 柱（保证 P2 可以移动，先移开）</li>
+<li>P2 移动到 B 柱</li>
+<li>P1 再次移动到 B（C 柱就空出来了）</li>
+<li>P3 移动到 C 柱（变成了 P2 移动到 C 柱的问题）</li>
+<li>P1 移动到 A 柱（变成了 P1 移动到 C 柱的问题）</li>
+<li>P2 移动到 C 柱</li>
+</ul>
+<p>完成步骤如下：</p>
+<p>A &ndash;&gt; C
+A &ndash;&gt; B
+C &ndash;&gt; B
+A &ndash;&gt; C
+B &ndash;&gt; A
+B &ndash;&gt; C
+A &ndash;&gt; C</p>
+<p>图示：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/eLf6QoB7yjde5s2EWlju7yRUvrbmHAqK27kT1IcsSktGGPiaotr08FYnv0na5rfG7EWBicK8xIPXKXIa9gB5aF9A/640?wx_fmt=gif&amp;wxfrom=5&amp;wx_lazy=1" alt="图片"></p>
+<p>再次梳理一下 3 个圆盘的移动规则，为满足将全部圆盘移动到 C 柱：</p>
+<ol>
+<li>前两个圆盘移动到 B 柱；</li>
+<li>第三个圆盘移动到 C 柱；</li>
+<li>两个圆盘移到 C 柱；</li>
+</ol>
+<p>所以如果为 n 个圆盘的话，那么：</p>
+<ol>
+<li>n-1 个圆盘移动到 B 柱；</li>
+<li>n 移动到 C 柱；</li>
+<li>n-1 个圆盘从 B 柱移动到 C 柱子</li>
+</ol>
+<p>所以，这是一个<strong>递归</strong>的问题，代码实现</p>
+<pre><code>def hanoi(n, a, b, c):
+    if n == 1:
+        print(f&quot;{a} --&gt; {c}&quot;)
+        return
+    hanoi(n-1, a, c, b)
+    hanoi(1, a, b, c)
+    hanoi(n-1, b, a, c)
+
+&gt;&gt;&gt; hanoi(3, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+</code></pre><p><strong>题外话</strong></p>
+<p>梵天说当僧侣完成 64 层汉诺塔时，世界就会毁灭，那么完成它到底需要多长时间呢？</p>
+<p>根据上面的规律可得：</p>
+<pre><code>f(n) = f(n-1) + 1 + f(n-1)`
+`f(n) = 2f(n-1) + 1
+</code></pre><p>移动 1 个圆盘：
+f(1) = 1 = 2^1-1</p>
+<p>移动 2 个圆盘：
+f(2) = 3 = 2^2-1</p>
+<p>移动 3 个圆盘：
+f(3) = 7 = 2^3-1
+…
+f(64) = 2^{64}-1</p>
+<pre><code>&gt;&gt;&gt; (2**64 - 1) / (60*60*24*365)
+584942417355.072
+</code></pre><p>得出结果 5800 亿年，宇宙形成到现在经过了 138 亿年，所以这么久远的未来是想象不到的&hellip; 不过人家梵天的数字底子是真不赖。</p>
+<hr>
+<h2 id="结语">结语</h2>
+<p>递归学习是跟随廖雪峰老师的教程走的，后续理解是看 B 站李永乐老师的讲解明白的，感谢。我的文字水平有限，如果表述不清楚，就看下方视频 + 多玩游戏，肯定能弄明白的。</p>
+<p><a href="https://www.bilibili.com/video/BV1gJ41177fX?from=search&amp;seid=4494680542532501641">视频地址</a></p>
+<p><a href="http://www.hannuota.cn">游戏地址</a></p>
+<p><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017268131039072">教程地址</a></p>
+<p>当理解原理之后，玩汉诺塔很自然的就用最少步骤完成，知识就是力量，感谢阅读。</p></article>
+    </section>
+
+    
+
+    
+    <article class="ui segment utterances-comments" data-html2canvas-ignore>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="abeelan/abeelan.github.io"
+        issue-term="og:title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </article>
+    
+
+    
+  </div>
+</div>
+
+
+            <footer class="ui basic center aligned segment" style="background-color: transparent;">
+              
+              <p>© 2021 lan&#39;s blog.</p>
+              
+
+              <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+              
+            </footer>
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/lan.jpg" alt="avatar" />
+    
+  </div>
+
+  <div class="content">
+    <h1 class="ui medium header">lan’s blog.<div class="sub header">Everything will be ok.</div>
+    </h1>
+
+    <article class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
+
+    
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/android/" title="Android">
+        Android
+      </a>
+    
+      <a class="ui label" href="/tags/blog/" title="blog">
+        blog
+      </a>
+    
+      <a class="ui label" href="/tags/git/" title="git">
+        git
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/python/" title="python">
+        python
+      </a>
+    
+      <a class="ui label" href="/tags/shell/" title="shell">
+        shell
+      </a>
+    
+    </article>
+    
+  </div>
+</header>
+
+
+<div class="ui relaxed grid dream-grid dream-back">
+  
+  
+  
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment markdown-body">
+      <div class="ui medium header">关于我</div>
+      <p>Hi，你好：</p>
+<p>我是一名测试小工，在这里记录并分享自己的学习笔记。</p>
+<p>微信公众号「懒人的日常生活」</p>
+<p><img class="ui image" src="/me/wechatcode.jpg" alt="wechat" /></p>
+<p>谢谢你这么好看，还愿意来关注我! ❤️</p>
+
+    </article>
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment">
+      <div class="ui medium header">社交链接</div>
+      <nav class="ui secondary menu dream-menu dream-socials">
+  
+  <div class="item">
+    <a href="/index.xml">
+      <i class="large rss square icon" title="RSS"></i>
+    </a>
+  </div>
+  
+
+  
+  <div class="item">
+    <a href="mailto:lanzy.nice@gmail.com">
+      <i class="large mail icon" title="Email"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="item">
+    <a href="https://github.com/abeelan" target="_blank">
+      <i class="large github icon" title="GitHub"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+</nav>
+
+    </article>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </div>
+
+  
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.defaultDark =  null 
+  window.backgroundDark =  null 
+  window.backgroundImageDark = "/me/background.jpg"
+  window.darkNav =  null 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/clojure.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
+    var lightTheme = "tomorrow"
+    var darkTheme = "tomorrow-night"
+    var theme = isDark === 'y' ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark === 'y' ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+    <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/abeelan.github.io\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>

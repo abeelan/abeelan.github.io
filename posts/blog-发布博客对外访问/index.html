@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hugo｜发布博客对外访问 | lan&#39;s blog.</title>
+
+    
+<link href="/me/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="lan" />
+<meta name="description" content="博客静态页面搭建完成后，接下来就需要对外发布展示。但是还没有自己的服务器和注册域名，如何发布呢？
+这里要感谢 github 提供的 github.io，可以做到这一点，并且免费。
+" />
+
+
+
+<meta name="generator" content="Hugo 0.82.0" />
+
+<link rel="canonical" href="https://abeelan.github.io/posts/blog-%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%AF%B9%E5%A4%96%E8%AE%BF%E9%97%AE/" />
+
+
+<meta property="og:title" content="Hugo｜发布博客对外访问" />
+<meta property="og:description" content="博客静态页面搭建完成后，接下来就需要对外发布展示。但是还没有自己的服务器和注册域名，如何发布呢？
+这里要感谢 github 提供的 github.io，可以做到这一点，并且免费。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abeelan.github.io/posts/blog-%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%AF%B9%E5%A4%96%E8%AE%BF%E9%97%AE/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-06T17:10:35&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-06T17:10:35&#43;08:00" />
+
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://abeelan.github.io/me/background.jpg"/>
+
+<meta name="twitter:title" content="Hugo｜发布博客对外访问"/>
+<meta name="twitter:description" content="博客静态页面搭建完成后，接下来就需要对外发布展示。但是还没有自己的服务器和注册域名，如何发布呢？
+这里要感谢 github 提供的 github.io，可以做到这一点，并且免费。"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:not(.ui.button):hover {
+    text-decoration: underline;
+  }
+
+  
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a:not(.ui.button),
+  .inverted a:not(.ui.button):hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: #fff;
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+
+  
+  body.dark {
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+</style>
+
+
+    
+
+
+
+<link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/tomorrow.min.css" />
+
+
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/css/custom.css" />
+    
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/abeelan.github.io\/'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui relaxed grid dream-grid dream-grid-single">
+  <aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside">
+    
+    
+    <div class="ui segment toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-创建-githubio">1. 创建 github.io</a></li>
+    <li><a href="#2-关联远程仓库">2. 关联远程仓库</a></li>
+    <li><a href="#遇到的报错">遇到的报错</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="ui segment actions">
+      <button
+        class="ui circular icon button save-as-image"
+        title="保存为图片"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </button>
+
+      <a href="https://twitter.com/intent/tweet?text=Hugo%ef%bd%9c%e5%8f%91%e5%b8%83%e5%8d%9a%e5%ae%a2%e5%af%b9%e5%a4%96%e8%ae%bf%e9%97%ae&url=https%3a%2f%2fabeelan.github.io%2fposts%2fblog-%25E5%258F%2591%25E5%25B8%2583%25E5%258D%259A%25E5%25AE%25A2%25E5%25AF%25B9%25E5%25A4%2596%25E8%25AE%25BF%25E9%2597%25AE%2f" class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</a>
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fabeelan.github.io%2fposts%2fblog-%25E5%258F%2591%25E5%25B8%2583%25E5%258D%259A%25E5%25AE%25A2%25E5%25AF%25B9%25E5%25A4%2596%25E8%25AE%25BF%25E9%2597%25AE%2f" class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</a>
+
+    </div>
+  </aside>
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <div class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/img/hugo.jpeg);"></div>
+    </div>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">Hugo｜发布博客对外访问<div class="sub header">
+            @
+            
+              
+                lan
+              
+            
+
+            | 
+                星期二，四月 6 日，2021 年
+              
+
+            | 2 分钟阅读
+
+            | 更新于
+              
+                星期二，四月 6 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><p>博客静态页面搭建完成后，接下来就需要对外发布展示。但是还没有自己的服务器和注册域名，如何发布呢？</p>
+<p>这里要感谢 github 提供的 <code>github.io</code>，可以做到这一点，并且免费。</p>
+<hr>
+<h2 id="1-创建-githubio">1. 创建 github.io</h2>
+<p>首先 <a href="https://github.com/">注册</a> 创建账号；登录 <code>github</code> 个人页面，新建仓库</p>
+<p>这里新建两个仓库：</p>
+<ul>
+<li>
+<p><strong>blog</strong></p>
+<p>这个仓库用于存在 Hugo 博客的内容文件，如果本地存储的话，不创建也是可以的</p>
+</li>
+<li>
+<p><strong>用户名.github.io</strong></p>
+<p>对外发布的仓库，这是 github 免费提供的可访问域名，仓库名格式必须为 <code>用户名.github.io</code>，用户名可以通过点击头像查看</p>
+<p>创建完成后，进入该仓库的设置页面内，设置一下页面模版，不然会展示不出来网页样式</p>
+<p>![image-20210121141839306](/Users/lan/Library/Application Support/typora-user-images/image-20210121141839306.png)</p>
+</li>
+</ul>
+<h2 id="2-关联远程仓库">2. 关联远程仓库</h2>
+<ul>
+<li>
+<p><strong>blog 关联远程仓库</strong></p>
+<p>进入博客目录，关联远程仓库</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd $blogPath
+$ git remote add orgin https://github.com/$blogProject
+</code></pre></div></li>
+<li>
+<p><strong>用户名 .github.io 关联远程仓库</strong></p>
+<p>将 hugo 内容转为静态网页文件，会在当前目录生成 <code>public</code> 目录</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo --theme<span style="color:#f92672">=</span>sam --buildDrafts --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://name.github.io/&#34;</span>
+$ cd public
+$ git remote add origin git@github.com:$name/$name.github.io.git
+$ git add -A
+$ git commit -m <span style="color:#e6db74">&#34;first commit&#34;</span>
+$ git push -u origin master
+</code></pre></div></li>
+</ul>
+<h2 id="遇到的报错">遇到的报错</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo --theme<span style="color:#f92672">=</span>sam --buildDrafts --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://name.github.io/&#34;</span>
+
+ERROR 2021/01/20 22:38:04 error: failed to transform resource: POSTCSS: failed to transform <span style="color:#e6db74">&#34;css/main.css&#34;</span> <span style="color:#f92672">(</span>text/css<span style="color:#f92672">)</span>: PostCSS not found; install with <span style="color:#e6db74">&#34;npm install postcss-cli&#34;</span>. See https://gohugo.io/hugo-pipes/postcss/
+</code></pre></div><p>按照提示 <code>npm install postcss-cli</code> 进行下载：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ npm install postcss-cli
+</code></pre></div><p>下载完成后，再次执行，依然报错：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo --theme<span style="color:#f92672">=</span>sam --buildDrafts --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://name.github.io/&#34;</span>
+
+Building sites … /Users/lanyangbi.blog/node_modules/fs-extra/lib/mkdirs/make-dir.js:85
+      <span style="color:#f92672">}</span> catch <span style="color:#f92672">{</span>
+              ^
+SyntaxError: Unexpected token <span style="color:#f92672">{</span>
+    at createScript <span style="color:#f92672">(</span>vm.js:80:10<span style="color:#f92672">)</span>
+    at Object.runInThisContext <span style="color:#f92672">(</span>vm.js:139:10<span style="color:#f92672">)</span>
+    at Module._compile <span style="color:#f92672">(</span>module.js:617:28<span style="color:#f92672">)</span>
+    at Object.Module._extensions..js <span style="color:#f92672">(</span>module.js:664:10<span style="color:#f92672">)</span>
+    at Module.load <span style="color:#f92672">(</span>module.js:566:32<span style="color:#f92672">)</span>
+    at tryModuleLoad <span style="color:#f92672">(</span>module.js:506:12<span style="color:#f92672">)</span>
+    at Function.Module._load <span style="color:#f92672">(</span>module.js:498:3<span style="color:#f92672">)</span>
+    at Module.require <span style="color:#f92672">(</span>module.js:597:17<span style="color:#f92672">)</span>
+    at require <span style="color:#f92672">(</span>internal/module.js:11:18<span style="color:#f92672">)</span>
+    at Object.&lt;anonymous&gt; <span style="color:#f92672">(</span>/Users/lanyangbi.blog/node_modules/fs-extra/lib/mkdirs/index.js:3:44<span style="color:#f92672">)</span>
+ERROR 2021/01/21 14:16:51 error: failed to transform resource: exit status <span style="color:#ae81ff">1</span>
+Total in <span style="color:#ae81ff">231</span> ms
+Error: Error building site: logged <span style="color:#ae81ff">1</span> error<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</code></pre></div><p>该问题原因是 node 版本过低，进行升级：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看 node 版本号</span>
+$ node -v
+v8.14.1
+
+<span style="color:#75715e"># 查看 node 发布版本</span>
+$ nvm list-remote 
+
+<span style="color:#75715e"># 安装最新版，通过淘宝镜像下载更快</span>
+$ export NVM_NODEJS_ORG_MIRROR<span style="color:#f92672">=</span>https://npm.taobao.org/mirrors/node
+$ nvm install v15.6.0
+
+<span style="color:#75715e"># 切换 node 版本，第二行是将该版本设置为默认版本</span>
+$ nvm use v15.6.0
+$ nvm alias default v15.6.0
+</code></pre></div><p>升级 node 版本后，依然报错</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo --theme<span style="color:#f92672">=</span>sam --buildDrafts --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://name.github.io/&#34;</span>
+
+Building sites … node:internal/modules/cjs/loader:928
+  throw err;
+  ^
+Error: Cannot find module <span style="color:#e6db74">&#39;postcss&#39;</span>
+Require stack:
+- /Users/name.blog/node_modules/postcss-cli/index.js
+- /Users/lanyangbi.blog/node_modules/postcss-cli/bin/postcss
+    at Function.Module._resolveFilename <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:925:15<span style="color:#f92672">)</span>
+    at Function.Module._load <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:769:27<span style="color:#f92672">)</span>
+    at Module.require <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:997:19<span style="color:#f92672">)</span>
+    at require <span style="color:#f92672">(</span>node:internal/modules/cjs/helpers:92:18<span style="color:#f92672">)</span>
+    at Object.&lt;anonymous&gt; <span style="color:#f92672">(</span>/Users/lanyangbi.blog/node_modules/postcss-cli/index.js:14:17<span style="color:#f92672">)</span>
+    at Module._compile <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:1108:14<span style="color:#f92672">)</span>
+    at Object.Module._extensions..js <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:1137:10<span style="color:#f92672">)</span>
+    at Module.load <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:973:32<span style="color:#f92672">)</span>
+    at Function.Module._load <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:813:14<span style="color:#f92672">)</span>
+    at Module.require <span style="color:#f92672">(</span>node:internal/modules/cjs/loader:997:19<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  code: <span style="color:#e6db74">&#39;MODULE_NOT_FOUND&#39;</span>,
+  requireStack: <span style="color:#f92672">[</span>
+    <span style="color:#e6db74">&#39;/Users/name.blog/node_modules/postcss-cli/index.js&#39;</span>,
+    <span style="color:#e6db74">&#39;/Users/name.blog/node_modules/postcss-cli/bin/postcss&#39;</span>
+  <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+ERROR 2021/01/21 14:43:13 error: failed to transform resource: exit status <span style="color:#ae81ff">1</span>
+Total in <span style="color:#ae81ff">247</span> ms
+Error: Error building site: logged <span style="color:#ae81ff">1</span> error<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</code></pre></div><p>找不到模块，继续安装：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 使用淘宝镜像安装</span>
+$ npm config set registry https://registry.npm.taobao.org
+$ npm install postcss
+</code></pre></div><p>安装后再次执行，还是报错：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo --theme<span style="color:#f92672">=</span>sam --buildDrafts --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://name.github.io/&#34;</span>
+
+Building sites … Plugin Error: Cannot find module <span style="color:#e6db74">&#39;autoprefixer&#39;</span>
+Require stack:
+- /Users/name.blog/node_modules/postcss-cli/index.js
+- /Users/name.blog/node_modules/postcss-cli/bin/postcss<span style="color:#960050;background-color:#1e0010">&#39;</span>
+ERROR 2021/01/21 14:52:28 error: failed to transform resource: exit status <span style="color:#ae81ff">1</span>
+Total in <span style="color:#ae81ff">247</span> ms
+Error: Error building site: logged <span style="color:#ae81ff">1</span> error<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</code></pre></div><p>继续安装：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ npm install autoprefixer
+</code></pre></div><p>泪目，终于成功了～ 🥱</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">                   | EN
++------------------+----+
+  Pages            | <span style="color:#ae81ff">17</span>
+  Paginator pages  |  <span style="color:#ae81ff">0</span>
+  Non-page files   |  <span style="color:#ae81ff">0</span>
+  Static files     | <span style="color:#ae81ff">13</span>
+  Processed images |  <span style="color:#ae81ff">0</span>
+  Aliases          |  <span style="color:#ae81ff">0</span>
+  Sitemaps         |  <span style="color:#ae81ff">1</span>
+  Cleaned          |  <span style="color:#ae81ff">0</span>
+
+Total in <span style="color:#ae81ff">767</span> ms
+</code></pre></div></article>
+    </section>
+
+    
+
+    
+    <article class="ui segment utterances-comments" data-html2canvas-ignore>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="abeelan/abeelan.github.io"
+        issue-term="og:title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </article>
+    
+
+    
+  </div>
+</div>
+
+
+            <footer class="ui basic center aligned segment" style="background-color: transparent;">
+              
+              <p>© 2021 lan&#39;s blog.</p>
+              
+
+              <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+              
+            </footer>
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/lan.jpg" alt="avatar" />
+    
+  </div>
+
+  <div class="content">
+    <h1 class="ui medium header">lan’s blog.<div class="sub header">Everything will be ok.</div>
+    </h1>
+
+    <article class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
+
+    
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/android/" title="Android">
+        Android
+      </a>
+    
+      <a class="ui label" href="/tags/blog/" title="blog">
+        blog
+      </a>
+    
+      <a class="ui label" href="/tags/git/" title="git">
+        git
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/python/" title="python">
+        python
+      </a>
+    
+      <a class="ui label" href="/tags/shell/" title="shell">
+        shell
+      </a>
+    
+    </article>
+    
+  </div>
+</header>
+
+
+<div class="ui relaxed grid dream-grid dream-back">
+  
+  
+  
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment markdown-body">
+      <div class="ui medium header">关于我</div>
+      <p>Hi，你好：</p>
+<p>我是一名测试小工，在这里记录并分享自己的学习笔记。</p>
+<p>微信公众号「懒人的日常生活」</p>
+<p><img class="ui image" src="/me/wechatcode.jpg" alt="wechat" /></p>
+<p>谢谢你这么好看，还愿意来关注我! ❤️</p>
+
+    </article>
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment">
+      <div class="ui medium header">社交链接</div>
+      <nav class="ui secondary menu dream-menu dream-socials">
+  
+  <div class="item">
+    <a href="/index.xml">
+      <i class="large rss square icon" title="RSS"></i>
+    </a>
+  </div>
+  
+
+  
+  <div class="item">
+    <a href="mailto:lanzy.nice@gmail.com">
+      <i class="large mail icon" title="Email"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="item">
+    <a href="https://github.com/abeelan" target="_blank">
+      <i class="large github icon" title="GitHub"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+</nav>
+
+    </article>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </div>
+
+  
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.defaultDark =  null 
+  window.backgroundDark =  null 
+  window.backgroundImageDark = "/me/background.jpg"
+  window.darkNav =  null 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/clojure.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
+    var lightTheme = "tomorrow"
+    var darkTheme = "tomorrow-night"
+    var theme = isDark === 'y' ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark === 'y' ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+    <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/abeelan.github.io\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>

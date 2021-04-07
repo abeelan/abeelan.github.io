@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>iOS｜使用快捷指令做的小功能 | lan&#39;s blog.</title>
+
+    
+<link href="/me/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="lan" />
+<meta name="description" content="下班自动提醒的快捷指令工具 🕙
+" />
+
+
+
+<meta name="generator" content="Hugo 0.82.0" />
+
+<link rel="canonical" href="https://abeelan.github.io/posts/ios-%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/" />
+
+
+<meta property="og:title" content="iOS｜使用快捷指令做的小功能" />
+<meta property="og:description" content="下班自动提醒的快捷指令工具 🕙" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abeelan.github.io/posts/ios-%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-06T18:48:45&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-06T18:48:45&#43;08:00" />
+
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://abeelan.github.io/me/background.jpg"/>
+
+<meta name="twitter:title" content="iOS｜使用快捷指令做的小功能"/>
+<meta name="twitter:description" content="下班自动提醒的快捷指令工具 🕙"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:not(.ui.button):hover {
+    text-decoration: underline;
+  }
+
+  
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a:not(.ui.button),
+  .inverted a:not(.ui.button):hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: #fff;
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+
+  
+  body.dark {
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+</style>
+
+
+    
+
+
+
+<link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/tomorrow.min.css" />
+
+
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/css/custom.css" />
+    
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/abeelan.github.io\/'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui relaxed grid dream-grid dream-grid-single">
+  <aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside">
+    
+    
+    <div class="ui segment toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#实现">实现</a>
+      <ul>
+        <li><a href="#step-1">step 1</a></li>
+        <li><a href="#step-2">step 2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="ui segment actions">
+      <button
+        class="ui circular icon button save-as-image"
+        title="保存为图片"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </button>
+
+      <a href="https://twitter.com/intent/tweet?text=iOS%ef%bd%9c%e4%bd%bf%e7%94%a8%e5%bf%ab%e6%8d%b7%e6%8c%87%e4%bb%a4%e5%81%9a%e7%9a%84%e5%b0%8f%e5%8a%9f%e8%83%bd&url=https%3a%2f%2fabeelan.github.io%2fposts%2fios-%25E5%25BF%25AB%25E6%258D%25B7%25E6%258C%2587%25E4%25BB%25A4%2f" class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</a>
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fabeelan.github.io%2fposts%2fios-%25E5%25BF%25AB%25E6%258D%25B7%25E6%258C%2587%25E4%25BB%25A4%2f" class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</a>
+
+    </div>
+  </aside>
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <div class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/img/shortcuts.jpg);"></div>
+    </div>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">iOS｜使用快捷指令做的小功能<div class="sub header">
+            @
+            
+              
+                lan
+              
+            
+
+            | 
+                星期二，四月 6 日，2021 年
+              
+
+            | 2 分钟阅读
+
+            | 更新于
+              
+                星期二，四月 6 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><p>下班自动提醒的快捷指令工具 🕙</p>
+<p>iOS 快捷指令使用记录</p>
+<hr>
+<p>公司弹性打卡，规则是这样：早上九点半之前到公司，那么下午六点半到七点之间，根据打卡时间弹性下班；早上晚于9点半到公司，需要多加半小时上班时间。</p>
+<p>公司采用古老的手指打卡机系统，不提供查询打卡时间，经常忘记啥时候该下班，是否需要多加半小时；于是购买了「小日常」APP，作为习惯每天记录自己的上班时间；快到下班时间打开 APP 查看打卡记录，再计算，操作路径较长，懒。</p>
+<p>于是想到了快捷指令，官方概述：该 App 可让您合并多个 App 间的多个步骤，以创建功能强大的任务自动化。</p>
+<p>花 15 分钟在 b 站看了几个教程视频后，有了点想法，这东西可以搞。</p>
+<p>需求实现逻辑梳理：</p>
+<ul>
+<li>当到达指定地点-公司；</li>
+<li>自动记录打卡时间；</li>
+<li>根据当前打卡时间推算出下班时间；</li>
+<li>设置提醒事项，提醒时间为下班前 5 分钟</li>
+</ul>
+<h2 id="实现">实现</h2>
+<p><del>step 1</del></p>
+<p><del>新建快捷指令中添加，搜索位置 ==&gt; 获取当前位置；</del></p>
+<p><del>等等，我们是手指打卡，到达位置后的时间不一定是我手指触碰打卡机的时间，到楼下还得扫健康码、等电梯，时间获取不精确，下班早了是要扣钱的&hellip;</del></p>
+<h3 id="step-1">step 1</h3>
+<p><strong>手指打卡后，点击启动手机上的快捷指令；</strong>
+创建快捷指令，「详细信息」内点击「添加到主屏幕」，自定义图标和名称，放到手可以轻松触碰的位置，打完卡后点击触发。</p>
+<h3 id="step-2">step 2</h3>
+<p>打卡逻辑梳理，满足以下条件即可</p>
+<table>
+<thead>
+<tr>
+<th>上班</th>
+<th>下班</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9:00</td>
+<td>6:30</td>
+</tr>
+<tr>
+<td>9:30</td>
+<td>7:00</td>
+</tr>
+<tr>
+<td>9:31</td>
+<td>7:31</td>
+</tr>
+<tr>
+<td>10:00</td>
+<td>8:00</td>
+</tr>
+</tbody>
+</table>
+<p>根据所需判断条件在快捷指令内搜索就行，非常方便。</p>
+<pre><code>### 整体实现如下
+获取当前日期
+格式化日期
+格式化后的日期 - 930（9点半的时间节点）
+如果 计算结果 小于或等于 0
+  将 日期 加上 34200 秒钟
+否则
+  如果 计算结果 小于或等于 70
+    将 日期 加上 36000 秒钟
+  否则
+    文本 8:00（迟到）
+  结束条件
+结束条件
+
+显示预览 打卡时间；下班时间（出现提示框）
+
+从 所有提醒事项 中查找
+如果 存在之前设置的下班提醒
+  移除该提醒事项
+否则
+结束条件
+
+计算 下班时间 减去 5分钟
+将 下班啦 添加到提醒事项
+设置 提醒时间 为下班前 5 分钟
+</code></pre><p>over.</p>
+<p>同时开启 iOS 和 Mac 的提醒事项同步；那么效果就很 Nice 😄</p>
+<p>到点了，验证下结果；</p>
+<p><img src="https://files.mdnice.com/user/9531/3f5ce0dd-09ea-4178-8b01-83d13f49e14d.png" alt=""></p></article>
+    </section>
+
+    
+
+    
+    <article class="ui segment utterances-comments" data-html2canvas-ignore>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="abeelan/abeelan.github.io"
+        issue-term="og:title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </article>
+    
+
+    
+  </div>
+</div>
+
+
+            <footer class="ui basic center aligned segment" style="background-color: transparent;">
+              
+              <p>© 2021 lan&#39;s blog.</p>
+              
+
+              <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+              
+            </footer>
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/lan.jpg" alt="avatar" />
+    
+  </div>
+
+  <div class="content">
+    <h1 class="ui medium header">lan’s blog.<div class="sub header">Everything will be ok.</div>
+    </h1>
+
+    <article class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
+
+    
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/android/" title="Android">
+        Android
+      </a>
+    
+      <a class="ui label" href="/tags/blog/" title="blog">
+        blog
+      </a>
+    
+      <a class="ui label" href="/tags/git/" title="git">
+        git
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/python/" title="python">
+        python
+      </a>
+    
+      <a class="ui label" href="/tags/shell/" title="shell">
+        shell
+      </a>
+    
+    </article>
+    
+  </div>
+</header>
+
+
+<div class="ui relaxed grid dream-grid dream-back">
+  
+  
+  
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment markdown-body">
+      <div class="ui medium header">关于我</div>
+      <p>Hi，你好：</p>
+<p>我是一名测试小工，在这里记录并分享自己的学习笔记。</p>
+<p>微信公众号「懒人的日常生活」</p>
+<p><img class="ui image" src="/me/wechatcode.jpg" alt="wechat" /></p>
+<p>谢谢你这么好看，还愿意来关注我! ❤️</p>
+
+    </article>
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment">
+      <div class="ui medium header">社交链接</div>
+      <nav class="ui secondary menu dream-menu dream-socials">
+  
+  <div class="item">
+    <a href="/index.xml">
+      <i class="large rss square icon" title="RSS"></i>
+    </a>
+  </div>
+  
+
+  
+  <div class="item">
+    <a href="mailto:lanzy.nice@gmail.com">
+      <i class="large mail icon" title="Email"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="item">
+    <a href="https://github.com/abeelan" target="_blank">
+      <i class="large github icon" title="GitHub"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+</nav>
+
+    </article>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </div>
+
+  
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.defaultDark =  null 
+  window.backgroundDark =  null 
+  window.backgroundImageDark = "/me/background.jpg"
+  window.darkNav =  null 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/clojure.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
+    var lightTheme = "tomorrow"
+    var darkTheme = "tomorrow-night"
+    var theme = isDark === 'y' ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark === 'y' ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+    <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/abeelan.github.io\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>

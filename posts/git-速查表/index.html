@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Git｜速查表 | lan&#39;s blog.</title>
+
+    
+<link href="/me/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="lan" />
+<meta name="description" content="常用命令记录，速查速记&amp;hellip;
+" />
+
+
+
+<meta name="generator" content="Hugo 0.82.0" />
+
+<link rel="canonical" href="https://abeelan.github.io/posts/git-%E9%80%9F%E6%9F%A5%E8%A1%A8/" />
+
+
+<meta property="og:title" content="Git｜速查表" />
+<meta property="og:description" content="常用命令记录，速查速记&hellip;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abeelan.github.io/posts/git-%E9%80%9F%E6%9F%A5%E8%A1%A8/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-06T17:10:35&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-06T17:10:35&#43;08:00" />
+
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://abeelan.github.io/me/background.jpg"/>
+
+<meta name="twitter:title" content="Git｜速查表"/>
+<meta name="twitter:description" content="常用命令记录，速查速记&hellip;"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:not(.ui.button):hover {
+    text-decoration: underline;
+  }
+
+  
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a:not(.ui.button),
+  .inverted a:not(.ui.button):hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: #fff;
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+
+  
+  body.dark {
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+</style>
+
+
+    
+
+
+
+<link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/tomorrow.min.css" />
+
+
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/css/custom.css" />
+    
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/abeelan.github.io\/'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui relaxed grid dream-grid dream-grid-single">
+  <aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside">
+    
+    
+    <div class="ui segment toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#全局配置">全局配置</a>
+      <ul>
+        <li><a href="#设置全局用户名和邮箱">设置全局用户名和邮箱</a></li>
+        <li><a href="#设置-git-命令行颜色">设置 git 命令行颜色</a></li>
+      </ul>
+    </li>
+    <li><a href="#本地仓库">本地仓库</a>
+      <ul>
+        <li><a href="#创建版本库">创建版本库</a></li>
+        <li><a href="#提交文件到本地仓库">提交文件到本地仓库</a></li>
+        <li><a href="#查看状态">查看状态</a></li>
+        <li><a href="#查看改动内容">查看改动内容</a></li>
+        <li><a href="#查看日志">查看日志</a></li>
+        <li><a href="#回退版本">回退版本</a></li>
+        <li><a href="#查看历史命令">查看历史命令</a></li>
+        <li><a href="#撤销修改">撤销修改</a></li>
+        <li><a href="#删除文件">删除文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#远程仓库">远程仓库</a>
+      <ul>
+        <li><a href="#通过-ssh-连接远程仓库使用-https-可以忽略">通过 ssh 连接远程仓库（使用 https 可以忽略）</a></li>
+        <li><a href="#克隆仓库">克隆仓库</a></li>
+        <li><a href="#关联远程仓库">关联远程仓库</a></li>
+        <li><a href="#提交内容到远程仓库">提交内容到远程仓库</a></li>
+        <li><a href="#查看当前分支">查看当前分支</a></li>
+        <li><a href="#创建并切换分支">创建并切换分支</a></li>
+        <li><a href="#合并指定分支到当前分支">合并指定分支到当前分支</a></li>
+        <li><a href="#删除分支">删除分支</a></li>
+        <li><a href="#冲突解决">冲突解决</a></li>
+        <li><a href="#保存工作区">保存工作区</a></li>
+        <li><a href="#复制特定提交到当前分支">复制特定提交到当前分支</a></li>
+        <li><a href="#强制删除未合并过的分支">强制删除未合并过的分支</a></li>
+        <li><a href="#创建标签">创建标签</a></li>
+        <li><a href="#查看标签">查看标签</a></li>
+        <li><a href="#推送标签到远程仓库">推送标签到远程仓库</a></li>
+        <li><a href="#删除标签">删除标签</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="ui segment actions">
+      <button
+        class="ui circular icon button save-as-image"
+        title="保存为图片"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </button>
+
+      <a href="https://twitter.com/intent/tweet?text=Git%ef%bd%9c%e9%80%9f%e6%9f%a5%e8%a1%a8&url=https%3a%2f%2fabeelan.github.io%2fposts%2fgit-%25E9%2580%259F%25E6%259F%25A5%25E8%25A1%25A8%2f" class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</a>
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fabeelan.github.io%2fposts%2fgit-%25E9%2580%259F%25E6%259F%25A5%25E8%25A1%25A8%2f" class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</a>
+
+    </div>
+  </aside>
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <div class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/img/git.jpeg);"></div>
+    </div>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">Git｜速查表<div class="sub header">
+            @
+            
+              
+                lan
+              
+            
+
+            | 
+                星期二，四月 6 日，2021 年
+              
+
+            | 3 分钟阅读
+
+            | 更新于
+              
+                星期二，四月 6 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><p>常用命令记录，速查速记&hellip;</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰 Git 教程</a></p>
+<p><a href="https://learngitbranching.js.org/?locale=zh_CN">Git 实战通关</a></p>
+<h2 id="全局配置">全局配置</h2>
+<h3 id="设置全局用户名和邮箱">设置全局用户名和邮箱</h3>
+<p>因为 git 是分布式版本控制系统，机器需要自报家门</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># --global 参数：表示机器上所有的仓库都会使用这个配置</span>
+$ git config --global user.name <span style="color:#e6db74">&#34;Your Name&#34;</span>
+$ git config --global user.email <span style="color:#e6db74">&#34;emai@example.com&#34;</span>
+</code></pre></div><h3 id="设置-git-命令行颜色">设置 git 命令行颜色</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git config --global color.ui true
+</code></pre></div><h5 id="配置别名httpswwwliaoxuefengcomwiki896043488029600898732837407424"><a href="https://www.liaoxuefeng.com/wiki/896043488029600/898732837407424">配置别名</a></h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git config --global alias.co checkout
+$ git config --global alias.ci commit
+$ git config --global alias.br branch
+</code></pre></div><h5 id="忽略特殊文件httpswwwliaoxuefengcomwiki896043488029600900004590234208"><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900004590234208">忽略特殊文件</a></h5>
+<h2 id="本地仓库">本地仓库</h2>
+<h3 id="创建版本库">创建版本库</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 创建本地目录</span>
+$ mkdir git_notes
+$ cd git_notes
+
+<span style="color:#75715e"># 将这个目录变为 git 仓库</span>
+$ git init
+
+<span style="color:#75715e"># 该目录下会自动创建 .git 隐藏目录，通过 -al 参数查看</span>
+$ ls -al 
+</code></pre></div><h3 id="提交文件到本地仓库">提交文件到本地仓库</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 随便新建个文件</span>
+$ cd git_notes
+$ echo <span style="color:#e6db74">&#34;git notes&#34;</span> &gt; readme.md
+
+<span style="color:#75715e"># - 添加单个文件到本地仓库</span>
+$ git add readme.md
+<span style="color:#75715e"># - 添加目录下所有文件到本地仓库</span>
+$ git add . 
+
+<span style="color:#75715e"># add 是提交到暂存区</span>
+<span style="color:#75715e"># commit 是将暂存区的所有文件提交到当前分支</span>
+$ git commit -m <span style="color:#e6db74">&#34;first commit readme.md&#34;</span>
+</code></pre></div><h3 id="查看状态">查看状态</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 比如当前目录下文件是否添加仓库，是否提交等等</span>
+$ git status
+</code></pre></div><h3 id="查看改动内容">查看改动内容</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看文件最新修改的内容与之前版本的不同</span>
+$ git diff readme.md
+</code></pre></div><h3 id="查看日志">查看日志</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看所有提交记录，</span>
+<span style="color:#75715e"># 显示版本号、分支、提交的备注信息、提交人、日期</span>
+$ git log
+
+<span style="color:#75715e"># --pretty=oneline </span>
+<span style="color:#75715e"># 仅显示版本号、分支、提交的备注信息</span>
+$ git log --pretty<span style="color:#f92672">=</span>oneline
+
+<span style="color:#75715e"># log 页面，按 q 返回到命令行</span>
+</code></pre></div><h3 id="回退版本">回退版本</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 回退上一版本</span>
+$ git reset --hard HEAD^
+
+<span style="color:#75715e"># 回退上上个版本</span>
+$ git reset --hard HEAD^^
+
+<span style="color:#75715e"># 回退到前 100 个版本</span>
+$ git reset --hard HEAD~100
+
+<span style="color:#75715e"># 回退到指定版本，commit_version 通过 git log 查看</span>
+<span style="color:#75715e"># 版本号不写全也可以，多写几位保证唯一</span>
+$ git reset --hard <span style="color:#f92672">{</span>commit_version<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="查看历史命令">查看历史命令</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 通常用来查看未来版本号</span>
+$ git reflog
+</code></pre></div><h3 id="撤销修改">撤销修改</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 将文件恢复到最近一次 add 或 commit 的状态</span>
+<span style="color:#75715e"># -- 代表当前分支</span>
+$ git checkout -- readme.md
+</code></pre></div><h3 id="删除文件">删除文件</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git rm readme.md
+$ git commit -m <span style="color:#e6db74">&#34;remove readme.md&#34;</span>
+</code></pre></div><h2 id="远程仓库">远程仓库</h2>
+<h3 id="通过-ssh-连接远程仓库使用-https-可以忽略">通过 ssh 连接远程仓库（使用 https 可以忽略）</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># ssh 速度快，https 速度慢且需要输入口令</span>
+<span style="color:#75715e"># 1. 创建 SSH Key</span>
+$ cd ~/.ssh
+$ ssh-keygen -t rsa -C <span style="color:#e6db74">&#34;lan_yangbi@163.com&#34;</span>
+<span style="color:#75715e"># 一路回车，得到公钥和私钥</span>
+$ ll
+id_rsa
+id_rsa.pub
+
+<span style="color:#75715e"># 2. 将公钥信息配置到 github</span>
+<span style="color:#75715e"># 进入 github 页面 -&gt; 点击头像 -&gt; settings -&gt; SSH and GPG keys -&gt; SSH keys -&gt; New SSH key</span>
+<span style="color:#75715e"># Title：随意填写</span>
+<span style="color:#75715e"># Key：从 id_rsa.pub 内复制粘贴过来</span>
+<span style="color:#75715e"># 点击 Add SSH key</span>
+<span style="color:#75715e"># 配置好之后，就可以向 github 提交</span>
+</code></pre></div><h3 id="克隆仓库">克隆仓库</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone git@github.com:lanyangbi/lanyangbi.github.io.git
+</code></pre></div><h3 id="关联远程仓库">关联远程仓库</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># orgin 代表的是远程仓库，这是默认叫法</span>
+$ git remote add origin git@github.com:lanyangbi/lanyangbi.github.io.git
+
+<span style="color:#75715e"># 查看远程仓库</span>
+$ git remote
+origin
+
+<span style="color:#75715e"># 查看详细信息</span>
+$ git remote -v
+origin	https://github.com/lanyangbi/lanyangbi.blog.git <span style="color:#f92672">(</span>fetch<span style="color:#f92672">)</span>
+origin	https://github.com/lanyangbi/lanyangbi.blog.git <span style="color:#f92672">(</span>push<span style="color:#f92672">)</span>
+</code></pre></div><h3 id="提交内容到远程仓库">提交内容到远程仓库</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 首次提交时加上 -u 代表关联分支，后续就可以不用了</span>
+$ git push -u orgin master
+$ git push orgin master
+</code></pre></div><h3 id="查看当前分支">查看当前分支</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># * 代表当前分支</span>
+$ git branch
+* dev
+  master
+</code></pre></div><h3 id="创建并切换分支">创建并切换分支</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 创建分支后切换</span>
+$ git branch dev
+$ git checkout dev
+
+<span style="color:#75715e"># 也可以使用一条命令 -b 表示创建并切换到新分支</span>
+$ git checkout -b dev
+</code></pre></div><h3 id="合并指定分支到当前分支">合并指定分支到当前分支</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 当在 dev 有文件修改后</span>
+<span style="color:#75715e"># 需要先切换到 master 分支然后合并</span>
+$ git checkout master
+$ git merge dev
+</code></pre></div><h3 id="删除分支">删除分支</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 当分支合并到 master 后，分支就可以删除啦</span>
+$ git branch -d dev
+</code></pre></div><h3 id="冲突解决">冲突解决</h3>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900004111093344">文件冲突</a></p>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900375748016320">多人协作：分支冲突</a></p>
+<h3 id="保存工作区">保存工作区</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git stash
+Saved working directory and index state WIP on dev: f52c633 add merge
+
+<span style="color:#75715e"># 查看保存的工作区</span>
+$ git stash list
+
+<span style="color:#75715e"># 恢复工作区</span>
+$ git stash apply
+
+<span style="color:#75715e"># 恢复后，需要手动删除该工作区</span>
+$ git stash drop
+
+<span style="color:#75715e"># 恢复的同时，删除工作区</span>
+$ git stash pop
+
+<span style="color:#75715e"># 可以保存多个 stash，恢复指定 stash</span>
+$ git stash apply stash@<span style="color:#f92672">{</span>0<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="复制特定提交到当前分支">复制特定提交到当前分支</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 可以将修改 bug 后提交的修改复制到当前开发分支，避免重复劳动</span>
+$ git cherry-pick <span style="color:#f92672">{</span>commit_version<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="强制删除未合并过的分支">强制删除未合并过的分支</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git branch -D dev
+</code></pre></div><h3 id="创建标签">创建标签</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 创建标签</span>
+$ git tag v1.0
+
+<span style="color:#75715e"># 对指定 commit 打标签</span>
+$ git tag v1.1 f52c633
+
+<span style="color:#75715e"># 创建带有说明的标签</span>
+$ git tag -a v1.2 -m <span style="color:#e6db74">&#34;version 1.2 released&#34;</span> 1094adb
+</code></pre></div><h3 id="查看标签">查看标签</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看标签</span>
+$ git tag
+
+<span style="color:#75715e"># 查看标签信息</span>
+$ git show v1.0
+</code></pre></div><h3 id="推送标签到远程仓库">推送标签到远程仓库</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#推送指定标签</span>
+$ git push orgin v1.0
+
+<span style="color:#75715e"># 推送全部标签</span>
+$ git push orgin --tags
+</code></pre></div><h3 id="删除标签">删除标签</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 删除本地标签</span>
+$ git tag -d v1.0
+
+<span style="color:#75715e"># 删除远程仓库标签</span>
+$ git push orgin :refs/tags/v1.0
+</code></pre></div></article>
+    </section>
+
+    
+
+    
+    <article class="ui segment utterances-comments" data-html2canvas-ignore>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="abeelan/abeelan.github.io"
+        issue-term="og:title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </article>
+    
+
+    
+  </div>
+</div>
+
+
+            <footer class="ui basic center aligned segment" style="background-color: transparent;">
+              
+              <p>© 2021 lan&#39;s blog.</p>
+              
+
+              <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+              
+            </footer>
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/lan.jpg" alt="avatar" />
+    
+  </div>
+
+  <div class="content">
+    <h1 class="ui medium header">lan’s blog.<div class="sub header">Everything will be ok.</div>
+    </h1>
+
+    <article class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
+
+    
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/android/" title="Android">
+        Android
+      </a>
+    
+      <a class="ui label" href="/tags/blog/" title="blog">
+        blog
+      </a>
+    
+      <a class="ui label" href="/tags/git/" title="git">
+        git
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/python/" title="python">
+        python
+      </a>
+    
+      <a class="ui label" href="/tags/shell/" title="shell">
+        shell
+      </a>
+    
+    </article>
+    
+  </div>
+</header>
+
+
+<div class="ui relaxed grid dream-grid dream-back">
+  
+  
+  
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment markdown-body">
+      <div class="ui medium header">关于我</div>
+      <p>Hi，你好：</p>
+<p>我是一名测试小工，在这里记录并分享自己的学习笔记。</p>
+<p>微信公众号「懒人的日常生活」</p>
+<p><img class="ui image" src="/me/wechatcode.jpg" alt="wechat" /></p>
+<p>谢谢你这么好看，还愿意来关注我! ❤️</p>
+
+    </article>
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment">
+      <div class="ui medium header">社交链接</div>
+      <nav class="ui secondary menu dream-menu dream-socials">
+  
+  <div class="item">
+    <a href="/index.xml">
+      <i class="large rss square icon" title="RSS"></i>
+    </a>
+  </div>
+  
+
+  
+  <div class="item">
+    <a href="mailto:lanzy.nice@gmail.com">
+      <i class="large mail icon" title="Email"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="item">
+    <a href="https://github.com/abeelan" target="_blank">
+      <i class="large github icon" title="GitHub"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+</nav>
+
+    </article>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </div>
+
+  
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.defaultDark =  null 
+  window.backgroundDark =  null 
+  window.backgroundImageDark = "/me/background.jpg"
+  window.darkNav =  null 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/clojure.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
+    var lightTheme = "tomorrow"
+    var darkTheme = "tomorrow-night"
+    var theme = isDark === 'y' ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark === 'y' ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+    <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/abeelan.github.io\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>

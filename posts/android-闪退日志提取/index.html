@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Android｜闪退日志提取 | lan&#39;s blog.</title>
+
+    
+<link href="/me/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="lan" />
+<meta name="description" content="安卓手机测试过程中，遇到应用闪退，通常需要在 BUG 信息上附加崩溃日志，便于开发同学快速定位问题。
+" />
+
+
+
+<meta name="generator" content="Hugo 0.82.0" />
+
+<link rel="canonical" href="https://abeelan.github.io/posts/android-%E9%97%AA%E9%80%80%E6%97%A5%E5%BF%97%E6%8F%90%E5%8F%96/" />
+
+
+<meta property="og:title" content="Android｜闪退日志提取" />
+<meta property="og:description" content="安卓手机测试过程中，遇到应用闪退，通常需要在 BUG 信息上附加崩溃日志，便于开发同学快速定位问题。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abeelan.github.io/posts/android-%E9%97%AA%E9%80%80%E6%97%A5%E5%BF%97%E6%8F%90%E5%8F%96/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-21T15:35:52&#43;08:00" />
+<meta property="article:modified_time" content="2021-01-21T15:35:52&#43;08:00" />
+
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://abeelan.github.io/me/background.jpg"/>
+
+<meta name="twitter:title" content="Android｜闪退日志提取"/>
+<meta name="twitter:description" content="安卓手机测试过程中，遇到应用闪退，通常需要在 BUG 信息上附加崩溃日志，便于开发同学快速定位问题。"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:not(.ui.button):hover {
+    text-decoration: underline;
+  }
+
+  
+  a:not(.ui.button) {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a:not(.ui.button),
+  .inverted a:not(.ui.button):hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: #fff;
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+
+  
+  body.dark {
+    
+
+    
+    background-image: url(/me/background.jpg);
+    
+  }
+  
+</style>
+
+
+    
+
+
+
+<link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/tomorrow.min.css" />
+
+
+
+
+
+
+
+    
+    <link rel="stylesheet" href="/css/custom.css" />
+    
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/abeelan.github.io\/'"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui relaxed grid dream-grid dream-grid-single">
+  <aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside">
+    
+    
+    <div class="ui segment toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#获取日志">获取日志</a></li>
+    <li><a href="#统计出现闪退次数">统计出现闪退次数</a></li>
+    <li><a href="#转储闪退日志">转储闪退日志</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="ui segment actions">
+      <button
+        class="ui circular icon button save-as-image"
+        title="保存为图片"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </button>
+
+      <a href="https://twitter.com/intent/tweet?text=Android%ef%bd%9c%e9%97%aa%e9%80%80%e6%97%a5%e5%bf%97%e6%8f%90%e5%8f%96&url=https%3a%2f%2fabeelan.github.io%2fposts%2fandroid-%25E9%2597%25AA%25E9%2580%2580%25E6%2597%25A5%25E5%25BF%2597%25E6%258F%2590%25E5%258F%2596%2f" class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</a>
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fabeelan.github.io%2fposts%2fandroid-%25E9%2597%25AA%25E9%2580%2580%25E6%2597%25A5%25E5%25BF%2597%25E6%258F%2590%25E5%258F%2596%2f" class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</a>
+
+    </div>
+  </aside>
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <div class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/img/android.jpeg);"></div>
+    </div>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">Android｜闪退日志提取<div class="sub header">
+            @
+            
+              
+                lan
+              
+            
+
+            | 
+                星期四，一月 21 日，2021 年
+              
+
+            | 4 分钟阅读
+
+            | 更新于
+              
+                星期四，一月 21 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><p>安卓手机测试过程中，遇到应用闪退，通常需要在 <code>BUG</code> 信息上附加崩溃日志，便于开发同学快速定位问题。</p>
+<p>存储日志命令为：
+<code>adb logcat -v time &gt; crash_log.log</code></p>
+<p>这个方法抓到的日志过多，很多都是无用的系统日志或级别过低的打印日志，所以需要做一次过滤，<code>logcat</code> 可以根据日志等级过滤。将日志级别设置为 <code>ERROR</code>，就可以过滤掉一大部分无用信息。</p>
+<p>命令修改为：
+<code>adb logcat -v time *:E &gt; crash_log.log</code></p>
+<blockquote>
+<p><strong>备注：</strong></p>
+<ul>
+<li>星号 <code>*</code> 代表日志任意 <code>tag</code> 都只输出 <code>Error</code> 级别以上日志；</li>
+<li>MacOS 命令行直接使用 <code>*:E</code> 会报错 <code>no matches found: *:E</code>，所以需要添加双引号或转义符来解决：<code>&quot;*:E&quot;</code> 或 <code>\*:E</code></li>
+</ul>
+</blockquote>
+<p>获取到日志后，会发现，还是存在一部分系统的错误日志，如何再次过滤呢？</p>
+<p>目标：仅需要某个闪退的全部堆栈信息</p>
+<p>思路：</p>
+<ol>
+<li>通过命令行做第一次过滤，获取到 <code>ERROR</code> 级别的原始日志；</li>
+<li>逐行读取日志，如果查找到关键字 <code>FATAL EXCEPTION: main</code> 则代表出现一次闪退，记录该进程 <code>PID</code> 存储到列表内；</li>
+<li>判断当 <code>PID</code> 列表非空时，创建日志文件，将该 <code>PID</code> 的所有日志写入到新文件内。</li>
+</ol>
+<p>这样就能满足需求了，接下来代码实现，验证效果。</p>
+<h2 id="获取日志">获取日志</h2>
+<p>人工操作步骤为：命令行输入命令，获取日志后，<code>Ctrl+C</code> 关闭日志</p>
+<p>代码也一样，实现方法：</p>
+<ul>
+<li>模拟命令行：<code>subprocess</code>模块</li>
+<li>等待日志获取：安卓日志缓冲区一般为<code>64KB</code>，可以通过 <code>time.sleep()</code> 暂停程序 <code>5</code> 秒（可以自定义时间，我是感觉够用了）；</li>
+<li><code>Ctrl+C</code>：通过命令杀死 <code>adb logcat</code> 进程</li>
+</ul>
+<pre><code>def log_cat(file_path, device=&quot;&quot;):
+    &quot;&quot;&quot;获取 adb 日志
+    &quot;&quot;&quot;
+    command = rf&quot;adb {device} logcat -v time \*:E &gt; {file_path}&quot;
+    subprocess.Popen(command, shell=True)
+    time.sleep(5)
+    try:
+        if platform.system() == &quot;Darwin&quot; or &quot;Linux&quot;:
+            subprocess.call(
+                &quot;kill -9 $(ps -ef | grep 'adb logcat' | sed -n 1p | awk '{print $2}')&quot;,
+                shell=True
+            )
+        else:
+            # Windows 不知道能否生效，网上查的这个方法，没有机器测试
+            subprocess.Popen(&quot;taskkill /F /IM adb.exe&quot;)
+    except Exception as e:
+        logging.warning(f&quot;Kill「adb logcat」called Exception，message：{e}&quot;)
+</code></pre><h2 id="统计出现闪退次数">统计出现闪退次数</h2>
+<p>关键字：闪退日志每次出现都会带一行关键字 <code>FATAL EXCEPTION: main</code>，<code>FATAL</code> 是日志级别，比 <code>ERROR</code> 更高一级，类似 Python 中的 <code>critical</code>，无法使用的状态，所以当遇到这一行日志时，我就认为出现闪退了；</p>
+<p>第二步的实现思路为：逐行读取保存的日志文件，出现关键字就获取当前进程号，并添加到列表中，最后统计列表长度即可。</p>
+<pre><code>def get_crash_pid_list(file_path):
+    &quot;&quot;&quot;读取日志，获取出现关键字（crash）的次数
+    &quot;&quot;&quot;
+    keyword = &quot;FATAL EXCEPTION: main&quot;
+    crash_pid = []
+
+    with open(file_path, encoding=&quot;utf-8&quot;) as f:
+        for line in f.readlines():
+            if keyword in line:
+                # 提取出日志行内所有数字（日期 + PID）
+                data = re.findall(r&quot;\d+&quot;, line)  
+                pid = data[-1]
+                crash_pid.append(pid)
+    logging.info(f&quot;Crash PID list &gt;&gt;&gt; {crash_pid}&quot;)
+    return crash_pid
+</code></pre><h2 id="转储闪退日志">转储闪退日志</h2>
+<p>这里需要进行一次判断：</p>
+<ul>
+<li>如果不存在闪退，直接给出提示，退出程序</li>
+<li>如果存在，创建新的日志文件，写入设备信息，根据进程号提取日志</li>
+</ul>
+<p><strong>获取设备信息</strong>
+日志提交后，被开发同学问过几次机型和系统，索性就直接加到日志里面吧</p>
+<pre><code>def get_device_info(device=&quot;&quot;):
+    &quot;&quot;&quot;获取设备信息
+    &quot;&quot;&quot;
+    model = os.popen(f&quot;adb {device} shell getprop ro.product.model&quot;).read().strip()
+    manufacturer = os.popen(f&quot;adb {device} shell getprop ro.product.manufacturer&quot;).read().strip()
+
+    version = os.popen(f&quot;adb {device} shell getprop ro.build.version.release&quot;).read().strip()
+    sdk_version = os.popen(f&quot;adb {device} shell getprop ro.build.version.sdk&quot;).read().strip()
+
+    output = f&quot;DeviceInfo: {manufacturer} {model} | Android {version} (API {sdk_version})&quot;
+    return output
+</code></pre><p><strong>转存日志</strong>
+逐行读取，匹配进程号，写入到新的日志文件内，如果不填，则走默认路径</p>
+<pre><code>def dump_crash_log(file_path=&quot;&quot;, dump_path=&quot;&quot;, device=&quot;&quot;):
+    &quot;&quot;&quot;转储带有 crash pid 的日志
+    &quot;&quot;&quot;
+    # 设置默认转储路径
+    if not file_path:
+        file_path = &quot;logcat.log&quot;
+    if not dump_path:
+        dump_path = &quot;logcat_crash.log&quot;
+    if device:
+        device = f&quot;-s {device}&quot;
+
+    log_cat(file_path, device)
+    device_info = get_device_info(device)
+    pid_list = get_crash_pid_list(file_path)
+
+    if pid_list:
+        # 创建转储日志并写入
+        with open(dump_path, &quot;w+&quot;, encoding=&quot;utf-8&quot;) as f:  
+            f.write(f&quot;{'-' * 50}\n&quot;)
+            f.write(f&quot;{device_info}\n共出现 {len(pid_list)} 次闪退\n&quot;)
+            f.write(f&quot;{'-' * 50}\n&quot;)
+            # 读取原始日志
+            with open(file_path, encoding=&quot;utf-8&quot;) as f1:
+                for line in f1.readlines():
+                    for pid in pid_list:
+                        if pid in line:
+                            if &quot;FATAL&quot; in line:
+                                f.write(&quot;\n# begging of crash --- &gt;&gt;&gt;\n&quot;)
+                            f.write(line)
+        logging.info(f&quot;Crash log path: {dump_path}&quot;)
+    else:
+        logging.info(f&quot;Not found 'FATAL EXCEPTION: main' in {file_path}&quot;)
+
+if __name__ == '__main__':
+    dump_crash_log()
+</code></pre><hr>
+<p>最后执行效果如下：</p>
+<p><strong>控制台输出</strong></p>
+<pre><code>[ I 201231 13:57:05 dump_crash_log:44 ] PID LIST &gt;&gt;&gt; ['26997', '28084', '6964']
+[ I 201231 13:57:05 dump_crash_log:88 ] Crash log path: logcat_crash.log
+</code></pre><p><strong>目录结构</strong></p>
+<ul>
+<li>dump_crash_log.py</li>
+<li>logcat.log</li>
+<li>logcat_crash.log</li>
+</ul>
+<p><strong>日志内容</strong></p>
+<pre><code>--------------------------------------------------
+DeviceInfo: HUAWEI ELE-AL00 | Android 10 (API 29)
+共出现 3 次闪退
+--------------------------------------------------
+
+# begging of crash --- &gt;&gt;&gt;
+11-02 17:39:58.802 E/AndroidRuntime(26997): FATAL EXCEPTION: main
+11-02 17:39:58.802 E/AndroidRuntime(26997): Process: com.esbook.reader, PID: 26997
+11-02 17:39:58.802 E/AndroidRuntime(26997): java.lang.IllegalArgumentException: 这是异常信息
+11-02 17:39:58.802 E/AndroidRuntime(26997):     at 这是堆栈信息
+11-02 17:39:58.802 E/AndroidRuntime(26997):     at 这是堆栈信息
+...
+
+# begging of crash --- &gt;&gt;&gt;
+11-02 17:55:39.306 E/AndroidRuntime(28084): FATAL EXCEPTION: main
+11-02 17:55:39.306 E/AndroidRuntime(28084): Process: com.esbook.reader, PID: 28084
+11-02 17:55:39.306 E/AndroidRuntime(28084): java.lang.NullPointerException: 这是异常信息
+11-02 17:55:39.306 E/AndroidRuntime(28084):     at 这是堆栈信息
+11-02 17:55:39.306 E/AndroidRuntime(28084):     at 这是堆栈信息
+...
+
+# begging of crash --- &gt;&gt;&gt;
+11-02 18:15:37.625 E/AndroidRuntime( 6964): FATAL EXCEPTION: main
+11-02 18:15:37.625 E/AndroidRuntime( 6964): Process: com.esbook.reader, PID: 6964
+11-02 18:15:37.625 E/AndroidRuntime( 6964):     at 这是堆栈信息
+11-02 18:15:37.625 E/AndroidRuntime( 6964):     at 这是堆栈信息
+...
+</code></pre><hr>
+<p>大功告成，这样提取日志就会方便许多啦！😄</p></article>
+    </section>
+
+    
+
+    
+    <article class="ui segment utterances-comments" data-html2canvas-ignore>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="abeelan/abeelan.github.io"
+        issue-term="og:title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </article>
+    
+
+    
+  </div>
+</div>
+
+
+            <footer class="ui basic center aligned segment" style="background-color: transparent;">
+              
+              <p>© 2021 lan&#39;s blog.</p>
+              
+
+              <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+              
+            </footer>
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <header class="ui basic very padded segment dream-header">
+  <div class="ui small circular image">
+    
+    <img src="/me/lan.jpg" alt="avatar" />
+    
+  </div>
+
+  <div class="content">
+    <h1 class="ui medium header">lan’s blog.<div class="sub header">Everything will be ok.</div>
+    </h1>
+
+    <article class="ui horizontal list">
+      
+      <a class="item" href="/posts">
+        <i class="archive icon" title="归档"></i>
+      </a>
+      
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+    </article>
+
+    
+    <article class="dream-tags">
+    
+      <a class="ui label" href="/tags/android/" title="Android">
+        Android
+      </a>
+    
+      <a class="ui label" href="/tags/blog/" title="blog">
+        blog
+      </a>
+    
+      <a class="ui label" href="/tags/git/" title="git">
+        git
+      </a>
+    
+      <a class="ui label" href="/tags/ios/" title="iOS">
+        iOS
+      </a>
+    
+      <a class="ui label" href="/tags/python/" title="python">
+        python
+      </a>
+    
+      <a class="ui label" href="/tags/shell/" title="shell">
+        shell
+      </a>
+    
+    </article>
+    
+  </div>
+</header>
+
+
+<div class="ui relaxed grid dream-grid dream-back">
+  
+  
+  
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment markdown-body">
+      <div class="ui medium header">关于我</div>
+      <p>Hi，你好：</p>
+<p>我是一名测试小工，在这里记录并分享自己的学习笔记。</p>
+<p>微信公众号「懒人的日常生活」</p>
+<p><img class="ui image" src="/me/wechatcode.jpg" alt="wechat" /></p>
+<p>谢谢你这么好看，还愿意来关注我! ❤️</p>
+
+    </article>
+  </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article class="ui segment">
+      <div class="ui medium header">社交链接</div>
+      <nav class="ui secondary menu dream-menu dream-socials">
+  
+  <div class="item">
+    <a href="/index.xml">
+      <i class="large rss square icon" title="RSS"></i>
+    </a>
+  </div>
+  
+
+  
+  <div class="item">
+    <a href="mailto:lanzy.nice@gmail.com">
+      <i class="large mail icon" title="Email"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div class="item">
+    <a href="https://github.com/abeelan" target="_blank">
+      <i class="large github icon" title="GitHub"></i>
+    </a>
+  </div>
+  
+
+  
+
+  
+</nav>
+
+    </article>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </div>
+
+  
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.defaultDark =  null 
+  window.backgroundDark =  null 
+  window.backgroundImageDark = "/me/background.jpg"
+  window.darkNav =  null 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/clojure.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
+    var lightTheme = "tomorrow"
+    var darkTheme = "tomorrow-night"
+    var theme = isDark === 'y' ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark === 'y' ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+    <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/abeelan.github.io\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98295641-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>

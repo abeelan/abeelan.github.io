@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on lan&#39;s blog.</title>
+    <link>https://abeelan.github.io/tags/shell/</link>
+    <description>Recent content in shell on lan&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 06 Apr 2021 18:43:19 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Shell｜服务器文件上传与下载</title>
+      <link>https://abeelan.github.io/posts/shell-rz%E5%92%8Csz/</link>
+      <pubDate>Tue, 06 Apr 2021 18:43:19 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/shell-rz%E5%92%8Csz/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;rz &amp;amp; sz 命令使用&lt;/strong&gt; 🔧&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell｜ohmyzsh 主题设置</title>
+      <link>https://abeelan.github.io/posts/shell-ohmyzsh%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98/</link>
+      <pubDate>Tue, 06 Apr 2021 18:32:37 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/shell-ohmyzsh%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98/</guid>
+      <description>&lt;p&gt;为 ohmyzsh 设置新的主题样式 🎉&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

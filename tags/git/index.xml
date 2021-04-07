@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on lan&#39;s blog.</title>
+    <link>https://abeelan.github.io/tags/git/</link>
+    <description>Recent content in git on lan&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 06 Apr 2021 17:10:35 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git｜报错信息记录</title>
+      <link>https://abeelan.github.io/posts/git-%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/git-%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;使用过程中遇到的报错信息记录&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git｜速查表</title>
+      <link>https://abeelan.github.io/posts/git-%E9%80%9F%E6%9F%A5%E8%A1%A8/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/git-%E9%80%9F%E6%9F%A5%E8%A1%A8/</guid>
+      <description>&lt;p&gt;常用命令记录，速查速记&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
