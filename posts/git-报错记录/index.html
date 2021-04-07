@@ -194,6 +194,14 @@ fatal: pathspec <span style="color:#e6db74">&#39;readme.md&#39;</span> did not m
 <span style="color:#75715e"># 用 ls 或者 dir 命令查看当前目录的文件：</span>
 <span style="color:#75715e"># 1. 文件是否存在</span>
 <span style="color:#75715e"># 2. 是否写错了文件名</span>
+</code></pre></div><hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git push origin main
+error: failed to push some refs to <span style="color:#e6db74">&#39;https://github.com/abeelan/abeelan.github.io.git&#39;</span>
+
+<span style="color:#75715e"># 原因，远程仓库有本地未同步的文件</span>
+$ git pull --rebase origin main
+<span style="color:#75715e"># 重新提交即可</span>
+$ git push origin main
 </code></pre></div></article>
     </section>
 
