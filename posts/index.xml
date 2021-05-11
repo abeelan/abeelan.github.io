@@ -8,7 +8,7 @@
     <language>zh-Hans</language>
     <lastBuildDate>Tue, 11 May 2021 11:03:40 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Pycharm Plugins | PlantUML integration</title>
+      <title>Pycharm | Plugins PlantUML integration</title>
       <link>https://abeelan.github.io/posts/pycharm-plantuml/</link>
       <pubDate>Tue, 11 May 2021 11:03:40 +0800</pubDate>
       
@@ -36,11 +36,11 @@
     </item>
     
     <item>
-      <title>Software｜Jetbrains 系列软件无法打开</title>
-      <link>https://abeelan.github.io/posts/software-jetbrains%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</link>
+      <title>Jetbrains｜全家桶软件都无法打开</title>
+      <link>https://abeelan.github.io/posts/jetbrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</link>
       <pubDate>Wed, 07 Apr 2021 15:04:09 +0800</pubDate>
       
-      <guid>https://abeelan.github.io/posts/software-jetbrains%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</guid>
+      <guid>https://abeelan.github.io/posts/jetbrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</guid>
       <description>&lt;p&gt;点击程序坞上面的应用程序，跳动两下就没有然后了，无法打开程序；附上解决办法。&lt;/p&gt;</description>
     </item>
     

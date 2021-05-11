@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jetbrains on lan&#39;s blog.</title>
+    <link>https://abeelan.github.io/categories/jetbrains/</link>
+    <description>Recent content in jetbrains on lan&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 11 May 2021 11:03:40 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/jetbrains/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pycharm | Plugins PlantUML integration</title>
+      <link>https://abeelan.github.io/posts/pycharm-plantuml/</link>
+      <pubDate>Tue, 11 May 2021 11:03:40 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/pycharm-plantuml/</guid>
+      <description>&lt;h2 id=&#34;插件介绍&#34;&gt;插件介绍&lt;/h2&gt;
+&lt;p&gt;PlantUML 是画程序时序图的，Pycharm 有插件，可以创建 &lt;code&gt;*.puml&lt;/code&gt; 文件，非常方便。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jetbrains｜全家桶软件都无法打开</title>
+      <link>https://abeelan.github.io/posts/jetbrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</link>
+      <pubDate>Wed, 07 Apr 2021 15:04:09 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/jetbrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</guid>
+      <description>&lt;p&gt;点击程序坞上面的应用程序，跳动两下就没有然后了，无法打开程序；附上解决办法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
