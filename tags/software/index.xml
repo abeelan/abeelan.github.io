@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>software on lan&#39;s blog.</title>
+    <link>https://abeelan.github.io/tags/software/</link>
+    <description>Recent content in software on lan&#39;s blog.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Wed, 07 Apr 2021 15:04:09 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software｜Jetbrains 系列软件无法打开</title>
+      <link>https://abeelan.github.io/posts/software-jetbrains%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</link>
+      <pubDate>Wed, 07 Apr 2021 15:04:09 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/software-jetbrains%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</guid>
+      <description>&lt;p&gt;点击程序坞上面的应用程序，跳动两下就没有然后了，无法打开程序；附上解决办法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
