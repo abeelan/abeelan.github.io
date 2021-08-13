@@ -2,8 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://abeelan.github.io/tags/blog/</loc>
+    <lastmod>2021-08-13T10:48:05+08:00</lastmod>
+  </url><url>
+    <loc>https://abeelan.github.io/categories/blog/</loc>
+    <lastmod>2021-08-13T10:48:05+08:00</lastmod>
+  </url><url>
     <loc>https://abeelan.github.io/categories/</loc>
-    <lastmod>2021-05-11T11:03:40+08:00</lastmod>
+    <lastmod>2021-08-13T10:48:05+08:00</lastmod>
+  </url><url>
+    <loc>https://abeelan.github.io/</loc>
+    <lastmod>2021-08-13T10:48:05+08:00</lastmod>
+  </url><url>
+    <loc>https://abeelan.github.io/tags/</loc>
+    <lastmod>2021-08-13T10:48:05+08:00</lastmod>
+  </url><url>
+    <loc>https://abeelan.github.io/posts/typora-map/</loc>
+    <lastmod>2021-08-13T10:48:05+08:00</lastmod>
+  </url><url>
+    <loc>https://abeelan.github.io/posts/</loc>
+    <lastmod>2021-08-13T10:48:05+08:00</lastmod>
   </url><url>
     <loc>https://abeelan.github.io/tags/jetbrains/</loc>
     <lastmod>2021-05-11T11:03:40+08:00</lastmod>
@@ -11,16 +29,7 @@
     <loc>https://abeelan.github.io/categories/jetbrains/</loc>
     <lastmod>2021-05-11T11:03:40+08:00</lastmod>
   </url><url>
-    <loc>https://abeelan.github.io/</loc>
-    <lastmod>2021-05-11T11:03:40+08:00</lastmod>
-  </url><url>
     <loc>https://abeelan.github.io/posts/pycharm-plantuml/</loc>
-    <lastmod>2021-05-11T11:03:40+08:00</lastmod>
-  </url><url>
-    <loc>https://abeelan.github.io/tags/</loc>
-    <lastmod>2021-05-11T11:03:40+08:00</lastmod>
-  </url><url>
-    <loc>https://abeelan.github.io/posts/</loc>
     <lastmod>2021-05-11T11:03:40+08:00</lastmod>
   </url><url>
     <loc>https://abeelan.github.io/tags/other/</loc>
@@ -61,12 +70,6 @@
   </url><url>
     <loc>https://abeelan.github.io/posts/ios-tidevice%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2021-04-06T18:15:52+08:00</lastmod>
-  </url><url>
-    <loc>https://abeelan.github.io/tags/blog/</loc>
-    <lastmod>2021-04-06T17:10:35+08:00</lastmod>
-  </url><url>
-    <loc>https://abeelan.github.io/categories/blog/</loc>
-    <lastmod>2021-04-06T17:10:35+08:00</lastmod>
   </url><url>
     <loc>https://abeelan.github.io/tags/git/</loc>
     <lastmod>2021-04-06T17:10:35+08:00</lastmod>
