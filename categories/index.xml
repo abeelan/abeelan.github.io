@@ -6,7 +6,25 @@
     <description>Recent content in Categories on lan&#39;s blog.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 13 Aug 2021 10:48:05 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Aug 2021 11:41:51 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>api</title>
+      <link>https://abeelan.github.io/categories/api/</link>
+      <pubDate>Tue, 17 Aug 2021 11:41:51 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/categories/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>todo</title>
+      <link>https://abeelan.github.io/categories/todo/</link>
+      <pubDate>Fri, 13 Aug 2021 17:08:56 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/categories/todo/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>blog</title>
       <link>https://abeelan.github.io/categories/blog/</link>

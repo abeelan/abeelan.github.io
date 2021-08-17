@@ -6,7 +6,53 @@
     <description>Recent content in 归档 on lan&#39;s blog.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 13 Aug 2021 10:48:05 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Aug 2021 11:41:51 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Burpsuite｜基本使用</title>
+      <link>https://abeelan.github.io/posts/burpsuite%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 17 Aug 2021 11:41:51 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/burpsuite%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;扫盲贴，简单了解一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>接口安全测试</title>
+      <link>https://abeelan.github.io/posts/%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 17 Aug 2021 11:37:46 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/</guid>
+      <description>&lt;p&gt;接口安全测试基础知识&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>接口安全测试常见漏洞（dvwa案例演示）</title>
+      <link>https://abeelan.github.io/posts/dvwa-test/</link>
+      <pubDate>Fri, 13 Aug 2021 17:55:30 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/dvwa-test/</guid>
+      <description>&lt;p&gt;接口安全测试，常见漏洞了解和案例演示。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Diffy｜介绍与安装</title>
+      <link>https://abeelan.github.io/posts/diffy-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Fri, 13 Aug 2021 17:08:56 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/diffy-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/</guid>
+      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ios Wda</title>
+      <link>https://abeelan.github.io/posts/ios-wda/</link>
+      <pubDate>Fri, 13 Aug 2021 15:34:08 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/ios-wda/</guid>
+      <description>&lt;p&gt;WDA 更新了，重新安装并进行自动化测试！&lt;/p&gt;
+&lt;p&gt;完成哈罗摩托的自动化任务！&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Typora|配置图床功能</title>
       <link>https://abeelan.github.io/posts/typora-map/</link>
