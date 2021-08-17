@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>所有分类 | lan&#39;s blog.</title>
+    <title>Blog 自动构建 | lan&#39;s blog.</title>
 
     
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -13,19 +13,22 @@
 
 
 <meta name="author" content="lan" />
-<meta name="description" content="Everything will be ok." />
+<meta name="description" content="通过 sh 脚本完成一键构建，更新博客。
+" />
 
 
 
 <meta name="generator" content="Hugo 0.82.0" />
 
-<link rel="canonical" href="https://abeelan.github.io/categories/" />
+<link rel="canonical" href="https://abeelan.github.io/posts/blog-%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/" />
 
 
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="Everything will be ok." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://abeelan.github.io/categories/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/>
+<meta property="og:title" content="Blog 自动构建" />
+<meta property="og:description" content="通过 sh 脚本完成一键构建，更新博客。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://abeelan.github.io/posts/blog-%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/" /><meta property="og:image" content="https://abeelan.github.io/me/background.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-17T11:48:52&#43;08:00" />
+<meta property="article:modified_time" content="2021-08-17T11:48:52&#43;08:00" />
 
 
 
@@ -33,8 +36,8 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://abeelan.github.io/me/background.jpg"/>
 
-<meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content="Everything will be ok."/>
+<meta name="twitter:title" content="Blog 自动构建"/>
+<meta name="twitter:description" content="通过 sh 脚本完成一键构建，更新博客。"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -85,7 +88,17 @@
 </style>
 
 
-     
+    
+
+
+
+<link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/tomorrow.min.css" />
+
+
+
+
+
+
 
     
     <link rel="stylesheet" href="/css/custom.css" />
@@ -119,243 +132,123 @@
         <section class="front">
           <div class="dream-max-width">
             
-
-<header class="ui basic very padded segment dream-header">
-  <div class="ui small circular image">
+<div class="ui relaxed grid dream-grid dream-grid-single">
+  <aside class="sixteen wide mobile sixteen wide tablet four wide computer column dream-single-aside">
     
-    <img src="/me/lan.jpg" alt="avatar" />
+    
+    <div class="ui segment toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#创建帖子">创建帖子</a></li>
+        <li><a href="#重新构建-hugo-页面">重新构建 hugo 页面</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    <div class="ui segment actions">
+      <button
+        class="ui circular icon button save-as-image"
+        title="保存为图片"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </button>
+
+      <a href="https://twitter.com/intent/tweet?text=Blog%20%e8%87%aa%e5%8a%a8%e6%9e%84%e5%bb%ba&url=https%3a%2f%2fabeelan.github.io%2fposts%2fblog-%25E8%2587%25AA%25E5%258A%25A8%25E6%259E%2584%25E5%25BB%25BA%2f" class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</a>
+<a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fabeelan.github.io%2fposts%2fblog-%25E8%2587%25AA%25E5%258A%25A8%25E6%259E%2584%25E5%25BB%25BA%2f" class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</a>
+
+    </div>
+  </aside>
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <div class="ui top attached segment cover">
+      <div class="cover-img" style="background-image: url(/img/cover.jpg);"></div>
+    </div>
+    
+    <section class="ui attached segment">
+      <header>
+        <h1 class="ui large header">Blog 自动构建<div class="sub header">
+            @
+            
+              
+                lan
+              
+            
+
+            | 
+                星期二，八月 17 日，2021 年
+              
+
+            | 1 分钟阅读
+
+            | 更新于
+              
+                星期二，八月 17 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><p>通过 sh 脚本完成一键构建，更新博客。</p>
+<h3 id="创建帖子">创建帖子</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ hugo new posts/blog-自动构建.md
+</code></pre></div><h3 id="重新构建-hugo-页面">重新构建 hugo 页面</h3>
+<p>编辑完成帖子后，更新网站。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span><span style="color:#75715e"># deploy.sh</span>
+
+hugo --theme<span style="color:#f92672">=</span>dream --buildDrafts --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://abeelan.github.io/&#34;</span>
+
+echo <span style="color:#e6db74">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+
+<span style="color:#75715e"># Go To Public folder</span>
+cd public
+
+<span style="color:#75715e"># Add changes to git.</span>
+git add .
+
+<span style="color:#75715e"># Commit changes.</span>
+msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site `date`&#34;</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">then</span> msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">fi</span>
+git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># Push source and build repos.</span>
+git push origin main
+
+<span style="color:#75715e"># Come Back up to the Project Root</span>
+cd ..
+
+</code></pre></div><p>在项目目录下执行上面脚本，记得添加一下可执行权限。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./deploy.sh
+</code></pre></div></article>
+    </section>
+
+    
+
+    
+    <article class="ui segment utterances-comments" data-html2canvas-ignore>
+      <script
+        src="https://utteranc.es/client.js"
+        repo="abeelan/abeelan.github.io"
+        issue-term="og:title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </article>
+    
+
     
   </div>
-
-  <div class="content">
-    <h1 class="ui medium header">lan’s blog.<div class="sub header">Everything will be ok.</div>
-    </h1>
-
-    <article class="ui horizontal list">
-      
-      <a class="item" href="/posts">
-        <i class="archive icon" title="归档"></i>
-      </a>
-      
-      <a class="item" href="/categories">
-        <i class="th list icon" title="所有分类"></i>
-      </a>
-      <a class="item" href="/tags">
-        <i class="tags icon" title="所有标签"></i>
-      </a>
-    </article>
-
-    
-    <article class="dream-tags">
-    
-      <a class="ui label" href="/tags/android/" title="Android">
-        Android
-      </a>
-    
-      <a class="ui label" href="/tags/api/" title="api">
-        api
-      </a>
-    
-      <a class="ui label" href="/tags/blog/" title="blog">
-        blog
-      </a>
-    
-      <a class="ui label" href="/tags/git/" title="git">
-        git
-      </a>
-    
-      <a class="ui label" href="/tags/ios/" title="iOS">
-        iOS
-      </a>
-    
-      <a class="ui label" href="/tags/jetbrains/" title="jetbrains">
-        jetbrains
-      </a>
-    
-      <a class="ui label" href="/tags/other/" title="other">
-        other
-      </a>
-    
-      <a class="ui label" href="/tags/python/" title="python">
-        python
-      </a>
-    
-      <a class="ui label" href="/tags/shell/" title="shell">
-        shell
-      </a>
-    
-      <a class="ui label" href="/tags/todo/" title="todo">
-        todo
-      </a>
-    
-    </article>
-    
-  </div>
-</header>
-
-
-<div class="ui container">
-  <article class="ui segment dream-categories-section">
-    <h2 class="ui header">所有分类<div class="ui grey sub header">
-        10 分类
-      </div>
-    </h2>
-
-    
-    
-    <h3 class="ui header">
-      <a href="/categories/android/">Android</a>&nbsp;2篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/android-%E5%AE%89%E8%A3%85%E5%8C%85%E5%8A%A0%E5%9B%BA%E5%90%8E%E9%97%AA%E9%80%80/">Android｜安装包加固后闪退</a>
-      </li>
-      
-      <li>
-        <a href="/posts/android-%E9%97%AA%E9%80%80%E6%97%A5%E5%BF%97%E6%8F%90%E5%8F%96/">Android｜闪退日志提取</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/api/">api</a>&nbsp;3篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/burpsuite%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">Burpsuite｜基本使用</a>
-      </li>
-      
-      <li>
-        <a href="/posts/%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/">接口安全测试</a>
-      </li>
-      
-      <li>
-        <a href="/posts/dvwa-test/">接口安全测试常见漏洞（dvwa案例演示）</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/blog/">blog</a>&nbsp;4篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/blog-%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA/">Blog 自动构建</a>
-      </li>
-      
-      <li>
-        <a href="/posts/typora-map/">Typora|配置图床功能</a>
-      </li>
-      
-      <li>
-        <a href="/posts/blog-%E5%8F%91%E5%B8%83%E5%8D%9A%E5%AE%A2%E5%AF%B9%E5%A4%96%E8%AE%BF%E9%97%AE/">Hugo｜发布博客对外访问</a>
-      </li>
-      
-      <li>
-        <a href="/posts/blog-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hugo｜搭建博客</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/git/">git</a>&nbsp;2篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/git-%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/">Git｜报错信息记录</a>
-      </li>
-      
-      <li>
-        <a href="/posts/git-%E9%80%9F%E6%9F%A5%E8%A1%A8/">Git｜速查表</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/ios/">iOS</a>&nbsp;3篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/ios-%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/">iOS｜使用快捷指令做的小功能</a>
-      </li>
-      
-      <li>
-        <a href="/posts/ios-%E7%BC%96%E8%AF%91wda%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">iOS｜编译 wda 问题记录</a>
-      </li>
-      
-      <li>
-        <a href="/posts/ios-tidevice%E4%BD%BF%E7%94%A8/">iOS｜tidevice 使用（苹果版 adb）</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/jetbrains/">jetbrains</a>&nbsp;2篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/pycharm-plantuml/">Pycharm | Plugins PlantUML integration</a>
-      </li>
-      
-      <li>
-        <a href="/posts/jetbrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/">Jetbrains｜全家桶软件都无法打开</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/other/">other</a>&nbsp;1篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/other-%E6%91%A9%E6%89%98%E8%BD%A6%E9%80%89%E6%8B%A9/">摩托车驾驶员从入门到放弃</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/python/">python</a>&nbsp;2篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/python-else%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Python｜else 语法总结</a>
-      </li>
-      
-      <li>
-        <a href="/posts/python-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/">Python｜递归练习</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/shell/">shell</a>&nbsp;2篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/shell-rz%E5%92%8Csz/">Shell｜服务器文件上传与下载</a>
-      </li>
-      
-      <li>
-        <a href="/posts/shell-ohmyzsh%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98/">Shell｜ohmyzsh 主题设置</a>
-      </li>
-      
-    </ul>
-    
-    <h3 class="ui header">
-      <a href="/categories/todo/">todo</a>&nbsp;2篇文章</h3>
-    <ul>
-      
-      <li>
-        <a href="/posts/diffy-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/">Diffy｜介绍与安装</a>
-      </li>
-      
-      <li>
-        <a href="/posts/ios-wda/">Ios Wda</a>
-      </li>
-      
-    </ul>
-    
-  </article>
 </div>
 
 
@@ -515,7 +408,6 @@
 
   
   
-  
 </div>
 
           </div>
@@ -558,7 +450,41 @@
 <script src="/js/main.js"></script>
 <script src="/js/theme.js"></script>
 
-     
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/clojure.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+
+
+
+<script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
+    var lightTheme = "tomorrow"
+    var darkTheme = "tomorrow-night"
+    var theme = isDark === 'y' ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark === 'y' ? '#333' : '')
+  }
+</script>
+
+
+
+
 
     
     <div class="ui inverted segment" id="dream-search">
