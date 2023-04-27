@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>python on ABEE</title>
+    <link>https://abeelan.github.io/categories/python/</link>
+    <description>Recent content in python on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 26 Apr 2023 15:03:01 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《Python工匠》| 朱雷</title>
+      <link>https://abeelan.github.io/posts/read/python%E5%B7%A5%E5%8C%A0-%E6%9C%B1%E9%9B%B7/</link>
+      <pubDate>Wed, 26 Apr 2023 15:03:01 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/python%E5%B7%A5%E5%8C%A0-%E6%9C%B1%E9%9B%B7/</guid>
+      <description>是一本非常适合于实战的书籍，随用随翻的工具书。</description>
+    </item>
+    
+  </channel>
+</rss>
