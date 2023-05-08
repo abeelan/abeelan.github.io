@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>redis on ABEE</title>
+    <link>https://abeelan.github.io/tags/redis/</link>
+    <description>Recent content in redis on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 05 May 2023 18:18:10 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis - 命令行工具 cli 安装及使用</title>
+      <link>https://abeelan.github.io/posts/tech/%E6%95%B0%E6%8D%AE%E5%BA%93/redis-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7cli%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 05 May 2023 18:18:10 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/%E6%95%B0%E6%8D%AE%E5%BA%93/redis-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7cli%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid>
+      <description>Mac 安装 redis-cli 命令行工具 安装 方式一 $ brew install redis 安装 redis 的同时会安装 redis-cli 工具，由于我已经通过 docker 启动 redis 服务了，所以不想再安装 redis 服务，使用方式二。 方式二：编译安装 # 打开终端，下载 Redis 的源码 $ curl -O http://download.redis.io/redis-stable.tar.gz # 解压缩源码包，并进入 src 目录 $ tar xzf redis-stable.tar.gz $ cd redis-stable/src # 编译并安装 redis-cli 工具。 $ make redis-cli $ sudo cp redis-cli /usr/local/bin/ # 检查 $ redis-cli --version redis-cli 7.0.11 命令 文档地址</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>pycharm on ABEE</title>
+    <link>https://abeelan.github.io/categories/pycharm/</link>
+    <description>Recent content in pycharm on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 11 May 2021 11:03:40 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/pycharm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pycharm - Plugins PlantUML integration</title>
+      <link>https://abeelan.github.io/posts/tech/python/pycharm-plantuml/</link>
+      <pubDate>Tue, 11 May 2021 11:03:40 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/python/pycharm-plantuml/</guid>
+      <description>插件介绍 PlantUML 是画程序时序图的，Pycharm 有插件，可以创建 *.puml 文件，非常方便。 官方网站：http://plantuml.com/sequence-diagram 在线使用：https://plantuml.ceshiren.com/uml/SyfFKj2rKt3CoKnELR1Io4</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -13,7 +13,70 @@
       <pubDate>Wed, 26 Apr 2023 15:03:01 +0800</pubDate>
       
       <guid>https://abeelan.github.io/posts/read/python%E5%B7%A5%E5%8C%A0-%E6%9C%B1%E9%9B%B7/</guid>
-      <description>是一本非常适合于实战的书籍，随用随翻的工具书。</description>
+      <description>目前正在阅读中&amp;hellip; 一级标题 二级标题 三级标题 print(&amp;#34;hello world&amp;#34;) hh ==lala==</description>
+    </item>
+    
+    <item>
+      <title>《C&#43;&#43;程序设计》个人笔记</title>
+      <link>https://abeelan.github.io/posts/read/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 08 Apr 2023 16:17:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/c&#43;&#43;%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</guid>
+      <description>一、C++ 简介 程序设计语言分为： 低级语言（机器语言、汇编语言） 中级语言 高级语言（C、C++等） C++ 语言的主要特点： 兼容 C 语言 面向对象（继承和多态） 引进了类和对象的概念 C++ 的基本数据类型 bool：布尔值 char：字符型 int：整型 float：浮点型 double：双精度浮点型 注释的两种方</description>
+    </item>
+    
+    <item>
+      <title>《计算机网络原理》个人笔记</title>
+      <link>https://abeelan.github.io/posts/read/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 08 Apr 2023 16:17:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</guid>
+      <description>计算机网络概述 基本概念 起源：计算机网络是计算机技术与通信技术融合的产物。 定义：计算机网络是互连的、自治的计算机的集合。 ISP：因特网服务提供商（Internet Service Provider）。 协议 网络协议：网络通信实体之间在数据交换过程中需要遵循的规则或约定。 协议三要素： 语法：定义实体之间</description>
+    </item>
+    
+    <item>
+      <title>《计算机网络原理》计算题汇总</title>
+      <link>https://abeelan.github.io/posts/read/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Sat, 08 Apr 2023 16:17:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
+      <description>计算题汇总 计算机网络性能 题一 题二 题三 HTTP 连接 题一 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = (1 + 1) x 8 答：共需要 18 RTTh ![image-20230308233241159](/Users/lan/Library/Application Support/typora-user-images/image-20230308233241159.png) 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = （1 + 1） + （1 + 1），由于配置了并行连接，每次 5 个，需要两次 答：共需要 6 RTTh ![image-20230308233438567](/Users/lan/Library/Application Support/typora-user-images/image-20230308233438567.png) 非流水方式</description>
+    </item>
+    
+    <item>
+      <title>《数据库系统原理》个人笔记</title>
+      <link>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 08 Oct 2022 16:17:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</guid>
+      <description>题型 单选题：15 * 2 = 30 填空题：10 * 1 = 10 文字题：5 * 6 = 30 综合题：2 * 15 =30 考试时间：150 分钟 设计题 - 关系代数、SQL 语句 综合题 - ER图、范式 一、数据库系统概述 1. 数据库基本概念 数据（Data） 是描述事物的符号记录，是指利用物理符号记录下来的、可以鉴别的信息。数据是信息存在的一</description>
+    </item>
+    
+    <item>
+      <title>《数据结构导论》排序</title>
+      <link>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Sat, 08 Oct 2022 16:17:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/</guid>
+      <description>排序 概述 数据排序：将一个文件的记录按关键字不减（或不增）次序排列，使文件成为有序文件 稳定排序：排序后，相同关键字的记录保持它们原来的相对次序 不稳定排序：排序后，相同关键字的记录相对次序发生变更 排序类型 内部排序：全部数据存于内存 外部排序：需要对外存进行访问 比较算法的好坏，主要看空间</description>
+    </item>
+    
+    <item>
+      <title>《数据结构导论》查找表</title>
+      <link>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/</link>
+      <pubDate>Sat, 08 Oct 2022 16:17:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/</guid>
+      <description>查找表 基本概念 查找表：由同一类型的数据元素构成的集合 关键字：用来标识数据元素的数据项，简称键，其值称为键值 主关键字：可唯一标识各个数据元素的关键字 查找：根据给定的某个 k 值，在查找表寻找一个其键值等于 k 的数据元素 静态查找表：进行的是引用型运算，操作为：建表、查找、读取表中元素。 动态</description>
+    </item>
+    
+    <item>
+      <title>《数据结构导论》线性表</title>
+      <link>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/</link>
+      <pubDate>Sat, 08 Oct 2022 16:17:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/read/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/</guid>
+      <description>概论 2. 线性表 ![image-20220407200207639](/Users/lan/Library/Application Support/typora-user-images/image-20220407200207639.png) 2.1 线性表的基本概念 2.2 线性表的顺序存储 2.2.1 线性表顺序存储的类型定义 2.2.2 线性表的基本运算在顺序表上的实现 定义数据结构 const int MaxSize = 100; typedef struct { int id; char name[10]; char sex; float score; } DataType; typedef struct { DataType data[10]; int length; } SeqList; 插入 void InsertSeqList(SeqList L, DataType x, int i) /* 元素插入 一般情况下，需要移动 n-i+1 次 最坏的情况下，插入队首元素，需要移动 n 次； 最好的情</description>
     </item>
     
   </channel>

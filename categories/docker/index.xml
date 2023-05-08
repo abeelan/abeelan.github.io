@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>docker on ABEE</title>
+    <link>https://abeelan.github.io/categories/docker/</link>
+    <description>Recent content in docker on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 27 Aug 2021 13:59:19 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K8s - 基础知识记录</title>
+      <link>https://abeelan.github.io/posts/tech/docker/k8s-%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 27 Aug 2021 13:59:19 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/docker/k8s-%E5%9F%BA%E7%A1%80/</guid>
+      <description>一切皆资源 pod service deployment &amp;hellip; 集群部署工具：kubeadm（官方） 参考链接：https://www.kubernetes.org.cn/7189.html kubectl -&amp;gt; 运行命令，操控集群 kubelet -&amp;gt; 与集群通信、鉴权、认证等等，一般在 kubeadm 内自动安装 kubeadm -&amp;gt; 部署工具 机器低于两核会直接报错，部署不起来。 kubectl $ kubectl 动作(get</description>
+    </item>
+    
+  </channel>
+</rss>

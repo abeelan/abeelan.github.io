@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>node on ABEE</title>
+    <link>https://abeelan.github.io/tags/node/</link>
+    <description>Recent content in node on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 06 May 2023 11:29:39 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Node - 简单了解</title>
+      <link>https://abeelan.github.io/posts/tech/%E5%B7%A5%E5%85%B7%E5%B9%B3%E5%8F%B0/node-%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/</link>
+      <pubDate>Sat, 06 May 2023 11:29:39 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/%E5%B7%A5%E5%85%B7%E5%B9%B3%E5%8F%B0/node-%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/</guid>
+      <description>Node.js、nvm、npm 和 cnpm 是四个不同的工具，它们之间存在一定的关系。 Node.js 是基于 Chrome V8 引擎的 JavaScript 运行环境，用于在服务器端执行 JavaScript 代码 node 命令则是通过 Node.js 在命令行中执行 JavaScript 代码的入口 nvm（Node Version Manager）是一个 Node.js 版本管理器，可以帮助您轻松地安装和切换不同版本的 Node.js npm（Node</description>
+    </item>
+    
+  </channel>
+</rss>

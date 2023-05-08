@@ -6,14 +6,68 @@
     <description>Recent content in python on ABEE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 26 Apr 2023 15:03:01 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 May 2023 16:55:52 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python - Jwt</title>
+      <link>https://abeelan.github.io/posts/tech/python/python-jwttoken%E6%A0%A1%E9%AA%8C/</link>
+      <pubDate>Sat, 06 May 2023 16:55:52 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/python/python-jwttoken%E6%A0%A1%E9%AA%8C/</guid>
+      <description>web 项目 token 的生成与解析</description>
+    </item>
+    
+    <item>
+      <title>python - sqlalchemy</title>
+      <link>https://abeelan.github.io/posts/tech/python/python-sqlalchemy/</link>
+      <pubDate>Sat, 06 May 2023 16:07:12 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/python/python-sqlalchemy/</guid>
+      <description>用 python 的方式操作数据库</description>
+    </item>
+    
+    <item>
+      <title>git - 切换远程仓库</title>
+      <link>https://abeelan.github.io/posts/tech/git/git-%E5%88%87%E6%8D%A2%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</link>
+      <pubDate>Sat, 06 May 2023 14:26:12 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/git/git-%E5%88%87%E6%8D%A2%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</guid>
+      <description>切换</description>
+    </item>
+    
+    <item>
+      <title>命令行虚拟环境切换</title>
+      <link>https://abeelan.github.io/posts/tech/python/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/</link>
+      <pubDate>Sat, 06 May 2023 14:26:12 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/python/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/</guid>
+      <description>在 Mac 上切换到 Python 项目中的虚拟环境</description>
+    </item>
+    
     <item>
       <title>《Python工匠》| 朱雷</title>
       <link>https://abeelan.github.io/posts/read/python%E5%B7%A5%E5%8C%A0-%E6%9C%B1%E9%9B%B7/</link>
       <pubDate>Wed, 26 Apr 2023 15:03:01 +0800</pubDate>
       
       <guid>https://abeelan.github.io/posts/read/python%E5%B7%A5%E5%8C%A0-%E6%9C%B1%E9%9B%B7/</guid>
-      <description>是一本非常适合于实战的书籍，随用随翻的工具书。</description>
+      <description>目前正在阅读中&amp;hellip; 一级标题 二级标题 三级标题 print(&amp;#34;hello world&amp;#34;) hh ==lala==</description>
+    </item>
+    
+    <item>
+      <title>Python - else 语法总结</title>
+      <link>https://abeelan.github.io/posts/tech/python/python-else%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/python/python-else%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</guid>
+      <description>记录一个小知识… 问题 阅读别人代码，有点疑惑，精简后如下： def code_example(arg=None): for i in range(5): if arg: break else: print(&amp;#39;else branch&amp;#39;) 循环语句后面直接跟了 else 语句，未报错，程序正常运行。一般 else 都是配合判断语句用，那么这里的 else 是什么作用呢？ 尝试 for i in range(2): print(i) else: print(&amp;#34;else branch&amp;#34;) &amp;gt;&amp;gt;&amp;gt; 0 1 else branch test01：根据打印信息发现，for 循环正常执行完成后执行了 else 分支</description>
+    </item>
+    
+    <item>
+      <title>Python - 递归练习</title>
+      <link>https://abeelan.github.io/posts/tech/python/python-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/python/python-%E9%80%92%E5%BD%92%E7%BB%83%E4%B9%A0/</guid>
+      <description>递归学习，通过汉诺塔游戏加强理解！ 递归 在一个函数内部调用自身本身，就是递归函数。 阶乘 5 的阶乘为：5*4*3*2*1 n 的阶乘为：1*2*3*…*(n-1) 所以其实就是n*(n-1)的循环，只有当n=1时，需要特殊处理。 # 递归实现，暂不考虑负数和零 def fact(n): if n == 1: return 1 return n * (fact(n-1)) &amp;gt;&amp;gt;&amp;gt; fact(5) 120 当计算</description>
     </item>
     
   </channel>

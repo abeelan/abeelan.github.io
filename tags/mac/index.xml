@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>mac on ABEE</title>
+    <link>https://abeelan.github.io/tags/mac/</link>
+    <description>Recent content in mac on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 06 May 2023 13:53:17 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>命令行工具 - IStats</title>
+      <link>https://abeelan.github.io/posts/tech/mac/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7-istats/</link>
+      <pubDate>Sat, 06 May 2023 13:53:17 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/mac/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7-istats/</guid>
+      <description>命令行工具，可以获取 Mac 上的 CPU 温度、风扇转速和电池信息。 安装 $ sudo gem install iStats # 输入电脑密码 $ brew install iStats 使用 $ istats --- CPU Stats --- CPU 温度 CPU temp: 67.69°C ▁▂▃▅▆▇ --- Fan Stats --- 风扇转速（圈/分钟） Total fans in system: 2 Fan 0 speed: 2018 RPM ▁▂▃▅▆▇ Fan 1 speed: 2178 RPM ▁▂▃▅▆▇ --- Battery Stats --- 电池健康情况 Battery health: unknown Cycle count: 134 ▁▂▃▅▆▇ 13.4% Max cycles: 1000 Current charge:</description>
+    </item>
+    
+    <item>
+      <title>Docker - 常见问题</title>
+      <link>https://abeelan.github.io/posts/tech/docker/docker-question/</link>
+      <pubDate>Wed, 25 Aug 2021 17:01:33 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/docker/docker-question/</guid>
+      <description>关于 docker 的一些问题。 问题汇总 问题 1：在 selenium grid 中，多个 node 是在同一机器上，依然是在单机上执行自动化测试，如何将这些 node 分布到不同的机器上？ $ docker exec -it chrome bash $ env | grep HUB HUB_PORT_4444_TCP_ADDR=172.17.0.3 HUB_PORT_4444_TCP_PORT=4444 --link hub 的原理是将目标容器的 HUB 信息以环境变量的形式注入到容器内，如果两个容器不在同一机器上无法使用 &amp;ndash;link 参数。 那么，在其他机器上启动容</description>
+    </item>
+    
+    <item>
+      <title>Mac - SVN 命令及使用记录</title>
+      <link>https://abeelan.github.io/posts/tech/mac/svn-mac-%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sun, 06 Jun 2021 18:32:37 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/mac/svn-mac-%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>记录下 Mac 上的 SVN 命令行使用，脑子不好总是忘记。 安装 $ brew install svn Error: homebrew-core is a shallow clone. homebrew-cask is a shallow clone. To `brew update`, first run: git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow 出现报错，按照提示 git 合并下分支 $ brew install svn Error: python@3.9: wrong number of arguments (given 1, expected 0) 出现报错，手动更新下。 $ brew update Already up-to-date. 再次安装 $ brew install svn ... 常用命令 下载仓库代码（checkout） $ svn co {project_link}</description>
+    </item>
+    
+    <item>
+      <title>Mac - 电脑直播 OBS 配置（没成功）</title>
+      <link>https://abeelan.github.io/posts/tech/mac/mac-obs%E7%9B%B4%E6%92%AD/</link>
+      <pubDate>Thu, 06 May 2021 18:32:37 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/mac/mac-obs%E7%9B%B4%E6%92%AD/</guid>
+      <description>下载 OBS 推流软件 地址：https://obsproject.com/ 使用方法： 新建场景（来源 + 号） - 选择「显示器采集」，根据需求添加摄像头、麦克风等 右键「显示器采集」，选择「调整输出大小（到源大小）」 菜单栏进入设置页面，选中「推流」子菜单，服务选择「自定义」 平台直播 去直播平台获取推</description>
+    </item>
+    
+    <item>
+      <title>Mac - ohmyzsh 设置主题样式</title>
+      <link>https://abeelan.github.io/posts/tech/mac/%E7%BB%88%E7%AB%AFohmyzsh%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98/</link>
+      <pubDate>Tue, 06 Apr 2021 18:32:37 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/mac/%E7%BB%88%E7%AB%AFohmyzsh%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98/</guid>
+      <description>为 ohmyzsh 设置新的主题样式 🎉 点击跳转官方主题展示 $ vi ~/.zshrc # 找到这一行，修改为自己喜欢的主题名称 ZSH_THEME=&amp;#34;ys&amp;#34; # 修改保存后，使配置生效 $ source ~/.zshrc</description>
+    </item>
+    
+    <item>
+      <title>Mac - 安装 android-sdk</title>
+      <link>https://abeelan.github.io/posts/tech/mac/%E5%AE%89%E8%A3%85android-sdk/</link>
+      <pubDate>Tue, 06 Apr 2021 18:32:37 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/mac/%E5%AE%89%E8%A3%85android-sdk/</guid>
+      <description>方式一 下载地址：http://tools.android-studio.org/index.php/sdk 下载完成后运行 tools -&amp;gt; android，安装 platform-tools 配置环境变量 完成安装！ 方式二 $ brew install android-sdk $ brew install android-platform-tools 方式三：推荐 使用 Android studio 管理。</description>
+    </item>
+    
+    <item>
+      <title>Mac - 安装 JDK17</title>
+      <link>https://abeelan.github.io/posts/tech/mac/%E5%AE%89%E8%A3%85jdk17/</link>
+      <pubDate>Tue, 06 Apr 2021 18:32:37 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/mac/%E5%AE%89%E8%A3%85jdk17/</guid>
+      <description>下载地址：https://www.oracle.com/java/technologies/downloads/#jdk17-mac 选择 x64 DMG Installer 下载完成后，一路下一步完成安装。 查看当前机器安装的所有 Java 版本 $ /usr/libexec/java_home -V 17.0.2 (x86_64) &amp;#34;Oracle Corporation&amp;#34; - &amp;#34;Java SE 17.0.2&amp;#34; /Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home 11.0.2 (x86_64) &amp;#34;Oracle Corporation&amp;#34; - &amp;#34;Java SE 11.0.2&amp;#34; /Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home 1.8.231.11 (x86_64) &amp;#34;Oracle Corporation&amp;#34; - &amp;#34;Java&amp;#34; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home # JRE 1.8.0_231 (x86_64) &amp;#34;Oracle Corporation&amp;#34; - &amp;#34;Java SE 8&amp;#34;</description>
+    </item>
+    
+    <item>
+      <title>Mac - 解决 jetbrains 全家桶无法打开</title>
+      <link>https://abeelan.github.io/posts/tech/mac/jetbrains-%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</link>
+      <pubDate>Tue, 06 Apr 2021 18:32:37 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/mac/jetbrains-%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</guid>
+      <description>点击程序坞上面的应用程序，跳动两下就没有然后了，无法打开程序；附上解决办法。 前几天改了电脑的用户名称，导致一部分软件都没办法启动；原因是软件的配置文件依然保存原用户名的路径，启动时未获取到目录地址，所以报错了。 以 Pycharm 为例 找到命令行执行程序：「应用程序」- 右键「显示包内容」- Contents - MacOS -</description>
+    </item>
+    
+  </channel>
+</rss>

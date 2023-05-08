@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>git on ABEE</title>
+    <link>https://abeelan.github.io/tags/git/</link>
+    <description>Recent content in git on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 06 Apr 2021 17:10:35 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git - 报错信息记录</title>
+      <link>https://abeelan.github.io/posts/tech/git/git-%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 06 Apr 2021 17:10:35 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/git/git-%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/</guid>
+      <description>使用过程中遇到的报错信息记录。 问题：下载仓库时报错 443 $ git clone xxx Cloning into &amp;#39;xxx&amp;#39;... fatal: unable to access &amp;#39;xxx&amp;#39;: Failed to connect to github.com port 443: Operation timed out 取消全局代理，问题解决。 $ git config --global --unset http.proxy $ git config --global --unset https.proxy Mac 在无线设置中，代理项内手动关闭也行。 问题：fatal: not a git repository (or any of the parent directories) 原因：命令必须在 git 仓库目录内执行（git init除外），在仓</description>
+    </item>
+    
+  </channel>
+</rss>

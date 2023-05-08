@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ios on ABEE</title>
+    <link>https://abeelan.github.io/tags/ios/</link>
+    <description>Recent content in ios on ABEE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 13 Aug 2021 15:34:08 +0800</lastBuildDate><atom:link href="https://abeelan.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>iOS - WDA 使用记录</title>
+      <link>https://abeelan.github.io/posts/tech/ios/ios-wda/</link>
+      <pubDate>Fri, 13 Aug 2021 15:34:08 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/ios/ios-wda/</guid>
+      <description>&lt;p&gt;WDA 更新了，重新安装并进行自动化测试！&lt;/p&gt;
+&lt;p&gt;完成哈罗摩托的自动化任务！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iOS - 使用快捷指令做的小功能</title>
+      <link>https://abeelan.github.io/posts/tech/ios/ios-%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Tue, 06 Apr 2021 18:48:45 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/ios/ios-%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/</guid>
+      <description>&lt;p&gt;下班自动提醒的快捷指令工具 🕙&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iOS - 编译 wda 问题记录</title>
+      <link>https://abeelan.github.io/posts/tech/ios/ios-%E7%BC%96%E8%AF%91wda%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 06 Apr 2021 18:23:39 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/ios/ios-%E7%BC%96%E8%AF%91wda%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;编译 webDriverAgent 遇到的问题记录&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iOS - tidevice 使用</title>
+      <link>https://abeelan.github.io/posts/tech/ios/ios-tidevice%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 06 Apr 2021 18:15:52 +0800</pubDate>
+      
+      <guid>https://abeelan.github.io/posts/tech/ios/ios-tidevice%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;p&gt;让 iOS 拥有像安卓 adb 一样的命令行工具。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
