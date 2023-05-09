@@ -1,116 +1,971 @@
-<!doctype html><html lang=zh-cn data-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: light)"><meta name=generator content="Hugo 0.111.3"><link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."><meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png"><meta itemprop=keywords content><meta property="og:type" content="website"><meta property="og:title" content="ABEE"><meta property="og:description" content="It's better late than never."><meta property="og:image" content="/imgs/avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="https://abeelan.github.io/"><meta property="og:site_name" content="ABEE"><meta property="og:locale" content="zh-CN"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":true,"isPage":false,"path":"abeelan.github.io","permalink":"https://abeelan.github.io/","title":"ABEE","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>ABEE</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content>
+<meta property="og:type" content="website">
+<meta property="og:title" content="ABEE">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":true,"isPage":false,"path":"abeelan.github.io","permalink":"https://abeelan.github.io/","title":"ABEE","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>ABEE</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class="hvr-icon-pulse menu-item-active" rel=section><i class="fa fa-home hvr-icon"></i>主页</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>116</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-overview-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png><p class=site-author-name itemprop=name>ABEE</p><div class=site-description itemprop=description>It's better late than never.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>116</span>
-<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>20</span>
-<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>22</span>
-<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识></a></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
-<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=0001-01-01T00:00:00+00:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=169648></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=399></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
-<span>0%</span></div></div><div class=reading-progress-bar></div><a role=button class="book-mark-link book-mark-link-fixed"></a>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class="hvr-icon-pulse menu-item-active" rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>115</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-overview-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>115</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-06T16:55:52+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=169480></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=398></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
 <script type=text/javascript src=//sidecar.gitter.im/dist/sidecar.v1.js async></script>
-<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner index posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《C++程序设计》个人笔记"><meta itemprop=description content="一、C++ 简介 程序设计语言分为： 低级语言（机器语言、汇编语言） 中级语言 高级语言（C、C++等） C++ 语言的主要特点： 兼容 C 语言 面向对象（继承和多"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/ itemprop=url class=post-title-link>《C++程序设计》个人笔记</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《C++程序设计》个人笔记">
+<meta itemprop=description content="一、C++ 简介 程序设计语言分为： 低级语言（机器语言、汇编语言） 中级语言 高级语言（C、C++等） C++ 语言的主要特点： 兼容 C 语言 面向对象（继承和多">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/ itemprop=url class=post-title-link>《C++程序设计》个人笔记</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-07-11 11:44:58 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-07-11 11:44:58 +0000 UTC">2022-07-11</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-07-11 11:44:58 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-07-11 11:44:58 +0000 UTC">2022-07-11</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>一、C++ 简介 程序设计语言分为： 低级语言（机器语言、汇编语言） 中级语言 高级语言（C、C++等） C++ 语言的主要特点： 兼容 C 语言 面向对象（继承和多</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="MySQL常用命令汇总"><meta itemprop=description content="简介 **数据（Data）**是描述事物的符号记录，是指利用物理符号记录下来的、可以鉴别的信息。 **数据库（Database, DB）**是指长"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/ itemprop=url class=post-title-link>MySQL常用命令汇总</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+一、C++ 简介 程序设计语言分为： 低级语言（机器语言、汇编语言） 中级语言 高级语言（C、C++等） C++ 语言的主要特点： 兼容 C 语言 面向对象（继承和多
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/c++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="MySQL常用命令汇总">
+<meta itemprop=description content="简介 **数据（Data）**是描述事物的符号记录，是指利用物理符号记录下来的、可以鉴别的信息。 **数据库（Database, DB）**是指长">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/ itemprop=url class=post-title-link>MySQL常用命令汇总</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-04-22 10:16:01 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-04-22 10:16:01 +0000 UTC">2022-04-22</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-04-22 10:16:01 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-04-22 10:16:01 +0000 UTC">2022-04-22</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E6%95%B0%E6%8D%AE%E5%BA%93 itemprop=url rel=index><span itemprop=name>数据库</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>简介 **数据（Data）**是描述事物的符号记录，是指利用物理符号记录下来的、可以鉴别的信息。 **数据库（Database, DB）**是指长</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《数据结构导论》线性表"><meta itemprop=description content="概论 2. 线性表 ![image-20220407200207639](/Users/lan/Library/Application Support/typora-user-images/image-20220407200207639.png) 2.1 线性表的基本概念 2.2 线性表的顺序存储 2.2.1 线性表顺序存储的类型定义 2.2.2 线性表的基本运算在顺序表上的实现 定义数据结构 const int MaxSize = 100; typedef struct {"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/ itemprop=url class=post-title-link>《数据结构导论》线性表</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E6%95%B0%E6%8D%AE%E5%BA%93 itemprop=url rel=index>
+<span itemprop=name>数据库</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+简介 **数据（Data）**是描述事物的符号记录，是指利用物理符号记录下来的、可以鉴别的信息。 **数据库（Database, DB）**是指长
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《数据结构导论》线性表">
+<meta itemprop=description content="概论 2. 线性表 ![image-20220407200207639](/Users/lan/Library/Application Support/typora-user-images/image-20220407200207639.png) 2.1 线性表的基本概念 2.2 线性表的顺序存储 2.2.1 线性表顺序存储的类型定义 2.2.2 线性表的基本运算在顺序表上的实现 定义数据结构 const int MaxSize = 100; typedef struct {">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/ itemprop=url class=post-title-link>《数据结构导论》线性表</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-04-07 19:53:40 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-04-07 19:53:40 +0000 UTC">2022-04-07</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-04-07 19:53:40 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-04-07 19:53:40 +0000 UTC">2022-04-07</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>概论 2. 线性表 ![image-20220407200207639](/Users/lan/Library/Application Support/typora-user-images/image-20220407200207639.png) 2.1 线性表的基本概念 2.2 线性表的顺序存储 2.2.1 线性表顺序存储的类型定义 2.2.2 线性表的基本运算在顺序表上的实现 定义数据结构 const int MaxSize = 100; typedef struct {</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《数据结构导论》排序"><meta itemprop=description content="排序 概述 数据排序：将一个文件的记录按关键字不减（或不增）次序排列，使文件成为有序文件 稳定排序：排序后，相同关键字的记录保持它们原来的相对次序"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/ itemprop=url class=post-title-link>《数据结构导论》排序</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+概论 2. 线性表 ![image-20220407200207639](/Users/lan/Library/Application Support/typora-user-images/image-20220407200207639.png) 2.1 线性表的基本概念 2.2 线性表的顺序存储 2.2.1 线性表顺序存储的类型定义 2.2.2 线性表的基本运算在顺序表上的实现 定义数据结构 const int MaxSize = 100; typedef struct {
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E7%BA%BF%E6%80%A7%E8%A1%A8/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《数据结构导论》排序">
+<meta itemprop=description content="排序 概述 数据排序：将一个文件的记录按关键字不减（或不增）次序排列，使文件成为有序文件 稳定排序：排序后，相同关键字的记录保持它们原来的相对次序">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/ itemprop=url class=post-title-link>《数据结构导论》排序</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-03-29 23:36:46 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-03-29 23:36:46 +0000 UTC">2022-03-29</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-03-29 23:36:46 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-03-29 23:36:46 +0000 UTC">2022-03-29</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>排序 概述 数据排序：将一个文件的记录按关键字不减（或不增）次序排列，使文件成为有序文件 稳定排序：排序后，相同关键字的记录保持它们原来的相对次序</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《数据结构导论》查找表"><meta itemprop=description content="查找表 基本概念 查找表：由同一类型的数据元素构成的集合 关键字：用来标识数据元素的数据项，简称键，其值称为键值 主关键字：可唯一标识各个数据元素的"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/ itemprop=url class=post-title-link>《数据结构导论》查找表</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+排序 概述 数据排序：将一个文件的记录按关键字不减（或不增）次序排列，使文件成为有序文件 稳定排序：排序后，相同关键字的记录保持它们原来的相对次序
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%8E%92%E5%BA%8F/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《数据结构导论》查找表">
+<meta itemprop=description content="查找表 基本概念 查找表：由同一类型的数据元素构成的集合 关键字：用来标识数据元素的数据项，简称键，其值称为键值 主关键字：可唯一标识各个数据元素的">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/ itemprop=url class=post-title-link>《数据结构导论》查找表</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-03-28 16:43:30 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-03-28 16:43:30 +0000 UTC">2022-03-28</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-03-28 16:43:30 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-03-28 16:43:30 +0000 UTC">2022-03-28</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>查找表 基本概念 查找表：由同一类型的数据元素构成的集合 关键字：用来标识数据元素的数据项，简称键，其值称为键值 主关键字：可唯一标识各个数据元素的</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="安装android-sdk"><meta itemprop=description content="方式一 下载地址：http://tools.android-studio.org/index.php/sdk 下载完成后运行 tools -> android，"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/ itemprop=url class=post-title-link>安装android-sdk</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+查找表 基本概念 查找表：由同一类型的数据元素构成的集合 关键字：用来标识数据元素的数据项，简称键，其值称为键值 主关键字：可唯一标识各个数据元素的
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA%E6%9F%A5%E6%89%BE%E8%A1%A8/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="安装android-sdk">
+<meta itemprop=description content="方式一 下载地址：http://tools.android-studio.org/index.php/sdk 下载完成后运行 tools -> android，">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/ itemprop=url class=post-title-link>安装android-sdk</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-03-02 17:31:40 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-03-02 17:31:40 +0000 UTC">2022-03-02</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-03-02 17:31:40 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-03-02 17:31:40 +0000 UTC">2022-03-02</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/mac itemprop=url rel=index><span itemprop=name>Mac</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>方式一 下载地址：http://tools.android-studio.org/index.php/sdk 下载完成后运行 tools -> android，</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="搭建sonic云真机平台记录"><meta itemprop=description content="本文通过 docker 在服务器上搭建 sonic 真机平台 simple 版本。 部署文档：https://sonic-cloud.gitee.io/#/Deploy 1、创建数据库"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/ itemprop=url class=post-title-link>搭建sonic云真机平台记录</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/mac itemprop=url rel=index>
+<span itemprop=name>Mac</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+方式一 下载地址：http://tools.android-studio.org/index.php/sdk 下载完成后运行 tools -> android，
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85android-sdk/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="搭建sonic云真机平台记录">
+<meta itemprop=description content="本文通过 docker 在服务器上搭建 sonic 真机平台 simple 版本。 部署文档：https://sonic-cloud.gitee.io/#/Deploy 1、创建数据库">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/ itemprop=url class=post-title-link>搭建sonic云真机平台记录</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-02-28 16:50:34 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-28 16:50:34 +0000 UTC">2022-02-28</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-02-28 16:50:34 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-28 16:50:34 +0000 UTC">2022-02-28</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/docker itemprop=url rel=index><span itemprop=name>Docker</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>本文通过 docker 在服务器上搭建 sonic 真机平台 simple 版本。 部署文档：https://sonic-cloud.gitee.io/#/Deploy 1、创建数据库</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="启动时间分析"><meta itemprop=description content="APP 启动首屏基本上都是以颜色来标识，而不是图片，目的是为了适配更多分辨率不同的机型。 APP 启动方式 COLD（冷启动）：杀死应用进程后启动 WARM（"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/ itemprop=url class=post-title-link>启动时间分析</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/docker itemprop=url rel=index>
+<span itemprop=name>Docker</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+本文通过 docker 在服务器上搭建 sonic 真机平台 simple 版本。 部署文档：https://sonic-cloud.gitee.io/#/Deploy 1、创建数据库
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAsonic%E4%BA%91%E7%9C%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E8%AE%B0%E5%BD%95/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="启动时间分析">
+<meta itemprop=description content="APP 启动首屏基本上都是以颜色来标识，而不是图片，目的是为了适配更多分辨率不同的机型。 APP 启动方式 COLD（冷启动）：杀死应用进程后启动 WARM（">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/ itemprop=url class=post-title-link>启动时间分析</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-02-21 15:33:56 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-21 15:33:56 +0000 UTC">2022-02-21</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-02-21 15:33:56 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-21 15:33:56 +0000 UTC">2022-02-21</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/andorid itemprop=url rel=index><span itemprop=name>Andorid</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>APP 启动首屏基本上都是以颜色来标识，而不是图片，目的是为了适配更多分辨率不同的机型。 APP 启动方式 COLD（冷启动）：杀死应用进程后启动 WARM（</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="安装jdk17"><meta itemprop=description content="下载地址：https://www.oracle.com/java/technologies/downloads/#jdk17-mac 选择 x64 DMG"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/ itemprop=url class=post-title-link>安装jdk17</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/andorid itemprop=url rel=index>
+<span itemprop=name>Andorid</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+APP 启动首屏基本上都是以颜色来标识，而不是图片，目的是为了适配更多分辨率不同的机型。 APP 启动方式 COLD（冷启动）：杀死应用进程后启动 WARM（
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="安装jdk17">
+<meta itemprop=description content="下载地址：https://www.oracle.com/java/technologies/downloads/#jdk17-mac 选择 x64 DMG">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/ itemprop=url class=post-title-link>安装jdk17</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-02-11 11:45:44 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-11 11:45:44 +0000 UTC">2022-02-11</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-02-11 11:45:44 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-11 11:45:44 +0000 UTC">2022-02-11</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/mac itemprop=url rel=index><span itemprop=name>Mac</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>下载地址：https://www.oracle.com/java/technologies/downloads/#jdk17-mac 选择 x64 DMG</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="面试经验"><meta itemprop=description content="文章来源：测试人社区 ling_tianxia 的分享。 原文地址： https://ceshiren.com/t/topic/3505 这里归纳总结了一些测试工程师常见的面试题，包含网络收集（完善）、个人遇到的、日常讨论等部分，总结为"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/ itemprop=url class=post-title-link>面试经验</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/mac itemprop=url rel=index>
+<span itemprop=name>Mac</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+下载地址：https://www.oracle.com/java/technologies/downloads/#jdk17-mac 选择 x64 DMG
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85jdk17/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="面试经验">
+<meta itemprop=description content="文章来源：测试人社区 ling_tianxia 的分享。 原文地址： https://ceshiren.com/t/topic/3505 这里归纳总结了一些测试工程师常见的面试题，包含网络收集（完善）、个人遇到的、日常讨论等部分，总结为">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/ itemprop=url class=post-title-link>面试经验</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-02-09 16:44:51 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-09 16:44:51 +0000 UTC">2022-02-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-02-09 16:44:51 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-02-09 16:44:51 +0000 UTC">2022-02-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:56:22+00:00 itemprop=dateModified datetime=2023-05-09T15:56:22+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E6%94%B6%E8%97%8F%E5%A4%B9 itemprop=url rel=index><span itemprop=name>收藏夹</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>文章来源：测试人社区 ling_tianxia 的分享。 原文地址： https://ceshiren.com/t/topic/3505 这里归纳总结了一些测试工程师常见的面试题，包含网络收集（完善）、个人遇到的、日常讨论等部分，总结为</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><nav class=pagination><a class="extend prev" rel=prev href=/page/5/><i class="fa fa-angle-left"></i></a>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E6%94%B6%E8%97%8F%E5%A4%B9 itemprop=url rel=index>
+<span itemprop=name>收藏夹</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+文章来源：测试人社区 ling_tianxia 的分享。 原文地址： https://ceshiren.com/t/topic/3505 这里归纳总结了一些测试工程师常见的面试题，包含网络收集（完善）、个人遇到的、日常讨论等部分，总结为
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%94%B6%E8%97%8F%E5%A4%B9/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<nav class=pagination>
+<a class="extend prev" rel=prev href=/page/5/>
+<i class="fa fa-angle-left"></i>
+</a>
 <a class=page-number href=/page/2/>2</a>
 <a class=page-number href=/page/3/>3</a>
 <a class=page-number href=/page/4/>4</a>
@@ -120,9 +975,29 @@
 <a class=page-number href=/page/8/>8</a>
 <a class=page-number href=/page/9/>9</a>
 <a class=page-number href=/page/10/>10</a>
-<a class="extend next" rel=next href=/page/7/><i class="fa fa-angle-right"></i></a></nav></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
-<span itemprop=copyrightYear>2023</span>
-<span class=with-love><i class="fa fa-heart"></i></span>
-<span class=author itemprop=copyrightHolder>ABEE</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<a class="extend next" rel=next href=/page/7/>
+<i class="fa fa-angle-right"></i>
+</a>
+</nav>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
 <script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
-<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.5207e106e9f92dcba41e11e145b3dea597901a731ea853825859c3c82c35adf6.js defer></script></body></html>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

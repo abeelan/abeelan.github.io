@@ -1,116 +1,971 @@
-<!doctype html><html lang=zh-cn data-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: light)"><meta name=generator content="Hugo 0.111.3"><link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="技术栈s"><meta itemprop=description content="It's better late than never."><meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png"><meta itemprop=keywords content><meta property="og:type" content="website"><meta property="og:title" content="技术栈s"><meta property="og:description" content="It's better late than never."><meta property="og:image" content="/imgs/avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/"><meta property="og:site_name" content="ABEE"><meta property="og:locale" content="zh-CN"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":false,"path":"%E6%8A%80%E6%9C%AF%E6%A0%88","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/","title":"技术栈s","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>技术栈 - ABEE</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="技术栈s">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content>
+<meta property="og:type" content="website">
+<meta property="og:title" content="技术栈s">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":false,"path":"%E6%8A%80%E6%9C%AF%E6%A0%88","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/","title":"技术栈s","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>技术栈 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>ABEE</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>116</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-overview-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png><p class=site-author-name itemprop=name>ABEE</p><div class=site-description itemprop=description>It's better late than never.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>116</span>
-<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>20</span>
-<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>22</span>
-<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识></a></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
-<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=0001-01-01T00:00:00+00:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=169648></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=399></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
-<span>0%</span></div></div><div class=reading-progress-bar></div><a role=button class="book-mark-link book-mark-link-fixed"></a>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>115</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-overview-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>115</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-06T16:55:52+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=169480></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=398></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
 <script type=text/javascript src=//sidecar.gitter.im/dist/sidecar.v1.js async></script>
-<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner index posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="接口测试平台需求"><meta itemprop=description content="用例执行 全局环境配置 全局变量 变量提取 场景化测试"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/ itemprop=url class=post-title-link>接口测试平台需求</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="接口测试平台需求">
+<meta itemprop=description content="用例执行 全局环境配置 全局变量 变量提取 场景化测试">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/ itemprop=url class=post-title-link>接口测试平台需求</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-04-28 18:18:32 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-28 18:18:32 +0000 UTC">2023-04-28</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-04-28 18:18:32 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-28 18:18:32 +0000 UTC">2023-04-28</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/pity itemprop=url rel=index><span itemprop=name>Pity</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>用例执行 全局环境配置 全局变量 变量提取 场景化测试</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《Python工匠》"><meta itemprop=description content="目前正在阅读中&mldr; 一级标题 二级标题 三级标题 print(&#34;hello world&#34;) hh ==lala=="></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/ itemprop=url class=post-title-link>《Python工匠》</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/pity itemprop=url rel=index>
+<span itemprop=name>Pity</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+用例执行 全局环境配置 全局变量 变量提取 场景化测试
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="hugo-搭建博客（v2）">
+<meta itemprop=description content="下文是我自己的搭建记录（MacOS, Hugo + GithubPage） 搭建本地 Hugo 服务 Hugo 是使用 Go 语言编写的 静态网站生成器 ，页面编译速度快，支持跨平台、">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/ itemprop=url class=post-title-link>hugo-搭建博客（v2）</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-04-27 01:39:00 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-27 01:39:00 +0000 UTC">2023-04-27</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-04-27 01:39:00 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-27 01:39:00 +0000 UTC">2023-04-27</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>目前正在阅读中&mldr; 一级标题 二级标题 三级标题 print("hello world") hh ==lala==</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="hugo-搭建博客（v2）"><meta itemprop=description content="下文是我自己的搭建记录（MacOS, Hugo + GithubPage） 搭建本地 Hugo 服务 Hugo 是使用 Go 语言编写的 静态网站生成器 ，页面编译速度快，支持跨平台、"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/ itemprop=url class=post-title-link>hugo-搭建博客（v2）</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/blog itemprop=url rel=index>
+<span itemprop=name>Blog</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+下文是我自己的搭建记录（MacOS, Hugo + GithubPage） 搭建本地 Hugo 服务 Hugo 是使用 Go 语言编写的 静态网站生成器 ，页面编译速度快，支持跨平台、
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《Python工匠》">
+<meta itemprop=description content="目前正在阅读中&mldr; 一级标题 二级标题 三级标题 print(&#34;hello world&#34;) hh ==lala==">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/ itemprop=url class=post-title-link>《Python工匠》</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-04-27 01:39:00 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-27 01:39:00 +0000 UTC">2023-04-27</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-04-27 01:39:00 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-27 01:39:00 +0000 UTC">2023-04-27</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/blog itemprop=url rel=index><span itemprop=name>Blog</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>下文是我自己的搭建记录（MacOS, Hugo + GithubPage） 搭建本地 Hugo 服务 Hugo 是使用 Go 语言编写的 静态网站生成器 ，页面编译速度快，支持跨平台、</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="常用命令"><meta itemprop=description content="系统 $ uname -a # 查看内核/操作系统/CPU信息 $ head -n 1 /etc/issue # 查看操作系统版本 $ cat /proc/cpuinfo # 查看CPU信息 $ hostname # 查看计算机名 $ lspci -tv # 列出所有PCI设备 $ lsusb"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/ itemprop=url class=post-title-link>常用命令</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+目前正在阅读中&mldr; 一级标题 二级标题 三级标题 print("hello world") hh ==lala==
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/python%E5%B7%A5%E5%8C%A0/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="常用命令">
+<meta itemprop=description content="系统 $ uname -a # 查看内核/操作系统/CPU信息 $ head -n 1 /etc/issue # 查看操作系统版本 $ cat /proc/cpuinfo # 查看CPU信息 $ hostname # 查看计算机名 $ lspci -tv # 列出所有PCI设备 $ lsusb">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/ itemprop=url class=post-title-link>常用命令</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-04-26 19:42:26 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-26 19:42:26 +0000 UTC">2023-04-26</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-04-26 19:42:26 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-26 19:42:26 +0000 UTC">2023-04-26</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/linux itemprop=url rel=index><span itemprop=name>Linux</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>系统 $ uname -a # 查看内核/操作系统/CPU信息 $ head -n 1 /etc/issue # 查看操作系统版本 $ cat /proc/cpuinfo # 查看CPU信息 $ hostname # 查看计算机名 $ lspci -tv # 列出所有PCI设备 $ lsusb</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="JSR223-自定义脚本"><meta itemprop=description content="JSR223 JSR223 是 Java Specification Request 223 的缩写，它定义了一种标准的接口和机制，用于在Java虚拟机中运行基于脚本的语言（例如Groovy、JavaScript等）的脚"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/ itemprop=url class=post-title-link>JSR223-自定义脚本</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/linux itemprop=url rel=index>
+<span itemprop=name>Linux</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+系统 $ uname -a # 查看内核/操作系统/CPU信息 $ head -n 1 /etc/issue # 查看操作系统版本 $ cat /proc/cpuinfo # 查看CPU信息 $ hostname # 查看计算机名 $ lspci -tv # 列出所有PCI设备 $ lsusb
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="JSR223-自定义脚本">
+<meta itemprop=description content="JSR223 JSR223 是 Java Specification Request 223 的缩写，它定义了一种标准的接口和机制，用于在Java虚拟机中运行基于脚本的语言（例如Groovy、JavaScript等）的脚">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/ itemprop=url class=post-title-link>JSR223-自定义脚本</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-04-23 18:19:08 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-23 18:19:08 +0000 UTC">2023-04-23</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-04-23 18:19:08 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-23 18:19:08 +0000 UTC">2023-04-23</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/jmeterms itemprop=url rel=index><span itemprop=name>Jmeter&amp;Ms</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>JSR223 JSR223 是 Java Specification Request 223 的缩写，它定义了一种标准的接口和机制，用于在Java虚拟机中运行基于脚本的语言（例如Groovy、JavaScript等）的脚</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="我作为面试官的一些心得"><meta itemprop=description content="简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/ itemprop=url class=post-title-link>我作为面试官的一些心得</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/jmeterms itemprop=url rel=index>
+<span itemprop=name>Jmeter&Ms</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+JSR223 JSR223 是 Java Specification Request 223 的缩写，它定义了一种标准的接口和机制，用于在Java虚拟机中运行基于脚本的语言（例如Groovy、JavaScript等）的脚
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="我作为面试官的一些心得">
+<meta itemprop=description content="简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/ itemprop=url class=post-title-link>我作为面试官的一些心得</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-04-19 17:12:46 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-19 17:12:46 +0000 UTC">2023-04-19</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-04-19 17:12:46 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-19 17:12:46 +0000 UTC">2023-04-19</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:57:55+00:00 itemprop=dateModified datetime=2023-05-09T15:57:55+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%9A%8F%E7%AC%94 itemprop=url rel=index><span itemprop=name>随笔</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="meterSphere需求及解决"><meta itemprop=description content="metersphere 接口平台 需求：设置请求前置脚本，修改 「请求体」 内容，然后用更新后的请求体发起请求。 调试如下接口： 接口：https://httpbin.or"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/ itemprop=url class=post-title-link>meterSphere需求及解决</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%9A%8F%E7%AC%94 itemprop=url rel=index>
+<span itemprop=name>随笔</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="meterSphere需求及解决">
+<meta itemprop=description content="metersphere 接口平台 需求：设置请求前置脚本，修改 「请求体」 内容，然后用更新后的请求体发起请求。 调试如下接口： 接口：https://httpbin.or">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/ itemprop=url class=post-title-link>meterSphere需求及解决</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-03-30 11:08:42 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-30 11:08:42 +0000 UTC">2023-03-30</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-03-30 11:08:42 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-30 11:08:42 +0000 UTC">2023-03-30</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/jmeterms itemprop=url rel=index><span itemprop=name>Jmeter&amp;Ms</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>metersphere 接口平台 需求：设置请求前置脚本，修改 「请求体」 内容，然后用更新后的请求体发起请求。 调试如下接口： 接口：https://httpbin.or</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《计算机网络原理》计算题汇总"><meta itemprop=description content="计算题汇总 计算机网络性能 题一 题二 题三 HTTP 连接 题一 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = (1 + 1) x 8 答：共需要 18 RTTh ![image-20230308233241159](/Users/lan/Library/Application Support/typora-user-images/image-20230308233241159.png) 页面：建"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/ itemprop=url class=post-title-link>《计算机网络原理》计算题汇总</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/jmeterms itemprop=url rel=index>
+<span itemprop=name>Jmeter&Ms</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+metersphere 接口平台 需求：设置请求前置脚本，修改 「请求体」 内容，然后用更新后的请求体发起请求。 调试如下接口： 接口：https://httpbin.or
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/metersphere%E9%9C%80%E6%B1%82%E5%8F%8A%E8%A7%A3%E5%86%B3/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《计算机网络原理》计算题汇总">
+<meta itemprop=description content="计算题汇总 计算机网络性能 题一 题二 题三 HTTP 连接 题一 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = (1 + 1) x 8 答：共需要 18 RTTh ![image-20230308233241159](/Users/lan/Library/Application Support/typora-user-images/image-20230308233241159.png) 页面：建">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/ itemprop=url class=post-title-link>《计算机网络原理》计算题汇总</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-03-10 10:07:13 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-10 10:07:13 +0000 UTC">2023-03-10</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-03-10 10:07:13 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-10 10:07:13 +0000 UTC">2023-03-10</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>计算题汇总 计算机网络性能 题一 题二 题三 HTTP 连接 题一 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = (1 + 1) x 8 答：共需要 18 RTTh ![image-20230308233241159](/Users/lan/Library/Application Support/typora-user-images/image-20230308233241159.png) 页面：建</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《计算机网络原理》个人笔记"><meta itemprop=description content="计算机网络概述 基本概念 起源：计算机网络是计算机技术与通信技术融合的产物。 定义：计算机网络是互连的、自治的计算机的集合。 ISP：因特网服务提供"></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/ itemprop=url class=post-title-link>《计算机网络原理》个人笔记</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+计算题汇总 计算机网络性能 题一 题二 题三 HTTP 连接 题一 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = (1 + 1) x 8 答：共需要 18 RTTh ![image-20230308233241159](/Users/lan/Library/Application Support/typora-user-images/image-20230308233241159.png) 页面：建
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《计算机网络原理》个人笔记">
+<meta itemprop=description content="计算机网络概述 基本概念 起源：计算机网络是计算机技术与通信技术融合的产物。 定义：计算机网络是互连的、自治的计算机的集合。 ISP：因特网服务提供">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/ itemprop=url class=post-title-link>《计算机网络原理》个人笔记</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-03-07 22:46:36 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-07 22:46:36 +0000 UTC">2023-03-07</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-03-07 22:46:36 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-07 22:46:36 +0000 UTC">2023-03-07</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>计算机网络概述 基本概念 起源：计算机网络是计算机技术与通信技术融合的产物。 定义：计算机网络是互连的、自治的计算机的集合。 ISP：因特网服务提供</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="adb远程连接"><meta itemprop=description content="背景 在一些移动云测手机机房里 Android 设备是分批挂载在专门的 宿主机 集群上的，而执行自动化脚本的机器是在另外一个执行机集群中，因此就会产生这样的需求："></span><header class=post-header><h2 class=post-title itemprop="name headline"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/ itemprop=url class=post-title-link>adb远程连接</a></h2><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+计算机网络概述 基本概念 起源：计算机网络是计算机技术与通信技术融合的产物。 定义：计算机网络是互连的、自治的计算机的集合。 ISP：因特网服务提供
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="adb远程连接">
+<meta itemprop=description content="背景 在一些移动云测手机机房里 Android 设备是分批挂载在专门的 宿主机 集群上的，而执行自动化脚本的机器是在另外一个执行机集群中，因此就会产生这样的需求：">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/ itemprop=url class=post-title-link>adb远程连接</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-02-08 11:20:52 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-02-08 11:20:52 +0000 UTC">2023-02-08</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2023-02-08 11:20:52 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-02-08 11:20:52 +0000 UTC">2023-02-08</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/andorid itemprop=url rel=index><span itemprop=name>Andorid</span></a></span></span><div class=post-meta-items><span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/><i class="fa fa-sync fa-spin"></i></span></span></div></div></div></header><div class="post-body autonumber" itemprop=articleBody>背景 在一些移动云测手机机房里 Android 设备是分批挂载在专门的 宿主机 集群上的，而执行自动化脚本的机器是在另外一个执行机集群中，因此就会产生这样的需求：</div><footer class=post-footer><div class=post-button><a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/#more rel=contents>阅读全文 &#187;</a></div><div class=post-eof></div></footer></article></div><nav class=pagination><a class="extend prev" rel=prev href=/%E6%8A%80%E6%9C%AF%E6%A0%88/><i class="fa fa-angle-left"></i></a>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/andorid itemprop=url rel=index>
+<span itemprop=name>Andorid</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+背景 在一些移动云测手机机房里 Android 设备是分批挂载在专门的 宿主机 集群上的，而执行自动化脚本的机器是在另外一个执行机集群中，因此就会产生这样的需求：
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<nav class=pagination>
+<a class="extend prev" rel=prev href=/%E6%8A%80%E6%9C%AF%E6%A0%88/>
+<i class="fa fa-angle-left"></i>
+</a>
 <a class=page-number href=/%E6%8A%80%E6%9C%AF%E6%A0%88/>1</a>
 <span class="page-number current">2</span>
 <a class=page-number href=/%E6%8A%80%E6%9C%AF%E6%A0%88/page/3/>3</a>
@@ -119,9 +974,29 @@
 <a class=page-number href=/%E6%8A%80%E6%9C%AF%E6%A0%88/page/6/>6</a>
 <a class=page-number href=/%E6%8A%80%E6%9C%AF%E6%A0%88/page/7/>7</a>
 <a class=page-number href=/%E6%8A%80%E6%9C%AF%E6%A0%88/page/8/>8</a>
-<a class="extend next" rel=next href=/%E6%8A%80%E6%9C%AF%E6%A0%88/page/3/><i class="fa fa-angle-right"></i></a></nav></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
-<span itemprop=copyrightYear>2023</span>
-<span class=with-love><i class="fa fa-heart"></i></span>
-<span class=author itemprop=copyrightHolder>ABEE</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<a class="extend next" rel=next href=/%E6%8A%80%E6%9C%AF%E6%A0%88/page/3/>
+<i class="fa fa-angle-right"></i>
+</a>
+</nav>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
 <script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
-<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.5207e106e9f92dcba41e11e145b3dea597901a731ea853825859c3c82c35adf6.js defer></script></body></html>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

@@ -1,40 +1,778 @@
-<!doctype html><html lang=zh-cn data-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: light)"><meta name=generator content="Hugo 0.111.3"><link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="《数据库系统原理》个人笔记"><meta itemprop=description content="It's better late than never."><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png"><meta itemprop=keywords content="阅读笔记"><meta property="og:type" content="article"><meta property="og:title" content="《数据库系统原理》个人笔记"><meta property="og:description" content="It's better late than never."><meta property="og:image" content="/imgs/avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="ABEE"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="ABEE"><meta property="article:published_time" content="2022-07-19 17:04:41 +0000 UTC"><meta property="article:modified_time" content="2023-05-09 15:48:10 +0000 UTC"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/","title":"《数据库系统原理》个人笔记","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>《数据库系统原理》个人笔记 - ABEE</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="《数据库系统原理》个人笔记">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《数据库系统原理》个人笔记">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2022-07-19 17:04:41 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-09 15:48:10 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/","title":"《数据库系统原理》个人笔记","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>《数据库系统原理》个人笔记 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>ABEE</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>116</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#题型>题型</a></li><li><a href=#一数据库系统概述>一、数据库系统概述</a><ul><li><a href=#1-数据库基本概念>1. 数据库基本概念</a><ul><li></li></ul></li><li><a href=#2-数据库管理技术的发展>2. 数据库管理技术的发展</a></li><li><a href=#3-数据库系统的结构>3. 数据库系统的结构</a><ul><li></li></ul></li><li><a href=#4-数据模型>4. 数据模型</a><ul><li></li></ul></li></ul></li><li><a href=#二关系数据库>二、关系数据库</a><ul><li><a href=#1-关系数据模型>1. 关系数据模型</a><ul><li></li></ul></li><li><a href=#2-关系数据库的规范化理论>2. 关系数据库的规范化理论</a><ul><li></li></ul></li></ul></li><li><a href=#三数据库设计>三、数据库设计</a><ul><li><a href=#1-数据库设计概述>1. 数据库设计概述</a><ul><li></li></ul></li><li><a href=#2-数据库设计的基本步骤>2. 数据库设计的基本步骤</a><ul><li></li></ul></li><li><a href=#3-关系数据库设计方法>3. 关系数据库设计方法</a><ul><li></li></ul></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png><p class=site-author-name itemprop=name>ABEE</p><div class=site-description itemprop=description>It's better late than never.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>116</span>
-<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>20</span>
-<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>22</span>
-<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识></a></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
-<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=0001-01-01T00:00:00+00:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=169648></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=399></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
-<span>0%</span></div></div><div class=reading-progress-bar></div><a role=button class="book-mark-link book-mark-link-fixed"></a>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>115</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#题型>题型</a></li>
+<li><a href=#一数据库系统概述>一、数据库系统概述</a>
+<ul>
+<li><a href=#1-数据库基本概念>1. 数据库基本概念</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#2-数据库管理技术的发展>2. 数据库管理技术的发展</a></li>
+<li><a href=#3-数据库系统的结构>3. 数据库系统的结构</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#4-数据模型>4. 数据模型</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#二关系数据库>二、关系数据库</a>
+<ul>
+<li><a href=#1-关系数据模型>1. 关系数据模型</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#2-关系数据库的规范化理论>2. 关系数据库的规范化理论</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#三数据库设计>三、数据库设计</a>
+<ul>
+<li><a href=#1-数据库设计概述>1. 数据库设计概述</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#2-数据库设计的基本步骤>2. 数据库设计的基本步骤</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#3-关系数据库设计方法>3. 关系数据库设计方法</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>115</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-06T16:55:52+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=169480></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=398></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
 <script type=text/javascript src=//sidecar.gitter.im/dist/sidecar.v1.js async></script>
-<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="《数据库系统原理》个人笔记"><meta itemprop=description content="题型 单选题：15 * 2 = 30 填空题：10 * 1 = 10 文字题：5 * 6 = 30 综合题：2 * 15 =30 考试时间：150 分钟 设计题 - 关系代数、SQL 语句 综合题 - ER图"></span><header class=post-header><h1 class=post-title itemprop="name headline">《数据库系统原理》个人笔记</h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="《数据库系统原理》个人笔记">
+<meta itemprop=description content="题型 单选题：15 * 2 = 30 填空题：10 * 1 = 10 文字题：5 * 6 = 30 综合题：2 * 15 =30 考试时间：150 分钟 设计题 - 关系代数、SQL 语句 综合题 - ER图">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">《数据库系统原理》个人笔记 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-07-19 17:04:41 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-07-19 17:04:41 +0000 UTC">2022-07-19</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-07-19 17:04:41 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-07-19 17:04:41 +0000 UTC">2022-07-19</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index><span itemprop=name>阅读笔记</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
-<span class=post-meta-item-text>字数：</span><span>4745</span></span>
-<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
+<span itemprop=name>阅读笔记</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>4745</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>10分钟</span></span>
-<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><h2 id=题型>题型</h2><ul><li>单选题：15 * 2 = 30</li><li>填空题：10 * 1 = 10</li><li>文字题：5 * 6 = 30</li><li>综合题：2 * 15 =30</li></ul><blockquote><p>考试时间：150 分钟</p></blockquote><p>设计题 - 关系代数、SQL 语句</p><p>综合题 - ER图、范式</p><h2 id=一数据库系统概述>一、数据库系统概述</h2><h3 id=1-数据库基本概念>1. 数据库基本概念</h3><h5 id=数据data>数据（Data）</h5><p>是描述事物的<strong>符号记录</strong>，是指利用物理符号记录下来的、可以鉴别的信息。数据是<strong>信息</strong>存在的一种形式，只有通过<strong>解释</strong>或<strong>处理</strong>的数据才能成为有用的信息。</p><h5 id=数据库database-db>数据库（Database, DB）</h5><p>是指<strong>长期储存</strong>在计算机中的<strong>有组织</strong>的、<strong>可共享</strong>的数据集合。</p><p>数据要按照一定的<strong>数据模型组织、描述和存储</strong>，具有较小的<strong>冗余度</strong>、较高的<strong>数据独立性</strong>，系统易于<strong>扩展</strong>，并可以被多个用户<strong>分享</strong>。</p><h5 id=数据库管理系统dbms>数据库管理系统（DBMS）</h5><p>是专门用于<strong>建立</strong>和<strong>管理</strong>数据库的一套软件，介于<strong>应用程序</strong>和<strong>操作系统</strong>之间。</p><p><strong>数据库管理系统及其功能</strong></p><ul><li><p>数据定义功能</p></li><li><p>数据操纵功能</p></li><li><p>数据库的运行管理功能</p></li><li><p>数据库的建立和维护功能</p></li><li><p>数据组织、存储和管理功能</p></li><li><p>其他功能</p></li></ul><h5 id=数据库系统dbs>数据库系统（DBS）</h5><p>一个完整的数据库系统包括：</p><ul><li>数据库（DB）</li><li>数据库管理系统（DBMS）</li><li>数据库管理员（DBA）</li><li>应用程序</li><li>用户</li></ul><h3 id=2-数据库管理技术的发展>2. 数据库管理技术的发展</h3><p>三个发展阶段：</p><ol><li><p><strong>人工管理阶段</strong>：数据不保存、应用程序管理数据、数据面向应用</p></li><li><p><strong>文件系统阶段</strong>：数据可长期存储；不能实现数据普通共享，只能文件级的共享、数据冗余</p></li><li><p><strong>数据库系统阶段</strong>，全是优点：</p></li></ol><ul><li><strong>数据集成</strong>（主要目的）</li><li>数据共享性高</li><li>数据冗余小</li><li>数据一致性</li><li>数据独立性高</li><li>实施统一管理与控制：主要包括数据的独立性、完整性、并发控制与故障恢复等，即数据库保护</li><li>减少应用程序开发与维护的工作量</li></ul><h3 id=3-数据库系统的结构>3. 数据库系统的结构</h3><h5 id=31-数据库系统的结构分类>3.1 数据库系统的结构分类</h5><p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20220720102245109.png alt=image-20220720102245109></p><h5 id=32-三级模式结构>3.2 三级模式结构</h5><img src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20220720102617422.png alt=image-20220720102617422 style=zoom:33%><p><strong>模式（核心）</strong>：<strong>概念</strong>模式、逻辑模式；概念视图</p><p><strong>外模式</strong>：子模式、<strong>用户</strong>模式；数据视图，即用户视图</p><p><strong>内模式</strong>：<strong>存储</strong>模式、物理模式；内部视图或存储视图</p><p>三级模式结构的两层映像与数据独立性</p><p><strong>映像</strong>就是一种<strong>对应规则</strong>，两层映像：</p><ul><li>模式/内模式映像：保证了数据与程序的<strong>物理独立性</strong></li><li>外模式/模式映像：保证了数据与程序的<strong>逻辑独立性</strong></li></ul><h5 id=33-客户服务器结构>3.3 客户/服务器结构</h5><ul><li>表示层：客户端、前台；主要完成与数据库使用者的交互任务</li><li>数据层：服务器、后台；主要负责数据管理</li></ul><p>分为两种工作方式：单机方式、网络方式。</p><h5 id=34-浏览器服务器结构>3.4 浏览器/服务器结构</h5><p>是一种基于 web 应用的客户/服务器结构，也称为<strong>三层</strong>客户/服务器结构。</p><ul><li><strong>表示层</strong>：UI</li><li><strong>处理层</strong>：中间层</li><li><strong>数据层</strong></li></ul><h3 id=4-数据模型>4. 数据模型</h3><p>模型是现实世界特征的模拟和抽象表达。</p><p><strong>数据模型</strong>是对现实世界数据特征的抽象，描述的是数据的<strong>共性内容</strong>。</p><p><strong>数据模型</strong>是模型化数据和信息的工具，也是数据库系统的<strong>核心和基础</strong>。</p><p>数据模型需满足三点：</p><ul><li>比较真实的模拟现实世界</li><li>容易为人们理解</li><li>便于在计算机上实现</li></ul><h5 id=数据模型的特征>数据模型的特征</h5><p><strong>静态特征</strong>：数据的基本结构、数据间的联系、数据取值范围的约束</p><p><strong>动态特征</strong>：指对数据可以进行符合一定规则的操作</p><h5 id=数据模型组成的三大要素>数据模型组成的三大要素</h5><p><strong>数据结构</strong>：描述的是系统的<strong>静态特征</strong>，即数据对象的<strong>数据类型、内容、属性</strong>以及数据对象之间的<strong>联系</strong>。</p><p><strong>数据操作</strong>：描述的是系统的<strong>动态</strong>特征。</p><p><strong>数据约束</strong>：描述数据结构中数据间的<strong>语法和语义关联</strong>。</p><h5 id=数据模型的分类>数据模型的分类</h5><ul><li><p><strong>概念模型</strong>（现实世界抽象为信息世界）<strong>概念层</strong>数据抽象级别的<strong>最高层</strong>。也称为<strong>信息模型</strong>，主要用于数据库的<strong>设计阶段</strong>；</p></li><li><p><strong>逻辑模型</strong>（信息世界转化为机器世界）<strong>逻辑层</strong>是数据抽象级别的<strong>中间层</strong>。任何 DBMS 都是基于某种<strong>逻辑数据模型</strong>；</p></li><li><p><strong>物理模型</strong>（机器世界）物理层描述数据在存储介质上的组织结构，是<strong>逻辑模型</strong>的物理实现，是数据库<strong>最底层</strong>的抽象，设计目标是提高数据库性能和有效利用存储空间。</p></li></ul><h5 id=概念模型>概念模型</h5><p>信息世界涉及的基本概念：</p><ul><li>实体（Entity）：具体的项目、职工等</li><li>属性（Attribute）：姓名、性别等</li><li>码或键（Key）：唯一标识</li><li>域（Domain）：属性的取值范围</li><li>实体型（Entity Type）：实体+属性</li><li>实体集（Tntity Set）：同类型实体</li><li>联系（Relationship）：实体之间的关系</li></ul><p>数据模型中有**“型”（type）<strong>和</strong>“值”（value）**两个概念。</p><p>概念模型的表示方法（E-R 图）</p><ul><li>长方形表示<strong>实体型</strong></li><li>椭圆表示<strong>属性</strong></li><li>菱形表示<strong>联系</strong></li></ul><h5 id=逻辑模型的类型>逻辑模型的类型</h5><p>层次模型：（层次数据库）<strong>最早使用</strong>，有且仅有一个结点没有<strong>父结点</strong>，称作<strong>根节点</strong>，其他结点有且仅有一个<strong>父结点</strong></p><p>网状模型：（网状数据库）以<strong>网状结构</strong>表示实体与实体间的联系，允许结点有多于一个父结点，允许无父结点</p><p><strong>关系模型</strong>：（关系数据库）用<strong>二维表结构</strong>表示实体间的联系。建立在严格的<strong>数学概念</strong>的基础上、概念单一、存取路径对用户透明，有更高的数据独立性，更好的安全保密性</p><p>面向对象模型：即使<strong>概念模型</strong>又是逻辑模型，表达能力丰富，对象可复用、维护方便</p><h2 id=二关系数据库>二、关系数据库</h2><h3 id=1-关系数据模型>1. 关系数据模型</h3><p>组成要素：</p><ul><li><p><strong>关系数据结构</strong></p></li><li><p><strong>关系操作集合</strong></p></li><li><p><strong>关系完整性约束</strong></p></li></ul><h5 id=11-关系数据结构>1.1 关系数据结构</h5><p>**表（Table）**也称为关系，由表名、列、若干行数据组成，表名必须唯一；</p><p>关系的三种类型：</p><ul><li>基本关系：基本表、基表，实际存在的表</li><li>查询表：虚表</li><li>视图表：虚表</li></ul><p><strong>列（Column）<strong>也称为</strong>字段（Field）<strong>或</strong>属性（Attribute）</strong>，同一列数据类型相同。字段名必须唯一，不同表中可以出现相同的字段名。</p><p>属性的个数称为关系的<strong>元</strong>或<strong>度</strong>，列的值称为<strong>属性值</strong>，其取值范围称为<strong>值域</strong>。</p><p><strong>行（Row）<strong>也称为</strong>元组（Tuple）<strong>或</strong>记录（Record）</strong>，表中的数据按行存储。</p><p>元组（行）中的一个属性值，称为<strong>分量（Component）</strong>。</p><p><strong>码或键（Key）</strong>：属性（或属性组）的值都能用来<strong>唯一标识</strong>该关系的元组，则称这些属性（或属性组）为该关系的码或键。</p><p><strong>超码或超键（Super Key）</strong>：在码中去除某个属性，它仍然是这个关系的码。</p><p><strong>候选码或候选键（Candidate Key）</strong>：在码中不能从中移去任何一个属性，否则它就不再是这个关系的码或键。候选码或候选键是这个关系的<strong>最小</strong>超码或超键。</p><p><strong>主属性（Primary Attribure）或非主属性（Nonprimary Attribute）</strong>：包含在任何一个候选码中的属性称为称为主属性或码属性。</p><p><strong>主码或主键（Primary Key）</strong>：在若干个候选码中<strong>指定</strong>一个<strong>唯一标识</strong>关系的元组（行）。由主观意愿指定。</p><p><strong>全码或全键（All Key）</strong>：一个关系模式的所有属性集合是这个关系的主码或主键。</p><p><strong>外码或外键（Foreign Key）</strong>：某个属性（或属性组）不是这个关系的主码或候选码，而是另一个关系的主码。</p><p><strong>参照关系（Referencing Relation）和被参照关系（Referenced Relation）</strong>：参照关系也称为从关系，被参照关系也称为主关系，他们是指以外码相关联的两个关系。</p><p><strong>域（Domain）</strong>：表示属性的取值范围。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20220722160211177.png alt=image-20220722160211177></p><p><strong>数据类型（Data Type）</strong>：每个列都有相应的数据类型，它用于限制（或容许）该列中存储的数据。</p><p><strong>关系模式（Relation Scheme）</strong>：表头，关系模式是型（Type），关系是值（Value），关系模式是对关系的描述。关系模式是静态的、稳定的，关系是动态的、随时间不断变化的。</p><p><strong>关系数据库（Relation Database）</strong>：所有关系的集合，构成一个关系数据库。以关系模型作为数据的逻辑模型，并采用关系作为数据组织方式的一类数据库，其数据库操作建立在关系代数的基础上。</p><p>关系数据库对关系的限定/要求：</p><ol><li>每一个属性都是不可分解的（不允许表中有表）；</li><li>每一个关系仅仅有一种关系模式；</li><li>每一个关系模式中的属性必须命名，属性名不同；</li><li>同一个关系中不允许出现候选码或候选键<strong>值</strong>完全相同的元组；</li><li>在关系中元组的顺序（行序）是无关紧要的，可以任意交换；</li><li>在关系中属性的顺序（列序）是无关紧要的，可以任意交换。</li></ol><h5 id=12-基本的关系操作>1.2 基本的关系操作</h5><ul><li><strong>查询（Query）</strong></li><li>插入（Insert）：更新操作</li><li>删除（Delete）：更新操作</li><li>修改（Update）：更新操作</li></ul><p>关系数据语言的分类：</p><ul><li><p>关系代数语言</p></li><li><p>结构化查询语言（SQL）</p></li><li><p>关系演算语言</p></li></ul><p>关系代数的运算符，任何一种操作都包含三大要素：操作对象、操作符、操作结果。</p><p><strong>传统的集合运算</strong>：并、差、交、笛卡尔积</p><ul><li>并（UNION）：度和属性都相同的数据会合并（两个关系必须有相同的属性个数）；</li><li>差（DIFFRENCE）：以左侧为基础，减去共同拥有的部分（两个关系必须有相同的属性个数）；</li><li>交（INTERSECTION）：求出两个关系的公共部分（两个关系必须有相同的属性个数）；</li><li>笛卡尔积（CARTESIAN PRODUCT）：两关系元组个数相乘为结果元组个数，结果属性个数为两关系属性之和。</li></ul><p><strong>专门的关系运算</strong>：选择、投影、连接、除</p><ul><li>选择（SELECT，1个关系）：根据条件表达式选出来的行</li><li>投影（PROJECTION，1个关系）：根据属性序列选出来的列</li><li>连接（JOIN，2个关系）：笛卡尔积后，只留两关系中指定属性值相等的元组，去掉重复列</li></ul><h5 id=13-关系的完整性约束>1.3 关系的完整性约束</h5><p>数据库的数据完整性是指数据库中数据的<strong>正确性、相容性、一致性</strong>。</p><p><strong>分类</strong>：</p><ul><li>实体完整性约束：主码的组成不能为空，主属性不能是空值（NULL）</li><li>参照完整性约束：定义外码和主码之间的引用原则，检验外码为空值（NULL）或已经存在</li><li>用户定义完整性约束：域完整性约束（针对某一应用环境的完整性约束）</li></ul><p>执行插入操作，需要对以上三种都进行检验；</p><p>执行删除操作，需要检查是否被引用，一般只需要对被参照关系检查参照完整性约束；</p><p>执行更新操作，插入和删除两种情况的综合。</p><h3 id=2-关系数据库的规范化理论>2. 关系数据库的规范化理论</h3><p>不好的关系模式中可能存在的<strong>冗余</strong>和<strong>异常</strong>问题：</p><ul><li>数据冗余：指同一数据被反复存储的情况</li><li>更新异常：输入冗余造成的，多个内容更改使操作错误</li><li>插入异常</li><li>删除异常</li></ul><h5 id=21-函数依赖与关键字>2.1 函数依赖与关键字</h5><p>函数依赖：在关系中，根据 X 的属性值能决定 Y 的属性值，Y 依赖于 X，记作 X->Y，X 称为决定因素。</p><p>分类：</p><ul><li>完全函数依赖: (X, Y)->Z</li><li>部分函数依赖: (X, Y)，X->Z</li><li>传递函数依赖: X->Y,Y->Z</li></ul><h5 id=22-范式与关系规范化过程>2.2 范式与关系规范化过程</h5><p>一个低一级范式的关系模式通过模式分解可以转换为若干个高一级范式的关系模式的集合，这种过程叫做<strong>规范化</strong>。</p><p>第一范式（1NF）：表中每一列的属性都<strong>不可再分</strong>；</p><p>第二范式（2NF）：表中每一列的属性都<strong>不可再分</strong>，且非主属性<strong>完全函数依赖</strong>于主属性；</p><p>第三范式（3NF）：表中每一列的属性都<strong>不可再分</strong>，且非主属性<strong>完全函数依赖</strong>于主属性，且每个非主属性都不传递函数依赖于主属性；</p><p>第三范式的改进形式（BCNF）</p><h2 id=三数据库设计>三、数据库设计</h2><h3 id=1-数据库设计概述>1. 数据库设计概述</h3><h5 id=数据库的生命周期>数据库的生命周期</h5><p>数据库<strong>分析与设计</strong>阶段：需求分析、概念设计、逻辑设计、物理设计</p><p>数据库<strong>实现与操作</strong>阶段：实现、操作与监督、修改与调整</p><h5 id=数据库设计的目标>数据库设计的目标</h5><ul><li>满足应用的功能需求：增删改查</li><li>良好的数据库性能：高效率存取和空间的节省</li></ul><h5 id=数据库设计的内容>数据库设计的内容</h5><ul><li>数据库<strong>结构设计</strong>（静态的）：概念结构设计、逻辑结构设计、物理结构设计</li><li>数据库<strong>行为设计</strong>（动态的）：功能设计、事务设计、程序设计</li></ul><h5 id=数据库设计的方法>数据库设计的方法</h5><ul><li>直观设计法：最原始的设计方法</li><li>规范设计法：基于第三范式的设计方法</li><li>计算机辅助设计法：辅助软件工程工具</li></ul><h3 id=2-数据库设计的基本步骤>2. 数据库设计的基本步骤</h3><h5 id=21-需求分析>2.1 需求分析</h5><p>数据库设计的<strong>起点</strong>。需求分析的步骤：</p><ul><li><p>确定数据库范围</p></li><li><p><strong>应用过程分析</strong>（的结果是数据库结构设计的重要依据）</p></li><li><p>收集与分析数据</p><ul><li>静态结构：数据分类表、数据元素表</li><li>动态结构：任务分类表、数据特征操作表</li><li>数据约束：数据的安全保密性、数据的完整性、响应时间、数据恢复</li></ul></li><li><p>编写需求分析报告</p></li></ul><h5 id=22-概念结构设计>2.2 概念结构设计</h5><p>概念模型</p><ul><li><strong>实体分析法</strong>（自顶向下法）</li><li>属性综合法（自底向上法）</li></ul><h5 id=23-逻辑结构设计>2.3 逻辑结构设计</h5><p>目标是将概念模型转换为等价的、且对特定 DBMS 所支持的数据模型的结构。</p><p>步骤：</p><ul><li>模型转换</li><li>子模式设计</li><li>编制应用程序设计说明</li><li>设计评价的任务</li></ul><h5 id=24-物理设计>2.4 物理设计</h5><p>任务是确定数据库在存储设备上的<strong>存储结构</strong>及<strong>存取方法</strong>，因 DBMS 的不同还可能包括<strong>建立索引</strong>和<strong>聚集</strong>，以及<strong>物理块大小</strong>、<strong>缓冲区个数和大小</strong>、<strong>数据压缩的选择</strong>。</p><h5 id=25-数据库实施>2.5 数据库实施</h5><ul><li>加载数据：收集、分类、整理、校验、输入等</li><li>应用程序设计：应用编程</li><li>数据库试运行：工作人员熟悉并掌握系统，避免误操作</li></ul><h5 id=26-数据库运行与维护>2.6 数据库运行与维护</h5><p>目的是保证数据库的正常运行，系统维护中最困难的工作是：<strong>数据库重组与重构</strong>。</p><h3 id=3-关系数据库设计方法>3. 关系数据库设计方法</h3><h5 id=31-关系数据库设计过程与各级模式>3.1 关系数据库设计过程与各级模式</h5></div><footer class=post-footer><div class=post-tags><a href=/tags/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0>阅读笔记</a></div><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=reward-container><div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div><button>赞赏</button><div class=post-reward><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
-<span>支付宝</span></div><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
-<span>微信</span></div></div></div><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
-《数据库系统原理》个人笔记</li><li class=post-copyright-author><strong>本文作者：</strong>
-ABEE</li><li class=post-copyright-link><strong>本文链接：</strong>
-<a id=post-cr-link href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/ title=《数据库系统原理》个人笔记>https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
-本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85obs%E6%8E%A8%E6%B5%81%E7%9B%B4%E6%92%AD/ rel=next title=安装obs推流直播><i class="fa fa-chevron-left"></i> 安装obs推流直播</a></div><div class="post-nav-prev post-nav-item"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/oppo%E5%AE%89%E8%A3%85apk%E8%A7%84%E9%81%BF%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/ rel=prev title=OPPO安装APK规避手机验证码>OPPO安装APK规避手机验证码
-<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
-<span itemprop=copyrightYear>2023</span>
-<span class=with-love><i class="fa fa-heart"></i></span>
-<span class=author itemprop=copyrightHolder>ABEE</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<span>10分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h2 id=题型>题型</h2>
+<ul>
+<li>单选题：15 * 2 = 30</li>
+<li>填空题：10 * 1 = 10</li>
+<li>文字题：5 * 6 = 30</li>
+<li>综合题：2 * 15 =30</li>
+</ul>
+<blockquote>
+<p>考试时间：150 分钟</p>
+</blockquote>
+<p>设计题 - 关系代数、SQL 语句</p>
+<p>综合题 - ER图、范式</p>
+<h2 id=一数据库系统概述>一、数据库系统概述</h2>
+<h3 id=1-数据库基本概念>1. 数据库基本概念</h3>
+<h5 id=数据data>数据（Data）</h5>
+<p>是描述事物的<strong>符号记录</strong>，是指利用物理符号记录下来的、可以鉴别的信息。数据是<strong>信息</strong>存在的一种形式，只有通过<strong>解释</strong>或<strong>处理</strong>的数据才能成为有用的信息。</p>
+<h5 id=数据库database-db>数据库（Database, DB）</h5>
+<p>是指<strong>长期储存</strong>在计算机中的<strong>有组织</strong>的、<strong>可共享</strong>的数据集合。</p>
+<p>数据要按照一定的<strong>数据模型组织、描述和存储</strong>，具有较小的<strong>冗余度</strong>、较高的<strong>数据独立性</strong>，系统易于<strong>扩展</strong>，并可以被多个用户<strong>分享</strong>。</p>
+<h5 id=数据库管理系统dbms>数据库管理系统（DBMS）</h5>
+<p>是专门用于<strong>建立</strong>和<strong>管理</strong>数据库的一套软件，介于<strong>应用程序</strong>和<strong>操作系统</strong>之间。</p>
+<p><strong>数据库管理系统及其功能</strong></p>
+<ul>
+<li>
+<p>数据定义功能</p>
+</li>
+<li>
+<p>数据操纵功能</p>
+</li>
+<li>
+<p>数据库的运行管理功能</p>
+</li>
+<li>
+<p>数据库的建立和维护功能</p>
+</li>
+<li>
+<p>数据组织、存储和管理功能</p>
+</li>
+<li>
+<p>其他功能</p>
+</li>
+</ul>
+<h5 id=数据库系统dbs>数据库系统（DBS）</h5>
+<p>一个完整的数据库系统包括：</p>
+<ul>
+<li>数据库（DB）</li>
+<li>数据库管理系统（DBMS）</li>
+<li>数据库管理员（DBA）</li>
+<li>应用程序</li>
+<li>用户</li>
+</ul>
+<h3 id=2-数据库管理技术的发展>2. 数据库管理技术的发展</h3>
+<p>三个发展阶段：</p>
+<ol>
+<li>
+<p><strong>人工管理阶段</strong>：数据不保存、应用程序管理数据、数据面向应用</p>
+</li>
+<li>
+<p><strong>文件系统阶段</strong>：数据可长期存储；不能实现数据普通共享，只能文件级的共享、数据冗余</p>
+</li>
+<li>
+<p><strong>数据库系统阶段</strong>，全是优点：</p>
+</li>
+</ol>
+<ul>
+<li><strong>数据集成</strong>（主要目的）</li>
+<li>数据共享性高</li>
+<li>数据冗余小</li>
+<li>数据一致性</li>
+<li>数据独立性高</li>
+<li>实施统一管理与控制：主要包括数据的独立性、完整性、并发控制与故障恢复等，即数据库保护</li>
+<li>减少应用程序开发与维护的工作量</li>
+</ul>
+<h3 id=3-数据库系统的结构>3. 数据库系统的结构</h3>
+<h5 id=31-数据库系统的结构分类>3.1 数据库系统的结构分类</h5>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20220720102245109.png alt=image-20220720102245109></p>
+<h5 id=32-三级模式结构>3.2 三级模式结构</h5>
+<img src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20220720102617422.png alt=image-20220720102617422 style=zoom:33%>
+<p><strong>模式（核心）</strong>：<strong>概念</strong>模式、逻辑模式；概念视图</p>
+<p><strong>外模式</strong>：子模式、<strong>用户</strong>模式；数据视图，即用户视图</p>
+<p><strong>内模式</strong>：<strong>存储</strong>模式、物理模式；内部视图或存储视图</p>
+<p>三级模式结构的两层映像与数据独立性</p>
+<p><strong>映像</strong>就是一种<strong>对应规则</strong>，两层映像：</p>
+<ul>
+<li>模式/内模式映像：保证了数据与程序的<strong>物理独立性</strong></li>
+<li>外模式/模式映像：保证了数据与程序的<strong>逻辑独立性</strong></li>
+</ul>
+<h5 id=33-客户服务器结构>3.3 客户/服务器结构</h5>
+<ul>
+<li>表示层：客户端、前台；主要完成与数据库使用者的交互任务</li>
+<li>数据层：服务器、后台；主要负责数据管理</li>
+</ul>
+<p>分为两种工作方式：单机方式、网络方式。</p>
+<h5 id=34-浏览器服务器结构>3.4 浏览器/服务器结构</h5>
+<p>是一种基于 web 应用的客户/服务器结构，也称为<strong>三层</strong>客户/服务器结构。</p>
+<ul>
+<li><strong>表示层</strong>：UI</li>
+<li><strong>处理层</strong>：中间层</li>
+<li><strong>数据层</strong></li>
+</ul>
+<h3 id=4-数据模型>4. 数据模型</h3>
+<p>模型是现实世界特征的模拟和抽象表达。</p>
+<p><strong>数据模型</strong>是对现实世界数据特征的抽象，描述的是数据的<strong>共性内容</strong>。</p>
+<p><strong>数据模型</strong>是模型化数据和信息的工具，也是数据库系统的<strong>核心和基础</strong>。</p>
+<p>数据模型需满足三点：</p>
+<ul>
+<li>比较真实的模拟现实世界</li>
+<li>容易为人们理解</li>
+<li>便于在计算机上实现</li>
+</ul>
+<h5 id=数据模型的特征>数据模型的特征</h5>
+<p><strong>静态特征</strong>：数据的基本结构、数据间的联系、数据取值范围的约束</p>
+<p><strong>动态特征</strong>：指对数据可以进行符合一定规则的操作</p>
+<h5 id=数据模型组成的三大要素>数据模型组成的三大要素</h5>
+<p><strong>数据结构</strong>：描述的是系统的<strong>静态特征</strong>，即数据对象的<strong>数据类型、内容、属性</strong>以及数据对象之间的<strong>联系</strong>。</p>
+<p><strong>数据操作</strong>：描述的是系统的<strong>动态</strong>特征。</p>
+<p><strong>数据约束</strong>：描述数据结构中数据间的<strong>语法和语义关联</strong>。</p>
+<h5 id=数据模型的分类>数据模型的分类</h5>
+<ul>
+<li>
+<p><strong>概念模型</strong>（现实世界抽象为信息世界）<strong>概念层</strong>数据抽象级别的<strong>最高层</strong>。也称为<strong>信息模型</strong>，主要用于数据库的<strong>设计阶段</strong>；</p>
+</li>
+<li>
+<p><strong>逻辑模型</strong>（信息世界转化为机器世界）<strong>逻辑层</strong>是数据抽象级别的<strong>中间层</strong>。任何 DBMS 都是基于某种<strong>逻辑数据模型</strong>；</p>
+</li>
+<li>
+<p><strong>物理模型</strong>（机器世界）物理层描述数据在存储介质上的组织结构，是<strong>逻辑模型</strong>的物理实现，是数据库<strong>最底层</strong>的抽象，设计目标是提高数据库性能和有效利用存储空间。</p>
+</li>
+</ul>
+<h5 id=概念模型>概念模型</h5>
+<p>信息世界涉及的基本概念：</p>
+<ul>
+<li>实体（Entity）：具体的项目、职工等</li>
+<li>属性（Attribute）：姓名、性别等</li>
+<li>码或键（Key）：唯一标识</li>
+<li>域（Domain）：属性的取值范围</li>
+<li>实体型（Entity Type）：实体+属性</li>
+<li>实体集（Tntity Set）：同类型实体</li>
+<li>联系（Relationship）：实体之间的关系</li>
+</ul>
+<p>数据模型中有**“型”（type）<strong>和</strong>“值”（value）**两个概念。</p>
+<p>概念模型的表示方法（E-R 图）</p>
+<ul>
+<li>长方形表示<strong>实体型</strong></li>
+<li>椭圆表示<strong>属性</strong></li>
+<li>菱形表示<strong>联系</strong></li>
+</ul>
+<h5 id=逻辑模型的类型>逻辑模型的类型</h5>
+<p>层次模型：（层次数据库）<strong>最早使用</strong>，有且仅有一个结点没有<strong>父结点</strong>，称作<strong>根节点</strong>，其他结点有且仅有一个<strong>父结点</strong></p>
+<p>网状模型：（网状数据库）以<strong>网状结构</strong>表示实体与实体间的联系，允许结点有多于一个父结点，允许无父结点</p>
+<p><strong>关系模型</strong>：（关系数据库）用<strong>二维表结构</strong>表示实体间的联系。建立在严格的<strong>数学概念</strong>的基础上、概念单一、存取路径对用户透明，有更高的数据独立性，更好的安全保密性</p>
+<p>面向对象模型：即使<strong>概念模型</strong>又是逻辑模型，表达能力丰富，对象可复用、维护方便</p>
+<h2 id=二关系数据库>二、关系数据库</h2>
+<h3 id=1-关系数据模型>1. 关系数据模型</h3>
+<p>组成要素：</p>
+<ul>
+<li>
+<p><strong>关系数据结构</strong></p>
+</li>
+<li>
+<p><strong>关系操作集合</strong></p>
+</li>
+<li>
+<p><strong>关系完整性约束</strong></p>
+</li>
+</ul>
+<h5 id=11-关系数据结构>1.1 关系数据结构</h5>
+<p>**表（Table）**也称为关系，由表名、列、若干行数据组成，表名必须唯一；</p>
+<p>关系的三种类型：</p>
+<ul>
+<li>基本关系：基本表、基表，实际存在的表</li>
+<li>查询表：虚表</li>
+<li>视图表：虚表</li>
+</ul>
+<p><strong>列（Column）<strong>也称为</strong>字段（Field）<strong>或</strong>属性（Attribute）</strong>，同一列数据类型相同。字段名必须唯一，不同表中可以出现相同的字段名。</p>
+<p>属性的个数称为关系的<strong>元</strong>或<strong>度</strong>，列的值称为<strong>属性值</strong>，其取值范围称为<strong>值域</strong>。</p>
+<p><strong>行（Row）<strong>也称为</strong>元组（Tuple）<strong>或</strong>记录（Record）</strong>，表中的数据按行存储。</p>
+<p>元组（行）中的一个属性值，称为<strong>分量（Component）</strong>。</p>
+<p><strong>码或键（Key）</strong>：属性（或属性组）的值都能用来<strong>唯一标识</strong>该关系的元组，则称这些属性（或属性组）为该关系的码或键。</p>
+<p><strong>超码或超键（Super Key）</strong>：在码中去除某个属性，它仍然是这个关系的码。</p>
+<p><strong>候选码或候选键（Candidate Key）</strong>：在码中不能从中移去任何一个属性，否则它就不再是这个关系的码或键。候选码或候选键是这个关系的<strong>最小</strong>超码或超键。</p>
+<p><strong>主属性（Primary Attribure）或非主属性（Nonprimary Attribute）</strong>：包含在任何一个候选码中的属性称为称为主属性或码属性。</p>
+<p><strong>主码或主键（Primary Key）</strong>：在若干个候选码中<strong>指定</strong>一个<strong>唯一标识</strong>关系的元组（行）。由主观意愿指定。</p>
+<p><strong>全码或全键（All Key）</strong>：一个关系模式的所有属性集合是这个关系的主码或主键。</p>
+<p><strong>外码或外键（Foreign Key）</strong>：某个属性（或属性组）不是这个关系的主码或候选码，而是另一个关系的主码。</p>
+<p><strong>参照关系（Referencing Relation）和被参照关系（Referenced Relation）</strong>：参照关系也称为从关系，被参照关系也称为主关系，他们是指以外码相关联的两个关系。</p>
+<p><strong>域（Domain）</strong>：表示属性的取值范围。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20220722160211177.png alt=image-20220722160211177></p>
+<p><strong>数据类型（Data Type）</strong>：每个列都有相应的数据类型，它用于限制（或容许）该列中存储的数据。</p>
+<p><strong>关系模式（Relation Scheme）</strong>：表头，关系模式是型（Type），关系是值（Value），关系模式是对关系的描述。关系模式是静态的、稳定的，关系是动态的、随时间不断变化的。</p>
+<p><strong>关系数据库（Relation Database）</strong>：所有关系的集合，构成一个关系数据库。以关系模型作为数据的逻辑模型，并采用关系作为数据组织方式的一类数据库，其数据库操作建立在关系代数的基础上。</p>
+<p>关系数据库对关系的限定/要求：</p>
+<ol>
+<li>每一个属性都是不可分解的（不允许表中有表）；</li>
+<li>每一个关系仅仅有一种关系模式；</li>
+<li>每一个关系模式中的属性必须命名，属性名不同；</li>
+<li>同一个关系中不允许出现候选码或候选键<strong>值</strong>完全相同的元组；</li>
+<li>在关系中元组的顺序（行序）是无关紧要的，可以任意交换；</li>
+<li>在关系中属性的顺序（列序）是无关紧要的，可以任意交换。</li>
+</ol>
+<h5 id=12-基本的关系操作>1.2 基本的关系操作</h5>
+<ul>
+<li><strong>查询（Query）</strong></li>
+<li>插入（Insert）：更新操作</li>
+<li>删除（Delete）：更新操作</li>
+<li>修改（Update）：更新操作</li>
+</ul>
+<p>关系数据语言的分类：</p>
+<ul>
+<li>
+<p>关系代数语言</p>
+</li>
+<li>
+<p>结构化查询语言（SQL）</p>
+</li>
+<li>
+<p>关系演算语言</p>
+</li>
+</ul>
+<p>关系代数的运算符，任何一种操作都包含三大要素：操作对象、操作符、操作结果。</p>
+<p><strong>传统的集合运算</strong>：并、差、交、笛卡尔积</p>
+<ul>
+<li>并（UNION）：度和属性都相同的数据会合并（两个关系必须有相同的属性个数）；</li>
+<li>差（DIFFRENCE）：以左侧为基础，减去共同拥有的部分（两个关系必须有相同的属性个数）；</li>
+<li>交（INTERSECTION）：求出两个关系的公共部分（两个关系必须有相同的属性个数）；</li>
+<li>笛卡尔积（CARTESIAN PRODUCT）：两关系元组个数相乘为结果元组个数，结果属性个数为两关系属性之和。</li>
+</ul>
+<p><strong>专门的关系运算</strong>：选择、投影、连接、除</p>
+<ul>
+<li>选择（SELECT，1个关系）：根据条件表达式选出来的行</li>
+<li>投影（PROJECTION，1个关系）：根据属性序列选出来的列</li>
+<li>连接（JOIN，2个关系）：笛卡尔积后，只留两关系中指定属性值相等的元组，去掉重复列</li>
+</ul>
+<h5 id=13-关系的完整性约束>1.3 关系的完整性约束</h5>
+<p>数据库的数据完整性是指数据库中数据的<strong>正确性、相容性、一致性</strong>。</p>
+<p><strong>分类</strong>：</p>
+<ul>
+<li>实体完整性约束：主码的组成不能为空，主属性不能是空值（NULL）</li>
+<li>参照完整性约束：定义外码和主码之间的引用原则，检验外码为空值（NULL）或已经存在</li>
+<li>用户定义完整性约束：域完整性约束（针对某一应用环境的完整性约束）</li>
+</ul>
+<p>执行插入操作，需要对以上三种都进行检验；</p>
+<p>执行删除操作，需要检查是否被引用，一般只需要对被参照关系检查参照完整性约束；</p>
+<p>执行更新操作，插入和删除两种情况的综合。</p>
+<h3 id=2-关系数据库的规范化理论>2. 关系数据库的规范化理论</h3>
+<p>不好的关系模式中可能存在的<strong>冗余</strong>和<strong>异常</strong>问题：</p>
+<ul>
+<li>数据冗余：指同一数据被反复存储的情况</li>
+<li>更新异常：输入冗余造成的，多个内容更改使操作错误</li>
+<li>插入异常</li>
+<li>删除异常</li>
+</ul>
+<h5 id=21-函数依赖与关键字>2.1 函数依赖与关键字</h5>
+<p>函数依赖：在关系中，根据 X 的属性值能决定 Y 的属性值，Y 依赖于 X，记作 X->Y，X 称为决定因素。</p>
+<p>分类：</p>
+<ul>
+<li>完全函数依赖: (X, Y)->Z</li>
+<li>部分函数依赖: (X, Y)，X->Z</li>
+<li>传递函数依赖: X->Y,Y->Z</li>
+</ul>
+<h5 id=22-范式与关系规范化过程>2.2 范式与关系规范化过程</h5>
+<p>一个低一级范式的关系模式通过模式分解可以转换为若干个高一级范式的关系模式的集合，这种过程叫做<strong>规范化</strong>。</p>
+<p>第一范式（1NF）：表中每一列的属性都<strong>不可再分</strong>；</p>
+<p>第二范式（2NF）：表中每一列的属性都<strong>不可再分</strong>，且非主属性<strong>完全函数依赖</strong>于主属性；</p>
+<p>第三范式（3NF）：表中每一列的属性都<strong>不可再分</strong>，且非主属性<strong>完全函数依赖</strong>于主属性，且每个非主属性都不传递函数依赖于主属性；</p>
+<p>第三范式的改进形式（BCNF）</p>
+<h2 id=三数据库设计>三、数据库设计</h2>
+<h3 id=1-数据库设计概述>1. 数据库设计概述</h3>
+<h5 id=数据库的生命周期>数据库的生命周期</h5>
+<p>数据库<strong>分析与设计</strong>阶段：需求分析、概念设计、逻辑设计、物理设计</p>
+<p>数据库<strong>实现与操作</strong>阶段：实现、操作与监督、修改与调整</p>
+<h5 id=数据库设计的目标>数据库设计的目标</h5>
+<ul>
+<li>满足应用的功能需求：增删改查</li>
+<li>良好的数据库性能：高效率存取和空间的节省</li>
+</ul>
+<h5 id=数据库设计的内容>数据库设计的内容</h5>
+<ul>
+<li>数据库<strong>结构设计</strong>（静态的）：概念结构设计、逻辑结构设计、物理结构设计</li>
+<li>数据库<strong>行为设计</strong>（动态的）：功能设计、事务设计、程序设计</li>
+</ul>
+<h5 id=数据库设计的方法>数据库设计的方法</h5>
+<ul>
+<li>直观设计法：最原始的设计方法</li>
+<li>规范设计法：基于第三范式的设计方法</li>
+<li>计算机辅助设计法：辅助软件工程工具</li>
+</ul>
+<h3 id=2-数据库设计的基本步骤>2. 数据库设计的基本步骤</h3>
+<h5 id=21-需求分析>2.1 需求分析</h5>
+<p>数据库设计的<strong>起点</strong>。需求分析的步骤：</p>
+<ul>
+<li>
+<p>确定数据库范围</p>
+</li>
+<li>
+<p><strong>应用过程分析</strong>（的结果是数据库结构设计的重要依据）</p>
+</li>
+<li>
+<p>收集与分析数据</p>
+<ul>
+<li>静态结构：数据分类表、数据元素表</li>
+<li>动态结构：任务分类表、数据特征操作表</li>
+<li>数据约束：数据的安全保密性、数据的完整性、响应时间、数据恢复</li>
+</ul>
+</li>
+<li>
+<p>编写需求分析报告</p>
+</li>
+</ul>
+<h5 id=22-概念结构设计>2.2 概念结构设计</h5>
+<p>概念模型</p>
+<ul>
+<li><strong>实体分析法</strong>（自顶向下法）</li>
+<li>属性综合法（自底向上法）</li>
+</ul>
+<h5 id=23-逻辑结构设计>2.3 逻辑结构设计</h5>
+<p>目标是将概念模型转换为等价的、且对特定 DBMS 所支持的数据模型的结构。</p>
+<p>步骤：</p>
+<ul>
+<li>模型转换</li>
+<li>子模式设计</li>
+<li>编制应用程序设计说明</li>
+<li>设计评价的任务</li>
+</ul>
+<h5 id=24-物理设计>2.4 物理设计</h5>
+<p>任务是确定数据库在存储设备上的<strong>存储结构</strong>及<strong>存取方法</strong>，因 DBMS 的不同还可能包括<strong>建立索引</strong>和<strong>聚集</strong>，以及<strong>物理块大小</strong>、<strong>缓冲区个数和大小</strong>、<strong>数据压缩的选择</strong>。</p>
+<h5 id=25-数据库实施>2.5 数据库实施</h5>
+<ul>
+<li>加载数据：收集、分类、整理、校验、输入等</li>
+<li>应用程序设计：应用编程</li>
+<li>数据库试运行：工作人员熟悉并掌握系统，避免误操作</li>
+</ul>
+<h5 id=26-数据库运行与维护>2.6 数据库运行与维护</h5>
+<p>目的是保证数据库的正常运行，系统维护中最困难的工作是：<strong>数据库重组与重构</strong>。</p>
+<h3 id=3-关系数据库设计方法>3. 关系数据库设计方法</h3>
+<h5 id=31-关系数据库设计过程与各级模式>3.1 关系数据库设计过程与各级模式</h5>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0>
+阅读笔记
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+《数据库系统原理》个人笔记
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/ title=《数据库系统原理》个人笔记>https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E5%AE%89%E8%A3%85obs%E6%8E%A8%E6%B5%81%E7%9B%B4%E6%92%AD/ rel=next title=安装obs推流直播>
+<i class="fa fa-chevron-left"></i> 安装obs推流直播
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/oppo%E5%AE%89%E8%A3%85apk%E8%A7%84%E9%81%BF%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/ rel=prev title=OPPO安装APK规避手机验证码>
+OPPO安装APK规避手机验证码
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
 <script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
-<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.5207e106e9f92dcba41e11e145b3dea597901a731ea853825859c3c82c35adf6.js defer></script></body></html>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

@@ -1,40 +1,599 @@
-<!doctype html><html lang=zh-cn data-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: light)"><meta name=generator content="Hugo 0.111.3"><link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="面试题整理"><meta itemprop=description content="It's better late than never."><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png"><meta itemprop=keywords content="面试"><meta property="og:type" content="article"><meta property="og:title" content="面试题整理"><meta property="og:description" content="It's better late than never."><meta property="og:image" content="/imgs/avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/"><meta property="og:site_name" content="ABEE"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="ABEE"><meta property="article:published_time" content="2022-11-16 13:42:08 +0000 UTC"><meta property="article:modified_time" content="2023-05-09 15:48:10 +0000 UTC"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/","title":"面试题整理","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>面试题整理 - ABEE</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="面试题整理">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题整理">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2022-11-16 13:42:08 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-09 15:55:27 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/","title":"面试题整理","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>面试题整理 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>ABEE</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>116</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><ul><li><a href=#接口测试>接口测试</a><ul><li></li></ul></li><li><a href=#接口自动化面试题>接口自动化面试题</a><ul><li></li></ul></li><li><a href=#selenium-面试题>selenium 面试题</a><ul><li></li></ul></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png><p class=site-author-name itemprop=name>ABEE</p><div class=site-description itemprop=description>It's better late than never.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>116</span>
-<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>20</span>
-<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>22</span>
-<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识></a></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
-<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=0001-01-01T00:00:00+00:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=169648></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=399></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
-<span>0%</span></div></div><div class=reading-progress-bar></div><a role=button class="book-mark-link book-mark-link-fixed"></a>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>115</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#接口测试>接口测试</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#接口自动化面试题>接口自动化面试题</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#selenium-面试题>selenium 面试题</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>115</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-06T16:55:52+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=169480></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=398></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
 <script type=text/javascript src=//sidecar.gitter.im/dist/sidecar.v1.js async></script>
-<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="面试题整理"><meta itemprop=description content="接口测试 1、做接口测试的过程中发现过哪些 bug? 前端公共参数拼接错误，导致功能未生效； 充值活动赠券，产品需求赠送固定金额，修改充值金额依然可以获取"></span><header class=post-header><h1 class=post-title itemprop="name headline">面试题整理</h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="面试题整理">
+<meta itemprop=description content="接口测试 1、做接口测试的过程中发现过哪些 bug? 前端公共参数拼接错误，导致功能未生效； 充值活动赠券，产品需求赠送固定金额，修改充值金额依然可以获取">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">面试题整理 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-11-16 13:42:08 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-11-16 13:42:08 +0000 UTC">2022-11-16</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-11-16 13:42:08 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-11-16 13:42:08 +0000 UTC">2022-11-16</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:55:27+00:00 itemprop=dateModified datetime=2023-05-09T15:55:27+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%9A%8F%E7%AC%94 itemprop=url rel=index><span itemprop=name>随笔</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
-<span class=post-meta-item-text>字数：</span><span>1556</span></span>
-<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%9A%8F%E7%AC%94 itemprop=url rel=index>
+<span itemprop=name>随笔</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1556</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>4分钟</span></span>
-<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><h3 id=接口测试>接口测试</h3><h5 id=1做接口测试的过程中发现过哪些-bug>1、做接口测试的过程中发现过哪些 bug?</h5><ul><li><p>前端公共参数拼接错误，导致功能未生效；</p></li><li><p>充值活动赠券，产品需求赠送固定金额，修改充值金额依然可以获取赠送数量</p></li></ul><h5 id=2平常你是怎么测试接口的>2、平常你是怎么测试接口的？</h5><ul><li>通能测试同时抓包，验证功能跟接口返回值</li><li>功能基本通过后，修改参数进行不同组合验证</li><li>最后添加到测试脚本内，线上监控</li></ul><h5 id=3平常用什么工具测接口>3、平常用什么工具测接口?</h5><ul><li><p>charles：配合功能测试</p></li><li><p>postman：方便快速测试、调试</p></li><li><p>mitmproxy：复杂场景测试，比如：统计广告请求各方比例、配合<code>UI</code>自动化数据<code>mock</code>等</p></li></ul><h5 id=4webservice-接口是如何测试的>4、webService 接口是如何测试的?</h5><ul><li>restful</li><li>非 restful</li></ul><h5 id=5没有接口文档如何做接口测试>5、没有接口文档，如何做接口测试？</h5><ul><li>根据需求，验证功能</li><li>抓包请求，验证参数</li><li>跟开发人员核对并记录参数</li></ul><h5 id=6在手工接口测试或者自动化接口测试的过程中上下游接口有数据依赖如何处理>6、在手工接口测试或者自动化接口测试的过程中，上下游接口有数据依赖如何处理？</h5><ul><li>手工记录</li><li>实现 api 的功能调用，返回数据</li><li>数据保存起来供使用，可以存入配置文件、环境变量或者实例变量等</li></ul><h5 id=7依赖于第三方数据的接口如何进行测试>7、依赖于第三方数据的接口如何进行测试？</h5><ul><li>对方是否提供测试支持</li><li>mock 数据（可以自己抓或对方提供接口文档）</li></ul><p>mock 经典场景就是广告测试，用于模拟不同类型的广告物料和打点</p><h5 id=8当一个接口出现异常时候你是如何分析异常的>8、当一个接口出现异常时候，你是如何分析异常的？</h5><ul><li>接口请求异常<ul><li>分析状态码</li><li>定位前后端</li></ul></li><li>接口业务异常<ul><li>分析错误码</li><li>校验参数正确性</li></ul></li></ul><h5 id=9如何模拟弱网测试>9、如何模拟弱网测试</h5><p>charles Throttle Settings</p><h5 id=10如何分析一个-bug-是前端还是后端的>10、如何分析一个 bug 是前端还是后端的？</h5><ul><li>抓包查看接口返回数据</li><li>验证前端请求头、传参是否正确</li><li>接口数据符合预期，前端展示错误，前端问题；</li><li>接口数据不符合预期，前端与接口数据展示一致，后端问题。</li></ul><h3 id=接口自动化面试题>接口自动化面试题</h3><h5 id=1json-和字典的区别>1、json 和字典的区别？</h5><ul><li>json 是一种数据格式对象，格式上会有限制，比如键值必须使用双引号</li><li>字典是一种数据类型</li><li>json任意key存在默认值 undifined，字典不存在</li><li>json 空值是 null，字典是 None</li></ul><h5 id=2测试的数据你放在哪>2、测试的数据你放在哪？</h5><ul><li>yaml 文件</li><li>py 文件</li></ul><h5 id=3什么是数据驱动如何参数化>3、什么是数据驱动，如何参数化？</h5><ul><li>框架数据驱动：通过向测试引擎内填充数据，完成测试；类似 hrun</li><li>用例数据驱动：通过 <code>pytest.mark.parametrize</code>填充数据完成参数化</li></ul><h5 id=4下个接口请求参数依赖上个接口的返回数据>4、下个接口请求参数依赖上个接口的返回数据</h5><p>同上 6 题</p><h5 id=5依赖于登录的接口如何处理>5、依赖于登录的接口如何处理</h5><ul><li>封装 login fixture，需要登录的接口直接调用</li><li>测试开始前进行登录，获取 token 存入 fixture 或全局变量或测试文件内</li></ul><h5 id=6依赖第三方的接口如何处理>6、依赖第三方的接口如何处理</h5><ul><li>对方测试环境</li><li>数据 mock</li></ul><h5 id=7不可逆的操作如何处理比如删除一个订单这种接口如何测试>7、不可逆的操作，如何处理，比如删除一个订单这种接口如何测试</h5><ul><li>构造数据</li><li>删除数据</li></ul><p>还需要考虑：</p><ul><li>删除不存在的</li><li>重复删除</li><li>删除其他用户的订单号</li><li>删除空订单号</li></ul><h5 id=8接口产生的垃圾数据如何清理>8、接口产生的垃圾数据如何清理</h5><ul><li>在用例开始前初始化数据</li><li>在 teardown 中还原测试过程中的垃圾数据</li><li>直接操作数据库（一般不允许）</li></ul><h5 id=9一个订单的几种状态如何全部测到>9、一个订单的几种状态如何全部测到</h5><ul><li>下单未支付<ul><li>再次支付</li><li>取消订单</li></ul></li><li>下单已支付</li><li>下单已完成</li><li>下单后退款<ul><li>退款成功</li><li>退款失败</li></ul></li></ul><h5 id=10python-如何连接数据库操作>10、python 如何连接数据库操作？</h5><ul><li>pymysql</li><li>pyAcheme</li></ul><h5 id=11运行出报告代码管理git运行策略和持续集成-jenkins-相关>11、运行出报告、代码管理（git）、运行策略和持续集成 jenkins 相关</h5><ul><li>allure 报告</li><li>git 代码管理</li><li>每日定时执行，发送报告邮件</li><li>jenkins pipline 持续集成</li></ul><h3 id=selenium-面试题>selenium 面试题</h3><h5 id=1如何判断一个页面上元素是否存在>1.如何判断一个页面上元素是否存在？</h5><ul><li>is_abled</li><li>is_exist</li></ul><h5 id=2如何提高脚本的稳定性>2、如何提高脚本的稳定性</h5><ul><li>显式等待</li><li>异常处理</li><li>元素定位表达式精准</li></ul><h5 id=3如何定位动态元素>3、如何定位动态元素</h5><ul><li>通过 xpath 标签定位</li><li>用字符串包含模式，模糊匹配</li><li>用字符串开头匹配，模糊匹配</li><li>用字符串结尾匹配，模糊匹配</li></ul><h5 id=4如何通过子元素定位父元素>4、如何通过子元素定位父元素</h5><p>xpath 定位，<code>..</code> 表示上级目录</p><h5 id=5如果截取某一个元素的图片不要截取全部图片>5、如果截取某一个元素的图片，不要截取全部图片</h5><p><code>ele.screenshot("../demo.img")</code></p><h5 id=6平常遇到过哪些问题如何解决的>6、平常遇到过哪些问题?如何解决的</h5><h5 id=7一个元素明明定位到了点击无效也没报错如果解决>7、一个元素明明定位到了，点击无效（也没报错），如果解决？</h5><ul><li>是否切换 frame</li><li>查看元素属性是否可点击</li></ul><p><strong>app</strong> 测试面试题</p><p>1.什么是 activity?</p><p>2.Activity 生命周期?</p><p>3.Android 四大组件?</p><p>4.app 测试和 web 测试有什么区别？</p><p>5.android 和 ios 测试区别？</p><p>6.app 出现 ANR，是什么原因导致的？</p><p>7.App 出现 crash 原因有哪些？</p><p>8.app 对于不稳定偶然出现 anr 和 crash 时候你是怎么处理的？</p><p>9.app 的日志如何抓取?</p><p>10.你平常会看日志吗, 一般会出现哪些异常（Exception）?</p></div><footer class=post-footer><div class=post-tags><a href=/tags/%e9%9d%a2%e8%af%95>面试</a></div><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=reward-container><div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div><button>赞赏</button><div class=post-reward><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
-<span>支付宝</span></div><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
-<span>微信</span></div></div></div><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
-面试题整理</li><li class=post-copyright-author><strong>本文作者：</strong>
-ABEE</li><li class=post-copyright-link><strong>本文链接：</strong>
-<a id=post-cr-link href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/ title=面试题整理>https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
-本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/selenium/%E5%A4%9Aframe%E5%AE%9A%E4%BD%8D/ rel=next title=多frame定位><i class="fa fa-chevron-left"></i> 多frame定位</a></div><div class="post-nav-prev post-nav-item"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/selenium/%E6%97%A0%E5%A4%B4%E6%B5%8F%E8%A7%88%E5%99%A8/ rel=prev title=无头浏览器>无头浏览器
-<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
-<span itemprop=copyrightYear>2023</span>
-<span class=with-love><i class="fa fa-heart"></i></span>
-<span class=author itemprop=copyrightHolder>ABEE</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<span>4分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h3 id=接口测试>接口测试</h3>
+<h5 id=1做接口测试的过程中发现过哪些-bug>1、做接口测试的过程中发现过哪些 bug?</h5>
+<ul>
+<li>
+<p>前端公共参数拼接错误，导致功能未生效；</p>
+</li>
+<li>
+<p>充值活动赠券，产品需求赠送固定金额，修改充值金额依然可以获取赠送数量</p>
+</li>
+</ul>
+<h5 id=2平常你是怎么测试接口的>2、平常你是怎么测试接口的？</h5>
+<ul>
+<li>通能测试同时抓包，验证功能跟接口返回值</li>
+<li>功能基本通过后，修改参数进行不同组合验证</li>
+<li>最后添加到测试脚本内，线上监控</li>
+</ul>
+<h5 id=3平常用什么工具测接口>3、平常用什么工具测接口?</h5>
+<ul>
+<li>
+<p>charles：配合功能测试</p>
+</li>
+<li>
+<p>postman：方便快速测试、调试</p>
+</li>
+<li>
+<p>mitmproxy：复杂场景测试，比如：统计广告请求各方比例、配合<code>UI</code>自动化数据<code>mock</code>等</p>
+</li>
+</ul>
+<h5 id=4webservice-接口是如何测试的>4、webService 接口是如何测试的?</h5>
+<ul>
+<li>restful</li>
+<li>非 restful</li>
+</ul>
+<h5 id=5没有接口文档如何做接口测试>5、没有接口文档，如何做接口测试？</h5>
+<ul>
+<li>根据需求，验证功能</li>
+<li>抓包请求，验证参数</li>
+<li>跟开发人员核对并记录参数</li>
+</ul>
+<h5 id=6在手工接口测试或者自动化接口测试的过程中上下游接口有数据依赖如何处理>6、在手工接口测试或者自动化接口测试的过程中，上下游接口有数据依赖如何处理？</h5>
+<ul>
+<li>手工记录</li>
+<li>实现 api 的功能调用，返回数据</li>
+<li>数据保存起来供使用，可以存入配置文件、环境变量或者实例变量等</li>
+</ul>
+<h5 id=7依赖于第三方数据的接口如何进行测试>7、依赖于第三方数据的接口如何进行测试？</h5>
+<ul>
+<li>对方是否提供测试支持</li>
+<li>mock 数据（可以自己抓或对方提供接口文档）</li>
+</ul>
+<p>mock 经典场景就是广告测试，用于模拟不同类型的广告物料和打点</p>
+<h5 id=8当一个接口出现异常时候你是如何分析异常的>8、当一个接口出现异常时候，你是如何分析异常的？</h5>
+<ul>
+<li>接口请求异常
+<ul>
+<li>分析状态码</li>
+<li>定位前后端</li>
+</ul>
+</li>
+<li>接口业务异常
+<ul>
+<li>分析错误码</li>
+<li>校验参数正确性</li>
+</ul>
+</li>
+</ul>
+<h5 id=9如何模拟弱网测试>9、如何模拟弱网测试</h5>
+<p>charles Throttle Settings</p>
+<h5 id=10如何分析一个-bug-是前端还是后端的>10、如何分析一个 bug 是前端还是后端的？</h5>
+<ul>
+<li>抓包查看接口返回数据</li>
+<li>验证前端请求头、传参是否正确</li>
+<li>接口数据符合预期，前端展示错误，前端问题；</li>
+<li>接口数据不符合预期，前端与接口数据展示一致，后端问题。</li>
+</ul>
+<h3 id=接口自动化面试题>接口自动化面试题</h3>
+<h5 id=1json-和字典的区别>1、json 和字典的区别？</h5>
+<ul>
+<li>json 是一种数据格式对象，格式上会有限制，比如键值必须使用双引号</li>
+<li>字典是一种数据类型</li>
+<li>json任意key存在默认值 undifined，字典不存在</li>
+<li>json 空值是 null，字典是 None</li>
+</ul>
+<h5 id=2测试的数据你放在哪>2、测试的数据你放在哪？</h5>
+<ul>
+<li>yaml 文件</li>
+<li>py 文件</li>
+</ul>
+<h5 id=3什么是数据驱动如何参数化>3、什么是数据驱动，如何参数化？</h5>
+<ul>
+<li>框架数据驱动：通过向测试引擎内填充数据，完成测试；类似 hrun</li>
+<li>用例数据驱动：通过 <code>pytest.mark.parametrize</code>填充数据完成参数化</li>
+</ul>
+<h5 id=4下个接口请求参数依赖上个接口的返回数据>4、下个接口请求参数依赖上个接口的返回数据</h5>
+<p>同上 6 题</p>
+<h5 id=5依赖于登录的接口如何处理>5、依赖于登录的接口如何处理</h5>
+<ul>
+<li>封装 login fixture，需要登录的接口直接调用</li>
+<li>测试开始前进行登录，获取 token 存入 fixture 或全局变量或测试文件内</li>
+</ul>
+<h5 id=6依赖第三方的接口如何处理>6、依赖第三方的接口如何处理</h5>
+<ul>
+<li>对方测试环境</li>
+<li>数据 mock</li>
+</ul>
+<h5 id=7不可逆的操作如何处理比如删除一个订单这种接口如何测试>7、不可逆的操作，如何处理，比如删除一个订单这种接口如何测试</h5>
+<ul>
+<li>构造数据</li>
+<li>删除数据</li>
+</ul>
+<p>还需要考虑：</p>
+<ul>
+<li>删除不存在的</li>
+<li>重复删除</li>
+<li>删除其他用户的订单号</li>
+<li>删除空订单号</li>
+</ul>
+<h5 id=8接口产生的垃圾数据如何清理>8、接口产生的垃圾数据如何清理</h5>
+<ul>
+<li>在用例开始前初始化数据</li>
+<li>在 teardown 中还原测试过程中的垃圾数据</li>
+<li>直接操作数据库（一般不允许）</li>
+</ul>
+<h5 id=9一个订单的几种状态如何全部测到>9、一个订单的几种状态如何全部测到</h5>
+<ul>
+<li>下单未支付
+<ul>
+<li>再次支付</li>
+<li>取消订单</li>
+</ul>
+</li>
+<li>下单已支付</li>
+<li>下单已完成</li>
+<li>下单后退款
+<ul>
+<li>退款成功</li>
+<li>退款失败</li>
+</ul>
+</li>
+</ul>
+<h5 id=10python-如何连接数据库操作>10、python 如何连接数据库操作？</h5>
+<ul>
+<li>pymysql</li>
+<li>pyAcheme</li>
+</ul>
+<h5 id=11运行出报告代码管理git运行策略和持续集成-jenkins-相关>11、运行出报告、代码管理（git）、运行策略和持续集成 jenkins 相关</h5>
+<ul>
+<li>allure 报告</li>
+<li>git 代码管理</li>
+<li>每日定时执行，发送报告邮件</li>
+<li>jenkins pipline 持续集成</li>
+</ul>
+<h3 id=selenium-面试题>selenium 面试题</h3>
+<h5 id=1如何判断一个页面上元素是否存在>1.如何判断一个页面上元素是否存在？</h5>
+<ul>
+<li>is_abled</li>
+<li>is_exist</li>
+</ul>
+<h5 id=2如何提高脚本的稳定性>2、如何提高脚本的稳定性</h5>
+<ul>
+<li>显式等待</li>
+<li>异常处理</li>
+<li>元素定位表达式精准</li>
+</ul>
+<h5 id=3如何定位动态元素>3、如何定位动态元素</h5>
+<ul>
+<li>通过 xpath 标签定位</li>
+<li>用字符串包含模式，模糊匹配</li>
+<li>用字符串开头匹配，模糊匹配</li>
+<li>用字符串结尾匹配，模糊匹配</li>
+</ul>
+<h5 id=4如何通过子元素定位父元素>4、如何通过子元素定位父元素</h5>
+<p>xpath 定位，<code>..</code> 表示上级目录</p>
+<h5 id=5如果截取某一个元素的图片不要截取全部图片>5、如果截取某一个元素的图片，不要截取全部图片</h5>
+<p><code>ele.screenshot("../demo.img")</code></p>
+<h5 id=6平常遇到过哪些问题如何解决的>6、平常遇到过哪些问题?如何解决的</h5>
+<h5 id=7一个元素明明定位到了点击无效也没报错如果解决>7、一个元素明明定位到了，点击无效（也没报错），如果解决？</h5>
+<ul>
+<li>是否切换 frame</li>
+<li>查看元素属性是否可点击</li>
+</ul>
+<p><strong>app</strong> 测试面试题</p>
+<p>1.什么是 activity?</p>
+<p>2.Activity 生命周期?</p>
+<p>3.Android 四大组件?</p>
+<p>4.app 测试和 web 测试有什么区别？</p>
+<p>5.android 和 ios 测试区别？</p>
+<p>6.app 出现 ANR，是什么原因导致的？</p>
+<p>7.App 出现 crash 原因有哪些？</p>
+<p>8.app 对于不稳定偶然出现 anr 和 crash 时候你是怎么处理的？</p>
+<p>9.app 的日志如何抓取?</p>
+<p>10.你平常会看日志吗, 一般会出现哪些异常（Exception）?</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%e9%9a%8f%e7%ac%94>
+随笔
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+面试题整理
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/ title=面试题整理>https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/selenium/%E5%A4%9Aframe%E5%AE%9A%E4%BD%8D/ rel=next title=多frame定位>
+<i class="fa fa-chevron-left"></i> 多frame定位
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/selenium/%E6%97%A0%E5%A4%B4%E6%B5%8F%E8%A7%88%E5%99%A8/ rel=prev title=无头浏览器>
+无头浏览器
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
 <script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
-<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.5207e106e9f92dcba41e11e145b3dea597901a731ea853825859c3c82c35adf6.js defer></script></body></html>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

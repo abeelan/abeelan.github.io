@@ -1,229 +1,618 @@
-<!doctype html><html lang=zh-cn data-theme=light><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: light)"><meta name=generator content="Hugo 0.111.3"><link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/x-icon href=/imgs/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="k8s-整套工具集记录"><meta itemprop=description content="It's better late than never."><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png"><meta itemprop=keywords content="Jenkins"><meta property="og:type" content="article"><meta property="og:title" content="k8s-整套工具集记录"><meta property="og:description" content="It's better late than never."><meta property="og:image" content="/imgs/avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/"><meta property="og:site_name" content="ABEE"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="ABEE"><meta property="article:published_time" content="2022-01-13 16:52:31 +0000 UTC"><meta property="article:modified_time" content="2023-05-09 15:48:10 +0000 UTC"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/","title":"k8s-整套工具集记录","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>k8s-整套工具集记录 - ABEE</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="k8s-整套工具集记录">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s-整套工具集记录">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2022-01-13 16:52:31 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-09 15:48:10 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/","title":"k8s-整套工具集记录","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>k8s-整套工具集记录 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>ABEE</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>116</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><ul><li><a href=#gogo---一款极易搭建的自助-git-服务>Gogo - 一款极易搭建的自助 Git 服务。</a></li><li><a href=#ci-平台>CI 平台</a></li><li><a href=#私有镜像仓库>私有镜像仓库</a></li><li><a href=#lens---kubernetes-runs-desktop>Lens - Kubernetes runs Desktop</a></li><li><a href=#搭建-nextcloud>搭建 Nextcloud</a></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png><p class=site-author-name itemprop=name>ABEE</p><div class=site-description itemprop=description>It's better late than never.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>116</span>
-<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>20</span>
-<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>22</span>
-<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识></a></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
-<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=0001-01-01T00:00:00+00:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=169648></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=399></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
-<span>0%</span></div></div><div class=reading-progress-bar></div><a role=button class="book-mark-link book-mark-link-fixed"></a>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>115</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#gogo---一款极易搭建的自助-git-服务>Gogo - 一款极易搭建的自助 Git 服务。</a></li>
+<li><a href=#ci-平台>CI 平台</a></li>
+<li><a href=#私有镜像仓库>私有镜像仓库</a></li>
+<li><a href=#lens---kubernetes-runs-desktop>Lens - Kubernetes runs Desktop</a></li>
+<li><a href=#搭建-nextcloud>搭建 Nextcloud</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>115</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>22</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-06T16:55:52+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=169480></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=398></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
 <script type=text/javascript src=//sidecar.gitter.im/dist/sidecar.v1.js async></script>
-<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/avatar.png"><meta itemprop=name content="ABEE"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="ABEE"><meta itemprop=description content="It's better late than never."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="k8s-整套工具集记录"><meta itemprop=description content="Gogo - 一款极易搭建的自助 Git 服务。 官网：https://gogs.io/ 地址：http://gogs.ieasou.cn/ 账号：lanyangb"></span><header class=post-header><h1 class=post-title itemprop="name headline">k8s-整套工具集记录</h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="k8s-整套工具集记录">
+<meta itemprop=description content="Gogo - 一款极易搭建的自助 Git 服务。 官网：https://gogs.io/ 地址：http://gogs.ieasou.cn/ 账号：lanyangb">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">k8s-整套工具集记录 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-01-13 16:52:31 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-01-13 16:52:31 +0000 UTC">2022-01-13</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar-check"></i></span>
+<time title="发表于：2022-01-13 16:52:31 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-01-13 16:52:31 +0000 UTC">2022-01-13</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time></span>
-<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
 <span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/jenkins itemprop=url rel=index><span itemprop=name>Jenkins</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
-<span class=post-meta-item-text>字数：</span><span>955</span></span>
-<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/jenkins itemprop=url rel=index>
+<span itemprop=name>Jenkins</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>952</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>2分钟</span></span>
-<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
-<span class=post-meta-item-text>浏览：</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><h3 id=gogo---一款极易搭建的自助-git-服务>Gogo - 一款极易搭建的自助 Git 服务。</h3><p>官网：https://gogs.io/</p><p>地址：http://gogs.ieasou.cn/</p><p>账号：lanyangbi｜lanyangbi@6666</p><h3 id=ci-平台>CI 平台</h3><p>官网：https://www.drone.io/</p><p>地址：http://drone2.ieasou.cn/</p><p>账号：同上</p><h3 id=私有镜像仓库>私有镜像仓库</h3><p>地址：http://hub.evbj.easou.com</p><p>账号：查看 .drone.yml 配置文件</p><h3 id=lens---kubernetes-runs-desktop>Lens - Kubernetes runs Desktop</h3><p>下载地址（Mac）：https://k8slens.dev</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113174858897.png alt=image-20220113174858897></p><p>配置文件找管理员生成，填入即可。</p><p>查看当前运行的服务</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113175035622.png alt=image-20220113175035622></p><p>查看服务访问地址</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113175116393.png alt=image-20220113175116393></p><h3 id=搭建-nextcloud>搭建 Nextcloud</h3><p>1、在 gogs 上先创建 nextcloud-mariadb 项目，然后需要写入四个文件：</p><ul><li>.drone.yml：流水想项目配置文件</li><li>Dockerfile：项目镜像构建</li><li>deploy-tmp.yaml：项目部署配置文件</li><li>README.md：非必需，一般用来写项目介绍</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .drone.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>pipeline</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>type</span>: <span style=color:#ae81ff>kubernetes</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>nextcloud-mariadb </span> <span style=color:#75715e># 【QA】项目名称</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>clone</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>disable</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>drone</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>steps</span>:
-</span></span><span style=display:flex><span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>clone</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/alpine-git:20200622</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>commands</span>:
-</span></span><span style=display:flex><span>   - <span style=color:#ae81ff>git clone $DRONE_GIT_HTTP_URL .</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>build</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>plugins/docker</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>settings</span>:
-</span></span><span style=display:flex><span>     <span style=color:#f92672>username</span>: <span style=color:#ae81ff>admin</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>password</span>: <span style=color:#ae81ff>Easou2)1*</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>insecure</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>mirror</span>: <span style=color:#ae81ff>https://ci7pm4nx.mirror.aliyuncs.com</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>registry</span>: <span style=color:#ae81ff>hub.evbj.easou.com</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>repo</span>: <span style=color:#ae81ff>hub.evbj.easou.com/tech-qa/${DRONE_REPO_NAME} </span> <span style=color:#75715e># 【QA】repo 路径修改为 tech-qa</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>tag</span>: <span style=color:#ae81ff>v1.0.0 </span> <span style=color:#75715e># 【QA】版本号可自定义</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>deployment</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/drone-agent:v2.0.0</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>pull</span>: <span style=color:#ae81ff>always</span>
-</span></span><span style=display:flex><span>   <span style=color:#75715e># privileged: true</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>environment</span>:
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_ENV</span>: <span style=color:#ae81ff>tech-qa</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_REPLICAS</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_TAG</span>: <span style=color:#ae81ff>v1.0.0 </span> <span style=color:#75715e># 【QA】版本号可自定义</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_VERSION</span>: <span style=color:#ae81ff>v1 </span> <span style=color:#75715e># default v1, v2 for canary</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>DEPLOY_ENV</span>: <span style=color:#ae81ff>k8s-2</span> <span style=color:#75715e># 可以选择把应用部署到集群:k8s-1 or k8s-2</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_REPO</span>: <span style=color:#ae81ff>hub.evbj.easou.com</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_CONTAINER_PORT</span>: <span style=color:#ae81ff>3306</span>  <span style=color:#75715e># 【QA】端口号需要修改</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_INGRESS</span>: <span style=color:#ae81ff>nginx</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_SVC_MODE</span>: <span style=color:#ae81ff>http</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_STORAGE_CLASS</span>: <span style=color:#ae81ff>rbd</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_DOMAIN</span>: <span style=color:#ae81ff>.ieasou.cn</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_CONTROL</span>: <span style=color:#ae81ff>StatefulSet</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_STORAGE_CAPACITY</span>: <span style=color:#ae81ff>20Gi</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_MOUNT_PATH</span>: <span style=color:#ae81ff>/data</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_LIVENESS_INIT</span>: <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_LIVENESS_PER</span>: <span style=color:#ae81ff>15</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_READINESS_INIT</span>: <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_READINESS_PER</span>: <span style=color:#ae81ff>15</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>JNLP_INGRESS_PUB</span>: <span style=color:#66d9ef>yes</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>commands</span>:
-</span></span><span style=display:flex><span>     <span style=color:#75715e># 切换目标集群</span>
-</span></span><span style=display:flex><span>     - <span style=color:#ae81ff>kubecm s $DEPLOY_ENV</span>
-</span></span><span style=display:flex><span>     <span style=color:#75715e># 生成配置YAML文件</span>
-</span></span><span style=display:flex><span>     - <span style=color:#ae81ff>python3 /root/tools.py -b</span>
-</span></span><span style=display:flex><span>     <span style=color:#75715e># 部署服务到kubernetes上</span>
-</span></span><span style=display:flex><span>     - <span style=color:#ae81ff>python3 /root/tools.py -a</span>
-</span></span><span style=display:flex><span>     <span style=color:#75715e># 检查服务部署状态</span>
-</span></span><span style=display:flex><span>     - <span style=color:#ae81ff>python3 /root/tools.py -c</span>
-</span></span><span style=display:flex><span>     <span style=color:#75715e># 添加dns解析记录,生成访问域名</span>
-</span></span><span style=display:flex><span>     - <span style=color:#ae81ff>python3 /root/tools.py -d</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>success</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/drone-wechat:20200622</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>settings</span>:
-</span></span><span style=display:flex><span>     <span style=color:#f92672>corpid</span>: <span style=color:#ae81ff>ww419ee4063735e1c0</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>corp_secret</span>: <span style=color:#ae81ff>zpiRBLETH9eLwIMQ4eJ_r_dcm3BPSGeLHvTcft8Ot-M</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>agent_id</span>: <span style=color:#ae81ff>1000004</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>title</span>: <span style=color:#e6db74>&#34;Pipeline ${DRONE_REPO_NAME} Success&#34;</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;${DRONE_BUILD_LINK} 部署完成&#34;</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>msg_url</span>: <span style=color:#ae81ff>${DRONE_BUILD_LINK}</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>btn_txt</span>: <span style=color:#e6db74>&#34;否&#34;</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>when</span>:
-</span></span><span style=display:flex><span>     <span style=color:#f92672>status</span>:
-</span></span><span style=display:flex><span>     - <span style=color:#ae81ff>success</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>failure</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/drone-wechat:20200622</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>settings</span>:
-</span></span><span style=display:flex><span>     <span style=color:#f92672>corpid</span>: <span style=color:#ae81ff>ww419ee4063735e1c0</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>corp_secret</span>: <span style=color:#ae81ff>zpiRBLETH9eLwIMQ4eJ_r_dcm3BPSGeLHvTcft8Ot-M</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>agent_id</span>: <span style=color:#ae81ff>1000004</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>title</span>: <span style=color:#e6db74>&#34;Pipeline ${DRONE_REPO_NAME} Failure&#34;</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;${DRONE_BUILD_LINK} 部署失败，请检查配置！&#34;</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>msg_url</span>: <span style=color:#ae81ff>${DRONE_BUILD_LINK}</span>
-</span></span><span style=display:flex><span>     <span style=color:#f92672>btn_txt</span>: <span style=color:#e6db74>&#34;否&#34;</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>when</span>:
-</span></span><span style=display:flex><span>     <span style=color:#f92672>status</span>:
-</span></span><span style=display:flex><span>     - <span style=color:#ae81ff>failure</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>FROM</span><span style=color:#e6db74> mariadb</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ENV</span> MYSQL_DATABASE<span style=color:#f92672>=</span>nextcloud
-</span></span><span style=display:flex><span><span style=color:#66d9ef>ENV</span> MYSQL_USER<span style=color:#f92672>=</span>nextcloud
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># deploy-tmp.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 不需要动</span>
-</span></span><span style=display:flex><span>---
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>$JNLP_CONTROL</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>$JNLP_ENV</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>serviceName</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>$JNLP_REPLICAS</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>matchLabels</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>template</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>metadata</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>labels</span>:
-</span></span><span style=display:flex><span>        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>terminationGracePeriodSeconds</span>: <span style=color:#ae81ff>180</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>initContainers</span>:
-</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>init</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>$JNLP_REPO/dev/busybox</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;chmod&#34;</span>,<span style=color:#e6db74>&#34;777&#34;</span>,<span style=color:#e6db74>&#34;-R&#34;</span>,<span style=color:#e6db74>&#34;$JNLP_MOUNT_PATH&#34;</span>]
-</span></span><span style=display:flex><span>          <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Always</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>volumeMounts</span>:
-</span></span><span style=display:flex><span>          - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>volume</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>$JNLP_MOUNT_PATH</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>containers</span>:
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>$JNLP_REPO/$JNLP_ENV/$DRONE_REPO_NAME:$JNLP_TAG</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Always</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>ports</span>:
-</span></span><span style=display:flex><span>        - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>name</span>: <span style=color:#ae81ff>port</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>volumeMounts</span>:
-</span></span><span style=display:flex><span>        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>volume</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>$JNLP_MOUNT_PATH</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>livenessProbe</span>:
-</span></span><span style=display:flex><span>          <span style=color:#f92672>tcpSocket</span>:
-</span></span><span style=display:flex><span>            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>initialDelaySeconds</span>: <span style=color:#ae81ff>$JNLP_LIVENESS_INIT</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>$JNLP_LIVENESS_PER</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>readinessProbe</span>:
-</span></span><span style=display:flex><span>          <span style=color:#f92672>tcpSocket</span>:
-</span></span><span style=display:flex><span>            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>initialDelaySeconds</span>: <span style=color:#ae81ff>$JNLP_READINESS_INIT</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>$JNLP_READINESS_PER</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>volumeClaimTemplates</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>metadata</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>volume</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>spec</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>accessModes</span>: [<span style=color:#e6db74>&#34;ReadWriteOnce&#34;</span>]
-</span></span><span style=display:flex><span>      <span style=color:#f92672>storageClassName</span>: <span style=color:#ae81ff>rbd</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>resources</span>:
-</span></span><span style=display:flex><span>        <span style=color:#f92672>requests</span>:
-</span></span><span style=display:flex><span>          <span style=color:#f92672>storage</span>: <span style=color:#ae81ff>$JNLP_STORAGE_CAPACITY</span>
-</span></span><span style=display:flex><span>---
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-svc</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>$JNLP_ENV</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-svc</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>NodePort</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>ports</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>selector</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
-</span></span><span style=display:flex><span>---
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>extensions/v1beta1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Ingress</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-ingress</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>$JNLP_ENV</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>annotations</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>kubernetes.io/ingress.class</span>: <span style=color:#ae81ff>$JNLP_INGRESS</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>rules</span>:
-</span></span><span style=display:flex><span>  - <span style=color:#f92672>host</span>: <span style=color:#ae81ff>$JNLP_ENV-$DRONE_REPO_NAME$JNLP_DOMAIN</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>http</span>:
-</span></span><span style=display:flex><span>      <span style=color:#f92672>paths</span>:
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>backend</span>:
-</span></span><span style=display:flex><span>          <span style=color:#f92672>serviceName</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-svc</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>servicePort</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
-</span></span></code></pre></div><p>2、进入
-<a href=http://drone2.ieasou.cn/ title=http://drone2.ieasou.cn/ rel="noopener external nofollow noreferrer" target=_blank class=exturl>http://drone2.ieasou.cn/
-<i class="fa fa-external-link-alt"></i></a> 查看创建的项目并进行激活，激活后就可以通过提交项目来触发 webhook 进行构建了。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113192000113.png alt=image-20220113192000113></p><p>3、构建了一次，失败了，哈哈哈。明天来了在看吧。</p></div><footer class=post-footer><div class=post-tags><a href=/tags/jenkins>Jenkins</a></div><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=reward-container><div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div><button>赞赏</button><div class=post-reward><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
-<span>支付宝</span></div><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
-<span>微信</span></div></div></div><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
-k8s-整套工具集记录</li><li class=post-copyright-author><strong>本文作者：</strong>
-ABEE</li><li class=post-copyright-link><strong>本文链接：</strong>
-<a id=post-cr-link href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/ title=k8s-整套工具集记录>https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
-本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/python/requests-html%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5/ rel=next title=requests-html解析网页><i class="fa fa-chevron-left"></i> requests-html解析网页</a></div><div class="post-nav-prev post-nav-item"><a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAandroid%E6%89%93%E5%8C%85%E7%8E%AF%E5%A2%83/ rel=prev title=搭建android打包环境>搭建android打包环境
-<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
-<span itemprop=copyrightYear>2023</span>
-<span class=with-love><i class="fa fa-heart"></i></span>
-<span class=author itemprop=copyrightHolder>ABEE</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<span>2分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h3 id=gogo---一款极易搭建的自助-git-服务>Gogo - 一款极易搭建的自助 Git 服务。</h3>
+<p>官网：https://gogs.io/</p>
+<p>地址：http://gogs.ieasou.cn/</p>
+<p>账号：lanyangbi｜lanyangbi@6666</p>
+<h3 id=ci-平台>CI 平台</h3>
+<p>官网：https://www.drone.io/</p>
+<p>地址：http://drone2.ieasou.cn/</p>
+<p>账号：同上</p>
+<h3 id=私有镜像仓库>私有镜像仓库</h3>
+<p>地址：http://hub.evbj.easou.com</p>
+<p>账号：查看 .drone.yml 配置文件</p>
+<h3 id=lens---kubernetes-runs-desktop>Lens - Kubernetes runs Desktop</h3>
+<p>下载地址（Mac）：https://k8slens.dev</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113174858897.png alt=image-20220113174858897></p>
+<p>配置文件找管理员生成，填入即可。</p>
+<p>查看当前运行的服务</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113175035622.png alt=image-20220113175035622></p>
+<p>查看服务访问地址</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113175116393.png alt=image-20220113175116393></p>
+<h3 id=搭建-nextcloud>搭建 Nextcloud</h3>
+<p>1、在 gogs 上先创建 nextcloud-mariadb 项目，然后需要写入四个文件：</p>
+<ul>
+<li>.drone.yml：流水想项目配置文件</li>
+<li>Dockerfile：项目镜像构建</li>
+<li>deploy-tmp.yaml：项目部署配置文件</li>
+<li>README.md：非必需，一般用来写项目介绍</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#75715e># .drone.yml</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>pipeline</span>
+<span style=color:#f92672>type</span>: <span style=color:#ae81ff>kubernetes</span>
+<span style=color:#f92672>name</span>: <span style=color:#ae81ff>nextcloud-mariadb </span> <span style=color:#75715e># 【QA】项目名称</span>
+
+<span style=color:#f92672>clone</span>:
+  <span style=color:#f92672>disable</span>: <span style=color:#66d9ef>true</span>
+
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>drone</span>
+
+<span style=color:#f92672>steps</span>:
+ - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>clone</span>
+   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/alpine-git:20200622</span>
+   <span style=color:#f92672>commands</span>:
+   - <span style=color:#ae81ff>git clone $DRONE_GIT_HTTP_URL .</span>
+
+ - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>build</span>
+   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>plugins/docker</span>
+   <span style=color:#f92672>settings</span>:
+     <span style=color:#f92672>username</span>: <span style=color:#ae81ff>admin</span>
+     <span style=color:#f92672>password</span>: <span style=color:#ae81ff>Easou2)1*</span>
+     <span style=color:#f92672>insecure</span>: <span style=color:#66d9ef>true</span>
+     <span style=color:#f92672>mirror</span>: <span style=color:#ae81ff>https://ci7pm4nx.mirror.aliyuncs.com</span>
+     <span style=color:#f92672>registry</span>: <span style=color:#ae81ff>hub.evbj.easou.com</span>
+     <span style=color:#f92672>repo</span>: <span style=color:#ae81ff>hub.evbj.easou.com/tech-qa/${DRONE_REPO_NAME} </span> <span style=color:#75715e># 【QA】repo 路径修改为 tech-qa</span>
+     <span style=color:#f92672>tag</span>: <span style=color:#ae81ff>v1.0.0 </span> <span style=color:#75715e># 【QA】版本号可自定义</span>
+
+ - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>deployment</span>
+   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/drone-agent:v2.0.0</span>
+   <span style=color:#f92672>pull</span>: <span style=color:#ae81ff>always</span>
+   <span style=color:#75715e># privileged: true</span>
+   <span style=color:#f92672>environment</span>:
+     <span style=color:#f92672>JNLP_ENV</span>: <span style=color:#ae81ff>tech-qa</span>
+     <span style=color:#f92672>JNLP_REPLICAS</span>: <span style=color:#ae81ff>1</span>
+     <span style=color:#f92672>JNLP_TAG</span>: <span style=color:#ae81ff>v1.0.0 </span> <span style=color:#75715e># 【QA】版本号可自定义</span>
+     <span style=color:#f92672>JNLP_VERSION</span>: <span style=color:#ae81ff>v1 </span> <span style=color:#75715e># default v1, v2 for canary</span>
+     <span style=color:#f92672>DEPLOY_ENV</span>: <span style=color:#ae81ff>k8s-2</span> <span style=color:#75715e># 可以选择把应用部署到集群:k8s-1 or k8s-2</span>
+     <span style=color:#f92672>JNLP_REPO</span>: <span style=color:#ae81ff>hub.evbj.easou.com</span>
+     <span style=color:#f92672>JNLP_CONTAINER_PORT</span>: <span style=color:#ae81ff>3306</span>  <span style=color:#75715e># 【QA】端口号需要修改</span>
+     <span style=color:#f92672>JNLP_INGRESS</span>: <span style=color:#ae81ff>nginx</span>
+     <span style=color:#f92672>JNLP_SVC_MODE</span>: <span style=color:#ae81ff>http</span>
+     <span style=color:#f92672>JNLP_STORAGE_CLASS</span>: <span style=color:#ae81ff>rbd</span>
+     <span style=color:#f92672>JNLP_DOMAIN</span>: <span style=color:#ae81ff>.ieasou.cn</span>
+     <span style=color:#f92672>JNLP_CONTROL</span>: <span style=color:#ae81ff>StatefulSet</span>
+     <span style=color:#f92672>JNLP_STORAGE_CAPACITY</span>: <span style=color:#ae81ff>20Gi</span>
+     <span style=color:#f92672>JNLP_MOUNT_PATH</span>: <span style=color:#ae81ff>/data</span>
+     <span style=color:#f92672>JNLP_LIVENESS_INIT</span>: <span style=color:#ae81ff>30</span>
+     <span style=color:#f92672>JNLP_LIVENESS_PER</span>: <span style=color:#ae81ff>15</span>
+     <span style=color:#f92672>JNLP_READINESS_INIT</span>: <span style=color:#ae81ff>30</span>
+     <span style=color:#f92672>JNLP_READINESS_PER</span>: <span style=color:#ae81ff>15</span>
+     <span style=color:#f92672>JNLP_INGRESS_PUB</span>: <span style=color:#66d9ef>yes</span>
+   <span style=color:#f92672>commands</span>:
+     <span style=color:#75715e># 切换目标集群</span>
+     - <span style=color:#ae81ff>kubecm s $DEPLOY_ENV</span>
+     <span style=color:#75715e># 生成配置YAML文件</span>
+     - <span style=color:#ae81ff>python3 /root/tools.py -b</span>
+     <span style=color:#75715e># 部署服务到kubernetes上</span>
+     - <span style=color:#ae81ff>python3 /root/tools.py -a</span>
+     <span style=color:#75715e># 检查服务部署状态</span>
+     - <span style=color:#ae81ff>python3 /root/tools.py -c</span>
+     <span style=color:#75715e># 添加dns解析记录,生成访问域名</span>
+     - <span style=color:#ae81ff>python3 /root/tools.py -d</span>
+
+ - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>success</span>
+   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/drone-wechat:20200622</span>
+   <span style=color:#f92672>settings</span>:
+     <span style=color:#f92672>corpid</span>: <span style=color:#ae81ff>ww419ee4063735e1c0</span>
+     <span style=color:#f92672>corp_secret</span>: <span style=color:#ae81ff>zpiRBLETH9eLwIMQ4eJ_r_dcm3BPSGeLHvTcft8Ot-M</span>
+     <span style=color:#f92672>agent_id</span>: <span style=color:#ae81ff>1000004</span>
+     <span style=color:#f92672>title</span>: <span style=color:#e6db74>&#34;Pipeline ${DRONE_REPO_NAME} Success&#34;</span>
+     <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;${DRONE_BUILD_LINK} 部署完成&#34;</span>
+     <span style=color:#f92672>msg_url</span>: <span style=color:#ae81ff>${DRONE_BUILD_LINK}</span>
+     <span style=color:#f92672>btn_txt</span>: <span style=color:#e6db74>&#34;否&#34;</span>
+   <span style=color:#f92672>when</span>:
+     <span style=color:#f92672>status</span>:
+     - <span style=color:#ae81ff>success</span>
+
+ - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>failure</span>
+   <span style=color:#f92672>image</span>: <span style=color:#ae81ff>hub.evbj.easou.com/dev/drone-wechat:20200622</span>
+   <span style=color:#f92672>settings</span>:
+     <span style=color:#f92672>corpid</span>: <span style=color:#ae81ff>ww419ee4063735e1c0</span>
+     <span style=color:#f92672>corp_secret</span>: <span style=color:#ae81ff>zpiRBLETH9eLwIMQ4eJ_r_dcm3BPSGeLHvTcft8Ot-M</span>
+     <span style=color:#f92672>agent_id</span>: <span style=color:#ae81ff>1000004</span>
+     <span style=color:#f92672>title</span>: <span style=color:#e6db74>&#34;Pipeline ${DRONE_REPO_NAME} Failure&#34;</span>
+     <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;${DRONE_BUILD_LINK} 部署失败，请检查配置！&#34;</span>
+     <span style=color:#f92672>msg_url</span>: <span style=color:#ae81ff>${DRONE_BUILD_LINK}</span>
+     <span style=color:#f92672>btn_txt</span>: <span style=color:#e6db74>&#34;否&#34;</span>
+   <span style=color:#f92672>when</span>:
+     <span style=color:#f92672>status</span>:
+     - <span style=color:#ae81ff>failure</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-dockerfile data-lang=dockerfile><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>FROM</span><span style=color:#e6db74> mariadb</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ENV</span> MYSQL_DATABASE<span style=color:#f92672>=</span>nextcloud
+<span style=color:#66d9ef>ENV</span> MYSQL_USER<span style=color:#f92672>=</span>nextcloud
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#75715e># deploy-tmp.yaml</span>
+<span style=color:#75715e># 不需要动</span>
+---
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>$JNLP_CONTROL</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>$JNLP_ENV</span>
+  <span style=color:#f92672>labels</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>serviceName</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
+  <span style=color:#f92672>replicas</span>: <span style=color:#ae81ff>$JNLP_REPLICAS</span>
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>matchLabels</span>:
+      <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
+  <span style=color:#f92672>template</span>:
+    <span style=color:#f92672>metadata</span>:
+      <span style=color:#f92672>labels</span>:
+        <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
+    <span style=color:#f92672>spec</span>:
+      <span style=color:#f92672>terminationGracePeriodSeconds</span>: <span style=color:#ae81ff>180</span>
+      <span style=color:#f92672>initContainers</span>:
+        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>init</span>
+          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>$JNLP_REPO/dev/busybox</span>
+          <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;chmod&#34;</span>,<span style=color:#e6db74>&#34;777&#34;</span>,<span style=color:#e6db74>&#34;-R&#34;</span>,<span style=color:#e6db74>&#34;$JNLP_MOUNT_PATH&#34;</span>]
+          <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Always</span>
+          <span style=color:#f92672>volumeMounts</span>:
+          - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>volume</span>
+            <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>$JNLP_MOUNT_PATH</span>
+      <span style=color:#f92672>containers</span>:
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
+        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>$JNLP_REPO/$JNLP_ENV/$DRONE_REPO_NAME:$JNLP_TAG</span>
+        <span style=color:#f92672>imagePullPolicy</span>: <span style=color:#ae81ff>Always</span>
+        <span style=color:#f92672>ports</span>:
+        - <span style=color:#f92672>containerPort</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
+          <span style=color:#f92672>name</span>: <span style=color:#ae81ff>port</span>
+        <span style=color:#f92672>volumeMounts</span>:
+        - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>volume</span>
+          <span style=color:#f92672>mountPath</span>: <span style=color:#ae81ff>$JNLP_MOUNT_PATH</span>
+        <span style=color:#f92672>livenessProbe</span>:
+          <span style=color:#f92672>tcpSocket</span>:
+            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
+          <span style=color:#f92672>initialDelaySeconds</span>: <span style=color:#ae81ff>$JNLP_LIVENESS_INIT</span>
+          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>$JNLP_LIVENESS_PER</span>
+        <span style=color:#f92672>readinessProbe</span>:
+          <span style=color:#f92672>tcpSocket</span>:
+            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
+          <span style=color:#f92672>initialDelaySeconds</span>: <span style=color:#ae81ff>$JNLP_READINESS_INIT</span>
+          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>$JNLP_READINESS_PER</span>
+  <span style=color:#f92672>volumeClaimTemplates</span>:
+  - <span style=color:#f92672>metadata</span>:
+      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>volume</span>
+    <span style=color:#f92672>spec</span>:
+      <span style=color:#f92672>accessModes</span>: [<span style=color:#e6db74>&#34;ReadWriteOnce&#34;</span>]
+      <span style=color:#f92672>storageClassName</span>: <span style=color:#ae81ff>rbd</span>
+      <span style=color:#f92672>resources</span>:
+        <span style=color:#f92672>requests</span>:
+          <span style=color:#f92672>storage</span>: <span style=color:#ae81ff>$JNLP_STORAGE_CAPACITY</span>
+---
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-svc</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>$JNLP_ENV</span>
+  <span style=color:#f92672>labels</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-svc</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>NodePort</span>
+  <span style=color:#f92672>ports</span>:
+  - <span style=color:#f92672>port</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
+    <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
+  <span style=color:#f92672>selector</span>:
+    <span style=color:#f92672>app</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME</span>
+---
+<span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>extensions/v1beta1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Ingress</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-ingress</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>$JNLP_ENV</span>
+  <span style=color:#f92672>annotations</span>:
+    <span style=color:#f92672>kubernetes.io/ingress.class</span>: <span style=color:#ae81ff>$JNLP_INGRESS</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>rules</span>:
+  - <span style=color:#f92672>host</span>: <span style=color:#ae81ff>$JNLP_ENV-$DRONE_REPO_NAME$JNLP_DOMAIN</span>
+    <span style=color:#f92672>http</span>:
+      <span style=color:#f92672>paths</span>:
+      - <span style=color:#f92672>path</span>: <span style=color:#ae81ff>/</span>
+        <span style=color:#f92672>backend</span>:
+          <span style=color:#f92672>serviceName</span>: <span style=color:#ae81ff>$DRONE_REPO_NAME-svc</span>
+          <span style=color:#f92672>servicePort</span>: <span style=color:#ae81ff>$JNLP_CONTAINER_PORT</span>
+</code></pre></div><p>2、进入
+<a href=http://drone2.ieasou.cn/ title=http://drone2.ieasou.cn/ rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+http://drone2.ieasou.cn/
+<i class="fa fa-external-link-alt"></i>
+</a> 查看创建的项目并进行激活，激活后就可以通过提交项目来触发 webhook 进行构建了。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20220113192000113.png alt=image-20220113192000113></p>
+<p>3、构建了一次，失败了，哈哈哈。明天来了在看吧。</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/jenkins>
+Jenkins
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+k8s-整套工具集记录
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/ title=k8s-整套工具集记录>https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/k8s-%E6%95%B4%E5%A5%97%E5%B7%A5%E5%85%B7%E9%9B%86%E8%AE%B0%E5%BD%95/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/python/requests-html%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5/ rel=next title=requests-html解析网页>
+<i class="fa fa-chevron-left"></i> requests-html解析网页
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/docker/%E6%90%AD%E5%BB%BAandroid%E6%89%93%E5%8C%85%E7%8E%AF%E5%A2%83/ rel=prev title=搭建android打包环境>
+搭建android打包环境
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
 <script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
-<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.5207e106e9f92dcba41e11e145b3dea597901a731ea853825859c3c82c35adf6.js defer></script></body></html>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>
