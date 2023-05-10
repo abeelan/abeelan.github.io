@@ -199,15 +199,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=169480></div>
+<div class=item-count id=wordsCount data-count=170271></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=398></div>
+<div class=item-count id=readTimes data-times=399></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-09T16:10:28+00:00></div>
 </div>
 </div>
 </div>
@@ -244,7 +244,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="sqlalchemy数据库统一化">
-<meta itemprop=description content="创建表 在 SQLAlchemy 中，declarative_base 是一个用于创建基类的函数。使用该函数可以轻松地定义 ORM（对象关系映射）类，并将其映射到数据库">
+<meta itemprop=description content="SQLAlchemy SQL 工具包和对象关系映射器是一套用于处理数据库和 Python 的综合工具。它有几个不同的功能区域，可以单独使用或组合使用。它的主要组件如下图所示，组件依">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">sqlalchemy数据库统一化 </h1>
@@ -281,14 +281,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>381</span>
+<span class=post-meta-item-text>字数：</span><span>994</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>2分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -305,6 +305,21 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
+<p>SQLAlchemy SQL 工具包和对象关系映射器是一套用于处理数据库和 Python 的综合工具。它有几个不同的功能区域，可以单独使用或组合使用。它的主要组件如下图所示，组件依赖性组织成层：</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://docs.sqlalchemy.org/en/20/_images/sqla_arch_small.png alt=_images/sqla_arch_small.png></p>
+<p>上面，SQLAlchemy 的两个最重要的前端部分是**对象关系映射器 (ORM)**和 <strong>Core</strong>。</p>
+<p>核心包含 SQLAlchemy 的 SQL 和数据库集成和描述服务的广度，其中最突出的部分是<strong>SQL 表达式语言</strong>。</p>
+<p>SQL 表达式语言本身就是一个工具包，独立于 ORM 包，它提供了一个构建由可组合对象表示的 SQL 表达式的系统，然后可以在特定事务范围内针对目标数据库“执行”，返回结果集。插入、更新和删除（即
+<a href=https://docs.sqlalchemy.org/en/20/glossary.html#term-DML title=DML rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+DML
+<i class="fa fa-external-link-alt"></i>
+</a>）是通过传递表示这些语句的 SQL 表达式对象以及表示要与每个语句一起使用的参数的字典来实现的。</p>
+<p>ORM 建立在 Core 之上，提供了一种使用映射到数据库模式的域对象模型的方法。
+<a href=https://docs.sqlalchemy.org/en/20/glossary.html#term-unit-of-work title="使用 ORM 时，SQL 语句的构造方式与使用 Core 时的方式基本相同，但是 DML 的任务（此处指的是数据库中业务对象的持久性）是使用称为工作单元的" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+使用 ORM 时，SQL 语句的构造方式与使用 Core 时的方式基本相同，但是 DML 的任务（此处指的是数据库中业务对象的持久性）是使用称为工作单元的
+<i class="fa fa-external-link-alt"></i>
+</a>模式自动执行的，它翻译将可变对象的状态更改为 INSERT、UPDATE 和 DELETE 结构，然后根据这些对象调用这些结构。SELECT 语句还通过 ORM 特定的自动化和以对象为中心的查询功能得到增强。</p>
+<p>使用 Core 和 SQL Expression 语言呈现了一个以模式为中心的数据库视图，以及一个以不变性为导向的编程范式，而 ORM 在此之上构建了一个以领域为中心的数据库视图，其编程范式更明确地面向对象并依赖于可变性。由于关系数据库本身是一个可变服务，不同之处在于 Core/SQL Expression 语言是面向命令的，而 ORM 是面向状态的。</p>
 <h2 id=创建表>创建表</h2>
 <p>在 SQLAlchemy 中，<code>declarative_base</code> 是一个用于创建基类的函数。使用该函数可以轻松地定义 ORM（对象关系映射）类，并将其映射到数据库表。ORM 是一种将面向对象编程语言中的对象映射到关系型数据库中的数据结构的技术，它使得程序员可以使用类和对象来操作数据库而无需使用 SQL 查询语言。</p>
 <p>要使用 <code>declarative_base</code>，需要从 SQLAlchemy 中导入它，并使用它创建一个新的基类，如下所示：</p>

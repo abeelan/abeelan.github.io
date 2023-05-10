@@ -132,6 +132,19 @@
 <li><a href=#beanshell>BeanShell</a>
 <ul>
 <li><a href=#生成手机号>生成手机号</a></li>
+<li><a href=#生成随机中文姓名>生成随机中文姓名</a></li>
+<li><a href=#生成-13-位时间戳>生成 13 位时间戳</a></li>
+<li><a href=#前置脚本修改请求体中部分字段的值dict-str然后用更新后的请求体发起请求>前置脚本：修改请求体中部分字段的值（dict->str），然后用更新后的请求体发起请求</a></li>
+<li><a href=#对响应值整体进行-urldecode-解码>对响应值整体进行 urldecode 解码</a></li>
+<li><a href=#对响应部分字段进行-urldecode-解码---递归实现>对响应部分字段进行 urldecode 解码 - 递归实现</a></li>
+<li><a href=#修改响应头类型>修改响应头类型</a></li>
+<li><a href=#生成随机字符串-并-md5>生成随机字符串 并 md5</a></li>
+<li><a href=#将请求数据由-json-转为字符串并更新回请求体>将请求数据由 json 转为字符串并更新回请求体</a></li>
+<li><a href=#提取响应中列表的长度>提取响应中列表的长度</a></li>
+<li><a href=#正则>正则</a></li>
+<li><a href=#jsonpath-提取变量的所有值>jsonpath 提取变量的所有值</a></li>
+<li><a href=#前置脚本将列表字符串转为列表类型填充进去>前置脚本：将列表字符串转为列表类型填充进去</a></li>
+<li><a href=#下载-zip-文件并解压缩然后读取文件内容>下载 zip 文件并解压缩然后读取文件内容</a></li>
 </ul>
 </li>
 </ul>
@@ -204,15 +217,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=169480></div>
+<div class=item-count id=wordsCount data-count=170271></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=398></div>
+<div class=item-count id=readTimes data-times=399></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-09T16:10:28+00:00></div>
 </div>
 </div>
 </div>
@@ -286,14 +299,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>610</span>
+<span class=post-meta-item-text>字数：</span><span>2799</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>2分钟</span>
+<span>6分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -327,6 +340,344 @@
 </span><span style=color:#75715e></span>vars<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;phoneNumber&#34;</span><span style=color:#f92672>,</span> phoneNumber<span style=color:#f92672>);</span>
 <span style=color:#75715e>// 使用 ${phoneNumber} 引用该变量
 </span></code></pre></div><p>注意：由于 JMeter 是多线程测试，如果生成的随机手机号用于注册等类似操作，那么需要考虑并发场景下可能出现重复手机号的情况。</p>
+<h3 id=生成随机中文姓名>生成随机中文姓名</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.util.Random<span style=color:#f92672>;</span>
+
+String<span style=color:#f92672>[]</span> surnameArray <span style=color:#f92672>=</span> <span style=color:#f92672>{</span><span style=color:#e6db74>&#34;赵&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;钱&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;孙&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;李&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;周&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;吴&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;郑&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;王&#34;</span><span style=color:#f92672>};</span>
+String<span style=color:#f92672>[]</span> givenNameArray <span style=color:#f92672>=</span> <span style=color:#f92672>{</span><span style=color:#e6db74>&#34;一&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;二&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;三&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;四&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;五&#34;</span><span style=color:#f92672>};</span>
+
+String <span style=color:#a6e22e>randomChineseName</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    String name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>;</span>
+    Random random <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Random<span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>int</span> surnameIndex <span style=color:#f92672>=</span> Math<span style=color:#f92672>.</span><span style=color:#a6e22e>abs</span><span style=color:#f92672>(</span>random<span style=color:#f92672>.</span><span style=color:#a6e22e>nextInt</span><span style=color:#f92672>(</span>surnameArray<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>));</span>
+    <span style=color:#66d9ef>int</span> givenNameIndex <span style=color:#f92672>=</span> Math<span style=color:#f92672>.</span><span style=color:#a6e22e>abs</span><span style=color:#f92672>(</span>random<span style=color:#f92672>.</span><span style=color:#a6e22e>nextInt</span><span style=color:#f92672>(</span>givenNameArray<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>));</span>
+    String surname <span style=color:#f92672>=</span> surnameArray<span style=color:#f92672>[</span>surnameIndex<span style=color:#f92672>];</span>
+    String givenName <span style=color:#f92672>=</span> givenNameArray<span style=color:#f92672>[</span>givenNameIndex<span style=color:#f92672>];</span>
+    name <span style=color:#f92672>=</span> surname <span style=color:#f92672>+</span> givenName<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>return</span> name<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+
+String name <span style=color:#f92672>=</span> randomChineseName<span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;生成随机名字: randomName = {}&#34;</span><span style=color:#f92672>,</span> name<span style=color:#f92672>);</span>
+vars<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;randomName&#34;</span><span style=color:#f92672>,</span> name<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=生成-13-位时间戳>生成 13 位时间戳</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.util.Date<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>long</span> timestamp <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date<span style=color:#f92672>().</span><span style=color:#a6e22e>getTime</span><span style=color:#f92672>();</span>
+String strTimestamp <span style=color:#f92672>=</span> Long<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>timestamp<span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; timestamp(13): &#34;</span> <span style=color:#f92672>+</span> strTimestamp<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=前置脚本修改请求体中部分字段的值dict-str然后用更新后的请求体发起请求>前置脚本：修改请求体中部分字段的值（dict->str），然后用更新后的请求体发起请求</h3>
+<p>调试如下接口：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json><span style=color:#960050;background-color:#1e0010>接口：https:</span><span style=color:#75715e>//httpbin.org/post
+</span><span style=color:#75715e></span><span style=color:#960050;background-color:#1e0010>方法：post</span>
+<span style=color:#960050;background-color:#1e0010>请求体：</span>
+{
+  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;John&#34;</span>,
+  <span style=color:#f92672>&#34;age&#34;</span>: <span style=color:#ae81ff>30</span>,
+  <span style=color:#f92672>&#34;address&#34;</span>: {
+    <span style=color:#f92672>&#34;street&#34;</span>: <span style=color:#e6db74>&#34;123 Main St&#34;</span>,
+    <span style=color:#f92672>&#34;city&#34;</span>: <span style=color:#e6db74>&#34;Anytown&#34;</span>,
+    <span style=color:#f92672>&#34;state&#34;</span>: <span style=color:#e6db74>&#34;CA&#34;</span>,
+    <span style=color:#f92672>&#34;zip&#34;</span>: <span style=color:#e6db74>&#34;12345&#34;</span>
+  }
+}
+
+<span style=color:#960050;background-color:#1e0010>实现：将</span> <span style=color:#960050;background-color:#1e0010>address</span> <span style=color:#960050;background-color:#1e0010>的值，修改为字符串，其他字段保持不变。</span>
+</code></pre></div><p>新增 beanshell 脚本</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.json.JSONObject<span style=color:#f92672>;</span>
+
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt;&#34;</span><span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 获取请求体内容，数组的第一个元素就是请求体
+</span><span style=color:#75715e></span>String request <span style=color:#f92672>=</span> sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getArgument</span><span style=color:#f92672>(</span>0<span style=color:#f92672>).</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type: &#34;</span> <span style=color:#f92672>+</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span> 
+
+<span style=color:#75715e>// 将请求体转为 json 对象
+</span><span style=color:#75715e></span>JSONObject json <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONObject<span style=color:#f92672>(</span>request<span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; 初始请求体: {}&#34;</span><span style=color:#f92672>,</span> json<span style=color:#f92672>);</span>
+<span style=color:#75715e>// 提取 json 内的字段值
+</span><span style=color:#75715e></span>JSONObject data <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>getJSONObject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;address&#34;</span><span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; address: {}&#34;</span><span style=color:#f92672>,</span> data<span style=color:#f92672>);</span>
+<span style=color:#75715e>// 将 address 的 json 对象转为字符串
+</span><span style=color:#75715e></span>String dataString <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+<span style=color:#75715e>// 重新填充到请求体内
+</span><span style=color:#75715e></span>json<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;address&#34;</span><span style=color:#f92672>,</span> dataString<span style=color:#f92672>);</span>
+String updatedRequest <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type（update）: &#34;</span> <span style=color:#f92672>+</span> updatedRequest<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+
+<span style=color:#75715e>// 重新添加更新后的请求体
+</span><span style=color:#75715e></span>sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>removeAllArguments</span><span style=color:#f92672>();</span>
+<span style=color:#75715e>// sampler.addArgument(&#34;updateRequest&#34;, updatedRequest);  # 会自动 urlencode，导致编码问题
+</span><span style=color:#75715e></span>sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>addNonEncodedArgument</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>,</span> updatedRequest<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 打印当前的请求体
+</span><span style=color:#75715e></span>String request <span style=color:#f92672>=</span> sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getArgument</span><span style=color:#f92672>(</span>0<span style=color:#f92672>).</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; 最终请求体: {}&#34;</span><span style=color:#f92672>,</span> request<span style=color:#f92672>);</span>
+</code></pre></div><p><strong>遇到的问题</strong></p>
+<p>调用该前置脚本后，控制台输出的请求体是正常编码，但是在请求内容中，请求体的编码格式为 urlencode，导致请求出错。
+<img src=/imgs/img-lazy-loading.gif data-src=https://img2023.cnblogs.com/blog/2660913/202303/2660913-20230329153919219-2078597313.png alt=image></p>
+<p>后来在 jmeter 官方找到
+<a href=https://jmeter.apache.org/api/org/apache/jmeter/protocol/http/sampler/HTTPSamplerBase.html#addNonEncodedArgument%28java.lang.String,java.lang.String,java.lang.String%29 title=addNonEncodedArgument rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+addNonEncodedArgument
+<i class="fa fa-external-link-alt"></i>
+</a> 函数，问题解决，已更新到上面的脚本中。</p>
+<h3 id=对响应值整体进行-urldecode-解码>对响应值整体进行 urldecode 解码</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.net.URLDecoder<span style=color:#f92672>;</span>
+
+String response <span style=color:#f92672>=</span> prev<span style=color:#f92672>.</span><span style=color:#a6e22e>getResponseDataAsString</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;{}&#34;</span><span style=color:#f92672>,</span> response<span style=color:#f92672>);</span>
+
+String decodedResponse <span style=color:#f92672>=</span> URLDecoder<span style=color:#f92672>.</span><span style=color:#a6e22e>decode</span><span style=color:#f92672>(</span>response<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;UTF-8&#34;</span><span style=color:#f92672>);</span>  <span style=color:#75715e>// decode 解码
+</span><span style=color:#75715e>// String encodedResponse = URLEncoder.encode(response, &#34;UTF-8&#34;);  // encode 编码
+</span><span style=color:#75715e></span>log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;{}&#34;</span><span style=color:#f92672>,</span> decodedResponse<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 将解码后的响应更新回去
+</span><span style=color:#75715e></span>prev<span style=color:#f92672>.</span><span style=color:#a6e22e>setResponseData</span><span style=color:#f92672>(</span>decodedResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
+</code></pre></div><h3 id=对响应部分字段进行-urldecode-解码---递归实现>对响应部分字段进行 urldecode 解码 - 递归实现</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.json.JSONArray<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.json.JSONObject<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.net.URLDecoder<span style=color:#f92672>;</span>
+
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;后置脚本 开始 &gt;&gt;&gt;&gt;&gt;&#34;</span><span style=color:#f92672>);</span>
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>decodeJson</span><span style=color:#f92672>(</span>JSONObject json<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>String key <span style=color:#f92672>:</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>keySet</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+        Object value <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>value <span style=color:#66d9ef>instanceof</span> JSONObject<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            decodeJson<span style=color:#f92672>((</span>JSONObject<span style=color:#f92672>)</span> value<span style=color:#f92672>);</span>  <span style=color:#75715e>// 递归处理子对象
+</span><span style=color:#75715e></span>        <span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>value <span style=color:#66d9ef>instanceof</span> JSONArray<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            JSONArray array <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>JSONArray<span style=color:#f92672>)</span> value<span style=color:#f92672>;</span>
+            <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> array<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>();</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+                Object item <span style=color:#f92672>=</span> array<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>i<span style=color:#f92672>);</span>
+                <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>item <span style=color:#66d9ef>instanceof</span> JSONObject<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+                    decodeJson<span style=color:#f92672>((</span>JSONObject<span style=color:#f92672>)</span> item<span style=color:#f92672>);</span>  <span style=color:#75715e>// 递归处理子对象
+</span><span style=color:#75715e></span>                <span style=color:#f92672>}</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>value <span style=color:#66d9ef>instanceof</span> String <span style=color:#f92672>&amp;&amp;</span> key<span style=color:#f92672>.</span><span style=color:#a6e22e>contains</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;需要解码的字段名&#34;</span><span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+            String decodedValue <span style=color:#f92672>=</span> URLDecoder<span style=color:#f92672>.</span><span style=color:#a6e22e>decode</span><span style=color:#f92672>((</span>String<span style=color:#f92672>)</span> value<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;UTF-8&#34;</span><span style=color:#f92672>);</span>
+            json<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>key<span style=color:#f92672>,</span> decodedValue<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// 解析 JSON 并调用递归函数
+</span><span style=color:#75715e></span>String response <span style=color:#f92672>=</span> prev<span style=color:#f92672>.</span><span style=color:#a6e22e>getResponseDataAsString</span><span style=color:#f92672>();</span>
+JSONObject json <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONObject<span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
+decodeJson<span style=color:#f92672>(</span>json<span style=color:#f92672>);</span>
+
+String output <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;decodeJson: {}&#34;</span><span style=color:#f92672>,</span> output<span style=color:#f92672>);</span>
+<span style=color:#75715e>// 将解析后的内容更新到响应体
+</span><span style=color:#75715e></span>prev<span style=color:#f92672>.</span><span style=color:#a6e22e>setResponseData</span><span style=color:#f92672>(</span>output<span style=color:#f92672>);</span>
+
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;后置脚本 结束 &lt;&lt;&lt;&lt;&lt;&#34;</span><span style=color:#f92672>);</span>
+</code></pre></div><h3 id=修改响应头类型>修改响应头类型</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#75715e>// 修改响应头格式为 json
+</span><span style=color:#75715e></span>prev<span style=color:#f92672>.</span><span style=color:#a6e22e>setResponseHeaders</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span><span style=color:#f92672>);</span>
+</code></pre></div><h3 id=生成随机字符串-并-md5>生成随机字符串 并 md5</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.security.MessageDigest<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.Random<span style=color:#f92672>;</span>
+
+<span style=color:#75715e>// 生成随机字符串 数字 + 大写字母
+</span><span style=color:#75715e></span>String <span style=color:#a6e22e>getRandomString</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> length<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    String str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span><span style=color:#f92672>;</span>
+    Random rand <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Random<span style=color:#f92672>();</span>
+    StringBuilder sb <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringBuilder<span style=color:#f92672>(</span>length<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> length<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>int</span> index <span style=color:#f92672>=</span> rand<span style=color:#f92672>.</span><span style=color:#a6e22e>nextInt</span><span style=color:#f92672>(</span>str<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>());</span>
+        sb<span style=color:#f92672>.</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span>str<span style=color:#f92672>.</span><span style=color:#a6e22e>charAt</span><span style=color:#f92672>(</span>index<span style=color:#f92672>));</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> sb<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// 将 byte 数组转换为 16 进制字符串
+</span><span style=color:#75715e></span>String <span style=color:#a6e22e>bytesToHex</span><span style=color:#f92672>(</span><span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> bytes<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    StringBuilder sb <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringBuilder<span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>byte</span> b <span style=color:#f92672>:</span> bytes<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        sb<span style=color:#f92672>.</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%02X&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span> b <span style=color:#f92672>}));</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> sb<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
+
+
+String randomString <span style=color:#f92672>=</span> getRandomString<span style=color:#f92672>(</span>13<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 计算字符串的 MD5 值
+</span><span style=color:#75715e></span>MessageDigest md <span style=color:#f92672>=</span> MessageDigest<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;MD5&#34;</span><span style=color:#f92672>);</span>
+<span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> digest <span style=color:#f92672>=</span> md<span style=color:#f92672>.</span><span style=color:#a6e22e>digest</span><span style=color:#f92672>(</span>randomString<span style=color:#f92672>.</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
+String md5 <span style=color:#f92672>=</span> bytesToHex<span style=color:#f92672>(</span>digest<span style=color:#f92672>).</span><span style=color:#a6e22e>toLowerCase</span><span style=color:#f92672>();</span>
+String msg_id <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;c&#34;</span> <span style=color:#f92672>+</span> md5<span style=color:#f92672>;</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; Make msgId: &#34;</span> <span style=color:#f92672>+</span> randomString <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; ==&gt; &#34;</span> <span style=color:#f92672>+</span> msg_id<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=将请求数据由-json-转为字符串并更新回请求体>将请求数据由 json 转为字符串并更新回请求体</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.json.JSONObject<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.net.URLEncoder<span style=color:#f92672>;</span>
+
+String request <span style=color:#f92672>=</span> sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getArgument</span><span style=color:#f92672>(</span>0<span style=color:#f92672>).</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type: &#34;</span> <span style=color:#f92672>+</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span> 
+
+JSONObject json <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONObject<span style=color:#f92672>(</span>request<span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; 初始请求体: {}&#34;</span><span style=color:#f92672>,</span> json<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// replace data
+</span><span style=color:#75715e></span>JSONObject data <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>getJSONObject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;data&#34;</span><span style=color:#f92672>);</span>
+data<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;local_msgid&#34;</span><span style=color:#f92672>,</span> msg_id<span style=color:#f92672>);</span>
+data<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;timestamp&#34;</span><span style=color:#f92672>,</span> timestamp<span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; data: {}&#34;</span><span style=color:#f92672>,</span> data<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// data: json -&gt; str
+</span><span style=color:#75715e></span>String dataString <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+json<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;data&#34;</span><span style=color:#f92672>,</span> dataString<span style=color:#f92672>);</span>
+String updatedRequest <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type（update）: &#34;</span> <span style=color:#f92672>+</span> updatedRequest<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+
+
+<span style=color:#75715e>// 重新添加更新后的请求体
+</span><span style=color:#75715e></span>sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>removeAllArguments</span><span style=color:#f92672>();</span>
+<span style=color:#75715e>// sampler.addArgument(&#34;updateRequest&#34;, updatedRequest);   // 会自动 urlencode，导致编码问题
+</span><span style=color:#75715e></span>sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>addNonEncodedArgument</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>,</span> updatedRequest<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>);</span>
+ 
+String request <span style=color:#f92672>=</span> sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getArgument</span><span style=color:#f92672>(</span>0<span style=color:#f92672>).</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; 最终请求体: {}&#34;</span><span style=color:#f92672>,</span> request<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=提取响应中列表的长度>提取响应中列表的长度</h3>
+<p>不支持直接使用 jsonpath 的 length 函数获取长度。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.json.JSONArray<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.json.JSONObject<span style=color:#f92672>;</span>
+
+String response <span style=color:#f92672>=</span> prev<span style=color:#f92672>.</span><span style=color:#a6e22e>getResponseDataAsString</span><span style=color:#f92672>();</span>
+JSONObject jsonResponse <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONObject<span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
+JSONArray data <span style=color:#f92672>=</span> jsonResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>getJSONArray</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;列表名&#34;</span><span style=color:#f92672>);</span>
+<span style=color:#66d9ef>int</span> length <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;list length: &#34;</span> <span style=color:#f92672>+</span> length<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 设置为变量
+</span><span style=color:#75715e></span>vars<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;var_name&#34;</span><span style=color:#f92672>,</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>length<span style=color:#f92672>));</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span>vars<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;var_name&#34;</span><span style=color:#f92672>));</span>
+</code></pre></div><h3 id=正则>正则</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#75715e>// 暂未测试通过
+</span><span style=color:#75715e></span><span style=color:#f92672>import</span> java.util.regex.Matcher<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.regex.Pattern<span style=color:#f92672>;</span>
+<span style=color:#75715e>// 定义正则表达式
+</span><span style=color:#75715e></span>Pattern pattern <span style=color:#f92672>=</span> Pattern<span style=color:#f92672>.</span><span style=color:#a6e22e>compile</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\&#34;id\&#34;:(.*?)&#34;</span><span style=color:#f92672>);</span>
+Matcher matcher <span style=color:#f92672>=</span> pattern<span style=color:#f92672>.</span><span style=color:#a6e22e>matcher</span><span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 循环遍历所有匹配项，将 &#34;name&#34; 字段的值添加到列表中
+</span><span style=color:#75715e></span><span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>matcher<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+    String name <span style=color:#f92672>=</span> matcher<span style=color:#f92672>.</span><span style=color:#a6e22e>group</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
+    names<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>name<span style=color:#f92672>);</span>
+    log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;{}&#34;</span><span style=color:#f92672>,</span> name<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// 输出所有匹配到的 &#34;name&#34; 字段的值
+</span><span style=color:#75715e></span><span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>String name <span style=color:#f92672>:</span> names<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Found name: &#34;</span> <span style=color:#f92672>+</span> name<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// 将所有匹配到的 &#34;name&#34; 字段的值以逗号分隔的形式赋值给变量 &#34;nameList&#34;
+</span><span style=color:#75715e></span>String nameList <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>join</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;,&#34;</span><span style=color:#f92672>,</span> names<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 将变量 &#34;nameList&#34; 添加到 JMeter 的变量列表中
+</span><span style=color:#75715e></span>vars<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;nameList&#34;</span><span style=color:#f92672>,</span> nameList<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=jsonpath-提取变量的所有值>jsonpath 提取变量的所有值</h3>
+<p>jsonpath需要通过 * 提取列表的多个值，后面勾选匹配多个值，然后在下一个用例引用格式为：<code>${var_ALL}</code>，添加后面的 ALL 才会生效，否则找不到这个变量名。</p>
+<p>第二种方法就是通过脚本实现：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.util.List<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.ArrayList<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.json.JSONArray<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.json.JSONObject<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.json.*<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> com.jayway.jsonpath.JsonPath<span style=color:#f92672>;</span>
+
+String k1 <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;data&#34;</span><span style=color:#f92672>;</span>
+String k2 <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;id&#34;</span><span style=color:#f92672>;</span>
+
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;=================== 提取 {} 中所有 {} 的值 ===================&#34;</span><span style=color:#f92672>,</span> k1<span style=color:#f92672>,</span> k2<span style=color:#f92672>);</span>
+
+String response <span style=color:#f92672>=</span> prev<span style=color:#f92672>.</span><span style=color:#a6e22e>getResponseDataAsString</span><span style=color:#f92672>();</span>
+
+JSONObject resp <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONObject<span style=color:#f92672>(</span>response<span style=color:#f92672>);</span>
+String data_str <span style=color:#f92672>=</span> resp<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>k1<span style=color:#f92672>).</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+JSONArray data_array <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONArray<span style=color:#f92672>(</span>data_str<span style=color:#f92672>);</span>
+data_len <span style=color:#f92672>=</span> data_array<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>();</span>
+
+Integer<span style=color:#f92672>[]</span> idArr <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Integer<span style=color:#f92672>[</span>data_array<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>()];</span>
+
+<span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> data_array<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>();</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+    JSONObject obj <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONObject<span style=color:#f92672>(</span>data_array<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>i<span style=color:#f92672>).</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+    <span style=color:#75715e>// String id = obj.get(k2).toString();
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> id <span style=color:#f92672>=</span> Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>parseInt</span><span style=color:#f92672>(</span>obj<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>k2<span style=color:#f92672>).</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+    log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&gt;&gt;&gt; 提取 {}: {} (&#34;</span> <span style=color:#f92672>+</span> id<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;)&#34;</span><span style=color:#f92672>,</span> k2<span style=color:#f92672>,</span> id<span style=color:#f92672>);</span>
+    idArr<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> id<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>sort</span><span style=color:#f92672>(</span>idArr<span style=color:#f92672>);</span>  <span style=color:#75715e>// 排序
+</span><span style=color:#75715e></span>String ids <span style=color:#f92672>=</span> Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>idArr<span style=color:#f92672>);</span>
+ids <span style=color:#f92672>=</span> ids<span style=color:#f92672>.</span><span style=color:#a6e22e>replaceAll</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>,</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>);</span>  <span style=color:#75715e>// 去除列表元素中间的空格
+</span><span style=color:#75715e></span>log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&gt;&gt;&gt; idArr = &#34;</span> <span style=color:#f92672>+</span> ids<span style=color:#f92672>);</span>
+vars<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;drafts_ids&#34;</span><span style=color:#f92672>,</span> ids<span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&gt;&gt;&gt; 将数据赋值给变量：${drafts_ids}, 类型为字符串&#34;</span><span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;=================== 提取 {} 中所有 {} 的值 ===================&#34;</span><span style=color:#f92672>,</span> k1<span style=color:#f92672>,</span> k2<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=前置脚本将列表字符串转为列表类型填充进去>前置脚本：将列表字符串转为列表类型填充进去</h3>
+<p><strong>需求二</strong>：编写一个前置脚本，将请求体中 formId 的值由字符串转为列表类型，再填充到请求体内</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;formId&#34;</span>: <span style=color:#e6db74>&#34;[7618, 7619]&#34;</span>,
+  <span style=color:#f92672>&#34;userId&#34;</span>: <span style=color:#e6db74>&#34;0cdbcc4a2b14099822abfa9e449a0ea9&#34;</span>,
+  <span style=color:#f92672>&#34;companyId&#34;</span>: <span style=color:#e6db74>&#34;996&#34;</span>
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.apache.jmeter.protocol.http.util.HTTPArgument<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.apache.jmeter.protocol.http.util.HTTPFileArg<span style=color:#f92672>;</span>
+
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;=================== 将请求体中的 formId 值修改为列表类型 ===================&#34;</span><span style=color:#f92672>);</span>
+<span style=color:#75715e>// drafts_ids 为提取到的字符串类型的列表
+</span><span style=color:#75715e></span>String drafts_ids <span style=color:#f92672>=</span> vars<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;drafts_ids&#34;</span><span style=color:#f92672>);</span>
+String formId <span style=color:#f92672>=</span> drafts_ids<span style=color:#f92672>.</span><span style=color:#a6e22e>replaceAll</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\\[|\\]&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>split</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;,&#34;</span><span style=color:#f92672>);</span>
+StringBuilder formIdList <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringBuilder<span style=color:#f92672>();</span>
+<span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> formId<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+    formIdList<span style=color:#f92672>.</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\&#34;&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span>formId<span style=color:#f92672>[</span>i<span style=color:#f92672>].</span><span style=color:#a6e22e>trim</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\&#34;&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>i <span style=color:#f92672>!=</span> formId<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> 1<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        formIdList<span style=color:#f92672>.</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;,&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// 更新请求体中的 formId 字段
+</span><span style=color:#75715e></span>String requestBody <span style=color:#f92672>=</span> sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getArgument</span><span style=color:#f92672>(</span>0<span style=color:#f92672>).</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
+requestBody <span style=color:#f92672>=</span> requestBody<span style=color:#f92672>.</span><span style=color:#a6e22e>replaceAll</span><span style=color:#f92672>(</span>
+    <span style=color:#e6db74>&#34;\&#34;formId\&#34;:\\s*\&#34;[^\&#34;]+\&#34;&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;\&#34;formId\&#34;: [&#34;</span> <span style=color:#f92672>+</span> formIdList<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;]&#34;</span>
+<span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&gt;&gt;&gt; 更新后的请求体: {}&#34;</span><span style=color:#f92672>,</span> requestBody<span style=color:#f92672>);</span>
+sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>removeAllArguments</span><span style=color:#f92672>();</span>
+sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>addNonEncodedArgument</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>,</span> requestBody<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>);</span>
+sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>setPostBodyRaw</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;=================== 将请求体中的 formId 值修改为列表类型 ===================&#34;</span><span style=color:#f92672>);</span>
+</code></pre></div><h3 id=下载-zip-文件并解压缩然后读取文件内容>下载 zip 文件并解压缩然后读取文件内容</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java>log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;</span><span style=color:#f92672>);</span>
+<span style=color:#f92672>import</span> java.net.URL<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.zip.ZipInputStream<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.zip.ZipEntry<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.io.BufferedReader<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.io.InputStreamReader<span style=color:#f92672>;</span>
+
+String urlStr <span style=color:#f92672>=</span> vars<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;url&#34;</span><span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&gt;&gt;&gt; url: {}&#34;</span><span style=color:#f92672>,</span> urlStr<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 创建 URL 对象 并打开链接
+</span><span style=color:#75715e></span>URL url <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> URL<span style=color:#f92672>(</span>urlStr<span style=color:#f92672>);</span>
+ZipInputStream zipStream <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ZipInputStream<span style=color:#f92672>(</span>url<span style=color:#f92672>.</span><span style=color:#a6e22e>openStream</span><span style=color:#f92672>());</span>
+<span style=color:#75715e>// 读取压缩包内的文件
+</span><span style=color:#75715e></span>ZipEntry entry <span style=color:#f92672>=</span> zipStream<span style=color:#f92672>.</span><span style=color:#a6e22e>getNextEntry</span><span style=color:#f92672>();</span>
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>entry <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>!</span>entry<span style=color:#f92672>.</span><span style=color:#a6e22e>isDirectory</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// 文件内容读取
+</span><span style=color:#75715e></span>    BufferedReader br <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BufferedReader<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> InputStreamReader<span style=color:#f92672>(</span>zipStream<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;UTF-8&#34;</span><span style=color:#f92672>));</span>
+    StringBuilder sb <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StringBuilder<span style=color:#f92672>();</span>
+    String line<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>while</span> <span style=color:#f92672>((</span>line <span style=color:#f92672>=</span> br<span style=color:#f92672>.</span><span style=color:#a6e22e>readLine</span><span style=color:#f92672>())</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        sb<span style=color:#f92672>.</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span>line<span style=color:#f92672>);</span>
+        sb<span style=color:#f92672>.</span><span style=color:#a6e22e>append</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\n&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+    br<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+    log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&gt;&gt;&gt; File Content: \n&#34;</span> <span style=color:#f92672>+</span> sb<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+<span style=color:#f92672>}</span>
+zipStream<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;</span><span style=color:#f92672>);</span>
+</code></pre></div>
 </div>
 <footer class=post-footer>
 <div class=post-tags>

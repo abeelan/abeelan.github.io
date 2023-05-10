@@ -276,15 +276,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=169480></div>
+<div class=item-count id=wordsCount data-count=170271></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=398></div>
+<div class=item-count id=readTimes data-times=399></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-05-08T18:07:08+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-09T16:10:28+00:00></div>
 </div>
 </div>
 </div>
@@ -358,7 +358,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>8072</span>
+<span class=post-meta-item-text>字数：</span><span>8089</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -414,6 +414,9 @@ $ docker exec -it mysql /bin/bash
 </code></pre></div><p><strong>查看数据库版本信息</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ mysql --version
 $ mysql -V
+
+mysql&gt; <span style=color:#66d9ef>select</span> version<span style=color:#f92672>()</span>;
+PostgreSQL 10.7 on x86_64-pc-linux-gnu, compiled by gcc <span style=color:#f92672>(</span>GCC<span style=color:#f92672>)</span> 4.8.5 <span style=color:#ae81ff>20150623</span> <span style=color:#f92672>(</span>Red Hat 4.8.5-36<span style=color:#f92672>)</span>, 64-bit
 </code></pre></div><p><strong>登录数据库</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ mysql -h localhost -u root -p
 <span style=color:#75715e># -h：指连接的主机名</span>
