@@ -74,7 +74,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>115</span>
+<span class=badge>119</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -133,7 +133,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>115</span>
+<span class=site-state-item-count>119</span>
 <span class=site-state-item-name>日志</span>
 </a>
 </div>
@@ -190,15 +190,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=170271></div>
+<div class=item-count id=wordsCount data-count=173035></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=399></div>
+<div class=item-count id=readTimes data-times=407></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-05-09T16:10:28+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-15T11:24:32+00:00></div>
 </div>
 </div>
 </div>
@@ -222,6 +222,302 @@
 <div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
 </noscript>
 <div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/python/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="命令行虚拟环境切换">
+<meta itemprop=description content="打开终端并进入项目目录：打开终端应用程序，并使用 cd 命令进入包含 Python 项目的目录。 $ cd /path/to/project 激活虚拟环境：在项目目录下找到 venv 虚拟环境所在的文件夹，并执">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/python/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/ itemprop=url class=post-title-link>命令行虚拟环境切换</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-05-06 14:26:12 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-06 14:26:12 +0000 UTC">2023-05-06</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/python/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+打开终端并进入项目目录：打开终端应用程序，并使用 cd 命令进入包含 Python 项目的目录。 $ cd /path/to/project 激活虚拟环境：在项目目录下找到 venv 虚拟环境所在的文件夹，并执
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/python/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%87%E6%8D%A2/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E6%9F%A5%E7%9C%8B%E6%80%A7%E8%83%BD%E4%BF%A1%E6%81%AF%E5%B7%A5%E5%85%B7istats/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="查看性能信息工具iStats">
+<meta itemprop=description content="命令行工具，可以获取 Mac 上的 CPU 温度、风扇转速和电池信息。 安装 $ sudo gem install iStats # 输入电脑密码 $ brew install iStats 使用 $ istats --- CPU Stats --- CPU 温度 CPU temp: 67.69°C ▁▂▃▅▆">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E6%9F%A5%E7%9C%8B%E6%80%A7%E8%83%BD%E4%BF%A1%E6%81%AF%E5%B7%A5%E5%85%B7istats/ itemprop=url class=post-title-link>查看性能信息工具iStats</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-05-06 13:53:16 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-06 13:53:16 +0000 UTC">2023-05-06</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/mac itemprop=url rel=index>
+<span itemprop=name>Mac</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E6%9F%A5%E7%9C%8B%E6%80%A7%E8%83%BD%E4%BF%A1%E6%81%AF%E5%B7%A5%E5%85%B7istats/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+命令行工具，可以获取 Mac 上的 CPU 温度、风扇转速和电池信息。 安装 $ sudo gem install iStats # 输入电脑密码 $ brew install iStats 使用 $ istats --- CPU Stats --- CPU 温度 CPU temp: 67.69°C ▁▂▃▅▆
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/mac/%E6%9F%A5%E7%9C%8B%E6%80%A7%E8%83%BD%E4%BF%A1%E6%81%AF%E5%B7%A5%E5%85%B7istats/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/node/nodejs%E9%A1%B9%E7%9B%AE%E5%B7%A5%E5%85%B7%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Nodejs项目工具间的关系">
+<meta itemprop=description content="Node.js、nvm、npm 和 cnpm 是四个不同的工具，它们之间存在一定的关系。 Node.js 是基于 Chrome V8 引擎的 JavaScript 运行环境，用于在服务器端执行 JavaScript 代码 node 命令则是">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/node/nodejs%E9%A1%B9%E7%9B%AE%E5%B7%A5%E5%85%B7%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/ itemprop=url class=post-title-link>Nodejs项目工具间的关系</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-05-06 11:29:39 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-06 11:29:39 +0000 UTC">2023-05-06</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/node itemprop=url rel=index>
+<span itemprop=name>Node</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/node/nodejs%E9%A1%B9%E7%9B%AE%E5%B7%A5%E5%85%B7%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+Node.js、nvm、npm 和 cnpm 是四个不同的工具，它们之间存在一定的关系。 Node.js 是基于 Chrome V8 引擎的 JavaScript 运行环境，用于在服务器端执行 JavaScript 代码 node 命令则是
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/node/nodejs%E9%A1%B9%E7%9B%AE%E5%B7%A5%E5%85%B7%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/pity-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="pity-环境搭建">
+<meta itemprop=description content="下载后端项目 下载代码 启动依赖服务 直接通过 docker-compose 实现会更加方便 注意： mysql 要选择 8.0 的，5.7 已知会报错，需要额外增加配置项 $ mkdir pity $ vim docker-compose.yml # docker-compose.yml version: &#34;3&#34; services: mysql: image: mysql:8.0">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/pity-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ itemprop=url class=post-title-link>pity-环境搭建</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-05-05 18:31:48 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-05 18:31:48 +0000 UTC">2023-05-05</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/pity itemprop=url rel=index>
+<span itemprop=name>Pity</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/pity-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+下载后端项目 下载代码 启动依赖服务 直接通过 docker-compose 实现会更加方便 注意： mysql 要选择 8.0 的，5.7 已知会报错，需要额外增加配置项 $ mkdir pity $ vim docker-compose.yml # docker-compose.yml version: "3" services: mysql: image: mysql:8.0
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/pity-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
 <link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/redis-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7cli%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/>
@@ -659,302 +955,6 @@ JSR223 JSR223 是 Java Specification Request 223 的缩写，它定义了一种�
 <footer class=post-footer>
 <div class=post-button>
 <a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="我作为面试官的一些心得">
-<meta itemprop=description content="简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/ itemprop=url class=post-title-link>我作为面试官的一些心得</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-04-19 17:12:46 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-19 17:12:46 +0000 UTC">2023-04-19</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:57:55+00:00 itemprop=dateModified datetime=2023-05-09T15:57:55+00:00>2023-05-09</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/%E9%9A%8F%E7%AC%94 itemprop=url rel=index>
-<span itemprop=name>随笔</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-<span class=post-meta-item title=浏览>
-<span class=post-meta-item-icon>
-<i class="far fa-eye"></i>
-</span>
-<span class=post-meta-item-text>
-浏览：
-</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/>
-<i class="fa fa-sync fa-spin"></i>
-</span>
-</span>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="《计算机网络原理》计算题汇总">
-<meta itemprop=description content="计算题汇总 计算机网络性能 题一 题二 题三 HTTP 连接 题一 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = (1 + 1) x 8 答：共需要 18 RTTh ![image-20230308233241159](/Users/lan/Library/Application Support/typora-user-images/image-20230308233241159.png) 页面：建">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/ itemprop=url class=post-title-link>《计算机网络原理》计算题汇总</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-03-10 10:07:13 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-10 10:07:13 +0000 UTC">2023-03-10</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
-<span itemprop=name>阅读笔记</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-<span class=post-meta-item title=浏览>
-<span class=post-meta-item-icon>
-<i class="far fa-eye"></i>
-</span>
-<span class=post-meta-item-text>
-浏览：
-</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/>
-<i class="fa fa-sync fa-spin"></i>
-</span>
-</span>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-计算题汇总 计算机网络性能 题一 题二 题三 HTTP 连接 题一 页面：建立连接 + 请求页面 = 1 + 1 图片：建立连接 + 请求图片 = (1 + 1) x 8 答：共需要 18 RTTh ![image-20230308233241159](/Users/lan/Library/Application Support/typora-user-images/image-20230308233241159.png) 页面：建
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="《计算机网络原理》个人笔记">
-<meta itemprop=description content="计算机网络概述 基本概念 起源：计算机网络是计算机技术与通信技术融合的产物。 定义：计算机网络是互连的、自治的计算机的集合。 ISP：因特网服务提供">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/ itemprop=url class=post-title-link>《计算机网络原理》个人笔记</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-03-07 22:46:36 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-03-07 22:46:36 +0000 UTC">2023-03-07</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0 itemprop=url rel=index>
-<span itemprop=name>阅读笔记</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-<span class=post-meta-item title=浏览>
-<span class=post-meta-item-icon>
-<i class="far fa-eye"></i>
-</span>
-<span class=post-meta-item-text>
-浏览：
-</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>
-<i class="fa fa-sync fa-spin"></i>
-</span>
-</span>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-计算机网络概述 基本概念 起源：计算机网络是计算机技术与通信技术融合的产物。 定义：计算机网络是互连的、自治的计算机的集合。 ISP：因特网服务提供
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="adb远程连接">
-<meta itemprop=description content="背景 在一些移动云测手机机房里 Android 设备是分批挂载在专门的 宿主机 集群上的，而执行自动化脚本的机器是在另外一个执行机集群中，因此就会产生这样的需求：">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/ itemprop=url class=post-title-link>adb远程连接</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-02-08 11:20:52 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-02-08 11:20:52 +0000 UTC">2023-02-08</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-09T15:48:10+00:00 itemprop=dateModified datetime=2023-05-09T15:48:10+00:00>2023-05-09</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/andorid itemprop=url rel=index>
-<span itemprop=name>Andorid</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-<span class=post-meta-item title=浏览>
-<span class=post-meta-item-icon>
-<i class="far fa-eye"></i>
-</span>
-<span class=post-meta-item-text>
-浏览：
-</span>
-<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/>
-<i class="fa fa-sync fa-spin"></i>
-</span>
-</span>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-背景 在一些移动云测手机机房里 Android 设备是分批挂载在专门的 宿主机 集群上的，而执行自动化脚本的机器是在另外一个执行机集群中，因此就会产生这样的需求：
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/%E6%8A%80%E6%9C%AF%E6%A0%88/andorid/adb%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/#more rel=contents>
 阅读全文 &#187;
 </a>
 </div>
