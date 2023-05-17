@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>dotenv</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/python/dotenv/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python-dotenv 是一个用于从.env文件中加载环境变量的 Python 库。.env文件通常用于保存敏感信息，如 API 密钥、密码、数据库连接字符串等，可以避免这些敏感信息被意外地提交到版本控制系统中。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>OpenVPN使用</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/openvpn%E4%BD%BF%E7%94%A8/</url><categories><category>Linux</category></categories><tags><tag>Linux</tag></tags><content type="html">在服务器上安装 VPN 访问内网，工具为 OpenVPN Client
+安装 OpenVPN 客户端软件。可以使用以下命令安装 OpenVPN 客户端：
+$ sudo apt-get update $ sudo apt-get install openvpn 查看配置文件
+$ cd /etc/openvpn/client # 在这里放入 *.conf 配置文件，可找公司运维申请 启动 OpenVPN
+$ sudo openvpn --config *.conf 2023-05-16 08:18:28 Initialization Sequence Completed # 测试连接是否成功 # 重新打开一个窗口，进入服务器 $ ping 172.xx.xxx.xxx PING xxx 56(84) bytes of data. 64 bytes from xxx: icmp_seq=1 ttl=62 time=25.9 ms # Ctrl + C 结束 上面方式启动后，断开服务器连接就自动关闭 VPN 连接了。下面为后台开启 VPN 服务的方法：
+# 方式一：--daemon 参数会将 OpenVPN 服务置于后台，并且不显示任何日志信息 $ sudo openvpn --config /path/to/config.ovpn --daemon # 方式二：使用 nohup 命令将 OpenVPN 进程转移到后台执行 $ nohup sudo openvpn --config /path/to/config.ovpn &amp;gt; openvpn.log &amp;amp; 结束 OpenVPN 进程
+$ ps -ef | grep openvpn | grep -v grep $ kill -9 进程号</content></entry><entry><title>dotenv</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/python/dotenv/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python-dotenv 是一个用于从.env文件中加载环境变量的 Python 库。.env文件通常用于保存敏感信息，如 API 密钥、密码、数据库连接字符串等，可以避免这些敏感信息被意外地提交到版本控制系统中。
 使用 Python-dotenv 可以方便地将.env文件中的所有变量加载到当前 Python 进程的环境变量中。
 使用 安装 Python-dotenv 库
 $ pip install python-dotenv 创建.env文件，并在其中添加需要的环境变量
