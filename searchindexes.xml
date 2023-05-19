@@ -1,10 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>OpenVPN使用</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/openvpn%E4%BD%BF%E7%94%A8/</url><categories><category>Linux</category></categories><tags><tag>Linux</tag></tags><content type="html">在服务器上安装 VPN 访问内网，工具为 OpenVPN Client
-安装 OpenVPN 客户端软件。可以使用以下命令安装 OpenVPN 客户端：
-$ sudo apt-get update $ sudo apt-get install openvpn 查看配置文件
-$ cd /etc/openvpn/client # 在这里放入 *.conf 配置文件，可找公司运维申请 启动 OpenVPN
-$ sudo openvpn --config *.conf 2023-05-16 08:18:28 Initialization Sequence Completed # 测试连接是否成功 # 重新打开一个窗口，进入服务器 $ ping 172.xx.xxx.xxx PING xxx 56(84) bytes of data. 64 bytes from xxx: icmp_seq=1 ttl=62 time=25.9 ms # Ctrl + C 结束 上面方式启动后，断开服务器连接就自动关闭 VPN 连接了。下面为后台开启 VPN 服务的方法：
-# 方式一：--daemon 参数会将 OpenVPN 服务置于后台，并且不显示任何日志信息 $ sudo openvpn --config /path/to/config.ovpn --daemon # 方式二：使用 nohup 命令将 OpenVPN 进程转移到后台执行 $ nohup sudo openvpn --config /path/to/config.ovpn &amp;gt; openvpn.log &amp;amp; 结束 OpenVPN 进程
-$ ps -ef | grep openvpn | grep -v grep $ kill -9 进程号</content></entry><entry><title>dotenv</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/python/dotenv/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python-dotenv 是一个用于从.env文件中加载环境变量的 Python 库。.env文件通常用于保存敏感信息，如 API 密钥、密码、数据库连接字符串等，可以避免这些敏感信息被意外地提交到版本控制系统中。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>免费在线MYSQL服务</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%85%8D%E8%B4%B9%E5%9C%A8%E7%BA%BFmysql%E6%9C%8D%E5%8A%A1/</url><categories><category>数据库</category></categories><tags><tag>数据库</tag></tags><content type="html">由于本地开发一套后端服务，需要用到 MYSQL 数据库，通过 Mac Docker Desktop 启动容器后，电脑资源直接拉满了，风扇呼呼的转。
+所以找到了一个在线的 MYSQL 服务，体验一下。
+体验地址： SVNCloud ，需要先注册。
+有 5M 的免费存储。
+突然发现，还有 redis 需要部署。</content></entry><entry><title>gitlab-webhook触发Jenkins构建任务</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/gitlab-webhook%E8%A7%A6%E5%8F%91jenkins%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1/</url><categories><category>Jenkins</category></categories><tags><tag>Jenkins</tag></tags><content type="html"><![CDATA[ 提交项目到 gitlab 仓库，通过 webhook 自动构建 Jenkins 项目。
+ GitLab 社区版 10.8.7 Jenkins 2.346.3 (Docker jenkinsci/blueocean:latest)   Jenkins 创建构建项目 安装 Gitlab 插件 安装路径：左侧边栏 系统管理 -&gt; 插件管理 -&gt; 可选插件
+插件名称：Gitlab
+安装成功后，重启 Jenkins 使插件生效，访问 /restart 路由即可重启。
+创建项目  创建一个自由风格的项目 构建触发器 - 触发远程构建 设置一个远程访问 token，可选 Webhook URL：JENKINS_URL/job/JOB_NAME/build?token=TOKEN_NAME 保存设置  GitLab 创建 Webhook  Webhook  是一种用户自定义的 HTTP 回调。
+在 Gitlab 项目上创建一个自定义的 URL 地址，当向仓库推送代码或提交 Issues 时，会自动向配置的 URL 地址发送一个 HTTP 请求。
+创建方式：
+ 左侧边栏中选择 Settings &gt; Webhooks（集成） URL：输入 Jenkins Webhook URL（特殊字符及汉字需要 URL 编码） Secret token：输入 Jenkins 项目设置的 token 触发器：选择要触发 webhook 的 事件  ，默认推送事件，表示仓库中有代码提交时触发 Webhook SSL 证书验证：需安全验证时开启，一般不用 增加 webhook  测试：点击 Test -&gt; Push events
+Hook execution failed: URL &#39;xxx&#39; is blocked: Requests to the local network are not allowed 出现该问题是由于我这里 Gitlab 服务放在公网，而 Jenkins 搭建在内网，无法通信。如果是在同一网络环境出现该问题：
+ Jenkins 默认不允许从外部网络访问本地地址，在系统管理 -&gt; 安全设置里面开启允许外部 HTTP 请求 管理员访问 /admin/application_settings，在 Settings -&gt; Networks -&gt; Outbound requests 选项下开启 Allow requests to the local network from hooks and services  注意：以上两种方式我是从网上查到的，由于不在统一网络环境下，所以这两种方式我未做尝试。
+正常情况下，测试通过，那就配置完成了。可以提交一次检查是否会自动构建。
+TODO 由于网络原因，没办法做成 webhook 来触发构建。所以我在 Jenkins 项目中使用了「轮询」的方式，每 5 分钟检查是否有更新，有则构建无则忽略。
+配置方式：项目设置 -&gt; 构建触发器 -&gt; 轮询 SCM -&gt; 配置日程表达式H/5 * * * *，每 5 分钟轮询一次仓库。
+]]></content></entry><entry><title>OpenVPN使用</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/linux/openvpn%E4%BD%BF%E7%94%A8/</url><categories><category>Linux</category></categories><tags><tag>Linux</tag></tags><content type="html"><![CDATA[在服务器上通过 OpenVPN Client 连接 VPN 访问内网。
+安装 安装 OpenVPN 客户端软件。可以使用以下命令安装 OpenVPN 客户端：
+$ sudo apt-get update $ sudo apt-get install openvpn 配置 添加配置文件
+$ cd /etc/openvpn/client # 在这里放入 *.conf 配置文件，可找公司运维申请 配置文件示例
+# OpenVPN client configuration file # 指定 OpenVPN 客户端模式 client # 指定使用 TUN 设备来创建 VPN 连接 dev tun # 指定 VPN 服务器的地址和端口号 remote myvpn.example.com 1194 udp # 指定密码文件 askpass /etc/openvpn/client/pwd.pass # 指定解析 DNS 失败后应该尝试多少次重新解析 DNS（无限次） resolv-retry infinite # 禁用绑定到本地 IP 地址和端口号 nobind # 使 OpenVPN 在重新启动时不生成新的密钥或 TUN/TAP 设备 persist-key persist-tun # 配置证书和密钥文件的位置和名称 ca /etc/openvpn/ca.crt cert /etc/openvpn/client.crt key /etc/openvpn/client.key tls-auth /etc/openvpn/ta.key 1 # 指定 OpenVPN 连接的保持时间和间隔时间 keepalive 10 120 # 指定检测连接是否断开以及重新启动连接的频率 ping 10 ping-restart 60 # 指定使用的加密算法 cipher AES-256-CBC # 指定压缩算法 compress lz4-v2 # 限制 OpenVPN 进程的用户和组 user nobody group nogroup # 指定日志输出级别和控制台输出的信息数量 verb 3 mute 20 启动 手动启动测试连接 $ openvpn --config conf_file.conf 2023-05-16 08:18:28 Initialization Sequence Completed # 测试连接是否成功 # 重新打开一个窗口，进入服务器 $ ping 172.xx.xxx.xxx PING xxx 56(84) bytes of data. 64 bytes from xxx: icmp_seq=1 ttl=62 time=25.9 ms # Ctrl + C 结束 当结束命令后，服务器与内网的连接也就自动关闭了，可用作测试配置是否能够正确连接。
+自动启动 后台开启 VPN 服务的方法：
+# 方式一：--daemon 参数会将 OpenVPN 服务置于后台，并且不显示任何日志信息 $ openvpn --config /etc/openvpn/client/conf_file.conf --daemon $ openvpn --config /etc/openvpn/client/conf_file.conf --daemon --log /var/log/openvpn.log # 方式二：使用 nohup 命令将 OpenVPN 进程转移到后台执行 $ nohup sudo openvpn --config /etc/openvpn/client/conf_file.conf &gt; /var/log/openvpn.log &amp; 以上方式虽然将命令运行在后台，但是存在问题：运行一段时间后，OpenVPN 会自动断开连接重新校验密码，导致服务报错。
+报错日志如下，怎么解决没找到方案，参考： Github Issues 36  
+2023-05-17 09:14:27 [ursnsqvmqxwe.6du.cn] Inactivity timeout (--ping-restart), restarting 2023-05-17 09:14:27 net_addr_ptp_v4_del: 192.168.20.74 dev tun0 2023-05-17 09:14:27 SIGUSR1[soft,ping-restart] received, process restarting Failed to query password: Timer expired 2023-05-17 09:16:02 ERROR: Failed retrieving username or password 2023-05-17 09:16:02 Exiting due to fatal error 通过系统命令启动 当 OpenVPN 断开连接后会尝试重连
+# 注意：conf_file 不需加 .conf 后缀 $ systemctl start openvpn-client@conf_file $ systemctl status openvpn-client@conf_file # 设置开机自启动 $ systemctl enable openvpn-client@conf_file 执行 ping 命令，这时运维同学手动断开该用户连接，可以看到收发包中断，此时重启服务。
+虽然是重启服务了，但是需要手动输入密码，这可不行~
+Broadcast message from root@test (Thu 2023-05-18 07:35:22 UTC): Password entry required for &#39;Enter Private Key Password:&#39; (PID 2864927). Please enter password with the systemd-tty-ask-password-agent tool. 遇到该问题在 conf 配置文件中去掉 auth-nocache （阻止密码缓存）参数，可能是 Ubuntu 的原因，其他系统上没出该问题。
+查看服务 不管通过哪种方式启动，当连接出现问题时，就需要查看进程，来判断服务是否正常运行。
+$ ps -ef | grep openvpn | grep -v grep # 结束进程 $ kill -9 进程号 ]]></content></entry><entry><title>dotenv</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/python/dotenv/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python-dotenv 是一个用于从.env文件中加载环境变量的 Python 库。.env文件通常用于保存敏感信息，如 API 密钥、密码、数据库连接字符串等，可以避免这些敏感信息被意外地提交到版本控制系统中。
 使用 Python-dotenv 可以方便地将.env文件中的所有变量加载到当前 Python 进程的环境变量中。
 使用 安装 Python-dotenv 库
 $ pip install python-dotenv 创建.env文件，并在其中添加需要的环境变量
@@ -26,7 +50,7 @@ import os database_url = os.environ[&#39;DATABASE_URL&#39;] api_key = os.environ
 按照以上建表信息，用 python 创建一个 ORM 对象。
  选择文件格式：SQL 脚本文件（*.sql） 选择保存路径 选择表字段 选择附加选项 开始导出（我这里数据太多了就先不导出了）  具体操作步骤如下：
  打开Navicat并连接到相应的数据库。 选择要导出表结构的数据表，右键点击该表并选择“导出表”。 在弹出的“导出表”对话框中，选择“自定义”选项卡，并勾选“仅导出表结构”复选框。 点击“设置”按钮，进入“导出设置”对话框。在该对话框中，可以设置导出文件的名称、格式、编码等参数。 点击“确定”按钮开始导出表结构文件。导出文件将保存为一个SQL脚本文件（.sql）。 将导出的SQL脚本文件打开，并将其中的DDL语句（CREATE TABLE语句）复制到Python代码中。 在Python代码中，使用SQLAlchemy ORM框架提供的declarative_base()函数创建一个基础ORM类。该类用于表示所有ORM类的基类，并提供一些常用的方法和属性。 根据复制的DDL语句，手动编写一个ORM类，并继承自基础ORM类。该ORM类需要定义与DDL语句中各列对应的字段名、数据类型、约束条件等属性，并在类中定义相应的构造方法和其他方法。 在Python代码中，使用SQLAlchemy ORM框架提供的create_all()方法创建数据库表。该方法会自动根据ORM类生成相应的数据表，并将其映射到数据库中。  下面是一份示例代码，供参考：
-python复制代码from sqlalchemy import create_engine, Column, Integer, String from sqlalchemy.ext.declarative import declarative_base # 创建SQLAlchemy引擎对象并连接数据库 engine = create_engine(&#34;mysql+pymysql://user:password@localhost/database&#34;) # 创建基础ORM类 Base = declarative_base() # 定义ORM类MyTable，表示DDL语句中的数据表 class MyTable(Base): __tablename__ = &#34;my_table&#34; id = Column(Integer, primary_key=True) name = Column(String(255)) age = Column(Integer) def __init__(self, name, age): self.name = name self.age = age def __repr__(self): return &#34;&lt;MyTable(name=&#39;%s&#39;, age=%d)&gt;&#34; % (self.name, self.age) # 创建数据表 Base.metadata.create_all(engine) 在上述代码中，我们首先使用create_engine()函数创建了一个SQLAlchemy引擎对象，并指定了相应的连接参数。然后，使用declarative_base()函数创建了一个基础ORM类Base，用于表示所有ORM类的基类。
+from sqlalchemy import create_engine, Column, Integer, String from sqlalchemy.ext.declarative import declarative_base # 创建SQLAlchemy引擎对象并连接数据库 engine = create_engine(&#34;mysql+pymysql://user:password@localhost/database&#34;) # 创建基础ORM类 Base = declarative_base() # 定义ORM类MyTable，表示DDL语句中的数据表 class MyTable(Base): __tablename__ = &#34;my_table&#34; id = Column(Integer, primary_key=True) name = Column(String(255)) age = Column(Integer) def __init__(self, name, age): self.name = name self.age = age def __repr__(self): return &#34;&lt;MyTable(name=&#39;%s&#39;, age=%d)&gt;&#34; % (self.name, self.age) # 创建数据表 Base.metadata.create_all(engine) 在上述代码中，我们首先使用create_engine()函数创建了一个SQLAlchemy引擎对象，并指定了相应的连接参数。然后，使用declarative_base()函数创建了一个基础ORM类Base，用于表示所有ORM类的基类。
 接着，手动编写了一个ORM类MyTable，用于表示DDL语句中的数据表。该类继承自基础ORM类Base，并定义了与DDL语句中各列对应的字段名、数据类型、约束条件等属性。此外，还定义了构造方法__init__()和字符串表示方法__repr__()。
 最后，使用Base.metadata.create_all(engine)方法创建了数据表。该方法会自动根据ORM类生成相应的数据表，并将其映射到数据库中。
 需要注意的是，在手动编写ORM类时，需要严格按照DDL语句中各列的属性、约束等信息进行设置。同时，还需要遵循SQLAlchemy ORM框架的一些规范和约定，例如使用双下划线__tablename__指定数据表名，添加主键约束等。
@@ -96,7 +120,9 @@ $ deactivate</content></entry><entry><title>查看性能信息工具iStats</titl
 $ brew install redis 安装 redis 的同时会安装 redis-cli 工具，由于我已经通过 docker 启动 redis 服务了，所以不想再安装 redis 服务，使用方式二。
 方式二：编译安装
 # 打开终端，下载 Redis 的源码 $ curl -O http://download.redis.io/redis-stable.tar.gz # 解压缩源码包，并进入 src 目录 $ tar xzf redis-stable.tar.gz $ cd redis-stable/src # 编译并安装 redis-cli 工具。 $ make redis-cli $ sudo cp redis-cli /usr/local/bin/ # 检查 $ redis-cli --version redis-cli 7.0.11 命令 文档地址
-# 验证服务是否开启 $ redis-cli 127.0.0.1:6379&amp;gt; ping PONG 返回 PONG 则证明服务正常启动。</content></entry><entry><title>接口测试平台需求</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/</url><categories><category>Pity</category></categories><tags><tag>Pity</tag></tags><content type="html">用例执行 全局环境配置 全局变量 变量提取 场景化测试</content></entry><entry><title>about</title><url>/about/</url><categories><category>Content</category></categories><tags><tag>Content</tag></tags><content type="html">目前是一名 自动化测试 工程师，这里是我的工作学习笔记。</content></entry><entry><title>hugo-搭建博客（v2）</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/</url><categories><category>Blog</category></categories><tags><tag>Blog</tag></tags><content type="html"><![CDATA[下文是我自己的搭建记录（MacOS, Hugo + GithubPage）
+# 验证服务是否开启 $ redis-cli 127.0.0.1:6379&amp;gt; ping PONG 返回 PONG 则证明服务正常启动。</content></entry><entry><title>接口测试平台需求</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/pity/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82/</url><categories><category>Pity</category></categories><tags><tag>Pity</tag></tags><content type="html">用例执行 全局环境配置 全局变量 变量提取 场景化测试</content></entry><entry><title>about</title><url>/about/</url><categories><category>Content</category></categories><tags><tag>Content</tag></tags><content type="html">目前是一名 自动化测试 工程师，这里是我的工作学习笔记。
+在阅读过程中，如果看到了明显的错误 或者 遇到了问题，请联系我：
+微信号 微信公众号 ，基本不维护了，偶尔看看消息 Github ，每天都会收邮件</content></entry><entry><title>hugo-搭建博客（v2）</title><url>/%E6%8A%80%E6%9C%AF%E6%A0%88/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/</url><categories><category>Blog</category></categories><tags><tag>Blog</tag></tags><content type="html"><![CDATA[下文是我自己的搭建记录（MacOS, Hugo + GithubPage）
 搭建本地 Hugo 服务  Hugo 是使用 Go 语言编写的 静态网站生成器  ，页面编译速度快，支持跨平台、皮肤自定义，方便部署。
 官方文档 传送门  
  📢 📢 📢

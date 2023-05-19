@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>120</span>
+<span class=badge>122</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -142,7 +142,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>120</span>
+<span class=site-state-item-count>122</span>
 <span class=site-state-item-name>日志</span>
 </a>
 </div>
@@ -199,15 +199,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=173307></div>
+<div class=item-count id=wordsCount data-count=174788></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=408></div>
+<div class=item-count id=readTimes data-times=412></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-05-16T16:09:45+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-17T17:18:17+00:00></div>
 </div>
 </div>
 </div>
@@ -281,7 +281,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>1285</span>
+<span class=post-meta-item-text>字数：</span><span>1272</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -331,31 +331,31 @@
 <li>在Python代码中，使用SQLAlchemy ORM框架提供的<code>create_all()</code>方法创建数据库表。该方法会自动根据ORM类生成相应的数据表，并将其映射到数据库中。</li>
 </ol>
 <p>下面是一份示例代码，供参考：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>python复制代码from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> sqlalchemy <span style=color:#f92672>import</span> create_engine, Column, Integer, String
+<span style=color:#f92672>from</span> sqlalchemy.ext.declarative <span style=color:#f92672>import</span> declarative_base
 
-# 创建SQLAlchemy引擎对象并连接数据库
-engine = create_engine(&#34;mysql+pymysql://user:password@localhost/database&#34;)
+<span style=color:#75715e># 创建SQLAlchemy引擎对象并连接数据库</span>
+engine <span style=color:#f92672>=</span> create_engine(<span style=color:#e6db74>&#34;mysql+pymysql://user:password@localhost/database&#34;</span>)
 
-# 创建基础ORM类
-Base = declarative_base()
+<span style=color:#75715e># 创建基础ORM类</span>
+Base <span style=color:#f92672>=</span> declarative_base()
 
-# 定义ORM类MyTable，表示DDL语句中的数据表
-class MyTable(Base):
-    __tablename__ = &#34;my_table&#34;
-    id = Column(Integer, primary_key=True)
-    name = Column(String(255))
-    age = Column(Integer)
+<span style=color:#75715e># 定义ORM类MyTable，表示DDL语句中的数据表</span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyTable</span>(Base):
+    __tablename__ <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;my_table&#34;</span>
+    id <span style=color:#f92672>=</span> Column(Integer, primary_key<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+    name <span style=color:#f92672>=</span> Column(String(<span style=color:#ae81ff>255</span>))
+    age <span style=color:#f92672>=</span> Column(Integer)
 
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+    <span style=color:#66d9ef>def</span> __init__(self, name, age):
+        self<span style=color:#f92672>.</span>name <span style=color:#f92672>=</span> name
+        self<span style=color:#f92672>.</span>age <span style=color:#f92672>=</span> age
 
-    def __repr__(self):
-        return &#34;&lt;MyTable(name=&#39;%s&#39;, age=%d)&gt;&#34; % (self.name, self.age)
+    <span style=color:#66d9ef>def</span> __repr__(self):
+        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&lt;MyTable(name=&#39;</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#39;, age=</span><span style=color:#e6db74>%d</span><span style=color:#e6db74>)&gt;&#34;</span> <span style=color:#f92672>%</span> (self<span style=color:#f92672>.</span>name, self<span style=color:#f92672>.</span>age)
 
-# 创建数据表
-Base.metadata.create_all(engine)
+<span style=color:#75715e># 创建数据表</span>
+Base<span style=color:#f92672>.</span>metadata<span style=color:#f92672>.</span>create_all(engine)
 </code></pre></div><p>在上述代码中，我们首先使用<code>create_engine()</code>函数创建了一个SQLAlchemy引擎对象，并指定了相应的连接参数。然后，使用<code>declarative_base()</code>函数创建了一个基础ORM类<code>Base</code>，用于表示所有ORM类的基类。</p>
 <p>接着，手动编写了一个ORM类<code>MyTable</code>，用于表示DDL语句中的数据表。该类继承自基础ORM类<code>Base</code>，并定义了与DDL语句中各列对应的字段名、数据类型、约束条件等属性。此外，还定义了构造方法<code>__init__()</code>和字符串表示方法<code>__repr__()</code>。</p>
 <p>最后，使用<code>Base.metadata.create_all(engine)</code>方法创建了数据表。该方法会自动根据ORM类生成相应的数据表，并将其映射到数据库中。</p>

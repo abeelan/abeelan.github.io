@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>120</span>
+<span class=badge>122</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -126,7 +126,20 @@
 </ul>
 <div class=sidebar-panel-container>
 <div class="post-toc-wrap sidebar-panel">
-<div class="post-toc animated"><nav id=TableOfContents></nav></div>
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#安装>安装</a></li>
+<li><a href=#配置>配置</a></li>
+<li><a href=#启动>启动</a>
+<ul>
+<li><a href=#手动启动测试连接>手动启动测试连接</a></li>
+<li><a href=#自动启动>自动启动</a></li>
+<li><a href=#通过系统命令启动>通过系统命令启动</a></li>
+<li><a href=#查看服务>查看服务</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
 </div>
 <div class="site-overview-wrap sidebar-panel">
 <div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
@@ -138,7 +151,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>120</span>
+<span class=site-state-item-count>122</span>
 <span class=site-state-item-name>日志</span>
 </a>
 </div>
@@ -195,15 +208,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=173307></div>
+<div class=item-count id=wordsCount data-count=174788></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=408></div>
+<div class=item-count id=readTimes data-times=412></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-05-16T16:09:45+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-17T17:18:17+00:00></div>
 </div>
 </div>
 </div>
@@ -240,7 +253,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="OpenVPN使用">
-<meta itemprop=description content="在服务器上安装 VPN 访问内网，工具为 OpenVPN Client 安装 OpenVPN 客户端软件。可以使用以下命令安装 OpenVPN 客户端： $ sudo apt-get update $ sudo apt-get install openvpn 查看配置文件 $ cd /etc/openvpn/client # 在这里放入 *.conf 配置文">
+<meta itemprop=description content="在服务器上通过 OpenVPN Client 连接 VPN 访问内网。 安装 安装 OpenVPN 客户端软件。可以使用以下命令安装 OpenVPN 客户端： $ sudo apt-get update $ sudo apt-get install openvpn 配置 添加配置文件 $ cd /etc/openvpn/client # 在这里放入 *.conf">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">OpenVPN使用 </h1>
@@ -277,14 +290,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>272</span>
+<span class=post-meta-item-text>字数：</span><span>923</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>2分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -301,32 +314,118 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
-<p>在服务器上安装 VPN 访问内网，工具为 OpenVPN Client</p>
+<p>在服务器上通过 OpenVPN Client 连接 VPN 访问内网。</p>
+<h2 id=安装>安装</h2>
 <p>安装 OpenVPN 客户端软件。可以使用以下命令安装 OpenVPN 客户端：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ sudo apt-get update
 $ sudo apt-get install openvpn
-</code></pre></div><p>查看配置文件</p>
+</code></pre></div><h2 id=配置>配置</h2>
+<p>添加配置文件</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ cd /etc/openvpn/client
 <span style=color:#75715e># 在这里放入 *.conf 配置文件，可找公司运维申请</span>
-</code></pre></div><p>启动 OpenVPN</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ sudo openvpn --config *.conf
+</code></pre></div><p>配置文件示例</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># OpenVPN client configuration file</span>
+
+<span style=color:#75715e># 指定 OpenVPN 客户端模式</span>
+client
+
+<span style=color:#75715e># 指定使用 TUN 设备来创建 VPN 连接</span>
+dev tun
+
+<span style=color:#75715e># 指定 VPN 服务器的地址和端口号</span>
+remote myvpn.example.com <span style=color:#ae81ff>1194</span> udp
+<span style=color:#75715e># 指定密码文件</span>
+askpass /etc/openvpn/client/pwd.pass
+
+<span style=color:#75715e># 指定解析 DNS 失败后应该尝试多少次重新解析 DNS（无限次）</span>
+resolv-retry infinite
+
+<span style=color:#75715e># 禁用绑定到本地 IP 地址和端口号</span>
+nobind
+
+<span style=color:#75715e># 使 OpenVPN 在重新启动时不生成新的密钥或 TUN/TAP 设备</span>
+persist-key
+persist-tun
+
+<span style=color:#75715e># 配置证书和密钥文件的位置和名称</span>
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/client.crt
+key /etc/openvpn/client.key
+tls-auth /etc/openvpn/ta.key <span style=color:#ae81ff>1</span>
+
+<span style=color:#75715e># 指定 OpenVPN 连接的保持时间和间隔时间</span>
+keepalive <span style=color:#ae81ff>10</span> <span style=color:#ae81ff>120</span>
+
+<span style=color:#75715e># 指定检测连接是否断开以及重新启动连接的频率</span>
+ping <span style=color:#ae81ff>10</span>
+ping-restart <span style=color:#ae81ff>60</span>
+
+<span style=color:#75715e># 指定使用的加密算法</span>
+cipher AES-256-CBC
+<span style=color:#75715e># 指定压缩算法</span>
+compress lz4-v2
+
+<span style=color:#75715e># 限制 OpenVPN 进程的用户和组</span>
+user nobody
+group nogroup
+
+<span style=color:#75715e># 指定日志输出级别和控制台输出的信息数量</span>
+verb <span style=color:#ae81ff>3</span>
+mute <span style=color:#ae81ff>20</span>
+</code></pre></div><h2 id=启动>启动</h2>
+<h3 id=手动启动测试连接>手动启动测试连接</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ openvpn --config conf_file.conf
 2023-05-16 08:18:28 Initialization Sequence Completed
 
 <span style=color:#75715e># 测试连接是否成功</span>
+
 <span style=color:#75715e># 重新打开一个窗口，进入服务器</span>
 $ ping 172.xx.xxx.xxx
 PING xxx 56<span style=color:#f92672>(</span>84<span style=color:#f92672>)</span> bytes of data.
 <span style=color:#ae81ff>64</span> bytes from xxx: icmp_seq<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> ttl<span style=color:#f92672>=</span><span style=color:#ae81ff>62</span> time<span style=color:#f92672>=</span>25.9 ms
 
 <span style=color:#75715e># Ctrl + C 结束</span>
-</code></pre></div><p>上面方式启动后，断开服务器连接就自动关闭 VPN 连接了。下面为后台开启 VPN 服务的方法：</p>
+</code></pre></div><p>当结束命令后，服务器与内网的连接也就自动关闭了，可用作测试配置是否能够正确连接。</p>
+<h3 id=自动启动>自动启动</h3>
+<p>后台开启 VPN 服务的方法：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 方式一：--daemon 参数会将 OpenVPN 服务置于后台，并且不显示任何日志信息</span>
-$ sudo openvpn --config /path/to/config.ovpn --daemon
+$ openvpn --config /etc/openvpn/client/conf_file.conf --daemon
+$ openvpn --config /etc/openvpn/client/conf_file.conf --daemon --log /var/log/openvpn.log
 
 <span style=color:#75715e># 方式二：使用 nohup 命令将 OpenVPN 进程转移到后台执行</span>
-$ nohup sudo openvpn --config /path/to/config.ovpn &gt; openvpn.log &amp;
-</code></pre></div><p>结束 OpenVPN 进程</p>
+$ nohup sudo openvpn --config /etc/openvpn/client/conf_file.conf &gt; /var/log/openvpn.log &amp;
+</code></pre></div><p>以上方式虽然将命令运行在后台，但是存在问题：运行一段时间后，OpenVPN 会自动断开连接重新校验密码，导致服务报错。</p>
+<p>报错日志如下，怎么解决没找到方案，参考：
+<a href=https://github.com/golfzaptw/action-connect-ovpn/issues/36 title="Github Issues 36" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Github Issues 36
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>2023-05-17 09:14:27 [ursnsqvmqxwe.6du.cn] Inactivity timeout (--ping-restart), restarting
+2023-05-17 09:14:27 net_addr_ptp_v4_del: 192.168.20.74 dev tun0
+2023-05-17 09:14:27 SIGUSR1[soft,ping-restart] received, process restarting
+Failed to query password: Timer expired
+2023-05-17 09:16:02 ERROR: Failed retrieving username or password
+2023-05-17 09:16:02 Exiting due to fatal error
+</code></pre></div><h3 id=通过系统命令启动>通过系统命令启动</h3>
+<p>当 OpenVPN 断开连接后会尝试重连</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 注意：conf_file 不需加 .conf 后缀</span>
+$ systemctl start openvpn-client@conf_file
+$ systemctl status openvpn-client@conf_file
+
+<span style=color:#75715e># 设置开机自启动</span>
+$ systemctl enable openvpn-client@conf_file
+</code></pre></div><p>执行 <code>ping</code> 命令，这时运维同学手动断开该用户连接，可以看到收发包中断，此时重启服务。</p>
+<p>虽然是重启服务了，但是需要手动输入密码，这可不行~</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>Broadcast message from root@test (Thu 2023-05-18 07:35:22 UTC):
+
+Password entry required for &#39;Enter Private Key Password:&#39; (PID 2864927).
+Please enter password with the systemd-tty-ask-password-agent tool.
+</code></pre></div><p>遇到该问题在 conf 配置文件中去掉 <code>auth-nocache</code> （阻止密码缓存）参数，可能是 Ubuntu 的原因，其他系统上没出该问题。</p>
+<h3 id=查看服务>查看服务</h3>
+<p>不管通过哪种方式启动，当连接出现问题时，就需要查看进程，来判断服务是否正常运行。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ ps -ef | grep openvpn | grep -v grep
+
+<span style=color:#75715e># 结束进程</span>
 $ kill -9 进程号
 </code></pre></div>
 </div>
@@ -375,6 +474,9 @@ ABEE
 </div>
 <div class=post-nav>
 <div class="post-nav-next post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/jenkins/gitlab-webhook%E8%A7%A6%E5%8F%91jenkins%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1/ rel=next title=gitlab-webhook触发Jenkins构建任务>
+<i class="fa fa-chevron-left"></i> gitlab-webhook触发Jenkins构建任务
+</a>
 </div>
 <div class="post-nav-prev post-nav-item">
 <a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/python/dotenv/ rel=prev title=dotenv>
