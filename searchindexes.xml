@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Python - Poetry</title><url>/tech/python/poetry/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"> 虚拟环境工具 poetry（要求 3.7+ 快速上手 ）
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Python - Poetry 环境管理</title><url>/tech/python/poetry-%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"> 虚拟环境工具 poetry（要求 3.7+ 快速上手 ）
 安装 Linux、macOS、Windows (WSL)
 $ curl -sSL https://install.python-poetry.org | python3 - MacOS: ~/Library/Application Support/pypoetry 安装失败，报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。
 安装完成后，默认在 ~/.local/bin/poetry
@@ -132,7 +132,7 @@ $ cd /etc/openvpn/client # 在这里放入 *.conf 配置文件，可找公司运
 虽然是重启服务了，但是需要手动输入密码，这可不行~
 Broadcast message from root@test (Thu 2023-05-18 07:35:22 UTC): Password entry required for &#39;Enter Private Key Password:&#39; (PID 2864927). Please enter password with the systemd-tty-ask-password-agent tool. 遇到该问题在 conf 配置文件中去掉 auth-nocache （阻止密码缓存）参数，可能是 Ubuntu 的原因，其他系统上没出该问题。
 查看服务 不管通过哪种方式启动，当连接出现问题时，就需要查看进程，来判断服务是否正常运行。
-$ ps -ef | grep openvpn | grep -v grep # 结束进程 $ kill -9 进程号 ]]></content></entry><entry><title>Python - Dotenv</title><url>/tech/python/dotenv/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python-dotenv 是一个用于从.env文件中加载环境变量的 Python 库。.env文件通常用于保存敏感信息，如 API 密钥、密码、数据库连接字符串等，可以避免这些敏感信息被意外地提交到版本控制系统中。
+$ ps -ef | grep openvpn | grep -v grep # 结束进程 $ kill -9 进程号 ]]></content></entry><entry><title>Python - Dotenv 加载环境变量</title><url>/tech/python/dotenv-%E5%8A%A0%E8%BD%BD%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python-dotenv 是一个用于从.env文件中加载环境变量的 Python 库。.env文件通常用于保存敏感信息，如 API 密钥、密码、数据库连接字符串等，可以避免这些敏感信息被意外地提交到版本控制系统中。
 使用 Python-dotenv 可以方便地将.env文件中的所有变量加载到当前 Python 进程的环境变量中。
 使用 安装 Python-dotenv 库
 $ pip install python-dotenv 创建.env文件，并在其中添加需要的环境变量
@@ -147,7 +147,7 @@ import os database_url = os.environ[&#39;DATABASE_URL&#39;] api_key = os.environ
 当使用SQLAlchemy连接MySQL数据库时，默认情况下会启用连接池机制，这意味着即使您没有显式地关闭连接，连接也会保持打开状态以备重用。但是，这些连接不会一直在MySQL服务器上处于活动状态，而是在一段时间后变为“空闲”状态，等待下一个请求到来。
 因此，在MySQL中查看processlist时，可能不会显示由SQLAlchemy连接池管理的空闲连接。这是因为这些连接实际上处于空闲状态，不占用任何资源，因此它们被MySQL服务器视为无效连接而被忽略掉了。
 总之，这种行为是正常的，并不表示您的连接没有成功建立或已经关闭。如果您确实想要检查连接是否成功关闭，可以通过编写相应的代码来进行明确的关闭，而不是依赖连接池管理机制。
-]]></content></entry><entry><title>Python - Navicat导出表结构并转为Orm类</title><url>/tech/python/navicat%E5%AF%BC%E5%87%BA%E8%A1%A8%E7%BB%93%E6%9E%84%E5%B9%B6%E8%BD%AC%E4%B8%BAorm%E7%B1%BB/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[在Navicat中，可以通过导出数据库表结构的方式来快速获取表结构，并转换成 SQLAlchemy ORM 框架中的 ORM 对象。
+]]></content></entry><entry><title>Python - Sqlalchemy Navicat导出表结构并转为Orm类</title><url>/tech/python/sqlalchemy-navicat%E5%AF%BC%E5%87%BA%E8%A1%A8%E7%BB%93%E6%9E%84%E5%B9%B6%E8%BD%AC%E4%B8%BAorm%E7%B1%BB/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[在Navicat中，可以通过导出数据库表结构的方式来快速获取表结构，并转换成 SQLAlchemy ORM 框架中的 ORM 对象。
 获取建表信息 打开 Navicat 并连接到相应的数据库，找到表后右键，选择「打印表」
 然后就显示出来建表信息了~
 网上说的邮件查看「对象信息」我找不到这个选项，就先这样了。
@@ -189,7 +189,7 @@ import jwt import datetime # Set the payload data payload = {&#39;user_id&#39;: 
 添加新的远程仓库：  $ git remote add origin &lt;new-remote-url&gt; 将 &lt;new-remote-url&gt; 替换为要添加的远程仓库的 URL。注意，origin 是一个默认的远程仓库名称，您可以使用其他名称来标识新的远程仓库。
 验证新的远程仓库是否已成功添加：  $ git remote -v 这会显示所有已配置的远程仓库及其对应的 URLs。确认新的远程仓库已正确添加后，您就可以开始使用它了。
 请注意，在切换远程仓库之前，保存您的更改或创建一个分支以避免数据丢失。
-]]></content></entry><entry><title>Python - Sqlalchemy</title><url>/tech/python/sqlalchemy/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python SQLAlchemy 可以将 SQL 操作转化为 Python 对象，是对象关系映射（ORM，Object Relational Mapping）工具。
+]]></content></entry><entry><title>Python - Sqlalchemy 对象关系映射</title><url>/tech/python/sqlalchemy-%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[Python SQLAlchemy 可以将 SQL 操作转化为 Python 对象，是对象关系映射（ORM，Object Relational Mapping）工具。
 ORM 是一种将面向对象编程语言中的对象映射到关系型数据库中的数据结构的技术，它使得程序员可以使用类和对象来操作数据库而无需使用 SQL 查询语言。
 优点：
  使程序更加简洁易读 封装了多种数据库引擎，代码层面操作一致 有效避免 SQL 字符串拼接带来的安全问题（SQL 注入）  缺点：性能稍不及原生 SQL，从接口测试角度来说，该问题可忽略，毕竟只是做造数和初始化工作，不面向用户。
