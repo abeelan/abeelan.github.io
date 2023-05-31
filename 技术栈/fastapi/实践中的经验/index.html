@@ -1,0 +1,785 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="实践中的经验">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Fastapi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实践中的经验">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/fastapi/%E5%AE%9E%E8%B7%B5%E4%B8%AD%E7%9A%84%E7%BB%8F%E9%AA%8C/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-05-30 18:44:33 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-30 18:45:16 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.65673dad619536eb7368f41239eff941d185bf8ee2ca1222e54736373b45165a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E5%AE%9E%E8%B7%B5%E4%B8%AD%E7%9A%84%E7%BB%8F%E9%AA%8C","permalink":"https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/fastapi/%E5%AE%9E%E8%B7%B5%E4%B8%AD%E7%9A%84%E7%BB%8F%E9%AA%8C/","title":"实践中的经验","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>实践中的经验 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>128</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents></nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>128</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-06T16:55:52+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=185460></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=437></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-30T22:36:38+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<script type=text/javascript src=//sidecar.gitter.im/dist/sidecar.v1.js async></script>
+<script type=text/javascript>((window.gitter={}).chat={}).options={room:"abeelan/community"}</script>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/fastapi/%E5%AE%9E%E8%B7%B5%E4%B8%AD%E7%9A%84%E7%BB%8F%E9%AA%8C/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="实践中的经验">
+<meta itemprop=description content="ref：https://zhuanlan.zhihu.com/p/560737058 尽管 FastAPI 是一个很棒的框架，具有出色的文档，但如何为初学者构">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">实践中的经验 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-05-30 18:44:33 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-30 18:44:33 +0000 UTC">2023-05-30</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-30T18:45:16+00:00 itemprop=dateModified datetime=2023-05-30T18:45:16+00:00>2023-05-30</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/fastapi itemprop=url rel=index>
+<span itemprop=name>Fastapi</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>3148</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>7分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/%E6%8A%80%E6%9C%AF%E6%A0%88/fastapi/%E5%AE%9E%E8%B7%B5%E4%B8%AD%E7%9A%84%E7%BB%8F%E9%AA%8C/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>ref：https://zhuanlan.zhihu.com/p/560737058</p>
+</blockquote>
+<p>尽管 FastAPI 是一个很棒的框架，具有出色的文档，但如何为初学者构建更大的项目并不是很明显。</p>
+<p>在过去的 1.5 年生产中，我们一直在做出正确和错误的决定，这些决定极大地影响了我们的开发人员体验。 其中一些值得分享。</p>
+<p><strong>内容</strong></p>
+<ol>
+<li>项目结构。 一致且可预测</li>
+<li>过度使用 Pydantic 进行数据验证</li>
+<li>使用依赖项进行数据验证与 DB</li>
+<li>解耦和重用依赖项。 依赖调用被缓存</li>
+<li>不要让你的路由异步，如果你只有阻塞 I/O 操作</li>
+<li>迁移。 蒸馏器</li>
+<li>BackgroundTasks > asyncio.create_task</li>
+<li>小心动态的 pydantic 字段</li>
+<li>以块的形式保存文件</li>
+<li>如果您必须使用同步 SDK，则在线程池中运行它。</li>
+</ol>
+<p><strong>1. 项目结构。 一致且可预测</strong></p>
+<p>构建项目的方法有很多，但最好的结构是一致、直接且没有意外的结构。</p>
+<ul>
+<li>如果查看项目结构并不能让您了解项目的内容，那么结构可能不清楚。</li>
+<li>如果您必须打开包才能了解其中的模块，那么您的结构就不清楚了。</li>
+<li>如果文件的频率和位置感觉随机，那么您的项目结构很糟糕。</li>
+<li>如果查看模块的位置和名称并不能让您了解里面的内容，那么您的结构非常糟糕。</li>
+</ul>
+<p>尽管 Sebastián Ramírez 提出的项目结构（我们按文件的类型（例如 api、crud、模型、模式）分隔文件）对于微服务或范围较小的项目很有用，但我们无法将其融入我们的具有大量领域和 模块。</p>
+<p>我发现一种更具可扩展性和可演进性的结构受到 Netflix 的 Dispatch 的启发，并稍作修改。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>fastapi-project
+├── alembic/
+├── src
+│   ├── auth
+│   │   ├── router.py
+│   │   ├── schemas.py  # pydantic models
+│   │   ├── models.py  # db models
+│   │   ├── dependencies.py
+│   │   ├── config.py  # local configs
+│   │   ├── constants.py
+│   │   ├── exceptions.py
+│   │   ├── service.py
+│   │   └── utils.py
+│   ├── aws
+│   │   ├── client.py  # client model for external service communication
+│   │   ├── schemas.py
+│   │   ├── config.py
+│   │   ├── constants.py
+│   │   ├── exceptions.py
+│   │   └── utils.py
+│   └── posts
+│   │   ├── router.py
+│   │   ├── schemas.py
+│   │   ├── models.py
+│   │   ├── dependencies.py
+│   │   ├── constants.py
+│   │   ├── exceptions.py
+│   │   ├── service.py
+│   │   └── utils.py
+│   ├── config.py  # global configs
+│   ├── models.py  # global models
+│   ├── exceptions.py  # global exceptions
+│   ├── pagination.py  # global module e.g. pagination
+│   ├── database.py  # db connection related stuff
+│   └── main.py
+├── tests/
+│   ├── auth
+│   ├── aws
+│   └── posts
+├── templates/
+│   └── index.html
+├── requirements
+│   ├── base.txt
+│   ├── dev.txt
+│   └── prod.txt
+├── .env
+├── .gitignore
+├── logging.ini
+└── alembic.ini
+</code></pre></div><p>当一个包需要来自其他包的服务或依赖项时 - 使用显式模块名称导入它们。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>from src.auth import constants as auth_constants
+from src.notifications import service as notification_service
+from src.posts.constants import ErrorCode as PostsErrorCode
+</code></pre></div><p><strong>2.过度使用Pydantic进行数据验证</strong></p>
+<p>Pydantic 具有一组丰富的功能来验证和转换数据。</p>
+<p>除了具有默认值的必填和非必填字段等常规功能外，Pydantic 还内置了全面的数据处理工具，如正则表达式、有限允许选项的枚举、长度验证、电子邮件验证等。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>from enum import Enum
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, constr
+
+class MusicBand(str, Enum):
+   AEROSMITH = &#34;AEROSMITH&#34;
+   QUEEN = &#34;QUEEN&#34;
+   ACDC = &#34;AC/DC&#34;
+
+
+class UserBase(BaseModel):
+    first_name: str = Field(min_length=1, max_length=128)
+    username: constr(regex=&#34;^[A-Za-z0-9-_]+$&#34;, to_lower=True, strip_whitespace=True)
+    email: EmailStr
+    age: int = Field(ge=18, default=None)  # must be greater or equal to 18
+    favorite_band: MusicBand = None  # only &#34;AEROSMITH&#34;, &#34;QUEEN&#34;, &#34;AC/DC&#34; values are allowed to be inputted
+    website: AnyUrl = None
+</code></pre></div><p><strong>3. 使用依赖项进行数据验证 vs DB</strong></p>
+<p>Pydantic 只能验证客户端输入的值。 使用依赖项来验证数据是否符合数据库约束，例如电子邮件已存在、未找到用户等。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text># dependencies.py
+async def valid_post_id(post_id: UUID4) -&gt; Mapping:
+    post = await service.get_by_id(post_id)
+    if not post:
+        raise PostNotFound()
+
+    return post
+
+
+# router.py
+@router.get(&#34;/posts/{post_id}&#34;, response_model=PostResponse)
+async def get_post_by_id(post: Mapping = Depends(valid_post_id)):
+    return post
+
+
+@router.put(&#34;/posts/{post_id}&#34;, response_model=PostResponse)
+async def update_post(
+    update_data: PostUpdate,  
+    post: Mapping = Depends(valid_post_id), 
+):
+    updated_post: Mapping = await service.update(id=post[&#34;id&#34;], data=update_data)
+    return updated_post
+
+
+@router.get(&#34;/posts/{post_id}/reviews&#34;, response_model=list[ReviewsResponse])
+async def get_post_reviews(post: Mapping = Depends(valid_post_id)):
+    post_reviews: list[Mapping] = await reviews_service.get_by_post_id(post[&#34;id&#34;])
+    return post_reviews
+</code></pre></div><p>作为奖励，使用公共依赖项消除了为这些路由中的每一个编写测试以验证 post_id 的需要。</p>
+<p><strong>4. 解耦和重用依赖。 依赖调用被缓存</strong></p>
+<p>依赖可以被多次重用，并且它们不会被重新计算 - FastAPI默认将依赖的结果缓存在请求的范围内，即如果我们有一个调用服务get_post_by_id的依赖，我们每次调用这个依赖时都不会访问数据库 - 只有第一个函数调用。</p>
+<p>知道了这一点，我们可以轻松地将依赖关系解耦成多个更小的函数，这些函数在更小的域上运行，并且更容易在其他路由中重用。 例如，在下面的代码中，我们使用了 parse_jwt_data 依赖 3 次：</p>
+<ol>
+<li>valid_owned_post</li>
+<li>valid_active_creator</li>
+<li>get_user_post,</li>
+</ol>
+<p>但是 parse_jwt_data 在第一次调用时只调用一次。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text># dependencies.py
+from fastapi import BackgroundTasks
+from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+
+async def valid_post_id(post_id: UUID4) -&gt; Mapping:
+    post = await service.get_by_id(post_id)
+    if not post:
+        raise PostNotFound()
+
+    return post
+
+
+async def parse_jwt_data(
+    token: str = Depends(OAuth2PasswordBearer(tokenUrl=&#34;/auth/token&#34;))
+) -&gt; dict:
+    try:
+        payload = jwt.decode(token, &#34;JWT_SECRET&#34;, algorithms=[&#34;HS256&#34;])
+    except JWTError:
+        raise InvalidCredentials()
+
+    return {&#34;user_id&#34;: payload[&#34;id&#34;]}
+
+
+async def valid_owned_post(
+    post: Mapping = Depends(valid_post_id), 
+    token_data: dict = Depends(parse_jwt_data),
+) -&gt; Mapping:
+    if post[&#34;creator_id&#34;] != token_data[&#34;user_id&#34;]:
+        raise UserNotOwner()
+
+    return post
+
+
+async def valid_active_creator(
+    token_data: dict = Depends(parse_jwt_data),
+):
+    user = await users_service.get_by_id(token_data[&#34;user_id&#34;])
+    if not user[&#34;is_active&#34;]:
+        raise UserIsBanned()
+    
+    if not user[&#34;is_creator&#34;]:
+       raise UserNotCreator()
+    
+    return user
+        
+
+# router.py
+@router.get(&#34;/users/{user_id}/posts/{post_id}&#34;, response_model=PostResponse)
+async def get_user_post(
+    worker: BackgroundTasks,
+    post: Mapping = Depends(valid_owned_post),
+    user: Mapping = Depends(valid_active_creator),
+):
+    &#34;&#34;&#34;Get post that belong the active user.&#34;&#34;&#34;
+    worker.add_task(notifications_service.send_email, user[&#34;id&#34;])
+    return post
+</code></pre></div><p><strong>5. 不要让你的路由异步，如果你只有阻塞 I/O 操作</strong></p>
+<p>在底层，FastAPI 可以有效地处理异步和同步 I/O 操作。</p>
+<ul>
+<li>FastAPI 在线程池中运行同步路由，阻塞 I/O 操作不会阻止事件循环执行任务。</li>
+<li>否则，如果路由是异步定义的，那么它会通过 await 定期调用，FastAPI 相信您只执行非阻塞 I/O 操作。</li>
+</ul>
+<p>需要注意的是，如果您未能信任并在异步路由中执行阻塞操作，则事件循环将无法运行下一个任务，直到该阻塞操作完成。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>import asyncio
+import time
+
+@router.get(&#34;/terrible-ping&#34;)
+async def terrible_catastrophic_ping():
+    time.sleep(10) # I/O blocking operation for 10 seconds
+    pong = service.get_pong()  # I/O blocking operation to get pong from DB
+    
+    return {&#34;pong&#34;: pong}
+
+@router.get(&#34;/good-ping&#34;)
+def good_ping():
+    time.sleep(10) # I/O blocking operation for 10 seconds, but in another thread
+    pong = service.get_pong()  # I/O blocking operation to get pong from DB, but in another thread
+    
+    return {&#34;pong&#34;: pong}
+
+@router.get(&#34;/perfect-ping&#34;)
+async def perfect_ping():
+    await asyncio.sleep(10) # non I/O blocking operation
+    pong = await service.async_get_pong()  # non I/O blocking db call
+
+    return {&#34;pong&#34;: pong}
+</code></pre></div><p>第二个警告是非阻塞等待或发送到线程池的操作必须是 I/O 密集型任务（例如打开文件、数据库调用、外部 API 调用）。</p>
+<ul>
+<li>等待 CPU 密集型任务（例如繁重的计算、数据处理、视频转码）是毫无价值的，因为 CPU 必须工作才能完成任务，而 I/O 操作是外部的，服务器在等待该操作完成时什么也不做，因此它可以转到下一个任务。</li>
+<li>由于 GIL，在其他线程中运行 CPU 密集型任务也无效。简而言之，GIL 一次只允许一个线程工作，这使得它对于 CPU 任务毫无用处。</li>
+<li>如果您想优化 CPU 密集型任务，您应该将它们发送给另一个进程中的工作人员。</li>
+</ul>
+<p><strong>6. 迁移。蒸馏器。</strong></p>
+<ol>
+<li>迁移必须是静态且可恢复的。如果您的迁移依赖于动态生成的数据，那么请确保唯一动态的是数据本身，而不是其结构。</li>
+<li>生成具有描述性名称和 slug 的迁移。 Slug 是必需的，应该解释这些变化。</li>
+<li>为新的迁移设置人类可读的文件模板。我们使用 <em>date</em>_<em>slug</em>.py 模式，例如2022-08-24_post_content_idx.py</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text># alembic.ini
+file_template = %%(year)d-%%(month).2d-%%(day).2d_%%(slug)s
+</code></pre></div><p><strong>7. 背景任务 > asyncio.create_task</strong></p>
+<p>BackgroundTasks 可以像处理路由一样有效地运行阻塞和非阻塞 I/O 操作（同步函数在线程池中运行，而异步函数稍后等待）</p>
+<ul>
+<li>不要对工作人员撒谎，不要将阻塞 I/O 操作标记为异步</li>
+<li>不要将它用于繁重的 CPU 密集型任务。</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>from fastapi import APIRouter, BackgroundTasks
+from pydantic import UUID4
+
+from src.notifications import service as notifications_service
+
+router = APIRouter()
+
+
+@router.post(&#34;/users/{user_id}/email&#34;)
+async def send_user_email(worker: BackgroundTasks, user_id: UUID4):
+    &#34;&#34;&#34;Send email to user&#34;&#34;&#34;
+    worker.add_task(notifications_service.send_email, user_id)  # send email after responding client
+    return {&#34;status&#34;: &#34;ok&#34;}
+</code></pre></div><p><strong>8. 分块保存文件</strong></p>
+<p>不要希望您的客户会发送小文件。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>import aiofiles
+from fastapi import UploadFile
+
+DEFAULT_CHUNK_SIZE = 1024 * 1024 * 50  # 50 megabytes
+
+async def save_video(video_file: UploadFile):
+   async with aiofiles.open(&#34;/file/path/name.mp4&#34;, &#34;wb&#34;) as f:
+     while chunk := await video_file.read(DEFAULT_CHUNK_SIZE):
+         await f.write(chunk)
+</code></pre></div><p><strong>9. 小心动态的 pydantic 字段</strong></p>
+<p>如果您有一个可以接受类型联合的 pydantic 字段，请确保验证器明确知道这些类型之间的区别。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>from pydantic import BaseModel
+
+
+class Article(BaseModel):
+   text: str | None
+   extra: str | None
+
+
+class Video(BaseModel):
+   video_id: int
+   text: str | None
+   extra: str | None
+
+   
+class Post(BaseModel):
+   content: Article | Video
+
+   
+post = Post(content={&#34;video_id&#34;: 1, &#34;text&#34;: &#34;text&#34;})
+print(type(post.content))
+# OUTPUT: Article
+# Article is very inclusive and all fields are optional, allowing any dict to become valid
+</code></pre></div><p><strong>不可怕的解决方案：</strong></p>
+<p>1.正确排序字段类型：从最严格的到松散的。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>class Post(BaseModel):
+   content: Video | Article
+
+      
+p = Post(content={&#34;video_id&#34;: 1})
+print(type(p.content))
+# OUTPUT: Video
+</code></pre></div><ol start=2>
+<li>验证输入只有有效字段。</li>
+</ol>
+<p>Pydantic 忽略联合类型的 ValueErrors 并对其进行迭代。 如果没有类型有效，则引发最后一个异常。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>from pydantic import BaseModel, root_validator
+
+class Article(BaseModel):
+   text: str | None
+   extra: str | None
+   
+   @root_validator(pre=True)  # validate all values before pydantic
+   def has_only_article_fields(cls, data: dict):
+      &#34;&#34;&#34;Silly and ugly solution to validate data has only article fields.&#34;&#34;&#34;
+      fields = set(data.keys())
+      if fields != {&#34;text&#34;, &#34;extra&#34;}:
+         raise ValueError(&#34;invalid fields&#34;)
+
+      return data
+       
+
+class Video(BaseModel):
+   video_id: int
+   text: str | None
+   extra: str | None
+   
+   @root_validator(pre=True)
+   def has_only_video_fields(cls, data: dict):
+      &#34;&#34;&#34;Silly and ugly solution to validate data has only video fields.&#34;&#34;&#34;
+      fields = set(data.keys())
+      if fields != {&#34;text&#34;, &#34;extra&#34;, &#34;video_id&#34;}:
+         raise ValueError(&#34;invalid fields&#34;)
+
+      return data
+
+   
+class Post(BaseModel):
+   content: Article | Video
+
+p = Post(content={&#34;video_id&#34;: 1})
+print(type(p.content))
+# OUTPUT: Video
+</code></pre></div><ol start=3>
+<li>如果字段很简单，请使用 Pydantic 的 Smart Union (>v1.9)</li>
+</ol>
+<p>如果字段像 int 或 bool 这样简单，这是一个很好的解决方案，但它不适用于像类这样的复杂字段。</p>
+<p>没有智能联盟：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>from pydantic import BaseModel
+
+
+class Post(BaseModel):
+   field_1: bool | int
+   field_2: int | str
+   content: Article | Video
+
+p = Post(field_1=1, field_2=&#34;1&#34;, content={&#34;video_id&#34;: 1})
+print(p.field_1)
+# OUTPUT: True
+print(type(p.field_2))
+# OUTPUT: int
+print(type(p.content))
+# OUTPUT: Article
+</code></pre></div><p>使用智能联盟：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>class Post(BaseModel):
+   field_1: bool | int
+   field_2: int | str
+   content: Article | Video
+
+   class Config:
+      smart_union = True
+
+
+p = Post(field_1=1, field_2=&#34;1&#34;, content={&#34;video_id&#34;: 1})
+print(p.field_1)
+# OUTPUT: 1
+print(type(p.field_2))
+# OUTPUT: str
+print(type(p.content))
+# OUTPUT: Article, because smart_union doesn&#39;t work for complex fields like classes
+</code></pre></div><p><strong>10.如果一定要使用sync SDK，那就在线程池中运行</strong></p>
+<p>如果您必须使用 SDK 与外部服务交互，并且它不是异步的，那么请在外部工作线程中进行 HTTP 调用。</p>
+<p>举个简单的例子，我们可以使用我们著名的来自 starlette 的 run_in_threadpool。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-text data-lang=text>from fastapi import FastAPI
+from fastapi.concurrency import run_in_threadpool
+from my_sync_library import SyncAPIClient 
+
+app = FastAPI()
+
+
+@app.get(&#34;/&#34;)
+async def call_my_sync_library():
+    my_data = await service.get_my_data()
+
+    client = SyncAPIClient()
+    await run_in_threadpool(client.make_request, data=my_data)
+</code></pre></div><p>FastAPI 是一种工具，可用于轻松构建极其简单和极其复杂的项目。 不是上面没有约定是项目不可维护的根源，而是缺乏一致性。</p>
+<p>不管你有什么规则 - 唯一应该遵守的规则就是与你的规则保持一致。 找到一组行之有效的约定，对其进行迭代，并向其他人宣传它们。</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/fastapi>
+Fastapi
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+实践中的经验
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/fastapi/%E5%AE%9E%E8%B7%B5%E4%B8%AD%E7%9A%84%E7%BB%8F%E9%AA%8C/ title=实践中的经验>https://abeelan.github.io/%E6%8A%80%E6%9C%AF%E6%A0%88/fastapi/%E5%AE%9E%E8%B7%B5%E4%B8%AD%E7%9A%84%E7%BB%8F%E9%AA%8C/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/python/poetry/ rel=next title=poetry>
+<i class="fa fa-chevron-left"></i> poetry
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/%E6%8A%80%E6%9C%AF%E6%A0%88/chrome/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/ rel=prev title=开发者工具>
+开发者工具
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

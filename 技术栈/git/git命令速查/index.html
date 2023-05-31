@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>123</span>
+<span class=badge>128</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -174,19 +174,19 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>123</span>
+<span class=site-state-item-count>128</span>
 <span class=site-state-item-name>日志</span>
 </a>
 </div>
 <div class="site-state-item site-state-categories">
 <a href=/categories/>
-<span class=site-state-item-count>22</span>
+<span class=site-state-item-count>24</span>
 <span class=site-state-item-name>分类</span>
 </a>
 </div>
 <div class="site-state-item site-state-tags">
 <a href=/tags/>
-<span class=site-state-item-count>22</span>
+<span class=site-state-item-count>24</span>
 <span class=site-state-item-name>标签</span>
 </a>
 </div>
@@ -231,15 +231,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=179713></div>
+<div class=item-count id=wordsCount data-count=185460></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=422></div>
+<div class=item-count id=readTimes data-times=437></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-05-19T14:12:01+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-05-30T22:36:38+00:00></div>
 </div>
 </div>
 </div>
@@ -313,7 +313,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>1386</span>
+<span class=post-meta-item-text>字数：</span><span>1427</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -457,9 +457,13 @@ origin	https://github.com/lanyangbi/lanyangbi.blog.git <span style=color:#f92672
 <span style=color:#75715e># 取消关联</span>
 $ git remote rm origin
 </code></pre></div><h3 id=提交内容到远程仓库>提交内容到远程仓库</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 首次提交时加上 -u 代表关联分支，后续就可以不用了</span>
-$ git push -u orgin master
-$ git push orgin master
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 修改分支名称为 main 与远程分支相同</span>
+<span style=color:#75715e># 解决报错：error: src refspec main does not match any</span>
+$ git branch -m master main
+
+<span style=color:#75715e># 首次提交时加上 -u 代表关联分支，后续就可以不用了</span>
+$ git push -u origin main
+$ git push orgin main
 </code></pre></div><h3 id=查看当前分支>查看当前分支</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># * 代表当前分支</span>
 $ git branch
