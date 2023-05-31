@@ -1,7 +1,7 @@
 <!doctype html><html lang=zh-cn data-theme=light>
 <head><meta charset=utf-8>
 <meta name=viewport content="width=device-width">
-<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
 <meta name=generator content="Hugo 0.89.0">
 <link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
 <link rel=icon type=image/x-icon href=/imgs/favicon.ico>
@@ -25,10 +25,10 @@
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
-<link rel=stylesheet href=/css/main.min.a43b1b53f06c2742996de6dae9d44fbf8a80126b96930876ad36232372bd6b1a.css>
+<link rel=stylesheet href=/css/main.min.f09b73d0a7d4b7d66b5abb3904a52b9b9e0cd9f64991da70e8bf709bd00bfa39.css>
 <style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
 <script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
-<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":false,"path":"tech","permalink":"https://abeelan.github.io/tech/","title":"Teches","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":false,"path":"tech","permalink":"https://abeelan.github.io/tech/","title":"Teches","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
 <script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
 <title>tech - ABEE</title>
 <noscript>
@@ -139,13 +139,13 @@
 </div>
 <div class="site-state-item site-state-categories">
 <a href=/categories/>
-<span class=site-state-item-count>23</span>
+<span class=site-state-item-count>22</span>
 <span class=site-state-item-name>分类</span>
 </a>
 </div>
 <div class="site-state-item site-state-tags">
 <a href=/tags/>
-<span class=site-state-item-count>23</span>
+<span class=site-state-item-count>22</span>
 <span class=site-state-item-name>标签</span>
 </a>
 </div>
@@ -157,11 +157,6 @@
 <i class="fab fa-github fa-fw hvr-icon"></i>Github
 </a>
 </span>
-</div>
-<div class="cc-license animated" itemprop=license>
-<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
-<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
-</a>
 </div>
 </div>
 </div>
@@ -198,7 +193,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
 </div>
 </div>
 </div>
@@ -206,6 +201,9 @@
 <div class=sidebar-dimmer></div>
 </header>
 <div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
 <div id=toggle-theme class=button title=深浅模式切换>
 <i class="fas fa-adjust"></i>
 </div>
@@ -252,7 +250,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -274,6 +272,17 @@
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96ci%E5%85%A8%E6%B5%81%E7%A8%8B%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96ci%E5%85%A8%E6%B5%81%E7%A8%8B%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -326,7 +335,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -348,6 +357,17 @@
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E4%B8%8E%E7%90%86%E8%AE%BA/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E4%B8%8E%E7%90%86%E8%AE%BA/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -400,7 +420,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -422,6 +442,17 @@
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AA%E9%AA%8C%E8%AF%81%E7%A0%81%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E7%9A%84%E6%A1%88%E4%BE%8B/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AA%E9%AA%8C%E8%AF%81%E7%A0%81%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E7%9A%84%E6%A1%88%E4%BE%8B/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -474,7 +505,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -496,6 +527,17 @@
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/database/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/database/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -548,7 +590,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -570,6 +612,17 @@
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/jenkins/k8s/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/jenkins/k8s/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -622,7 +675,7 @@ K8s 一切皆资源 pod service deployment &mldr; 集群部署工具：kubeadm�
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -644,6 +697,17 @@ K8s 一切皆资源 pod service deployment &mldr; 集群部署工具：kubeadm�
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/docker/%E6%90%AD%E5%BB%BAgitlab/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/docker/%E6%90%AD%E5%BB%BAgitlab/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -696,7 +760,7 @@ docker 部署 Gitlab 拉取镜像 $ docker pull gitlab/gitlab-ce:latest 启动�
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -718,6 +782,17 @@ docker 部署 Gitlab 拉取镜像 $ docker pull gitlab/gitlab-ce:latest 启动�
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/jenkins/jenkins-apk-build/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/jenkins/jenkins-apk-build/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -770,7 +845,7 @@ docker 部署 Gitlab 拉取镜像 $ docker pull gitlab/gitlab-ce:latest 启动�
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -792,6 +867,17 @@ docker 部署 Gitlab 拉取镜像 $ docker pull gitlab/gitlab-ce:latest 启动�
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/yapi/%E6%B2%99%E7%9B%92%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D%E4%BA%8C/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/yapi/%E6%B2%99%E7%9B%92%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D%E4%BA%8C/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -844,7 +930,7 @@ Yapi 是比较好用的接口管理平台，之前写过一篇关于搭建过程
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -866,6 +952,17 @@ Yapi 是比较好用的接口管理平台，之前写过一篇关于搭建过程
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/jenkins/jenkins-%E6%8E%A5%E5%8F%A3%E5%8E%8B%E5%8A%9B%E5%AE%9E%E6%88%98/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/jenkins/jenkins-%E6%8E%A5%E5%8F%A3%E5%8E%8B%E5%8A%9B%E5%AE%9E%E6%88%98/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -918,7 +1015,7 @@ Yapi 是比较好用的接口管理平台，之前写过一篇关于搭建过程
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T11:48:28+00:00 itemprop=dateModified datetime=2023-05-31T11:48:28+00:00>2023-05-31</time>
+<time title=修改时间：2023-05-31T15:05:58+00:00 itemprop=dateModified datetime=2023-05-31T15:05:58+00:00>2023-05-31</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -940,6 +1037,17 @@ Yapi 是比较好用的接口管理平台，之前写过一篇关于搭建过程
 浏览：
 </span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/jenkins/jenkins-%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD%E5%AE%9E%E6%88%98/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+<span class=post-meta-item title=评论>
+<span class=post-meta-item-icon>
+<i class="far fa-comments"></i>
+</span>
+<span class=post-meta-item-text>
+评论：
+</span>
+<span class=waline-comment-count data-path=/tech/jenkins/jenkins-%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD%E5%AE%9E%E6%88%98/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -995,7 +1103,7 @@ Yapi 是比较好用的接口管理平台，之前写过一篇关于搭建过程
 </footer>
 <script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
 <script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
-<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":240},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
 <script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
 </body>
 </html>
