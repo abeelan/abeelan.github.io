@@ -306,7 +306,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=185357></div>
+<div class=item-count id=wordsCount data-count=185473></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -389,7 +389,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>8089</span>
+<span class=post-meta-item-text>字数：</span><span>8103</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -440,7 +440,8 @@
 <li>本地服务器（本地搭建）</li>
 </ul>
 <p>我这里通过本地 docker 的方式，启动数据库服务，登录命令：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker run --name<span style=color:#f92672>=</span>mysql -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD<span style=color:#f92672>=</span>root -e MYSQL_ROOT_HOST<span style=color:#f92672>=</span>% -d mysql
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 设为 % 使得所有客户端均可连</span>
+$ docker run --name<span style=color:#f92672>=</span>mysql -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD<span style=color:#f92672>=</span>root -e MYSQL_ROOT_HOST<span style=color:#f92672>=</span>% -d mysql
 $ docker exec -it mysql /bin/bash
 </code></pre></div><p><strong>查看数据库版本信息</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ mysql --version

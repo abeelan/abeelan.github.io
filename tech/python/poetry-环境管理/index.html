@@ -130,6 +130,7 @@
 <ul>
 <li><a href=#安装>安装</a></li>
 <li><a href=#使用>使用</a></li>
+<li><a href=#常用命令>常用命令</a></li>
 </ul>
 </nav></div>
 </div>
@@ -195,7 +196,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=185357></div>
+<div class=item-count id=wordsCount data-count=185473></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -241,7 +242,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Python - Poetry 环境管理">
-<meta itemprop=description content="虚拟环境工具 poetry（要求 3.7+ 快速上手 ） 安装 Linux、macOS、Windows (WSL) $ curl -sSL https://install.python-poetry.org | python3 - MacOS: ~/Library/Application Support/pypoetry 安装失败，报错日志说是未在清华源中">
+<meta itemprop=description content="虚拟环境工具 poetry（要求 3.7+ 快速上手 ） 安装 Linux、macOS、Windows (WSL) $ curl -sSL https://install.python-poetry.org | python3 - ⚠️ 安装遇到问题 报错日志说是未在清华源中">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">Python - Poetry 环境管理 </h1>
@@ -278,7 +279,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>299</span>
+<span class=post-meta-item-text>字数：</span><span>401</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -312,42 +313,58 @@
 <h2 id=安装>安装</h2>
 <p><strong>Linux、macOS、Windows (WSL)</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ curl -sSL https://install.python-poetry.org | python3 -
-</code></pre></div><ul>
-<li>MacOS: <code>~/Library/Application Support/pypoetry</code></li>
-</ul>
-<p>安装失败，报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。</p>
-<p>安装完成后，默认在 <code>~/.local/bin/poetry</code></p>
+</code></pre></div><blockquote>
+<p>⚠️ 安装遇到问题</p>
+<p>报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。如何取消？（去 pip-包管理工具文档中找）</p>
+</blockquote>
+<p>安装完成后，可执行命令默认在 <code>~/.local/bin/poetry</code></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ ~/.local/bin/poetry --version
 Poetry <span style=color:#f92672>(</span>version 1.5.1<span style=color:#f92672>)</span>
 
-<span style=color:#75715e># 由于 .local 并不在环境变量下，所以还不能直接使用 poetry 命令</span>
+<span style=color:#75715e># 由于 .local 并不在环境量下，所以还不能直接使用 poetry 命令</span>
 $ poetry --version
-poetry: command not found
+poetry: command not founds
 
 <span style=color:#75715e># 复制命令到环境变量 或者 添加到环境变量</span>
 $ cp ~/.local/bin/poetry /usr/local/bin
 $ poetry --version
 Poetry <span style=color:#f92672>(</span>version 1.5.1<span style=color:#f92672>)</span>
 </code></pre></div><h2 id=使用>使用</h2>
-<p>进入一个 python 项目中</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ poetry init     
+<p>进入 python 项目中</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ cd fastapi-blog/
+$ poetry init     
 <span style=color:#75715e># 填入自定义项，默认都是确定，回车就行</span>
 ...
 Generated file
 
 $ poetry install 
-Creating virtualenv fastapi-blog-mriyrGjF-py3.10 in /Users/lan/Library/Caches/pypoetry/virtualenvs
-Updating dependencies
-Resolving dependencies... <span style=color:#f92672>(</span>0.1s<span style=color:#f92672>)</span>
-
-Writing lock file
-
+...
 /Users/lan/workspace/github/abeelan/fastapi-blog/fastapi_blog does not contain any element
-<span style=color:#f92672>(</span>venv<span style=color:#f92672>)</span> 
-</code></pre></div><p>在 pycharm 中使用该环境，需要手动连接一下</p>
-<p>设置中添加解释器，然后去上面输出的路径中找到 python 并添加，作为该项目的解释器。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 安装包 并 自动添加到 配置文件中</span>
+</code></pre></div><blockquote>
+<p>⚠️ 遇到报错</p>
+<p>原因是 <code>pyproject.toml</code> 里面的 <code>nmae</code> 我写成项目的名字了，应该写 src 目录下的 APP 的名字修改后重新执行</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ poetry install
+Installing dependencies from lock file
+...
+
+<span style=color:#75715e># 进入该环境，这样安装的第三方包 命令行工具也能直接使用了</span>
+$ poetry shell
+
+<span style=color:#75715e># 验证环境使用成功</span>
+$ poetry env list
+blog-mriyrGjF-py3.10 <span style=color:#f92672>(</span>Activated<span style=color:#f92672>)</span>
+<span style=color:#f92672>(</span>blog-py3.10<span style=color:#f92672>)</span> 
+</code></pre></div><h2 id=常用命令>常用命令</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 进入该环境的终端，之后才能使用 python 包的 command</span>
+$ poetry shell
+
+<span style=color:#75715e># 安装包 并 自动添加到 配置文件中</span>
 $ poetry add click  
+
+<span style=color:#75715e># 查看项目中安装的包</span>
+$ poetry show  
+$ poetry show alembic
 </code></pre></div><p>
 <a href=https://www.cnblogs.com/poloyy/p/15270670.html title=https://www.cnblogs.com/poloyy/p/15270670.html rel="noopener external nofollow noreferrer" target=_blank class=exturl>
 https://www.cnblogs.com/poloyy/p/15270670.html

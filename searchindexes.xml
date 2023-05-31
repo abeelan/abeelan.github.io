@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Python - Poetry 环境管理</title><url>/tech/python/poetry-%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"> 虚拟环境工具 poetry（要求 3.7+ 快速上手 ）
 安装 Linux、macOS、Windows (WSL)
-$ curl -sSL https://install.python-poetry.org | python3 - MacOS: ~/Library/Application Support/pypoetry 安装失败，报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。
-安装完成后，默认在 ~/.local/bin/poetry
-$ ~/.local/bin/poetry --version Poetry (version 1.5.1) # 由于 .local 并不在环境变量下，所以还不能直接使用 poetry 命令 $ poetry --version poetry: command not found # 复制命令到环境变量 或者 添加到环境变量 $ cp ~/.local/bin/poetry /usr/local/bin $ poetry --version Poetry (version 1.5.1) 使用 进入一个 python 项目中
-$ poetry init # 填入自定义项，默认都是确定，回车就行 ... Generated file $ poetry install Creating virtualenv fastapi-blog-mriyrGjF-py3.10 in /Users/lan/Library/Caches/pypoetry/virtualenvs Updating dependencies Resolving dependencies... (0.1s) Writing lock file /Users/lan/workspace/github/abeelan/fastapi-blog/fastapi_blog does not contain any element (venv) 在 pycharm 中使用该环境，需要手动连接一下
-设置中添加解释器，然后去上面输出的路径中找到 python 并添加，作为该项目的解释器。
-# 安装包 并 自动添加到 配置文件中 $ poetry add click https://www.cnblogs.com/poloyy/p/15270670.html</content></entry><entry><title>Fastapi - 实践经验（转载）</title><url>/tech/fastapi/%E5%AE%9E%E8%B7%B5%E7%BB%8F%E9%AA%8C%E8%BD%AC%E8%BD%BD/</url><categories><category>Fastapi</category></categories><tags><tag>Fastapi</tag></tags><content type="html"><![CDATA[ ref：https://zhuanlan.zhihu.com/p/560737058
+$ curl -sSL https://install.python-poetry.org | python3 - ⚠️ 安装遇到问题
+报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。如何取消？（去 pip-包管理工具文档中找）
+安装完成后，可执行命令默认在 ~/.local/bin/poetry
+$ ~/.local/bin/poetry --version Poetry (version 1.5.1) # 由于 .local 并不在环境量下，所以还不能直接使用 poetry 命令 $ poetry --version poetry: command not founds # 复制命令到环境变量 或者 添加到环境变量 $ cp ~/.local/bin/poetry /usr/local/bin $ poetry --version Poetry (version 1.5.1) 使用 进入 python 项目中
+$ cd fastapi-blog/ $ poetry init # 填入自定义项，默认都是确定，回车就行 ... Generated file $ poetry install ... /Users/lan/workspace/github/abeelan/fastapi-blog/fastapi_blog does not contain any element ⚠️ 遇到报错
+原因是 pyproject.toml 里面的 nmae 我写成项目的名字了，应该写 src 目录下的 APP 的名字修改后重新执行
+$ poetry install Installing dependencies from lock file ... # 进入该环境，这样安装的第三方包 命令行工具也能直接使用了 $ poetry shell # 验证环境使用成功 $ poetry env list blog-mriyrGjF-py3.10 (Activated) (blog-py3.10) 常用命令 # 进入该环境的终端，之后才能使用 python 包的 command $ poetry shell # 安装包 并 自动添加到 配置文件中 $ poetry add click # 查看项目中安装的包 $ poetry show $ poetry show alembic https://www.cnblogs.com/poloyy/p/15270670.html</content></entry><entry><title>Fastapi - 实践经验（转载）</title><url>/tech/fastapi/%E5%AE%9E%E8%B7%B5%E7%BB%8F%E9%AA%8C%E8%BD%AC%E8%BD%BD/</url><categories><category>Fastapi</category></categories><tags><tag>Fastapi</tag></tags><content type="html"><![CDATA[ ref：https://zhuanlan.zhihu.com/p/560737058
  尽管 FastAPI 是一个很棒的框架，具有出色的文档，但如何为初学者构建更大的项目并不是很明显。
 在过去的 1.5 年生产中，我们一直在做出正确和错误的决定，这些决定极大地影响了我们的开发人员体验。 其中一些值得分享。
 内容
@@ -1385,7 +1386,7 @@ C++ 编译器遵循以下先后顺序：
 数据库分类  关系型数据库（RDB - Relationship Database）  Mysql、Oracle、Postgres、SQLLite、SQLServer 使用场景：数据处理较复杂、数据量不是特别大、对安全性要求比较高、数据格式单一   非关系型数据库（NoSQL - Not only sql）  MongoDB、Redis、HBase、Neo4j（图分析数据库） 数据模型比较简单、需要灵活性更强的 IT 系统、对数据库性能要求较高、不需要高度的数据一致性    MySQL 安装与配置 登录数据库服务器
 登录方式
  远程连接（ssh） 本地服务器（本地搭建）  我这里通过本地 docker 的方式，启动数据库服务，登录命令：
-$ docker run --name=mysql -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST=% -d mysql $ docker exec -it mysql /bin/bash 查看数据库版本信息
+# 设为 % 使得所有客户端均可连 $ docker run --name=mysql -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST=% -d mysql $ docker exec -it mysql /bin/bash 查看数据库版本信息
 $ mysql --version $ mysql -V mysql&gt; select version(); PostgreSQL 10.7 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-36), 64-bit 登录数据库
 $ mysql -h localhost -u root -p # -h：指连接的主机名 # -u：用户名 # -p：密码 root # 然后输入密码，进入数据库 # 修改密码 $ alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;新密码&#39;; # 退出数据库 $ exit 查看数据库版本
 mysql&gt; SELECT VERSION(); 正常会出现数据库的版本号，环境准备完成！
