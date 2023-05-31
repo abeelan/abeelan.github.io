@@ -1,0 +1,465 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Docker - 搭建Selenium测试环境">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker - 搭建Selenium测试环境">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2021-08-25 11:08:05 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-31 11:31:02 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.a43b1b53f06c2742996de6dae9d44fbf8a80126b96930876ad36232372bd6b1a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83","permalink":"https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/","title":"Docker - 搭建Selenium测试环境","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Docker - 搭建Selenium测试环境 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>128</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#搭建分布式-ui-自动化测试环境>搭建分布式 UI 自动化测试环境</a>
+<ul>
+<li><a href=#启动-hub>启动 hub</a></li>
+<li><a href=#启动-node>启动 node</a></li>
+<li><a href=#演示>演示</a></li>
+</ul>
+</li>
+<li><a href=#搭建镜像仓库>搭建镜像仓库</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>128</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-17T17:18:17+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=185357></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=436></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Docker - 搭建Selenium测试环境">
+<meta itemprop=description content="docker 实战演练，搭建测试平台。 搭建分布式 UI 自动化测试环境 自动化测试发展从刚开始的单机单线程到单机多线程再到多机分布式操作。 UI 自动化测试通过 Grid hub 分">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Docker - 搭建Selenium测试环境 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2021-08-25 11:08:05 +0000 UTC" itemprop="dateCreated datePublished" datetime="2021-08-25 11:08:05 +0000 UTC">2021-08-25</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-31T11:31:02+00:00 itemprop=dateModified datetime=2023-05-31T11:31:02+00:00>2023-05-31</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/docker itemprop=url rel=index>
+<span itemprop=name>Docker</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1247</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>3分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/docker/%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<p>docker 实战演练，搭建测试平台。</p>
+<h2 id=搭建分布式-ui-自动化测试环境>搭建分布式 UI 自动化测试环境</h2>
+<p>自动化测试发展从刚开始的单机单线程到单机多线程再到多机分布式操作。</p>
+<p>UI 自动化测试通过 Grid hub 分发用例到不同的节点，执行用例。</p>
+<p>grid 负载均衡是通过查看不同节点启动的浏览器数量，如果数量多证明繁忙，会优先分发到浏览器数量少的node上</p>
+<p>github 搜索 docker- selenium</p>
+<p>standalone 镜像内包含 hub 和 node，一般来做调试用，不能做分布式。</p>
+<h3 id=启动-hub>启动 hub</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker run --name<span style=color:#f92672>=</span>hub -p 5001:4444 -e GRID_TIMEOUT<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span> -e GRID_THROW_ON_CAPABILITY_NOT_PRESENT<span style=color:#f92672>=</span>true -e GRID_NEW_SESSION_WAIT_TIMEOUT<span style=color:#f92672>=</span>-1 -e GRID_BROWSER_TIMEOUT<span style=color:#f92672>=</span><span style=color:#ae81ff>15000</span> -e GRID_TIMEOUT<span style=color:#f92672>=</span><span style=color:#ae81ff>30000</span> -e GRID_CLEAN_UP_CYCLE<span style=color:#f92672>=</span><span style=color:#ae81ff>30000</span> -d selenium/hub:3.7.1-beryllium
+</code></pre></div><p>访问：http://localhost:5001/，得到下图中的页面。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210825120833235.png alt=image-20210825120833235></p>
+<h3 id=启动-node>启动 node</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker run --name<span style=color:#f92672>=</span>chrome -p 5902:5900 -e NODE_MAX_INSTANCES<span style=color:#f92672>=</span><span style=color:#ae81ff>6</span> -e NODE_MAX_SESSION<span style=color:#f92672>=</span><span style=color:#ae81ff>6</span> -e NODE_REGISTER_CYCLE<span style=color:#f92672>=</span><span style=color:#ae81ff>5000</span> -e DBUS_SESSION_BUS_ADDRESS<span style=color:#f92672>=</span>/dev/null -v /dev/shm:/dev/shm --link hub -d selenium/node-chrome-debug:3.7.1-beryllium
+</code></pre></div><p>由于 node 节点运行的是远程浏览器，selenium/node-chrome-debug 镜像，提供远程 debug 的功能，通过 VNC 远程桌面服务来进行查看浏览器的运行状态，所以 node 也需要映射一个端口来与 VNC 进行通信。VNC 密码是 secret。</p>
+<p>NODE_MAX_INSTANCES、NODE_MAX_SESSION 这两个参数决定该 node 节点启动浏览器的上限，启动浏览器是非常消耗 CPU 的，如果启动过多，可能会压垮机器，需要设置上限进行保护。</p>
+<p>-v /dev/shm:/dev/shm：这个参数是优化内存使用的，如果没有会因为内存问题容易崩溃。</p>
+<p>&ndash;link hub：把 hub 的网络信息发送给 node 节点，将 hub 链接到容器上</p>
+<p>访问：http://localhost:5001/，点击 console，跳转到下图页面。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210825120912920.png alt=image-20210825120912920></p>
+<p>通过该命令可以启动多个 node，注意更换下名称和端口号即可，刷新当前页面，会看到有多个节点。</p>
+<p>node 也可以启动不同的浏览器，用来做浏览器的兼容性测试。</p>
+<h3 id=演示>演示</h3>
+<p>环境已经搭建完成了， 那么接下来通过代码来看看实际效果。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># demo.py</span>
+<span style=color:#f92672>import</span> selenium.webdriver.remote.webdriver
+<span style=color:#f92672>from</span> selenium.webdriver.common.desired_capabilities <span style=color:#f92672>import</span> DesiredCapabilities
+<span style=color:#f92672>from</span> time <span style=color:#f92672>import</span> sleep
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_baidu_search</span>():
+    driver <span style=color:#f92672>=</span> selenium<span style=color:#f92672>.</span>webdriver<span style=color:#f92672>.</span>remote<span style=color:#f92672>.</span>webdriver<span style=color:#f92672>.</span>WebDriver(
+        command_executor<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://127.0.0.1:5001/wd/hub&#34;</span>,
+        desired_capabilities<span style=color:#f92672>=</span>DesiredCapabilities<span style=color:#f92672>.</span>CHROME
+    )
+    driver<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;http://www.baidu.com&#34;</span>)
+    driver<span style=color:#f92672>.</span>find_element_by_id(<span style=color:#e6db74>&#34;kw&#34;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;python&#34;</span>)
+    driver<span style=color:#f92672>.</span>find_element_by_id(<span style=color:#e6db74>&#34;su&#34;</span>)<span style=color:#f92672>.</span>click()
+    sleep(<span style=color:#ae81ff>2</span>)
+    driver<span style=color:#f92672>.</span>quit()
+</code></pre></div><p>通过 remote 将远程地址修改为 hub 的地址，由于是本地服务，所以只需要修改一下端口即可。</p>
+<p>运行测试用例，发现执行通过，由于是运行在容器内，本地是看不到浏览器窗口的，还需要通过 VNC Viewer 来查看远程浏览器。</p>
+<blockquote>
+<p>VNC Viewer</p>
+<p>官网下载：https://www.realvnc.com/en/connect/download/viewer/</p>
+<p>打开应用后，command + N 新建远程链接，填写远程 IP 和端口，名称随意。</p>
+</blockquote>
+<p>server 处输入 {本机IP}:5902，连接上面的 node-chrome-debug，密码为 secret；</p>
+<p>链接成功后，执行测试用例，即可看到浏览器被拉起，搜索关键词 python 后点击搜索。</p>
+<h2 id=搭建镜像仓库>搭建镜像仓库</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker pull registry:2
+$ docker run -d -p 5000:5000 -v /usr/local/registry:/var/lib/registry --restart<span style=color:#f92672>=</span>always --name registry registry:2
+
+<span style=color:#75715e># --restart=always 代表容器万一挂掉，docker 会永远重启容器</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># DEMO</span>
+<span style=color:#75715e># 先下载一个小镜像</span>
+$ docker pull busybox
+<span style=color:#75715e># 上传镜像前需要更新名字，命名规范 ==&gt; IP地址:端口号/名称:版本号；</span>
+<span style=color:#75715e># 上面 pull busybox，其实应该是 library/busybox:latest</span>
+<span style=color:#75715e># library 是docker默认仓库地址，版本号不写默认是latest，代表最新版本</span>
+$ docker tag busybox localhost:5000/busybox:v1.0
+$ docker push localhost:5000/busybox:v1.0
+<span style=color:#75715e># 通过命令查看镜像仓库</span>
+$ curl http://localhost:5000/v2/_catalog
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 从一个运行的容器制作镜像</span>
+$ docker commit registry localhost:5000/myimage:v1.0
+$ docker images | grep myimage
+$ docker push localhost:5000/myimage:v1.0
+$ curl http://localhost:5000/v2/_catalog
+<span style=color:#75715e># 这种方法不推荐，别人拿到这个镜像，如果要做一些扩展，不知道安装了什么软件、设置权限、配置等等</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 为了解决上面的问题，推荐使用 dockerfile</span>
+<span style=color:#75715e># 将制作镜像的过程脚本化</span>
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/docker>
+Docker
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+Docker - 搭建Selenium测试环境
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/ title="Docker - 搭建Selenium测试环境">https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/docker/%E5%85%B3%E4%BA%8Edocker%E7%9A%84%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91/ rel=next title="Docker - 关于Docker的问题答疑">
+<i class="fa fa-chevron-left"></i> Docker - 关于Docker的问题答疑
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/selenium/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%A7%E8%A1%8Cseleniumgrid/ rel=prev title="Selenium - 分布式执行Seleniumgrid">
+Selenium - 分布式执行Seleniumgrid
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

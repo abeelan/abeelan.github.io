@@ -1,0 +1,509 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="安全测试 - Dvwa漏洞介绍及案例">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="安全测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全测试 - Dvwa漏洞介绍及案例">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/dvwa%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%A1%88%E4%BE%8B/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2021-08-13 17:55:30 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-31 11:31:03 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.a43b1b53f06c2742996de6dae9d44fbf8a80126b96930876ad36232372bd6b1a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"dvwa%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%A1%88%E4%BE%8B","permalink":"https://abeelan.github.io/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/dvwa%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%A1%88%E4%BE%8B/","title":"安全测试 - Dvwa漏洞介绍及案例","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>安全测试 - Dvwa漏洞介绍及案例 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>128</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#命令注入漏洞>命令注入漏洞</a>
+<ul>
+<li><a href=#原理>原理</a></li>
+<li><a href=#案例>案例</a></li>
+<li><a href=#常用漏洞利用-payload>常用漏洞利用 payload</a></li>
+</ul>
+</li>
+<li><a href=#sql-注入漏洞>SQL 注入漏洞</a>
+<ul>
+<li><a href=#原理-1>原理</a></li>
+<li><a href=#案例-1>案例</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#危害与预防>危害与预防</a></li>
+</ul>
+</li>
+<li><a href=#xss-漏洞>XSS 漏洞</a>
+<ul>
+<li><a href=#原理-2>原理</a></li>
+<li><a href=#案例-2>案例</a></li>
+<li><a href=#常见的攻击-payload>常见的攻击 payload</a></li>
+<li><a href=#危害与防范>危害与防范</a></li>
+</ul>
+</li>
+<li><a href=#csfr-漏洞>CSFR 漏洞</a>
+<ul>
+<li><a href=#原理-3>原理</a></li>
+<li><a href=#案例-3>案例</a></li>
+<li><a href=#常见的攻击-payload-1>常见的攻击 payload</a></li>
+<li><a href=#危害与检测>危害与检测</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>128</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-17T17:18:17+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=185357></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=436></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/dvwa%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%A1%88%E4%BE%8B/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="安全测试 - Dvwa漏洞介绍及案例">
+<meta itemprop=description content="接口安全测试，常见漏洞了解和案例演示。 命令注入漏洞 原理 命令注入是一种攻击，其目标是通过易受攻击的应用程序在主机操作系统上执行任意命令。 当应用">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">安全测试 - Dvwa漏洞介绍及案例 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2021-08-13 17:55:30 +0000 UTC" itemprop="dateCreated datePublished" datetime="2021-08-13 17:55:30 +0000 UTC">2021-08-13</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-31T11:31:03+00:00 itemprop=dateModified datetime=2023-05-31T11:31:03+00:00>2023-05-31</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95 itemprop=url rel=index>
+<span itemprop=name>安全测试</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1674</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>4分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/dvwa%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%A1%88%E4%BE%8B/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<p>接口安全测试，常见漏洞了解和案例演示。</p>
+<h2 id=命令注入漏洞>命令注入漏洞</h2>
+<h3 id=原理>原理</h3>
+<p>命令注入是一种攻击，其目标是通过易受攻击的应用程序在主机操作系统上执行任意命令。</p>
+<p>当应用程序将用户提供的不安全数据（表格、cookie、http 标头等）传递到 shell 时，可能会发生命令注入攻击。在这种攻击中，通常由易受攻击的应用程序以特权执行由攻击者提供的操作系统命令。由于没有足够的输入验证，因此可能会发生命令注入攻击。</p>
+<h3 id=案例>案例</h3>
+<p>演示地址：https://dvwa.ceshiren.com/vulnerabilities/exec</p>
+<p>在地址框内输入一个正常的测试地址，会执行 ping 命令，然后打印该地址的一些信息，这是一个正常的流程。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210813183512348.png alt=image-20210813183512348></p>
+<p>点击 submit 后，底层的执行逻辑代码，是通过字符串拼接的方式，执行 shell 命令。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210813183434874.png alt=image-20210813183434874></p>
+<p>上面的 target 用户可以自定义，而 shell 本身是有一些特殊字符代表特殊含义的，那么输入下面的内容，再次执行一下试试。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210813184310224.png alt=image-20210813184310224></p>
+<p>会发现打印出当前目录下的其他文件名称，如果输入 <code>rm -rf *</code> 之类的命令，或者获取用户密码、数据库数据等等，会造成比较严重的后果；这就是恶意命令注入漏洞。</p>
+<h3 id=常用漏洞利用-payload>常用漏洞利用 payload</h3>
+<ul>
+<li>
+<p>多语句分号：;</p>
+</li>
+<li>
+<p>条件执行：&& ||</p>
+</li>
+<li>
+<p>管道符号：｜</p>
+</li>
+</ul>
+<p>需要通过工具，来扫描验证屏蔽这些符号。</p>
+<h2 id=sql-注入漏洞>SQL 注入漏洞</h2>
+<h3 id=原理-1>原理</h3>
+<p>是发生于应用程序与数据库层的安全漏洞。简而言之，是在输入的字符串之中注入 SQL 指令，在设计不良的程序当中忽略了字符检查，那么这些注入进去的恶意指令就会被数据库服务误认为是正常的 SQL 指令而运行，因此遭到破坏或是入侵。</p>
+<h3 id=案例-1>案例</h3>
+<h5 id=案例一>案例一：</h5>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210813185508065.png alt=image-20210813185508065></p>
+<h5 id=案例二>案例二：</h5>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210817104214372.png alt=前端展示页面></p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210817104134360.png alt=代码逻辑片段></p>
+<p>当在输入框内输入 ID 时，会返回当前 ID 所对应的用户名信息；通过恶意输入 sql 命令来完成一次注入漏洞</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#f92672>#</span> <span style=color:#ae81ff>1</span> <span style=color:#960050;background-color:#1e0010>是搜索条件</span>
+<span style=color:#f92672>#</span> <span style=color:#960050;background-color:#1e0010>一个单引号来完成字符串拼接引号的闭合</span>
+<span style=color:#f92672>#</span> <span style=color:#960050;background-color:#1e0010>执行查询整表的命令</span>
+<span style=color:#f92672>#</span> <span style=color:#75715e>--- 注释掉后面所有的内容
+</span><span style=color:#75715e></span><span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#ae81ff>1</span> <span style=color:#e6db74>&#39; union select * from users; ---
+</span></code></pre></div><p>执行效果如下，通过该漏洞达到执行任意 sql 命令的目的；获取到了所有用户的信息，导致数据泄露。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210817104847038.png alt=image-20210817104847038></p>
+<h3 id=危害与预防>危害与预防</h3>
+<p>危害：可以无限制的使用 SQL，造成数据泄露甚至远程命令执行</p>
+<p>预防：使用参数化查询避免数据被混在指令中</p>
+<h2 id=xss-漏洞>XSS 漏洞</h2>
+<h3 id=原理-2>原理</h3>
+<ul>
+<li>跨站脚本（简称为 XSS）是一种网站应用程序的安全漏洞攻击，是代码注入的一种。</li>
+<li>XSS 攻击通常指的是利用网页开发时的漏洞，通过巧妙的方法注恶意指令代码到网页，使用户加载并执行攻击者恶意制造的网页程序。这些恶意网页程序通常是 JavaScript，但实际上也可以包括 Java、VBScript、ActiceX、Flash 或者普通的 HTML。攻击成功后，攻击者可能得到更高的权限（如执行一些操作）、私密网页内容、会话和 cookie 等各种内容。</li>
+</ul>
+<h3 id=案例-2>案例</h3>
+<p>在输入框，输入用户名，点击提交后，会打印出一个带有用户名的字符串</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210817105829965.png alt=前端展示></p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210817105908103.png alt=代码片段></p>
+<p>通过代码片段可以看到，输出命令是通过字符串拼接来实现的，容易被恶意指令攻击。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 通过语句闭合输入恶意指令</span>
+$ myname &lt;script&gt;alert<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;myname&#34;</span><span style=color:#f92672>)</span>&lt;/script&gt;
+</code></pre></div><p>通过这种方法来执行 JavaScript 脚本，显示出我的名称；同样，可以通过伪造请求获取到用户 cookie 打印出来；如果将该网页发送给其他用户，点击后，</p>
+<h3 id=常见的攻击-payload>常见的攻击 payload</h3>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210817110220880.png alt=image-20210817110220880></p>
+<h3 id=危害与防范>危害与防范</h3>
+<ul>
+<li>危害：危害网站上的其他用户，导致别动执行非预期网页脚本</li>
+<li>预防：输入输出过滤，利用浏览器安全机制等</li>
+<li>检测：可自动化发现</li>
+</ul>
+<h2 id=csfr-漏洞>CSFR 漏洞</h2>
+<h3 id=原理-3>原理</h3>
+<ul>
+<li>跨站请求伪造，是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作的攻击方法。与跨网站脚本（XSS）相比，XSS 利用的是用户对指定网站的信任，CSFR 利用的是网站对用户网页浏览器的信任。</li>
+<li>跨站请求攻击，简单的说，是攻击中通过一些技术手段欺骗用户的浏览器去访问一个自己曾将认证过的网站，并运行一些操作（发邮件，发消息，甚至是转账和购买商品等财产操作）。由于浏览器曾经认证过，所以被访问的网站会认为是真正的用户操作而去运行。这利用了 web 中用户身份验证的一个漏洞：简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求是用户自愿发出的。</li>
+</ul>
+<h3 id=案例-3>案例</h3>
+<p>修改密码的功能页面</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210817112333153.png alt=image-20210817112333153></p>
+<p>设置新密码后，点击 change 即可修改，问题在于使用的 get 方法进行请求。</p>
+<p>如果将该链接发送给用户，且用户正好已经是登录状态，那么密码就会直接被重置为新密码。</p>
+<h3 id=常见的攻击-payload-1>常见的攻击 payload</h3>
+<ul>
+<li>利用 url</li>
+<li>利用图片请求</li>
+<li>利用伪造表单</li>
+</ul>
+<h3 id=危害与检测>危害与检测</h3>
+<p>危害：导致用户执行非本意的网站请求</p>
+<p>预防：增加 token 校验（提交过程中检验是否是第三方伪造）、检查 referer</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%e5%ae%89%e5%85%a8%e6%b5%8b%e8%af%95>
+安全测试
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+安全测试 - Dvwa漏洞介绍及案例
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/dvwa%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%A1%88%E4%BE%8B/ title="安全测试 - Dvwa漏洞介绍及案例">https://abeelan.github.io/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/dvwa%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%A1%88%E4%BE%8B/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/%E4%BA%86%E8%A7%A3%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95/ rel=next title="安全测试 - 了解安全测试">
+<i class="fa fa-chevron-left"></i> 安全测试 - 了解安全测试
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/blog/typora-%E5%9B%BE%E5%BA%8A/ rel=prev title="Blog - Typora 图床">
+Blog - Typora 图床
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

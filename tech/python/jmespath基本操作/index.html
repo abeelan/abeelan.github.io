@@ -1,0 +1,749 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Python - Jmespath基本操作">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - Jmespath基本操作">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2021-12-02 10:46:42 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-31 11:31:03 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.a43b1b53f06c2742996de6dae9d44fbf8a80126b96930876ad36232372bd6b1a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C","permalink":"https://abeelan.github.io/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/","title":"Python - Jmespath基本操作","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Python - Jmespath基本操作 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>128</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#安装>安装</a></li>
+<li><a href=#基本表达式>基本表达式</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>128</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-17T17:18:17+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=185357></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=436></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Python - Jmespath基本操作">
+<meta itemprop=description content="JMESPath is a query language for JSON. JMESPath 是 JSON 查询语言，可以从 JSON 文档中提取和转换元素。在做接口自动化测试项目时，最基础的一步就是从响应中获取各种待验证字段值，掌握 jmespath 语">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Python - Jmespath基本操作 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2021-12-02 10:46:42 +0000 UTC" itemprop="dateCreated datePublished" datetime="2021-12-02 10:46:42 +0000 UTC">2021-12-02</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-31T11:31:03+00:00 itemprop=dateModified datetime=2023-05-31T11:31:03+00:00>2023-05-31</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>2471</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>5分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>JMESPath is a query language for JSON.</p>
+</blockquote>
+<p>JMESPath 是 JSON 查询语言，可以从 JSON 文档中提取和转换元素。在做接口自动化测试项目时，最基础的一步就是从响应中获取各种待验证字段值，掌握 jmespath 语法，能达到事半功倍的效果。撸了一天官方文档，趁热记录下所学所得。</p>
+<p>
+<a href=https://jmespath.org/ title="Try it Out!" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Try it Out!
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<p>
+<a href=https://github.com/jmespath/jmespath.py title=jmesath.py rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+jmesath.py
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<p>
+<a href=https://jmespath.org/examples.html title="JMESPath Examples" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+JMESPath Examples
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<h3 id=安装>安装</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ pip install jemspath
+</code></pre></div><p>jmespath.py 库提供了两个接口：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>compile</span>(expression):
+    <span style=color:#66d9ef>return</span> parser<span style=color:#f92672>.</span>Parser()<span style=color:#f92672>.</span>parse(expression)
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search</span>(expression, data, options<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>):
+    <span style=color:#66d9ef>return</span> parser<span style=color:#f92672>.</span>Parser()<span style=color:#f92672>.</span>parse(expression)<span style=color:#f92672>.</span>search(data, options<span style=color:#f92672>=</span>options)
+
+<span style=color:#75715e># options 可以通过创建实例来控制 jmespath 表达式的计算方式。</span>
+</code></pre></div><ul>
+<li>compile：与 re 模块类似，使用 compile 函数编译表达式，并使用解析后的表达式执行重复搜索</li>
+<li>search：接收表达式和数据，返回提取结果</li>
+</ul>
+<h3 id=基本表达式>基本表达式</h3>
+<h5 id=1-对象取值>1. 对象取值</h5>
+<p>根据键取值，如果键不存在，则返回一个 null，或该语言中与 null 等效的值。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> <span style=color:#f92672>from</span> jmespath <span style=color:#f92672>import</span> search
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;a&#34;</span>, {<span style=color:#e6db74>&#34;a&#34;</span>: <span style=color:#e6db74>&#34;foo&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>: <span style=color:#e6db74>&#34;bar&#34;</span>, <span style=color:#e6db74>&#34;c&#34;</span>: <span style=color:#e6db74>&#34;baz&#34;</span>})
+<span style=color:#e6db74>&#39;foo&#39;</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;d&#34;</span>, {<span style=color:#e6db74>&#34;a&#34;</span>: <span style=color:#e6db74>&#34;foo&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>: <span style=color:#e6db74>&#34;bar&#34;</span>, <span style=color:#e6db74>&#34;c&#34;</span>: <span style=color:#e6db74>&#34;baz&#34;</span>})
+<span style=color:#66d9ef>None</span>
+</code></pre></div><p>使用子表达式获取值，如果键不存在，则返回一个 null。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;a.b.c&#34;</span>, {<span style=color:#e6db74>&#34;a&#34;</span>: {<span style=color:#e6db74>&#34;b&#34;</span>: {<span style=color:#e6db74>&#34;c&#34;</span>: <span style=color:#e6db74>&#34;value&#34;</span>}}})
+value
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;a.b.c.d&#34;</span>, {<span style=color:#e6db74>&#34;a&#34;</span>: {<span style=color:#e6db74>&#34;b&#34;</span>: {<span style=color:#e6db74>&#34;c&#34;</span>: <span style=color:#e6db74>&#34;value&#34;</span>}}})
+<span style=color:#66d9ef>None</span>
+</code></pre></div><h5 id=2-列表取值>2. 列表取值</h5>
+<p>索引表达式，从 0 开始，索引越界，则返回 null；索引可以为负数，-1 为列表中最后一个元素。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[1]&#34;</span>, [<span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>, <span style=color:#e6db74>&#34;c&#34;</span>])
+<span style=color:#e6db74>&#34;b&#34;</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[3]&#34;</span>, [<span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>, <span style=color:#e6db74>&#34;c&#34;</span>])
+<span style=color:#66d9ef>None</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[-1]&#34;</span>, [<span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>, <span style=color:#e6db74>&#34;c&#34;</span>])
+<span style=color:#e6db74>&#34;c&#34;</span>
+</code></pre></div><h5 id=3-对象嵌套列表>3. 对象嵌套列表</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;a.b[0].c&#34;</span>, {<span style=color:#e6db74>&#34;a&#34;</span>: {<span style=color:#e6db74>&#34;b&#34;</span>: [{<span style=color:#e6db74>&#34;c&#34;</span>: <span style=color:#ae81ff>3</span>}, {<span style=color:#e6db74>&#34;d&#34;</span>: <span style=color:#ae81ff>4</span>}]}})
+<span style=color:#ae81ff>3</span>
+</code></pre></div><h5 id=4-切片>4. 切片</h5>
+<p>与 python 列表切片相同，[start：end：step]，留头掐尾</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[0:5]&#34;</span>, [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>])
+[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>]
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[5:10]&#34;</span>, [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>])
+[<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>]
+
+<span style=color:#75715e># 步长为 2，为 -1 时翻转列表</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[::2]&#34;</span>, [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>])
+[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>8</span>]
+</code></pre></div><h5 id=5-投影>5. 投影</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 创建数据</span>
+data <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#34;student&#34;</span>: [
+        {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;james&#34;</span>, <span style=color:#e6db74>&#34;age&#34;</span>: <span style=color:#ae81ff>32</span>},
+        {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;harden&#34;</span>, <span style=color:#e6db74>&#34;age&#34;</span>: <span style=color:#ae81ff>18</span>},
+        {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;curry&#34;</span>, <span style=color:#e6db74>&#34;age&#34;</span>: <span style=color:#ae81ff>13</span>},
+        {<span style=color:#e6db74>&#34;test&#34;</span>: <span style=color:#e6db74>&#34;ok&#34;</span>}
+    ]
+}
+</code></pre></div><ul>
+<li>列表投影</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;student[*].name&#34;</span>, data)
+[<span style=color:#e6db74>&#39;james&#39;</span>, <span style=color:#e6db74>&#39;harden&#39;</span>, <span style=color:#e6db74>&#39;curry&#39;</span>]
+</code></pre></div><p>student 中的每个元素被收集到数组中，给到后续的表达式，这成为投影（名词来自翻译软件，我不是很懂 😂）。我理解的意思就是每一步获取到的数据结果。 通配符 <code>*</code>，表示返回列表中的全部元素。当单组元素的结果表达式为 null，则该值从收集的 <strong>结果集</strong> 中忽略。</p>
+<p>所以，在最终的输出结果内没有 <code>{"test": "ok"}</code> 的值。</p>
+<ul>
+<li>切片投影</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;student[:2].name&#34;</span>, data)
+[<span style=color:#e6db74>&#39;james&#39;</span>, <span style=color:#e6db74>&#39;harden&#39;</span>]
+</code></pre></div><ul>
+<li>对象投影</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>data <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#34;test&#34;</span>: {
+        <span style=color:#e6db74>&#34;funcA&#34;</span>: {<span style=color:#e6db74>&#34;num&#34;</span>: <span style=color:#ae81ff>1</span>},
+        <span style=color:#e6db74>&#34;funcB&#34;</span>: {<span style=color:#e6db74>&#34;num&#34;</span>: <span style=color:#ae81ff>2</span>},
+        <span style=color:#e6db74>&#34;funcC&#34;</span>: {<span style=color:#e6db74>&#34;miss&#34;</span>: <span style=color:#ae81ff>3</span>},
+    }
+}
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;test.*.num&#34;</span>, data)
+[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>]
+</code></pre></div><p>对象投影可以分解为两个部分，左侧和右侧：</p>
+<ol>
+<li>左侧创建要投影的初始数组：</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>evaluate(test, inputData) -&gt; [
+	{&#34;num&#34;: 1}, 
+	{&#34;num&#34;: 2},
+    {&#34;miss&#34;: 3}
+]
+</code></pre></div><ol start=2>
+<li>右侧作用于数组中的每个元素</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>evaluate(num, {num: 1}) -&gt; 1
+evaluate(num, {num: 2}) -&gt; 2
+evaluate(num, {miss: 3}) -&gt; null
+</code></pre></div><p>第三条不符合，最终结果过滤空值，所以最终表达式结果为 [1, 2]。</p>
+<ul>
+<li>展平投影</li>
+</ul>
+<p>列表/对象投影，在投影中创建投影时会保留原始文档的结构。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>data <span style=color:#f92672>=</span> {
+  <span style=color:#e6db74>&#34;a&#34;</span>: [
+    {
+      <span style=color:#e6db74>&#34;b&#34;</span>: [
+        {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;a&#34;</span>},
+        {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;b&#34;</span>}
+      ]
+    },
+    {
+      <span style=color:#e6db74>&#34;b&#34;</span>: [
+        {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;c&#34;</span>},
+        {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;d&#34;</span>}
+      ]
+    }
+  ]
+}
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;a[*].b[*].name&#34;</span>, data)
+[
+    [<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;b&#39;</span>], 
+    [<span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>]
+]
+</code></pre></div><p>如果只要列表下的所有值，不关心所谓的层级结构，那么就需要通过展平投影来获取结果。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;a[].b[].name&#34;</span>, data)
+[<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#e6db74>&#39;d&#39;</span>]
+</code></pre></div><p>只需要将 <code>[*] -> []</code> 就可以扁平化列表。它将子列表展平到父列表，并不是递归的关系，下面例子能很好的说明。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>data <span style=color:#f92672>=</span> [
+  [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>],
+  <span style=color:#ae81ff>2</span>,
+  [<span style=color:#ae81ff>3</span>],
+  <span style=color:#ae81ff>4</span>,
+  [<span style=color:#ae81ff>5</span>, [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>]]
+]
+
+<span style=color:#75715e># 展平一层</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[]&#34;</span>, data)
+[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>]]
+
+<span style=color:#75715e># 展平第二层</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;[][]&#34;</span>, data)
+[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>]
+</code></pre></div><ul>
+<li>过滤投影</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>data <span style=color:#f92672>=</span> {
+  <span style=color:#e6db74>&#34;book&#34;</span>: [
+    {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;a1&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;aa&#34;</span>},
+    {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;a2&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;aa&#34;</span>},
+    {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;b&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;bb&#34;</span>}
+  ]
+}
+
+<span style=color:#75715e># 获取 aa 写的两本书</span>
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;book[?author==&#39;aa&#39;].name&#34;</span>, data)
+[<span style=color:#e6db74>&#39;a1&#39;</span>, <span style=color:#e6db74>&#39;a2&#39;</span>]
+</code></pre></div><p>过滤器表达式是为数组定义的，一般形式为 <code>左侧投影 [? &lt;表达式> &lt;比较器> &lt;表达式>] 右侧投影</code>。</p>
+<p>条件表达式支持如下：</p>
+<ul>
+<li><code>==</code>, tests for equality.</li>
+<li><code>!=</code>, tests for inequality.</li>
+<li><code>&lt;</code>, less than.</li>
+<li><code>&lt;=</code>, less than or equal to.</li>
+<li><code>></code>, greater than.</li>
+<li><code>>=</code>, greater than or equal to.</li>
+</ul>
+<h5 id=6-管道表达式>6. 管道表达式</h5>
+<p>管道表达式 <code>&lt;expression> | &lt;expression></code>，表示必须停止投影。将当前节点的结果传递到管道符右侧继续投影。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;book[*].name | [0]&#34;</span>, data)
+<span style=color:#e6db74>&#34;a1&#34;</span>
+
+<span style=color:#75715e># 管道符左侧结果为 [&#39;a1&#39;, &#39;a2&#39;, &#39;b&#39;] </span>
+<span style=color:#75715e># [0] 取该结果下标为 0 的数据，得到 a1</span>
+</code></pre></div><h5 id=7-多选>7. 多选</h5>
+<p><strong>多选列表示例</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>data <span style=color:#f92672>=</span> {
+  <span style=color:#e6db74>&#34;people&#34;</span>: [
+    {
+      <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;a&#34;</span>,
+      <span style=color:#e6db74>&#34;state&#34;</span>: {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;up&#34;</span>}
+    },
+    {
+      <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;b&#34;</span>,
+      <span style=color:#e6db74>&#34;state&#34;</span>: {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;down&#34;</span>}
+    },
+    {
+      <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;c&#34;</span>,
+      <span style=color:#e6db74>&#34;state&#34;</span>: {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;up&#34;</span>}
+    }
+  ]
+}
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;people[].[name, state.name]&#34;</span>, data)
+[
+    [<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;up&#39;</span>], 
+    [<span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#e6db74>&#39;down&#39;</span>], 
+    [<span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#e6db74>&#39;up&#39;</span>]
+]
+</code></pre></div><p>从 json 文档中提取所需要的内容，精简结构。</p>
+<p><code>[name, state.name]</code> 表达式的意思是创建一个包含两个元素的列表：</p>
+<ul>
+<li>第一个元素是计算 name 表达式得到的结果</li>
+<li>第二个元素是计算 state.name 表达式的结果</li>
+</ul>
+<p>因此，每个列表元素都会创建一个双元素列表，整个表达式的最终结果是一个包含两个元素列表的列表。</p>
+<p><strong>多选对象示例</strong></p>
+<p>与多选列表思想相同，创建的是一个散列而不是数组。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;people[].{name: name, state: state.name}&#34;</span>, data)
+[
+    {<span style=color:#e6db74>&#39;name&#39;</span>: <span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#e6db74>&#39;state&#39;</span>: <span style=color:#e6db74>&#39;up&#39;</span>}, 
+    {<span style=color:#e6db74>&#39;name&#39;</span>: <span style=color:#e6db74>&#39;b&#39;</span>, <span style=color:#e6db74>&#39;state&#39;</span>: <span style=color:#e6db74>&#39;down&#39;</span>}, 
+    {<span style=color:#e6db74>&#39;name&#39;</span>: <span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#e6db74>&#39;state&#39;</span>: <span style=color:#e6db74>&#39;up&#39;</span>}
+]
+</code></pre></div><h5 id=8-函数>8. 函数</h5>
+<p>部分函数的使用，直接通过 test 更直观一些，见名知义，没什么好解释的。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> jmespath
+<span style=color:#f92672>import</span> pytest
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestJmesPath</span>:
+    
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>setup_class</span>(self):
+        self<span style=color:#f92672>.</span>data <span style=color:#f92672>=</span> {
+            <span style=color:#e6db74>&#34;book&#34;</span>: [
+                {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;平凡的世界&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;路遥&#34;</span>, <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#ae81ff>3</span>},
+                {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;围城&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;钱钟书&#34;</span>, <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#ae81ff>2</span>},
+                {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;围城&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;钱钟书&#34;</span>, <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#ae81ff>2</span>},
+                {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;活着&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;余华&#34;</span>, <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#ae81ff>1</span>},
+                {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;麦田里的守望者&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;塞林格&#34;</span>, <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#ae81ff>4</span>},
+                {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;挪威的森林&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;村上春树&#34;</span>, <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#ae81ff>5</span>}
+            ]
+        }
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_keys</span>(self):
+        <span style=color:#e6db74>&#34;&#34;&#34;提取对象的 key
+</span><span style=color:#e6db74>        注意：管道符前面是一个对象，所以需要指定下标，不能通过 * 号提取数组后获取 key，否则报错
+</span><span style=color:#e6db74>        jmespath.exceptions.JMESPathTypeError:
+</span><span style=color:#e6db74>            In function keys(), expected one of: [&#39;object&#39;], received: &#34;array&#34;
+</span><span style=color:#e6db74>        &#34;&#34;&#34;</span>
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;book[0].test&#34;</span>, self<span style=color:#f92672>.</span>data)
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> [<span style=color:#e6db74>&#39;name&#39;</span>, <span style=color:#e6db74>&#39;author&#39;</span>]
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_values</span>(self):
+        <span style=color:#e6db74>&#34;&#34;&#34;提取对象的 value，不接受数组&#34;&#34;&#34;</span>
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;book[0] | values(@)&#34;</span>, self<span style=color:#f92672>.</span>data)
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> [<span style=color:#e6db74>&#39;平凡的世界&#39;</span>, <span style=color:#e6db74>&#39;路遥&#39;</span>]
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_sort</span>(self):
+        <span style=color:#e6db74>&#34;&#34;&#34;根据 sort 进行排序&#34;&#34;&#34;</span>
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;book[*].sort | sort(@)&#34;</span>, self<span style=color:#f92672>.</span>data)
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>]
+
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;book[*].author | sort(@) | [join(&#39;, &#39;, @)]&#34;</span>, self<span style=color:#f92672>.</span>data)
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> [<span style=color:#e6db74>&#39;余华, 塞林格, 村上春树, 路遥, 钱钟书, 钱钟书&#39;</span>]
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_type</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;book[*].sort | type(@)&#34;</span>, self<span style=color:#f92672>.</span>data)
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;array&#34;</span>
+
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;book[0].name | type(@)&#34;</span>, self<span style=color:#f92672>.</span>data)
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;string&#34;</span>
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_to_string</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#39;[].to_string(@)&#39;</span>, [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#e6db74>&#34;number&#34;</span>, <span style=color:#66d9ef>True</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> [<span style=color:#e6db74>&#34;1&#34;</span>, <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#e6db74>&#34;3&#34;</span>, <span style=color:#e6db74>&#39;number&#39;</span>, <span style=color:#e6db74>&#39;true&#39;</span>]
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_to_number</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#39;[].to_number(@)&#39;</span>, [<span style=color:#e6db74>&#34;1&#34;</span>, <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#e6db74>&#34;3&#34;</span>, <span style=color:#e6db74>&#34;number&#34;</span>, <span style=color:#66d9ef>True</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>]
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_avg</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;avg(@)&#34;</span>, [<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>15</span>, <span style=color:#ae81ff>20</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#ae81ff>15.0</span>
+
+        <span style=color:#66d9ef>with</span> pytest<span style=color:#f92672>.</span>raises(jmespath<span style=color:#f92672>.</span>exceptions<span style=color:#f92672>.</span>JMESPathTypeError):
+            jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;avg(@)&#34;</span>, [<span style=color:#ae81ff>10</span>, <span style=color:#66d9ef>False</span>, <span style=color:#ae81ff>20</span>])
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_contains</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;contains(`foobar`, `foo`)&#34;</span>, {})
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>is</span> <span style=color:#66d9ef>True</span>
+
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;contains(`foobar`, `f123`)&#34;</span>, {})
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>is</span> <span style=color:#66d9ef>False</span>
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_join</span>(self):
+        <span style=color:#75715e># expected one of: [&#39;array-string&#39;]</span>
+        <span style=color:#75715e># @ 为当前节点，得到的结果用逗号加空格分隔，然后放在当前节点下</span>
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;join(`, `, @)&#34;</span>, [<span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;a, b&#34;</span>
+
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;join(``, @)&#34;</span>, [<span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;ab&#34;</span>
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_length</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;length(@)&#34;</span>, [<span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#e6db74>&#34;b&#34;</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#ae81ff>2</span>
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_max</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;max(@)&#34;</span>, [<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>8</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#ae81ff>10</span>
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_min</span>(self):
+        result <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>search(<span style=color:#e6db74>&#34;min(@)&#34;</span>, [<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>8</span>])
+        <span style=color:#66d9ef>assert</span> result <span style=color:#f92672>==</span> <span style=color:#ae81ff>3</span>
+
+</code></pre></div><h5 id=9-自定义函数>9. 自定义函数</h5>
+<p>接口测试项目中，有个获取列表数据后去重的需求，在官方文档上始终没有找到相关表达式或函数的使用，倒是在项目 issues 中找到这个问题，但也仅仅是一个提问&mldr;</p>
+<p>继续查找资料，在 <code>jmespath.py</code> 项目中，找到用户自定义函数的方法，根据文档，自定义排序加去重的方法实现如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> jmespath <span style=color:#f92672>import</span> search
+<span style=color:#f92672>from</span> jmespath <span style=color:#f92672>import</span> functions
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomFunctions</span>(functions<span style=color:#f92672>.</span>Functions):
+    <span style=color:#e6db74>&#34;&#34;&#34; https://github.com/jmespath/jmespath.py
+</span><span style=color:#e6db74>    &#34;&#34;&#34;</span>
+    <span style=color:#a6e22e>@functions</span><span style=color:#f92672>.</span>signature({<span style=color:#e6db74>&#39;types&#39;</span>: [<span style=color:#e6db74>&#39;string&#39;</span>, <span style=color:#e6db74>&#34;array&#34;</span>]})
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>_func_uniq</span>(self, arg):
+        <span style=color:#66d9ef>if</span> isinstance(arg, str):
+            <span style=color:#75715e># string of unique</span>
+            <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(sorted(set(arg)))
+        <span style=color:#66d9ef>if</span> isinstance(arg, list):
+            <span style=color:#75715e># array of unique</span>
+            <span style=color:#66d9ef>return</span> sorted(set(arg))
+        
+options <span style=color:#f92672>=</span> jmespath<span style=color:#f92672>.</span>Options(custom_functions<span style=color:#f92672>=</span>CustomFunctions())
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;foo.bar | uniq(@)&#34;</span>, {<span style=color:#e6db74>&#39;foo&#39;</span>: {<span style=color:#e6db74>&#39;bar&#39;</span>: <span style=color:#e6db74>&#39;banana&#39;</span>}}, options<span style=color:#f92672>=</span>options)
+abn
+
+<span style=color:#f92672>&gt;&gt;&gt;</span> search(<span style=color:#e6db74>&#34;foo.bar | uniq(@)&#34;</span>, {<span style=color:#e6db74>&#39;foo&#39;</span>: {<span style=color:#e6db74>&#39;bar&#39;</span>: [<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>]}}, options<span style=color:#f92672>=</span>options)
+[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>5</span>]
+</code></pre></div><hr>
+<p>掌握上面的基础语法后，再回过头看官方提供的多重提取表达式示例就非常容易了，配合使用，可以满足项目中需要的大部分数据提取，特殊需求还可以通过自定义函数来实现，非常好用。</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python>
+Python
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+Python - Jmespath基本操作
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ title="Python - Jmespath基本操作">https://abeelan.github.io/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/jenkins/jenkinsfile/ rel=next title="Jenkins - Jenkinsfile">
+<i class="fa fa-chevron-left"></i> Jenkins - Jenkinsfile
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/jenkins/jenkins-pipline-esbook/ rel=prev title="Jenkins - Jenkins Pipline Esbook">
+Jenkins - Jenkins Pipline Esbook
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

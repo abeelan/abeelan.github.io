@@ -1,0 +1,883 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Docker - Docker基础">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker - Docker基础">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/docker/docker%E5%9F%BA%E7%A1%80/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2021-08-24 14:26:21 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-31 11:31:02 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.a43b1b53f06c2742996de6dae9d44fbf8a80126b96930876ad36232372bd6b1a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"docker%E5%9F%BA%E7%A1%80","permalink":"https://abeelan.github.io/tech/docker/docker%E5%9F%BA%E7%A1%80/","title":"Docker - Docker基础","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Docker - Docker基础 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>128</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#介绍>介绍</a>
+<ul>
+<li><a href=#优点>优点</a></li>
+<li><a href=#与虚拟机的区别>与虚拟机的区别</a></li>
+<li><a href=#docker-架构>Docker 架构</a></li>
+<li><a href=#概念>概念</a></li>
+</ul>
+</li>
+<li><a href=#安装与配置>安装与配置</a></li>
+<li><a href=#命令>命令</a>
+<ul>
+<li><a href=#基本命令>基本命令</a></li>
+<li><a href=#镜像管理>镜像管理</a></li>
+<li><a href=#容器管理>容器管理</a></li>
+<li><a href=#容器启动参数解释>容器启动参数解释</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#搭建-web-服务器-nginx>搭建 Web 服务器 Nginx</a>
+<ul>
+<li><a href=#nginx-简介>Nginx 简介</a></li>
+<li><a href=#运行-nginx-容器>运行 Nginx 容器</a></li>
+</ul>
+</li>
+<li><a href=#搭建测试用例管理平台-testlink>搭建测试用例管理平台 Testlink</a>
+<ul>
+<li><a href=#testlink-简介>Testlink 简介</a></li>
+<li><a href=#部署数据库>部署数据库</a></li>
+<li><a href=#部署-testlink>部署 Testlink</a></li>
+</ul>
+</li>
+<li><a href=#搭建持续集成平台-jenkins>搭建持续集成平台 Jenkins</a>
+<ul>
+<li><a href=#简介>简介</a></li>
+<li><a href=#部署-jenkins>部署 Jenkins</a></li>
+</ul>
+</li>
+<li><a href=#dcoekr-compose>Dcoekr-compose</a>
+<ul>
+<li><a href=#简介-1>简介</a></li>
+<li><a href=#安装>安装</a></li>
+<li><a href=#常用命令>常用命令</a></li>
+<li><a href=#演示>演示</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#docker-registry>Docker registry</a>
+<ul>
+<li><a href=#简介-2>简介</a></li>
+<li><a href=#运行>运行</a></li>
+<li><a href=#演示-1>演示</a></li>
+</ul>
+</li>
+<li><a href=#dockerfile>dockerfile</a>
+<ul>
+<li><a href=#简介-3>简介</a></li>
+<li><a href=#常用指令>常用指令</a></li>
+<li><a href=#演示-2>演示</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#镜像构建>镜像构建</a>
+<ul>
+<li><a href=#简介-4>简介</a></li>
+<li><a href=#docker-commit>docker commit</a></li>
+<li><a href=#docker-build>docker build</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>128</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-17T17:18:17+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=185357></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=436></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/docker%E5%9F%BA%E7%A1%80/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Docker - Docker基础">
+<meta itemprop=description content="Docker 是一个开源的应用容器引擎，基于 GO 语言开发，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的系统。 介绍">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Docker - Docker基础 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2021-08-24 14:26:21 +0000 UTC" itemprop="dateCreated datePublished" datetime="2021-08-24 14:26:21 +0000 UTC">2021-08-24</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-31T11:31:02+00:00 itemprop=dateModified datetime=2023-05-31T11:31:02+00:00>2023-05-31</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/docker itemprop=url rel=index>
+<span itemprop=name>Docker</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>4200</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>9分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/docker/docker%E5%9F%BA%E7%A1%80/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<p>Docker 是一个开源的应用容器引擎，基于 GO 语言开发，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的系统。</p>
+<h2 id=介绍>介绍</h2>
+<h3 id=优点>优点</h3>
+<ul>
+<li>快速交付应用。加快打包时间，加快测试，加快发布，缩短开发及运行代码之间的周期；</li>
+<li>复杂环境管理，应用隔离。不同软件运行环境兼容依赖问题，开发环境、测试环境、线上环境一致；</li>
+<li>轻量级。对于系统内核来说，一个 docker 只是一个进程，一个系统可以运行上千个容器。</li>
+</ul>
+<h3 id=与虚拟机的区别>与虚拟机的区别</h3>
+<ul>
+<li>容器与容器之间只是进程隔离，而虚拟机是完全的资源隔离；</li>
+<li>虚拟机的启动需要分钟级别，Docker 启动是秒级或者更短；</li>
+<li>容器共享宿主操作系统的内核，减少内核的开销；而虚拟机使用完全独立的内核。</li>
+</ul>
+<h3 id=docker-架构>Docker 架构</h3>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210824144814674.png alt=image-20210824144814674></p>
+<h3 id=概念>概念</h3>
+<p>
+<a href=https://zh.wikipedia.org/wiki/Docker title=https://zh.wikipedia.org/wiki/Docker rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+https://zh.wikipedia.org/wiki/Docker
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<p>**Docker 镜像（Docker Images）**每一个镜像都可能依赖一个或者多个下层的镜像组成的另一个镜像，AUFS 文件系统；</p>
+<p>**Docker 仓库（Docker Registry）**集中存放镜像的地方；</p>
+<p>**Docker 容器（Docker Containers）**镜像运行后的进程。</p>
+<h2 id=安装与配置>安装与配置</h2>
+<p>官网下载 Desktop：https://www.docker.com/products/docker-desktop</p>
+<h2 id=命令>命令</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># CentOS 启动 docker 服务</span>
+$ systemctl start docker
+$ systemctl restart docker 
+$ ststemctl enable docker  <span style=color:#75715e># 开机自启动</span>
+
+<span style=color:#75715e># ubantu 自动启动</span>
+<span style=color:#75715e># MacOS 和 Windows 通过桌面版启动</span>
+</code></pre></div><h3 id=基本命令>基本命令</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 查看版本信息</span>
+$ docker version
+<span style=color:#75715e># 查看系统信息</span>
+$ dcoker info
+</code></pre></div><h3 id=镜像管理>镜像管理</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 查看所有镜像</span>
+$ docker images
+<span style=color:#75715e># 搜索镜像</span>
+$ docker search jenkins
+<span style=color:#75715e># 拉取镜像，默认最新版本，可以指定版本</span>
+$ docker pull jenkins:latest
+<span style=color:#75715e># 导出镜像</span>
+$ docker save jenkins:latest &gt; jenkins.tar
+<span style=color:#75715e># 导出镜像</span>
+$ docker load &lt; jenkins.tar
+<span style=color:#75715e># 删除镜像</span>
+$ docker rmi jenkins:latest
+<span style=color:#75715e># 修改镜像标签名</span>
+$ docker tag jenkins:latest jenkins:test
+<span style=color:#75715e># 查看镜像创建历史</span>
+$ docker history jenkins
+</code></pre></div><h3 id=容器管理>容器管理</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 运行容器；-d 在后台运行</span>
+$ docker run -d --name<span style=color:#f92672>=</span>mysql:latest
+<span style=color:#75715e># 查看运行中的容器</span>
+$ docker ps
+$ docker ps -a
+<span style=color:#75715e># 查看容器中运行的进程</span>
+$ docker top mysql
+<span style=color:#75715e># 查看资源占用</span>
+$ docker stats mysql 
+<span style=color:#75715e># 容器操作</span>
+$ docker start/restart/stop/kill mysql
+<span style=color:#75715e># 暂停容器</span>
+$ docker pause/unpause mysql
+<span style=color:#75715e># 强制删除容器</span>
+$ docker rm -f mysql
+<span style=color:#75715e># 查看容器运行日志</span>
+$ docker logs -f <span style=color:#f92672>{</span>CONTAINER_ID<span style=color:#f92672>}</span>
+<span style=color:#75715e># 执行命令(-i 交互式 -t 终端方式)</span>
+$ docker exec -it mysql bash
+<span style=color:#75715e># 复制文件</span>
+$ docker cp mysql:/var/tmp .
+$ docker cp a.txt mysql:/tmp
+<span style=color:#75715e># 查看容器/镜像元信息</span>
+$ docker insepct mysql
+$ docker inspect -f <span style=color:#e6db74>&#39;{{.Created}}&#39;</span> mysql <span style=color:#75715e># 格式化输出提取</span>
+<span style=color:#75715e># 查看容器内文件结构变化</span>
+$ docker diff mysql
+<span style=color:#75715e># 查看容器原信息；包含 PID、IP 等等</span>
+$ docker inspect mysql
+</code></pre></div><h3 id=容器启动参数解释>容器启动参数解释</h3>
+<h5 id=端口映射-p>端口映射（-p）</h5>
+<p>docker 会在虚拟的容器网络内启动容器，容器网络内的容器之间可以互相通信，外部无法与容器进行通信，我们希望将宿主机（启动容器的机器）作为跳板，这样，用户可以将网络请求发送给宿主机，宿主机再转发请求到容器实现通信，所以需要端口映射。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker run --name<span style=color:#f92672>=</span>hub -p 5001:4444
+</code></pre></div><p>用户将请求发送到宿主机的 5001 端口，宿主机再转发请求到容器的 4444 端口。</p>
+<h5 id=使用宿主机网络--net-host>使用宿主机网络（&ndash;net host）</h5>
+<p>通过 &ndash;net 指定 host 就可以不用容器网络，直接使用宿主机的网络。</p>
+<h5 id=容器间网络互通--net-container容器名>容器间网络互通（&ndash;net container:容器名）</h5>
+<p>容器 A 使用容器 B 的网络；容器 ABCD 使用容器 E 的网络</p>
+<h5 id=环境变量-e>环境变量（-e）</h5>
+<p>启动容器时，通过设置环境变量，来控制容器行为。容器内部的程序会读取环境变量，相当于传参。</p>
+<p>比如，通过 mysql 镜像启动容器，不知道用户想设置什么账号密码，那么就通过环境变量来进行设置。</p>
+<h5 id=后台执行-d>后台执行（-d）</h5>
+<p>如果非后台执行的话，关闭当前窗口或者 ctrl+c 结束命令后，该容器就会停止运行，服务停掉。</p>
+<h2 id=搭建-web-服务器-nginx>搭建 Web 服务器 Nginx</h2>
+<h3 id=nginx-简介>Nginx 简介</h3>
+<p>Nginx（发音同 engine x）是一个异步的 Web 服务器，主要提供 Web 服务、反向代理、负载均衡和 HTTP 缓存功能。由 Igor Sysoev 创建于 2004 年，使用 C 语言开发。</p>
+<p>反向代理：服务器将收到的请求分发到其他服务器</p>
+<p>负载均衡：流量均匀的分布到后端的服务器上</p>
+<p>HTTP缓存：缓存服务器，提高用户访问速度</p>
+<h3 id=运行-nginx-容器>运行 Nginx 容器</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 拉取</span>
+$ docker pull nginx:1.17.9
+
+<span style=color:#75715e># 运行</span>
+<span style=color:#75715e># 将容器的 80 端口映射到本机的 80 端口，浏览器访问本机 IP 即可看到 nginx 欢迎页</span>
+<span style=color:#75715e># 退出后就不能访问了</span>
+$ docker run -p 80:80 nginx:1.17.9
+<span style=color:#75715e># -d 在后台运行</span>
+$ docker run -d --name nginx -p 80:80 nginx
+6438442df9b325e8bfc5a8c5ff95dc21e599c0e885a7dbf5687d91c1f44045db
+<span style=color:#75715e># -v 挂载目录，在本地的html目录下添加文件，访问服务的 8080 端口就可以看到了</span>
+$ docker run -d --name nginx -p 8080:80 -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/nginx/html:/usr/share/nginx/html nginx:1.17.9
+891e09a6bbb5e131f99cd3fe60dfb2687b0939c28ad614d017408ce74478b1a1
+$ cd nginx/html
+$ vi index.html
+&lt;h1&gt;Everythin will be ok.&lt;/h1&gt;
+<span style=color:#75715e># 保存后，访问本地服务的8080端口，即可看到页面展示</span>
+</code></pre></div><h2 id=搭建测试用例管理平台-testlink>搭建测试用例管理平台 Testlink</h2>
+<h3 id=testlink-简介>Testlink 简介</h3>
+<p>Testlink 基于 WEB 的测试用例管理系统，主要功能是测试项目管理、产品需求管理、测试用例管理、测试计划管理、测试用例的创建、管理和执行，并且还提供了统计功能。</p>
+<h3 id=部署数据库>部署数据库</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 创建一个名为 testlink 的容器网络</span>
+$ docker network create testlink
+<span style=color:#75715e># 查看当前存在的容器网络</span>
+$ docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE      备注（自己加的）
+4deb334c55f6        bridge              bridge              local      桥接网络
+cf4fbaac0160        host                host                local      主机网络
+50027393c74d        none                null                local
+6ac9853f1eab        testlink            bridge              local      刚才新建的网络
+<span style=color:#75715e># 运行数据库，如果本地没有该镜像的话会自动去下载</span>
+$ docker run -d --name mariadb -e MARIADB_ROOT_PASSWORD<span style=color:#f92672>=</span>mariadb -e MARIADB_USER<span style=color:#f92672>=</span>bn_testlink -e MARIADB_PASSWORD<span style=color:#f92672>=</span>bn_testlink -e MARIADB_DATABASE<span style=color:#f92672>=</span>bitnami_testlink --net testlink -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/mariadb:/bitnami bitnami/mariadb:10.3.22
+
+Unable to find image <span style=color:#e6db74>&#39;bitnami/mariadb:10.3.22&#39;</span> locally
+10.3.22: Pulling from bitnami/mariadb
+...
+74dbf92d3ddca4d241f2b9022890445820f7e26e5324c352c90983515379bd65
+</code></pre></div><h3 id=部署-testlink>部署 Testlink</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 运行 testlink</span>
+$ docker run -d -p 80:8080 -p 443:8443 --name testlink -e TESTLINK_DATABASE_USER<span style=color:#f92672>=</span>bn_testlink -e TESTLINK_DATABASE_PASSWORD<span style=color:#f92672>=</span>bn_testlink -e TESTLINK_DATABASE_NAME<span style=color:#f92672>=</span>bitnami_testlink --net testlink -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/testlink:/bitnami bitnami/testlink:1.9.20
+
+Unable to find image <span style=color:#e6db74>&#39;bitnami/testlink:1.9.20&#39;</span> locally
+1.9.20: Pulling from bitnami/testlink
+...
+5e766b7f386db5c0bdb3adcb14c1daea6f5f9517f56dfc9af556fbcb4c6e1bc9
+</code></pre></div><p>在浏览器访问本地 IP 地址，即可正常浏览网页。</p>
+<p>默认用户名：user；默认密码：bitnami。</p>
+<h2 id=搭建持续集成平台-jenkins>搭建持续集成平台 Jenkins</h2>
+<h3 id=简介>简介</h3>
+<p>Jenkins 是开源的 CI&CD 软件领导者，提供持续集成和持续交付服务，有超过 1000 个插件来支持构建、部署、自动化，满足任何项目的需要。</p>
+<h3 id=部署-jenkins>部署 Jenkins</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 运行</span>
+$ docker run -d --name jenkins -p 8080:8080 jenkins/jenkins
+
+Unable to find image <span style=color:#e6db74>&#39;jenkins/jenkins:latest&#39;</span> locally
+latest: Pulling from jenkins/jenkins
+...
+0f2b01bf74d566fe6ea90790307ccd1de317f1095b1d3056a3986c0eaee8c856
+
+<span style=color:#75715e># 首次启动需要管理员密码，通过日志可以查看</span>
+$ docker logs -f jenkins
+...
+*************************************************************
+
+Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+207e5af52d004e058e48e66c751b5086
+
+This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
+
+*************************************************************
+<span style=color:#75715e># 也可以去文件内查看默认密码</span>
+$ docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+207e5af52d004e058e48e66c751b5086
+
+<span style=color:#75715e># 挂载目录，由于容器名称不能重复，需要删除之前的容器或者更换名字</span>
+$ docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/jenkins:/var/jenkins_home jenkins/jenkins
+<span style=color:#75715e># 如果启动失败，添加下权限后重启即可</span>
+$ chmod <span style=color:#ae81ff>777</span> jenkins  
+$ docker restart jenkins
+</code></pre></div><h2 id=dcoekr-compose>Dcoekr-compose</h2>
+<h3 id=简介-1>简介</h3>
+<p>Docker-compose 是用于定义和运行多容器的 Docker 应用程序的工具。通过 compose，可以使用 yaml 文件来配置应用程序的服务。compose 的使用一般分为三步：</p>
+<ol>
+<li>使用 Dockerfile 定义应用程序的环境，以便可以在任何地方复制它；</li>
+<li>在 docker-compose.yml 中定义组成应用程序的服务，以便他们可以在隔离的环境中一起运行；</li>
+<li>运行 docker-compose up，然后 compose 启动并运行您的整个应用程序。</li>
+</ol>
+<h3 id=安装>安装</h3>
+<p>macOS、windwos 上的 Desktop 版本，默认已经安装</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 验证</span>
+$ docker-compose version
+docker-compose version 1.23.2, build 1110ad01
+docker-py version: 3.6.0
+CPython version: 3.6.6
+OpenSSL version: OpenSSL 1.1.0h  <span style=color:#ae81ff>27</span> Mar <span style=color:#ae81ff>2018</span>
+</code></pre></div><h3 id=常用命令>常用命令</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 查看配置</span>
+$ docker-compose config
+<span style=color:#75715e># 后台启动</span>
+$ docker-compose up -d
+<span style=color:#75715e># 构建镜像</span>
+$ docker-compose build
+<span style=color:#75715e># 下载镜像</span>
+$ docker-compose pull
+<span style=color:#75715e># 正在运行</span>
+$ docker-compose ps 
+<span style=color:#75715e># 进程</span>
+$ docker-compose top
+<span style=color:#75715e># 启动</span>
+$ docker-compose start
+<span style=color:#75715e># 停止</span>
+$ docker-compose stop
+</code></pre></div><h3 id=演示>演示</h3>
+<p>通过一个 Python web 小实例来演示 Docker-compose 的功能。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># docker-compose.yml</span>
+<span style=color:#75715e># 指定 docker-compose API 版本</span>
+<span style=color:#75715e># 在当前目录下运行 docker-compose config 可以验证变量具体的值</span>
+<span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3&#39;</span>
+<span style=color:#f92672>services</span>:
+	<span style=color:#f92672>web</span>:
+		<span style=color:#f92672>build</span>:
+			<span style=color:#f92672>context</span>: <span style=color:#ae81ff>.</span>
+		<span style=color:#f92672>depends_on</span>:
+			- <span style=color:#ae81ff>redis</span>
+		<span style=color:#f92672>ports</span>:
+			- <span style=color:#e6db74>&#34;5000:5000&#34;</span>
+	
+	<span style=color:#f92672>redis</span>:
+		<span style=color:#f92672>image</span>: <span style=color:#ae81ff>${REDIS_VERSION}</span>
+		<span style=color:#f92672>restart</span>: <span style=color:#ae81ff>always</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-ini data-lang=ini><span style=color:#75715e># .env</span>
+<span style=color:#a6e22e>REDIS_VERSION</span><span style=color:#f92672>=</span><span style=color:#e6db74>redis:alpine</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># Dockerfile</span>
+FROM python:3.7-alpine
+LABEL maintainer<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;test&#34;</span>
+
+<span style=color:#75715e># 工作路径设定为 /code</span>
+WORKDIR /code
+
+<span style=color:#75715e># 创建环境变量给 Flask 使用</span>
+ENV FLASK_APP app.py
+ENV FLASK_RUN_HOST 0.0.0.0
+
+
+<span style=color:#75715e># 复制 app.py 到容器内的 /code 目录</span>
+COPY app.py /code
+
+<span style=color:#75715e># 安装 gcc 工具、python 依赖</span>
+RUN pip install flask <span style=color:#f92672>&amp;&amp;</span> pip install redis
+
+<span style=color:#75715e># 映射端口</span>
+EXPOSE <span style=color:#ae81ff>5000</span>
+
+STOPSIGNAL SIGTERM
+
+<span style=color:#75715e># 为容器设置默认启动命令</span>
+CMD <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;flask&#34;</span>, <span style=color:#e6db74>&#34;run&#34;</span><span style=color:#f92672>]</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># app.py</span>
+<span style=color:#75715e># 实现统计访问次数</span>
+<span style=color:#f92672>import</span> time
+<span style=color:#f92672>import</span> redis
+<span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask
+
+app <span style=color:#f92672>=</span> Flask(__name__)
+cache <span style=color:#f92672>=</span> redis<span style=color:#f92672>.</span>Redis(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;redis&#39;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>6379</span>)
+
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_hit_count</span>():
+	retries <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>
+	<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+		<span style=color:#66d9ef>try</span>:
+			<span style=color:#66d9ef>return</span> cache<span style=color:#f92672>.</span>incr(<span style=color:#e6db74>&#34;hits&#34;</span>)
+		<span style=color:#66d9ef>except</span> redis<span style=color:#f92672>.</span>exceptions<span style=color:#f92672>.</span>ConnectionError <span style=color:#66d9ef>as</span> e:
+			<span style=color:#66d9ef>if</span> retries <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+				<span style=color:#66d9ef>raise</span> e
+			retries <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+			time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>0.5</span>)
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>hello</span>():
+	count <span style=color:#f92672>=</span> get_hit_count()
+	<span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Hello World! I have been seen </span><span style=color:#e6db74>{</span>count<span style=color:#e6db74>}</span><span style=color:#e6db74> times.</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
+</code></pre></div><h5 id=启动>启动</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker-compoes up -d
+</code></pre></div><h2 id=docker-registry>Docker registry</h2>
+<h3 id=简介-2>简介</h3>
+<p>Docker Registry 是存储 Dcoker Image 的仓库，运行 push、pull、search 时，是通过 Docker daemon 与 docker registry 通信。有时候使用 Docker Hub 这样的公共仓库可能不方便，我们可以通过 registry 创建一个本地仓库。</p>
+<h3 id=运行>运行</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 搭建仓库的主机运行</span>
+$ docker run -d -p 5000:5000 -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/registry:/var/lib/registry --restart always --name registry registry:2.7.1
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 其他机配置下镜像仓库</span>
+$ vim /etc/docker/daemon.json
+<span style=color:#f92672>{</span>
+	<span style=color:#e6db74>&#34;insecure-registries&#34;</span>:<span style=color:#f92672>[</span><span style=color:#e6db74>&#34;{仓库主机的IP地址和端口号}&#34;</span><span style=color:#f92672>]</span>
+<span style=color:#f92672>}</span>
+$ systemctl restart docker  <span style=color:#75715e># 重启下docker</span>
+</code></pre></div><h3 id=演示-1>演示</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 搭建仓库的主机：先从 docker hub 上随便下载一个镜像</span>
+$ docker pull nginx:1.18.0
+<span style=color:#75715e># 打上带主机 IP 地址的标签</span>
+$ docker tag nginx:1.18.0 <span style=color:#f92672>{</span>仓库地址<span style=color:#f92672>}</span>/nginx:1.18.0
+<span style=color:#75715e># 推送到内网仓库下</span>
+$ docker push <span style=color:#f92672>{</span>仓库IP:port<span style=color:#f92672>}</span>/nginx:1.18.0
+
+<span style=color:#75715e># 其他机器</span>
+$ docker pull <span style=color:#f92672>{</span>仓库IP:port<span style=color:#f92672>}</span>/nginx:1.18.0
+<span style=color:#75715e># 查看下载的镜像，就是本地仓库的镜像</span>
+$ docker image
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 构建镜像并推送到本地仓库上</span>
+$ docker build -t <span style=color:#f92672>{</span>仓库IP:port<span style=color:#f92672>}</span>/flask-web:1.0 .
+</code></pre></div><p>通过搭建本地仓库，下载镜像后 push 到本地仓库，其他内网机器 pull 的话速度会有所提升。</p>
+<p>一般公司业务不方便放到 docker hub 上，可以通过内网仓库提高隐私性。</p>
+<h2 id=dockerfile>dockerfile</h2>
+<h3 id=简介-3>简介</h3>
+<p>Dockerfile 是由一系列指令和参数构成的脚本，一个 Dockerfile 里面包含了构建整个镜像的完整命令。</p>
+<p>通过 <strong>docker build</strong> 执行 Dockerfile 中的一系列指令自动构建镜像。</p>
+<h3 id=常用指令>常用指令</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-dockerfile data-lang=dockerfile><span style=color:#66d9ef>FROM</span><span style=color:#e6db74>：基础镜像，FROM 命令必须是 dockerfile 的首个命令</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span>：为镜像生成元数据标签信息，作者、版本信息等<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>USER</span><span style=color:#e6db74>：指定运行容器时的用户名或 UID，默认管理员用户，后续 RUN 也会使用指定用户</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span>：是 dockerfile 执行命令的核心部分，接受命令作为参数并用于创建镜像。每条 run 命令在当前基础镜像上执行，并且会提交一个新的镜像层<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>WORKDIR</span><span style=color:#e6db74>：设置 CMD 命令的运行目录，为后续的 RUN、CMD、ENTRYPOINT、ADD 指令配置工作目录</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ENV</span>：容器启动的环境变量<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ARG</span>：构建环境的环境变量，仅供 dockerfile 赋值使用<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span>：复制文件<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>CMD</span>：容器运行时执行的默认命令<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ENTRYPOINT</span>：执行容器的入口<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>HEALTHCHECK</span>：容器健康状态检查<span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><h3 id=演示-2>演示</h3>
+<p>使用 dockerfile 构建 nginx 容器，添加容器健康检查</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-dockerfile data-lang=dockerfile><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 导入基础镜像</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>FROM</span><span style=color:#e6db74> nginx:1.17.9</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 指定信息</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>LABEL</span> maintainer<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Ultraman_Tiga&#34;</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 设置环境变量</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ENV</span> NGINX_VERSION 1.17.9<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>ARG</span> work_pwd<span style=color:#f92672>=</span>/data/html<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 切换用户</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>USER</span><span style=color:#e6db74> root</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 执行命令</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 安装 curl，设置软链把 nginx 服务的日志显示到终端输出</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> apt-get -yq update <span style=color:#f92672>&amp;&amp;</span> apt-get install -y curl <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>ln -sf /dev/stdout /var/log/nginx/access.log <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>ln -sf /dev/stderr /var/log/nginx/error.log<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 挂载卷</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>VOLUME</span> [<span style=color:#e6db74>&#34;/data&#34;</span>]<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 设置工作目录</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>WORKDIR</span><span style=color:#e6db74> $work_pwd</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 复制 index.html 文件到 workdir 目录下</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> index.html .<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 映射 80 端口</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>EXPOSE</span><span style=color:#e6db74> 80</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 此处 CMD 作为 ENTRYPOINT 的参数</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;nginx&#34;</span>, <span style=color:#e6db74>&#34;-g&#34;</span>, <span style=color:#e6db74>&#34;daemon off;&#34;</span>]<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 使用 docker stop 指令停止容器时，发出 sigrtmax 指令停止容器</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>STOPSIGNAL</span><span style=color:#e6db74> SIGRTMAX</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 检查容器健康，通过访问 Nginx 服务 80 端口，来判断容器是否正常运行</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>HEALTHCHECK --interval=5s --timeout=3s \
+</span><span style=color:#960050;background-color:#1e0010>  </span><span style=color:#66d9ef>CMD</span> curl -fs http://localhost/ <span style=color:#f92672>||</span> exit <span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><h5 id=构建>构建</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># -t 指定标签；. 代表当前路径</span>
+$ docker build -t nginx:1 .
+<span style=color:#75715e># 启动</span>
+$ docker run -d nginx:1
+<span style=color:#75715e># 新建一个窗口，进入容器内</span>
+$ docker exec -it <span style=color:#f92672>{</span>container_id<span style=color:#f92672>}</span> bash
+root@*****:/data/html$ env
+<span style=color:#75715e># 用户名为指定的 root 用户</span>
+<span style=color:#75715e># 执行env命令后会出现dockerfile设置的环境变量</span>
+<span style=color:#75715e># 当前目录就是设置的workdir</span>
+<span style=color:#75715e># 当前目录下存在 index.html</span>
+root@*****:/data/html$ df -h
+<span style=color:#75715e># 挂载卷为设置的VOLUME</span>
+/dev/sda1 ... /data
+</code></pre></div><h2 id=镜像构建>镜像构建</h2>
+<h3 id=简介-4>简介</h3>
+<p>工作中，常常需要制作自己的项目镜像，便于分发给其他同学使用。一般通过以下两种方式制作镜像：</p>
+<ul>
+<li>docker commit</li>
+<li>dockerfile</li>
+</ul>
+<h3 id=docker-commit>docker commit</h3>
+<p>一般用做从一个运行状态的容器来创建一个新的镜像，定制镜像应该使用 dockerfile 来完成，默认 commit 镜像，对外不可解释，别人不知道该容器的构建环境，不方便排查问题，可维护性差。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker commit <span style=color:#f92672>{</span>容器名<span style=color:#f92672>}</span> <span style=color:#f92672>{</span>新镜像名<span style=color:#f92672>}</span>:tag
+</code></pre></div><h3 id=docker-build>docker build</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 忽略文件，构建时不会被打包到镜像内</span>
+<span style=color:#75715e># 创建一个 .dockerignore 文件，里面写入</span>
+Dockerfile*
+
+<span style=color:#75715e># 指定文件</span>
+$ docker build -f
+<span style=color:#75715e># 添加标签</span>
+$ docker build -t
+<span style=color:#75715e># 不使用缓存</span>
+$ docker build --no-chche
+<span style=color:#75715e># 构建时变量</span>
+$ docker build --build-arg
+</code></pre></div><p>这个帖子不错，留在这里备忘：https://blog.csdn.net/lb245557472/article/details/91966770</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/docker>
+Docker
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+Docker - Docker基础
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/tech/docker/docker%E5%9F%BA%E7%A1%80/ title="Docker - Docker基础">https://abeelan.github.io/tech/docker/docker%E5%9F%BA%E7%A1%80/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/selenium/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%A7%E8%A1%8Cseleniumgrid/ rel=next title="Selenium - 分布式执行Seleniumgrid">
+<i class="fa fa-chevron-left"></i> Selenium - 分布式执行Seleniumgrid
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/mac/svn-%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/ rel=prev title="Mac - Svn 安装及使用命令">
+Mac - Svn 安装及使用命令
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

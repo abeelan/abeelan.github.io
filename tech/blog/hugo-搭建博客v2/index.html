@@ -1,0 +1,582 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Blog - Hugo 搭建博客（V2）">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blog - Hugo 搭建博客（V2）">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-04-27 01:39:00 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-31 11:31:03 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.a43b1b53f06c2742996de6dae9d44fbf8a80126b96930876ad36232372bd6b1a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2","permalink":"https://abeelan.github.io/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/","title":"Blog - Hugo 搭建博客（V2）","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Blog - Hugo 搭建博客（V2） - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>128</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#搭建本地-hugo-服务>搭建本地 Hugo 服务</a>
+<ul>
+<li><a href=#安装-hugo>安装 Hugo</a></li>
+<li><a href=#建站>建站</a></li>
+<li><a href=#添加主题>添加主题</a></li>
+<li><a href=#访问>访问</a></li>
+<li><a href=#创建第一篇文章>创建第一篇文章</a></li>
+</ul>
+</li>
+<li><a href=#发布到-githubpages>发布到 GitHubPages</a>
+<ul>
+<li><a href=#创建-gitpages-仓库>创建 GitPages 仓库</a></li>
+<li><a href=#创建存放博客源文件仓库>创建存放博客源文件仓库</a></li>
+<li><a href=#配置-github-token>配置 Github Token</a></li>
+</ul>
+</li>
+<li><a href=#结束>结束</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>128</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-17T17:18:17+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=185357></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=436></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Blog - Hugo 搭建博客（V2）">
+<meta itemprop=description content="下文是我自己的搭建记录（MacOS, Hugo + GithubPage） 搭建本地 Hugo 服务 Hugo 是使用 Go 语言编写的 静态网站生成器 ，页面编译速度快，支持跨平台、">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Blog - Hugo 搭建博客（V2） </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-27 01:39:00 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-27 01:39:00 +0000 UTC">2023-04-27</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-31T11:31:03+00:00 itemprop=dateModified datetime=2023-05-31T11:31:03+00:00>2023-05-31</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/blog itemprop=url rel=index>
+<span itemprop=name>Blog</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1465</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>3分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<p>下文是我自己的搭建记录（MacOS, Hugo + GithubPage）</p>
+<h2 id=搭建本地-hugo-服务>搭建本地 Hugo 服务</h2>
+<blockquote>
+<p>Hugo 是使用 Go 语言编写的
+<a href=https://gohugo.io/about/what-is-hugo/ title=静态网站生成器 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+静态网站生成器
+<i class="fa fa-external-link-alt"></i>
+</a>，页面编译速度快，支持跨平台、皮肤自定义，方便部署。</p>
+<p>官方文档
+<a href=https://gohugo.io/getting-started/quick-start/ title=传送门 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+传送门
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+</blockquote>
+<p>📢 📢 📢</p>
+<blockquote>
+<p>以下是 hugo 通用的建站方式，适用于绝大多数主题。</p>
+<p>我本次使用的主题
+<a href=https://github.com/xyming108/sulv-hugo-papermod title=sulv-hugo-papermod rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+sulv-hugo-papermod
+<i class="fa fa-external-link-alt"></i>
+</a> 作者已经把相关代码全部提交到仓库里面了，所以只需要拉取仓库代码，修改配置文件即可。详情查看仓库介绍文档。</p>
+</blockquote>
+<h3 id=安装-hugo>安装 Hugo</h3>
+<ul>
+<li>方法一：在
+<a href=https://gohugo.io/getting-started/installing/ title="Hugo 的官方网站" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Hugo 的官方网站
+<i class="fa fa-external-link-alt"></i>
+</a> 上下载并安装 Hugo</li>
+<li>方法二：直接使用 Homebrew 安装</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 跳过 brew 检查更新（可以忽略）</span>
+$ export HOMEBREW_NO_AUTO_UPDATE<span style=color:#f92672>=</span>true
+
+<span style=color:#75715e># 开始安装</span>
+$ brew install hugo
+<span style=color:#f92672>==</span>&gt; Summary
+🍺  /usr/local/Cellar/hugo/0.111.3: <span style=color:#ae81ff>31</span> files, 40.6MB
+
+$ hugo version
+hugo v0.111.3+extended darwin/amd64 BuildDate<span style=color:#f92672>=</span>unknown
+</code></pre></div><h3 id=建站>建站</h3>
+<p>进入自定义目录下，新建站点</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ cd workspace
+$ hugo new site notebook
+Congratulations!
+</code></pre></div><p>站点文件夹目录如下</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>.
+├── archetypes <span style=color:#75715e># 存放帖子的模板 md 文件</span>
+├── assets     <span style=color:#75715e># 存放被 Hugo Pipes 处理的文件</span>
+├── config     <span style=color:#75715e># 配置文件；支持 JSON、YAML、TOML 三种格式配置文件，加上不同后缀即可</span>
+├── content    <span style=color:#75715e># 存放博客 markdown 文件</span>
+├── data       <span style=color:#75715e># 存放 Hugo 处理的数据</span>
+├── layouts    <span style=color:#75715e># 存放布局文件</span>
+├── static     <span style=color:#75715e># 存放静态文件 图片 CSS JS 文件</span>
+└── themes     <span style=color:#75715e># 存放主题</span>
+</code></pre></div><h3 id=添加主题>添加主题</h3>
+<p>可以访问 <strong>
+<a href=https://themes.gohugo.io/ title="Hugo 主题库" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Hugo 主题库
+<i class="fa fa-external-link-alt"></i>
+</a></strong> 挑选自己喜欢的主题，复制主题的 github 仓库下载链接。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 初始化当前目录为 git 仓库</span>
+$ cd notebook
+$ git init
+
+<span style=color:#75715e># 拉取主题</span>
+<span style=color:#75715e># 注意查看主题最低支持的 hugo 版本与当前版本是否匹配</span>
+$ git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/hugo-PaperMod
+<span style=color:#75715e># 后续主题有更新通过如下命令拉取</span>
+$ git submodule update --init
+</code></pre></div><p>编辑配置文件<code>blog_name/config.toml</code>，一般在主题下会有对应的配置文件模板<code>exampleSite/config.toml</code>修改修改就行。</p>
+<h3 id=访问>访问</h3>
+<p>命令行启动</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ hugo server -D
+</code></pre></div><p>在浏览器中访问
+<a href=localhost:1313 title=localhost:1313>
+localhost:1313
+</a> ，配置配置文件后会自动刷新预览。</p>
+<h3 id=创建第一篇文章>创建第一篇文章</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># md 模板在 archetypes/default.md 设置</span>
+$ hugo new posts/tech/我的第一篇帖子.md
+</code></pre></div><h2 id=发布到-githubpages>发布到 GitHubPages</h2>
+<p>博客静态页面搭建完成后，接下来就需要对外发布展示，这里使用免费的 GithubPages 来实现。</p>
+<p>实现原理为：</p>
+<ul>
+<li>新建 md 文件</li>
+<li>编辑完成后通过 hugo 命令生成 pulic 静态网页文件</li>
+<li>将静态文件推送到远程仓库</li>
+<li>通过域名访问</li>
+</ul>
+<p>这样太麻烦了，每次还需要手动的去构建 md 为静态文件，且有点乱不方便维护，因此可以通过 Github Action 来提高效率。</p>
+<p>最终实现效果为：</p>
+<ul>
+<li>新建 md 文件</li>
+<li>推送 md 文件到远程仓库</li>
+<li>Github Action 自动构建静态文件并推送到指定位置</li>
+</ul>
+<p>这样就只需要关注写作就可以了。</p>
+<h3 id=创建-gitpages-仓库>创建 GitPages 仓库</h3>
+<p>首先
+<a href=https://github.com/ title=注册 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+注册
+<i class="fa fa-external-link-alt"></i>
+</a> 账号，登录<code>github</code>个人页面，新建仓库，仓库名格式必须为 <code>&lt;username>.github.io</code></p>
+<p>在该仓库 Settings - 左侧导航栏 Pages 页面，可查看访问域名。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># 将该项目拉到本地</span>
+$ git clone https://github.com/abeelan/abeelan.github.io.git
+</code></pre></div><h3 id=创建存放博客源文件仓库>创建存放博客源文件仓库</h3>
+<p>创建一个仓库用来存放博客的原始 <code>md</code> 文件，可以是私有仓库。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 可选 博客原始文件关联远程仓库</span>
+$ cd notebook
+$ git remote add orgin https://github.com/abeelan/notebook
+
+<span style=color:#75715e># 创建工作流文件,名字随便取</span>
+$ vim .github/workflows/hugo-deploy.yml
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># hugo-deploy.yml</span>
+<span style=color:#f92672>name</span>: <span style=color:#ae81ff>hugo-blog-deploy</span>
+
+<span style=color:#f92672>on</span>:
+  <span style=color:#f92672>push</span>:
+    <span style=color:#f92672>branches</span>:
+      - <span style=color:#ae81ff>main</span>
+
+<span style=color:#f92672>jobs</span>:
+  <span style=color:#f92672>hugo-blog-deploy</span>:
+    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest </span> <span style=color:#75715e># 我 mac 也这么设置的，设置 macos 报错</span>
+    <span style=color:#f92672>steps</span>:
+    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Checkout source</span>
+      <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+      <span style=color:#f92672>with</span>:
+          <span style=color:#f92672>submodules</span>: <span style=color:#ae81ff>recursive </span> <span style=color:#75715e># Fetch Hugo themes (true OR recursive)</span>
+          <span style=color:#f92672>fetch-depth</span>: <span style=color:#ae81ff>0</span>    <span style=color:#75715e># Fetch all history for .GitInfo and .Lastmod</span>
+
+    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup hugo</span>
+      <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span> <span style=color:#75715e># hugo 官方 action，用于在任务环境中获取 hugo</span>
+      <span style=color:#f92672>with</span>:
+        <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#34;0.81.0&#34;</span>  <span style=color:#75715e># hugo version</span>
+        <span style=color:#f92672>extended</span>: <span style=color:#66d9ef>true</span>
+
+    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
+      <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify </span> <span style=color:#75715e># 使用 hugo 构建静态网页</span>
+
+    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
+      <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span> <span style=color:#75715e># 一个自动发布 github pages 的 action</span>
+      <span style=color:#f92672>with</span>:
+        <span style=color:#f92672>personal_token</span>: <span style=color:#ae81ff>${{ secrets.PERSONAL_TOKEN }}</span> <span style=color:#75715e># 无需修改，后面会为该变量设置 secret</span>
+        <span style=color:#f92672>external_repository</span>: <span style=color:#ae81ff>abeelan/abeelan.github.io</span> <span style=color:#75715e># 修改为你的 GitHub Pages 仓库</span>
+        <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
+        <span style=color:#f92672>publish_branch</span>: <span style=color:#ae81ff>main</span>
+        <span style=color:#75715e># 如果使用自定义域名，还需要添加下面一行配置</span>
+        <span style=color:#75715e># cname: </span>
+</code></pre></div><h3 id=配置-github-token>配置 Github Token</h3>
+<ol>
+<li>点击头像 - Settings -
+<a href=https://github.com/settings/tokens/new title="Developer settings" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Developer settings
+<i class="fa fa-external-link-alt"></i>
+</a> - Personal access tokens - Tokens(classic）- Generate new token(classic)</li>
+</ol>
+<ul>
+<li>Note: GITHUB_ACTION_TOKEN</li>
+<li>自定义有效期（过期了记得更新）</li>
+<li><strong>Select scopes</strong>：workflow、admin:repo_hook</li>
+<li>点击生成，保存好这串 token</li>
+</ul>
+<ol start=2>
+<li>返回博客项目，进入 Settings - Secrets and variables - Actions - New repo secret</li>
+</ol>
+<ul>
+<li>Name：PERSONAL_TOKEN（跟上面配置文件保持一致，注意不能以 GITHUB_ 开头，否则会出错）</li>
+<li>secret：上一步创建的 token 值</li>
+<li>Add secret</li>
+</ul>
+<p>这一步设置的 <code>Name：PERSONAL_TOKEN</code> 需要与上面 yml 工作流中的变量名一致。</p>
+<h2 id=结束>结束</h2>
+<p>至此，配置完成。</p>
+<p>使用 Typora 编辑文章，提交至远程仓库，自动触发 GithubActions 构建发布页。</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/blog>
+Blog
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+Blog - Hugo 搭建博客（V2）
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/ title="Blog - Hugo 搭建博客（V2）">https://abeelan.github.io/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/fastapi/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82%E6%B1%87%E6%80%BB/ rel=next title="Fastapi - 接口测试平台需求汇总">
+<i class="fa fa-chevron-left"></i> Fastapi - 接口测试平台需求汇总
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/booknotes/python%E5%B7%A5%E5%8C%A0/ rel=prev title="Booknotes - 《Python工匠》">
+Booknotes - 《Python工匠》
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>

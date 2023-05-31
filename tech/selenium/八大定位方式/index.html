@@ -1,0 +1,535 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#222" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Selenium - 八大定位方式">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Selenium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium - 八大定位方式">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/selenium/%E5%85%AB%E5%A4%A7%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8F/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2022-11-13 20:30:14 +0000 UTC">
+<meta property="article:modified_time" content="2023-05-31 11:31:02 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.a43b1b53f06c2742996de6dae9d44fbf8a80126b96930876ad36232372bd6b1a.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E5%85%AB%E5%A4%A7%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8F","permalink":"https://abeelan.github.io/tech/selenium/%E5%85%AB%E5%A4%A7%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8F/","title":"Selenium - 八大定位方式","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Selenium - 八大定位方式 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>128</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#对元素的操作方法>对元素的操作方法</a></li>
+<li><a href=#八大元素定位方式>八大元素定位方式</a>
+<ul>
+<li><a href=#id>id</a></li>
+<li><a href=#name>name</a></li>
+<li><a href=#class>class</a></li>
+<li><a href=#tag--定位组元素>tag & 定位组元素</a></li>
+<li><a href=#link>link</a></li>
+<li><a href=#partial-link>partial link</a></li>
+<li><a href=#xpath>Xpath</a></li>
+<li><a href=#css-selector>Css Selector</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>128</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+<div class="cc-license animated" itemprop=license>
+<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/small/by_nc_sa.svg alt=共享知识>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-05-17T17:18:17+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=185357></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=436></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/selenium/%E5%85%AB%E5%A4%A7%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8F/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Selenium - 八大定位方式">
+<meta itemprop=description content="对元素的操作方法 # 点击元素 ele.click() # 输入文本 ele.send_keys(&#34;hello world&#34;) # 上传图片 # input 标签可以直接使用 send_keys(文件地址) 上传文件 driver.get(&#34;https://image.baidu.com/&#34;) driver.find_element(By.ID, &#34;sttb&#34;).click() driver.find_element(By.ID, &#34;stfile&#34;).send_keys(&#34;/Users/lan/Pictures/7.jpeg&#34;) sleep(10) # 获取元素的尺寸 ele.size">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Selenium - 八大定位方式 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2022-11-13 20:30:14 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-11-13 20:30:14 +0000 UTC">2022-11-13</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-05-31T11:31:02+00:00 itemprop=dateModified datetime=2023-05-31T11:31:02+00:00>2023-05-31</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/selenium itemprop=url rel=index>
+<span itemprop=name>Selenium</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1152</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>3分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/tech/selenium/%E5%85%AB%E5%A4%A7%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8F/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h2 id=对元素的操作方法>对元素的操作方法</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 点击元素</span>
+ele<span style=color:#f92672>.</span>click()
+
+<span style=color:#75715e># 输入文本</span>
+ele<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;hello world&#34;</span>)
+<span style=color:#75715e># 上传图片</span>
+<span style=color:#75715e># input 标签可以直接使用 send_keys(文件地址) 上传文件</span>
+driver<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;https://image.baidu.com/&#34;</span>)
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;sttb&#34;</span>)<span style=color:#f92672>.</span>click()
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;stfile&#34;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;/Users/lan/Pictures/7.jpeg&#34;</span>)
+sleep(<span style=color:#ae81ff>10</span>)
+
+<span style=color:#75715e># 获取元素的尺寸</span>
+ele<span style=color:#f92672>.</span>size
+<span style=color:#75715e># 获取元素的坐标</span>
+ele<span style=color:#f92672>.</span>location
+<span style=color:#75715e># 获取元素的文本（a 标签、p 标签或者 div 标签中的文本内容）</span>
+ele<span style=color:#f92672>.</span>text
+<span style=color:#75715e># 获取元素属性值;通过属性名获取属性值</span>
+ele<span style=color:#f92672>.</span>get_attrbut(<span style=color:#e6db74>&#34;attr_name&#34;</span>)
+</code></pre></div><h2 id=八大元素定位方式>八大元素定位方式</h2>
+<h3 id=id>id</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#f92672>import</span> time
+<span style=color:#f92672>from</span> selenium <span style=color:#f92672>import</span> webdriver
+<span style=color:#f92672>from</span> selenium.webdriver.common.by <span style=color:#f92672>import</span> By
+
+<span style=color:#75715e># 1. 打开浏览器</span>
+driver <span style=color:#f92672>=</span> webdriver<span style=color:#f92672>.</span>Chrome()
+<span style=color:#75715e># 2. 打开网址 -- 百度</span>
+driver<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;http://www.baidu.com&#34;</span>)
+<span style=color:#75715e># 3. 定位搜索框元素，输入搜索词</span>
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;kw&#34;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Hello World!&#34;</span>)
+<span style=color:#75715e># 4. 点击搜索按钮</span>
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;su&#34;</span>)<span style=color:#f92672>.</span>click()
+<span style=color:#75715e># 5. 验证结果</span>
+time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>1</span>)
+<span style=color:#66d9ef>assert</span> driver<span style=color:#f92672>.</span>title <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;Hello World!_百度搜索&#34;</span>
+<span style=color:#75715e># 6. 退出浏览器</span>
+driver<span style=color:#f92672>.</span>quit()
+</code></pre></div><h3 id=name>name</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#75715e># name=&#34;wd&#34;</span>
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>NAME, <span style=color:#e6db74>&#34;wd&#34;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Hello World!&#34;</span>)
+</code></pre></div><h3 id=class>class</h3>
+<p>该属性用于指定控件样式，很多情况下不唯一。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#75715e># class=&#34;s_ipt&#34;</span>
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>CLASS_NAME, <span style=color:#e6db74>&#34;s_ipt&#34;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Hello World!&#34;</span>) 
+</code></pre></div><h3 id=tag--定位组元素>tag & 定位组元素</h3>
+<p><code>HTML</code>中一个<code>tag</code>往往用来定义一类元素的功能，页面元素较多，很难通过<code>tag</code>区分。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#75715e># 如果页面有多个 input 标签，那么会自动与第一个元素进行交互</span>
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>TAG_NAME, <span style=color:#e6db74>&#34;input&#34;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Hello World!&#34;</span>)
+<span style=color:#75715e># 出现报错：元素不可交互</span>
+<span style=color:#75715e># 原因是百度首页第一个 input 标签并不是可见的</span>
+</code></pre></div><p>由于百度首页有多个<code>input</code>标签，这里就需要通过 <code>find_elements</code>来获取整组元素，按元素下标精准定位。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 按下标取元素，取第 8 个</span>
+driver<span style=color:#f92672>.</span>find_elements(By<span style=color:#f92672>.</span>TAG_NAME, <span style=color:#e6db74>&#34;input&#34;</span>)[<span style=color:#ae81ff>7</span>]<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Hello World!&#34;</span>)
+</code></pre></div><p>注意：当页面有更新，根据 <code>tag</code> 定位的元素不一定可靠，所以一般不单独用<code>tag</code>定位，更多是用于组合定位。</p>
+<h3 id=link>link</h3>
+<p>通过带有链接的文本进行定位。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#75715e># 通过「关联 herf 标签的文本」定位</span>
+ driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>LINK_TEXT, <span style=color:#e6db74>&#34;关于百度&#34;</span>)<span style=color:#f92672>.</span>click()
+</code></pre></div><h3 id=partial-link>partial link</h3>
+<p>针对带有链接的文本，模糊匹配。当需要定位的文本过长，支持根据其中一部分文本进行定位，但需要保证模糊匹配的唯一性。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#75715e># 定位的也是「关于百度」</span>
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>PARTIAL_LINK_TEXT, <span style=color:#e6db74>&#34;关于&#34;</span>)<span style=color:#f92672>.</span>click()
+</code></pre></div><h3 id=xpath>Xpath</h3>
+<p><code>XML Path Language</code></p>
+<ul>
+<li>用于解析 <code>html</code> 和 <code>xml</code></li>
+<li>支持 <code>appium</code> 和 <code>selenium</code></li>
+<li>缺点是查找慢</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-js data-lang=js><span style=color:#e6db74>`/`</span>  <span style=color:#a6e22e>是在当前目录的子目录下查找</span>
+<span style=color:#e6db74>`//`</span> <span style=color:#a6e22e>是在当前目录的子子孙孙目录下查找</span>
+<span style=color:#e6db74>`[]`</span> <span style=color:#a6e22e>表示需要满足的条件</span>
+</code></pre></div><p>百度页面示例</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-js data-lang=js><span style=color:#75715e>// 进入百度页面，点击检查，进入 Console
+</span><span style=color:#75715e></span><span style=color:#a6e22e>clear</span>() <span style=color:#75715e>// 清空当前屏幕
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// 练习 1: 通过 xpath 查找输入框
+</span><span style=color:#75715e>// name 和 id 通常都是唯一的，通过该属性可以直接定位
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@name=&#34;wd&#34;]&#39;</span>)
+<span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@id=&#34;kw&#34;]&#39;</span>)
+
+<span style=color:#75715e>// 练习 2: 查看搜索框下面的「网页」tab 栏
+</span><span style=color:#75715e>// 在 b 标签下
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@id=&#34;s_tab&#34;]//b&#39;</span>)
+
+<span style=color:#75715e>// 练习 3: 查看搜索框下面的其他 tab 栏
+</span><span style=color:#75715e>// 共 9 个, 都是在 a 标签下
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@class=&#34;s_tab_inner&#34;]//a[1]&#39;</span>)
+<span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@class=&#34;s_tab_inner&#34;]//a[9]&#39;</span>)
+<span style=color:#75715e>// 直接定位到最后一个
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@class=&#34;s_tab_inner&#34;]//a[last()]&#39;</span>)
+<span style=color:#75715e>// 定位到最后第二个
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@class=&#34;s_tab_inner&#34;]//a[last()-1]&#39;</span>)
+
+<span style=color:#75715e>// 练习 4: 定位右上角设置和登录按钮
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@id=&#34;u1&#34;]/span&#39;</span>)  <span style=color:#75715e>// 设置
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$x</span>(<span style=color:#e6db74>&#39;//*[@id=&#34;u1&#34;]/a&#39;</span>)    <span style=color:#75715e>// 登录
+</span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#75715e># 在 console 调试好表达式后，直接在代码中使用</span>
+driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>XPATH, <span style=color:#e6db74>&#39;//*[@name=&#34;wd&#34;]&#39;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Hello World!&#34;</span>)
+</code></pre></div><h3 id=css-selector>Css Selector</h3>
+<ul>
+<li><code>appium</code> 原生的控件不支持该方式定位</li>
+<li><code>selenium</code> 支持</li>
+<li><code>webview</code> 推荐这种定位方式，更简洁</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-js data-lang=js>.<span style=color:#a6e22e>test</span>  <span style=color:#75715e>// 选择 class=&#34;test&#34; 的所有元素
+</span><span style=color:#75715e></span><span style=color:#960050;background-color:#1e0010>#</span><span style=color:#a6e22e>test</span>  <span style=color:#75715e>// 选择 id=&#34;test&#34; 的所有元素
+</span><span style=color:#75715e></span><span style=color:#f92672>*</span>      <span style=color:#75715e>// 选择所有元素
+</span><span style=color:#75715e></span>
+       <span style=color:#75715e>// 空格代表子子孙孙全部元素
+</span><span style=color:#75715e></span><span style=color:#a6e22e>p</span>      <span style=color:#75715e>// 代表选择所有 &lt;p&gt; 元素
+</span><span style=color:#75715e></span><span style=color:#a6e22e>div</span>,<span style=color:#a6e22e>p</span>  <span style=color:#75715e>// 代表选择所有 &lt;div&gt; 和 &lt;p&gt; 元素
+</span><span style=color:#75715e></span><span style=color:#a6e22e>div</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>p</span>  <span style=color:#75715e>// 选择父元素为 &lt;div&gt; 元素的所有 &lt;p&gt; 元素
+</span><span style=color:#75715e></span><span style=color:#a6e22e>div</span><span style=color:#f92672>+</span><span style=color:#a6e22e>p</span>  <span style=color:#75715e>// 选择紧接在 &lt;div&gt; 元素之后的所有 &lt;p&gt; 元素
+</span><span style=color:#75715e></span>
+[<span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#a6e22e>kw</span>]        <span style=color:#75715e>// 选择 id=&#34;kw&#34; 的所有元素
+</span><span style=color:#75715e></span><span style=color:#a6e22e>p</span><span style=color:#f92672>:</span><span style=color:#a6e22e>nth</span><span style=color:#f92672>-</span><span style=color:#a6e22e>child</span>(<span style=color:#ae81ff>2</span>) <span style=color:#75715e>// 选择父元素第 2 个子元素
+</span><span style=color:#75715e></span><span style=color:#a6e22e>p</span><span style=color:#f92672>~</span><span style=color:#a6e22e>ul</span>           <span style=color:#75715e>// 选择前面有 &lt;p&gt; 元素的每个 &lt;ul&gt; 元素 
+</span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-js data-lang=js><span style=color:#75715e>// 练习 1 查找搜索框，进入搜索结果页
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#kw&#34;</span>)      <span style=color:#75715e>// 方法一
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;[id=kw]&#34;</span>)  <span style=color:#75715e>// 方法二
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// 练习 2 查找「网页」tab
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#s_tab b&#34;</span>)
+
+<span style=color:#75715e>// 练习 3 查看「资讯」tab
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#s_tab :nth-child(2)&#34;</span>)  
+
+<span style=color:#75715e>// 练习4 查看最后一个 tab
+</span><span style=color:#75715e></span><span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#s_tab a:nth-last-child(1)&#34;</span>)  <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#a6e22e>最后一个元素</span>
+<span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#s_tab a:nth-last-child(2)&#34;</span>)  <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#a6e22e>最后第二个元素</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python>driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>CSS_SELECTOR, <span style=color:#e6db74>&#39;#kw&#39;</span>)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Hello World!&#34;</span>) 
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/selenium>
+Selenium
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<img src=/imgs/cc/cc.svg width=75 height=75 align=right>
+<ul>
+<li class=post-copyright-title>
+<strong>文章标题：</strong>
+Selenium - 八大定位方式
+</li>
+<li class=post-copyright-author>
+<strong>本文作者： </strong>
+ABEE
+</li>
+<li class=post-copyright-link>
+<strong>本文链接：</strong>
+<a id=post-cr-link href=https://abeelan.github.io/tech/selenium/%E5%85%AB%E5%A4%A7%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8F/ title="Selenium - 八大定位方式">https://abeelan.github.io/tech/selenium/%E5%85%AB%E5%A4%A7%E5%AE%9A%E4%BD%8D%E6%96%B9%E5%BC%8F/</a>
+</li>
+<li class=post-copyright-license>
+<strong>版权声明： </strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！
+</li>
+</ul>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/andorid/android%E5%9F%BA%E7%A1%80/ rel=next title="Andorid - Android基础">
+<i class="fa fa-chevron-left"></i> Andorid - Android基础
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/python/websocket%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81/ rel=prev title="Python - Websocket请求发送">
+Python - Websocket请求发送
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":true,"save":"auto"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script>
+<script type=text/javascript src=/js/main.min.7febcb46102ea06b82e271e7dbfc83e80e09db236fb807f26dc461d893d6d2e4.js defer></script>
+</body>
+</html>
