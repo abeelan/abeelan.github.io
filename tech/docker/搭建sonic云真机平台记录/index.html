@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2022-02-28 16:50:34 +0000 UTC">
-<meta property="article:modified_time" content="2023-05-31 15:05:57 +0000 UTC">
+<meta property="article:modified_time" content="2023-06-01 23:12:16 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>128</span>
+<span class=badge>132</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -128,12 +128,8 @@
 <div class="post-toc-wrap sidebar-panel">
 <div class="post-toc animated"><nav id=TableOfContents>
 <ul>
-<li>
-<ul>
-<li><a href=#1创建数据库>1、创建数据库</a></li>
-<li><a href=#2按照提示修改-docker-compose-文件>2、按照提示修改 docker-compose 文件</a></li>
-</ul>
-</li>
+<li><a href=#搭建服务>搭建服务</a></li>
+<li><a href=#配置节点>配置节点</a></li>
 </ul>
 </nav></div>
 </div>
@@ -147,19 +143,19 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>128</span>
+<span class=site-state-item-count>132</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
 <div class="site-state-item site-state-categories">
 <a href=/categories/>
-<span class=site-state-item-count>22</span>
+<span class=site-state-item-count>21</span>
 <span class=site-state-item-name>分类</span>
 </a>
 </div>
 <div class="site-state-item site-state-tags">
 <a href=/tags/>
-<span class=site-state-item-count>22</span>
+<span class=site-state-item-count>21</span>
 <span class=site-state-item-name>标签</span>
 </a>
 </div>
@@ -183,7 +179,7 @@
 <div class=siteinfo>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
-<div class=item-count id=runTimes data-publishdate=2023-05-30T22:36:38+00:00></div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T15:10:22+00:00></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name>
@@ -199,11 +195,11 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=185473></div>
+<div class=item-count id=wordsCount data-count=187802></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=436></div>
+<div class=item-count id=readTimes data-times=444></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -245,7 +241,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Docker - 搭建Sonic云真机平台记录">
-<meta itemprop=description content="本文通过 docker 在服务器上搭建 sonic 真机平台 simple 版本。 部署文档：https://sonic-cloud.gitee.io/#/Deploy 1、创建数据库">
+<meta itemprop=description content="本文通过 docker 在服务器上搭建 sonic 真机平台 simple 版本。 部署文档：https://sonic-cloud.gitee.io/#/Deploy 搭建服务 该版本">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">Docker - 搭建Sonic云真机平台记录 </h1>
@@ -263,7 +259,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -282,14 +278,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>209</span>
+<span class=post-meta-item-text>字数：</span><span>664</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>2分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -308,22 +304,171 @@
 <div class="post-body autonumber" itemprop=articleBody>
 <p>本文通过 docker 在服务器上搭建 sonic 真机平台 simple 版本。</p>
 <p>部署文档：https://sonic-cloud.gitee.io/#/Deploy</p>
-<h3 id=1创建数据库>1、创建数据库</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ docker run --name<span style=color:#f92672>=</span>mysql -it -p 3306:3306 -e MYSQL_ROOT_PASSWORD<span style=color:#f92672>=</span>root -e MYSQL_ROOT_HOST<span style=color:#f92672>=</span>% -d mysql:5.7 --character-set-server<span style=color:#f92672>=</span>utf8 --collation-server<span style=color:#f92672>=</span>utf8_general_ci 
+<h2 id=搭建服务>搭建服务</h2>
+<p>该版本更新很快，官方的部署文件也越来越完善，去官方找最新，这里就提供个模板参考。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-env data-lang=env><span style=color:#75715e># .env</span>
+<span style=color:#75715e>################################################</span>
+<span style=color:#75715e>#         Do you need any help?                #</span>
+<span style=color:#75715e>#     Visit https://sonic-cloud.cn/deploy      #</span>
+<span style=color:#75715e>################################################</span>
 
-<span style=color:#75715e># 进入mysql容器，创建数据库</span>
-$ docker exec -it mysql /bin/bash
-$ mysql -u root -p
-mysql&gt; create database sonic; 
+<span style=color:#75715e>##################</span>
+<span style=color:#75715e># Service Config #</span>
+<span style=color:#75715e>##################</span>
+SONIC_SERVER_HOST<span style=color:#f92672>=</span>192.168.1.222
+SONIC_SERVER_PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>3000</span>
+SONIC_EUREKA_USERNAME<span style=color:#f92672>=</span>sonic
+SONIC_EUREKA_PASSWORD<span style=color:#f92672>=</span>sonic
+SONIC_EUREKA_PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>8761</span>
 
-<span style=color:#75715e># 修改字符集和字符排序规则(没用)</span>
-<span style=color:#75715e># mysql&gt; SELECT CONCAT(&#39;ALTER TABLE &#39;, table_name, &#39; CONVERT TO CHARACTER SET  utf8 COLLATE utf8_general_ci;&#39;)</span>
-<span style=color:#75715e># FROM information_schema.TABLES</span>
-<span style=color:#75715e># WHERE TABLE_SCHEMA = &#39;sonic&#39;;</span>
+<span style=color:#75715e>################</span>
+<span style=color:#75715e># MySQL Config #</span>
+<span style=color:#75715e>################</span>
+MYSQL_HOST<span style=color:#f92672>=</span>sonic-mysql
+MYSQL_PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>3306</span>
+MYSQL_DATABASE<span style=color:#f92672>=</span>sonic
+MYSQL_USERNAME<span style=color:#f92672>=</span>root
+MYSQL_PASSWORD<span style=color:#f92672>=</span>sonic
 
-<span style=color:#75715e># 通过 navicat 链接，创建数据库</span>
-<span style=color:#75715e># 字符集为utf8，排序规则为utf8_general_ci</span>
-</code></pre></div><h3 id=2按照提示修改-docker-compose-文件>2、按照提示修改 docker-compose 文件</h3>
+<span style=color:#75715e>################</span>
+<span style=color:#75715e># User Config  #</span>
+<span style=color:#75715e>################</span>
+SECRET_KEY<span style=color:#f92672>=</span>sonic
+EXPIRE_DAY<span style=color:#f92672>=</span><span style=color:#ae81ff>14</span>
+PERMISSION_ENABLE<span style=color:#f92672>=</span>true
+PERMISSION_SUPER_ADMIN<span style=color:#f92672>=</span>sonic
+REGISTER_ENABLE<span style=color:#f92672>=</span>true
+NORMAL_USER_ENABLE<span style=color:#f92672>=</span>true
+LDAP_USER_ENABLE<span style=color:#f92672>=</span>false
+LDAP_USER_ID<span style=color:#f92672>=</span>cn
+LDAP_BASE_DN<span style=color:#f92672>=</span>ou<span style=color:#f92672>=</span>users
+LDAP_BASE<span style=color:#f92672>=</span>ou<span style=color:#f92672>=</span>system
+LDAP_USERNAME<span style=color:#f92672>=</span>uid<span style=color:#f92672>=</span>admin,ou<span style=color:#f92672>=</span>system
+LDAP_PASSWORD<span style=color:#f92672>=</span>sonic
+LDAP_URL<span style=color:#f92672>=</span>ldap://192.168.1.1:10389
+LDAP_OBJECT_CLASS<span style=color:#f92672>=</span>person
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># docker-compose.yml</span>
+
+<span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3&#39;</span>
+<span style=color:#f92672>services</span>:
+  <span style=color:#f92672>sonic-server-eureka</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;dockerproxy.com/sonicorg/sonic-server-eureka:v2.4.1&#34;</span>
+    <span style=color:#f92672>hostname</span>: <span style=color:#ae81ff>sonic-server-eureka</span>
+    <span style=color:#f92672>environment</span>:
+      - <span style=color:#ae81ff>SONIC_EUREKA_USERNAME</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_PASSWORD</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_PORT</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_HOST=sonic-server-eureka</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>./logs/:/logs/</span>
+    <span style=color:#f92672>depends_on</span>:
+      - <span style=color:#ae81ff>sonic-mysql</span>
+    <span style=color:#f92672>networks</span>:
+      - <span style=color:#ae81ff>sonic-network</span>
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#e6db74>&#34;${SONIC_EUREKA_PORT}:${SONIC_EUREKA_PORT}&#34;</span>
+  <span style=color:#f92672>sonic-server-gateway</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;dockerproxy.com/sonicorg/sonic-server-gateway:v2.4.1&#34;</span>
+    <span style=color:#f92672>hostname</span>: <span style=color:#ae81ff>sonic-server-gateway</span>
+    <span style=color:#f92672>environment</span>:
+      - <span style=color:#ae81ff>SONIC_EUREKA_USERNAME</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_PASSWORD</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_PORT</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_HOST=sonic-server-eureka</span>
+      - <span style=color:#ae81ff>SECRET_KEY</span>
+      - <span style=color:#ae81ff>EXPIRE_DAY</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>./logs/:/logs/</span>
+    <span style=color:#f92672>depends_on</span>:
+      - <span style=color:#ae81ff>sonic-server-eureka</span>
+    <span style=color:#f92672>networks</span>:
+      - <span style=color:#ae81ff>sonic-network</span>
+    <span style=color:#f92672>restart</span>: <span style=color:#66d9ef>on</span>-<span style=color:#ae81ff>failure</span>
+  <span style=color:#f92672>sonic-server-controller</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;dockerproxy.com/sonicorg/sonic-server-controller:v2.4.1&#34;</span>
+    <span style=color:#f92672>environment</span>:
+      - <span style=color:#ae81ff>SONIC_EUREKA_USERNAME</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_PASSWORD</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_PORT</span>
+      - <span style=color:#ae81ff>SONIC_EUREKA_HOST=sonic-server-eureka</span>
+      - <span style=color:#ae81ff>MYSQL_HOST                                                                                                                       1,6           Top</span>
+      - <span style=color:#ae81ff>EXPIRE_DAY</span>
+    <span style=color:#f92672>networks</span>:
+      - <span style=color:#ae81ff>sonic-network</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>./keepFiles/:/keepFiles/</span>
+      - <span style=color:#ae81ff>./imageFiles/:/imageFiles/</span>
+      - <span style=color:#ae81ff>./recordFiles/:/recordFiles/</span>
+      - <span style=color:#ae81ff>./packageFiles/:/packageFiles/</span>
+      - <span style=color:#ae81ff>./logs/:/logs/</span>
+    <span style=color:#f92672>depends_on</span>:
+      - <span style=color:#ae81ff>sonic-server-eureka</span>
+    <span style=color:#f92672>restart</span>: <span style=color:#66d9ef>on</span>-<span style=color:#ae81ff>failure</span>
+  <span style=color:#f92672>sonic-client-web</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;dockerproxy.com/sonicorg/sonic-client-web:v2.4.1&#34;</span>
+    <span style=color:#f92672>environment</span>:
+      - <span style=color:#ae81ff>SONIC_SERVER_HOST</span>
+      - <span style=color:#ae81ff>SONIC_SERVER_PORT</span>
+    <span style=color:#f92672>networks</span>:
+      - <span style=color:#ae81ff>sonic-network</span>
+    <span style=color:#f92672>depends_on</span>:
+      - <span style=color:#ae81ff>sonic-server-gateway</span>
+    <span style=color:#f92672>restart</span>: <span style=color:#66d9ef>on</span>-<span style=color:#ae81ff>failure</span>
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#e6db74>&#34;${SONIC_SERVER_PORT}:80&#34;</span>
+  <span style=color:#f92672>sonic-mysql</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;mysql:5.7&#34;</span>
+    <span style=color:#f92672>hostname</span>: <span style=color:#ae81ff>sonic-mysql</span>
+    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</span>
+    <span style=color:#f92672>environment</span>:
+      - <span style=color:#ae81ff>MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}</span>
+      - <span style=color:#ae81ff>MYSQL_DATABASE</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>./mysql/log:/var/log/mysql</span>
+      - <span style=color:#ae81ff>./mysql/data:/var/lib/mysql</span>
+      <span style=color:#75715e>#- ./mysql/conf:/etc/mysql</span>
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#e6db74>&#34;3306:3306&#34;</span>
+    <span style=color:#f92672>networks</span>:
+      - <span style=color:#ae81ff>sonic-network</span>
+
+<span style=color:#f92672>networks</span>:
+  <span style=color:#f92672>sonic-network</span>:
+    <span style=color:#f92672>driver</span>: <span style=color:#ae81ff>bridge</span>
+</code></pre></div><h2 id=配置节点>配置节点</h2>
+<p>仅 Ubuntu 支持节点以 docker 部署。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># docker-compose.yml</span>
+
+<span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3&#39;</span>
+<span style=color:#f92672>services</span>:
+  <span style=color:#f92672>sonic-agent</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;sonicorg/sonic-agent-linux:v2.4.1&#34;</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#75715e># Change to SONIC_SERVER_HOST and SONIC_SERVER_PORT of server | 改成server的SONIC_SERVER_HOST和SONIC_SERVER_PORT</span>
+      - <span style=color:#ae81ff>SONIC_SERVER_HOST=192.168.1.222</span>
+      - <span style=color:#ae81ff>SONIC_SERVER_PORT=3000</span>
+      <span style=color:#75715e># Replace with ipv4 of the agent machine | 替换为部署Agent机器的ipv4</span>
+      - <span style=color:#ae81ff>AGENT_HOST=192.168.1.222</span>
+      <span style=color:#75715e># Replace with the port of the agent service, which can be changed by yourself | 替换为Agent服务的端口，可以自行更改</span>
+      - <span style=color:#ae81ff>AGENT_PORT=7777</span>
+      <span style=color:#75715e># Replace with the key of agent generated by the new front-end | 替换为前端新增Agent生成的key</span>
+      - <span style=color:#ae81ff>AGENT_KEY=191b38a7-464f-418e-8697-cbd9a843992b</span>
+      <span style=color:#75715e># Whether to enable Android module | 是否开启安卓模块</span>
+      - <span style=color:#ae81ff>ANDROID_ENABLE=true</span>
+      <span style=color:#75715e># Whether to enable sonic-android-supply module | 是否开启sonic-android-supply功能</span>
+      - <span style=color:#ae81ff>USE_SAS=true</span>
+      <span style=color:#75715e># Whether to turn on the iOS module. | 是否开启iOS模块</span>
+      - <span style=color:#ae81ff>IOS_ENABLE=true</span>
+      <span style=color:#75715e># Replace with the bundleId of wda. If there is no. xcrunner suffix, it will be automatically completed. | 替换为wda的bundleId，如果没有.xctrunner后缀会自动补全</span>
+      - <span style=color:#ae81ff>WDA_BUNDLE_ID=com.facebook.WebDriverAgentRunner.xctrunner</span>
+      <span style=color:#75715e># Whether to enable the sonic-go-mitmproxy module | 是否开启sonic-go-mitmproxy功能</span>
+      - <span style=color:#ae81ff>SGM_ENABLE=true</span>
+    <span style=color:#f92672>network_mode</span>: <span style=color:#e6db74>&#34;host&#34;</span>
+    <span style=color:#f92672>privileged</span>: <span style=color:#66d9ef>true</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>/dev/bus/usb:/dev/bus/usb</span>
+      - <span style=color:#ae81ff>/var/run/usbmuxd:/var/run/usbmuxd</span>
+</code></pre></div>
 </div>
 <footer class=post-footer>
 <div class=post-tags>

@@ -74,7 +74,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>128</span>
+<span class=badge>132</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -133,19 +133,19 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>128</span>
+<span class=site-state-item-count>132</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
 <div class="site-state-item site-state-categories">
 <a href=/categories/>
-<span class=site-state-item-count>22</span>
+<span class=site-state-item-count>21</span>
 <span class=site-state-item-name>分类</span>
 </a>
 </div>
 <div class="site-state-item site-state-tags">
 <a href=/tags/>
-<span class=site-state-item-count>22</span>
+<span class=site-state-item-count>21</span>
 <span class=site-state-item-name>标签</span>
 </a>
 </div>
@@ -169,7 +169,7 @@
 <div class=siteinfo>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
-<div class=item-count id=runTimes data-publishdate=2023-05-30T22:36:38+00:00></div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T15:10:22+00:00></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name>
@@ -185,11 +185,11 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=185473></div>
+<div class=item-count id=wordsCount data-count=187802></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=436></div>
+<div class=item-count id=readTimes data-times=444></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -218,6 +218,321 @@
 <div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
 </noscript>
 <div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/fastapi/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82%E6%B1%87%E6%80%BB/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Fastapi - 接口测试平台需求汇总">
+<meta itemprop=description content="这里罗列一些在使用接口测试平台过程中遇到的痛点，汇总一下。 环境配置 全局环境定义 全局域名定义 支持根据域名配置公共参数（Headers、变量） API">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/fastapi/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82%E6%B1%87%E6%80%BB/ itemprop=url class=post-title-link>Fastapi - 接口测试平台需求汇总</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-28 18:18:32 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-28 18:18:32 +0000 UTC">2023-04-28</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-01T23:12:17+00:00 itemprop=dateModified datetime=2023-06-01T23:12:17+00:00>2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/fastapi itemprop=url rel=index>
+<span itemprop=name>Fastapi</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+这里罗列一些在使用接口测试平台过程中遇到的痛点，汇总一下。 环境配置 全局环境定义 全局域名定义 支持根据域名配置公共参数（Headers、变量） API
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/fastapi/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E9%9C%80%E6%B1%82%E6%B1%87%E6%80%BB/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Blog - Hugo 搭建博客（V2）">
+<meta itemprop=description content="下文是我自己的搭建记录（MacOS, Hugo + GithubPage） 搭建本地 Hugo 服务 Hugo 是使用 Go 语言编写的 静态网站生成器 ，页面编译速度快，支持跨平台、">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/ itemprop=url class=post-title-link>Blog - Hugo 搭建博客（V2）</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-27 01:39:00 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-27 01:39:00 +0000 UTC">2023-04-27</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/blog itemprop=url rel=index>
+<span itemprop=name>Blog</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+下文是我自己的搭建记录（MacOS, Hugo + GithubPage） 搭建本地 Hugo 服务 Hugo 是使用 Go 语言编写的 静态网站生成器 ，页面编译速度快，支持跨平台、
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/blog/hugo-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2v2/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/booknotes/python%E5%B7%A5%E5%8C%A0/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Booknotes - 《Python工匠》">
+<meta itemprop=description content="已读完。">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/booknotes/python%E5%B7%A5%E5%8C%A0/ itemprop=url class=post-title-link>Booknotes - 《Python工匠》</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-27 01:39:00 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-27 01:39:00 +0000 UTC">2023-04-27</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/booknotes itemprop=url rel=index>
+<span itemprop=name>Booknotes</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+已读完。
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/booknotes/python%E5%B7%A5%E5%8C%A0/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Jmeter&Ms - Jsr223 自定义脚本">
+<meta itemprop=description content="JSR223 JSR223 是 Java Specification Request 223 的缩写，它定义了一种标准的接口和机制，用于在Java虚拟机中运行基于脚本的语言（例如Groovy、JavaScript等）的脚">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/ itemprop=url class=post-title-link>Jmeter&Ms - Jsr223 自定义脚本</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-23 18:19:08 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-23 18:19:08 +0000 UTC">2023-04-23</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-01T23:12:15+00:00 itemprop=dateModified datetime=2023-06-01T23:12:15+00:00>2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/jmeterms itemprop=url rel=index>
+<span itemprop=name>Jmeter&Ms</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+JSR223 JSR223 是 Java Specification Request 223 的缩写，它定义了一种标准的接口和机制，用于在Java虚拟机中运行基于脚本的语言（例如Groovy、JavaScript等）的脚
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/jmeterms/jsr223-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="随笔 - 我作为面试官的一些心得">
+<meta itemprop=description content="简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/ itemprop=url class=post-title-link>随笔 - 我作为面试官的一些心得</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-19 17:12:46 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-19 17:12:46 +0000 UTC">2023-04-19</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E9%9A%8F%E7%AC%94 itemprop=url rel=index>
+<span itemprop=name>随笔</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题： 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
 <link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/booknotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E8%AE%A1%E7%AE%97%E9%A2%98%E6%B1%87%E6%80%BB/>
@@ -250,7 +565,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -313,7 +628,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -376,7 +691,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -439,7 +754,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -502,7 +817,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
+<time title=修改时间：2023-06-01T23:12:16+00:00 itemprop=dateModified datetime=2023-06-01T23:12:16+00:00>2023-06-01</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -526,321 +841,6 @@
 <footer class=post-footer>
 <div class=post-button>
 <a class=btn href=/tech/ios/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95wda/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/ios/xcode%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Ios - Xcode基本使用">
-<meta itemprop=description content="App Store 直接下载。 构建应用到真机 可以随意构建应用到模拟器。但是如果要构建到真机上的话，需要苹果的开发者证书。 开发者证书：调试真机设备 发布证书：将">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/ios/xcode%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/ itemprop=url class=post-title-link>Ios - Xcode基本使用</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-12-04 17:53:24 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-12-04 17:53:24 +0000 UTC">2022-12-04</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/ios itemprop=url rel=index>
-<span itemprop=name>Ios</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-App Store 直接下载。 构建应用到真机 可以随意构建应用到模拟器。但是如果要构建到真机上的话，需要苹果的开发者证书。 开发者证书：调试真机设备 发布证书：将
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/ios/xcode%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/ios/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Ios - 自动化环境准备">
-<meta itemprop=description content="环境准备 libimobiledevice 是一个跨平台的软件库，可以管理已安装应用，获取通讯录、日程、备注和书签等信息 # github.com/libimobiledevice/libimobiledevice $ brew install --HEAD libimobiledevice ideviceinstaller 是一个命令行工具，主要用于管理 ios 设备上">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/ios/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/ itemprop=url class=post-title-link>Ios - 自动化环境准备</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-12-04 17:43:17 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-12-04 17:43:17 +0000 UTC">2022-12-04</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/ios itemprop=url rel=index>
-<span itemprop=name>Ios</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-环境准备 libimobiledevice 是一个跨平台的软件库，可以管理已安装应用，获取通讯录、日程、备注和书签等信息 # github.com/libimobiledevice/libimobiledevice $ brew install --HEAD libimobiledevice ideviceinstaller 是一个命令行工具，主要用于管理 ios 设备上
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/ios/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/docker-compose%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Docker - Docker Compose报错汇总">
-<meta itemprop=description content="汇总遇到的报错信息。 1. ParserError: while parsing a block mapping $ docker-compose down ERROR: yaml.parser.ParserError: while parsing a block mapping in &#34;./compose.yml&#34;, line 1, column 1 expected <block end>, but found '<block mapping start>' in &#34;./compose.yml&#34;, line 25, column 3 原因是空格导致未对齐，检查 25 行格式错误。">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/docker/docker-compose%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/ itemprop=url class=post-title-link>Docker - Docker Compose报错汇总</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-11-23 00:25:16 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-11-23 00:25:16 +0000 UTC">2022-11-23</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/docker itemprop=url rel=index>
-<span itemprop=name>Docker</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-汇总遇到的报错信息。 1. ParserError: while parsing a block mapping $ docker-compose down ERROR: yaml.parser.ParserError: while parsing a block mapping in "./compose.yml", line 1, column 1 expected &lt;block end>, but found '&lt;block mapping start>' in "./compose.yml", line 25, column 3 原因是空格导致未对齐，检查 25 行格式错误。
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/docker/docker-compose%E6%8A%A5%E9%94%99%E6%B1%87%E6%80%BB/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/selenium/%E5%8F%91%E8%B5%B7api%E8%AF%B7%E6%B1%82seleniumwire/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Selenium - 发起Api请求Seleniumwire">
-<meta itemprop=description content="SeleniumWire 是 Selenium 的扩展，可以获取浏览器发出的请求数据。编写代码方式不变，增加额外的 API 来检查请求和响应并即时更改它们。 特性 纯 Python，用户友好的 API 捕">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/selenium/%E5%8F%91%E8%B5%B7api%E8%AF%B7%E6%B1%82seleniumwire/ itemprop=url class=post-title-link>Selenium - 发起Api请求Seleniumwire</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-11-22 12:13:59 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-11-22 12:13:59 +0000 UTC">2022-11-22</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/selenium itemprop=url rel=index>
-<span itemprop=name>Selenium</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-SeleniumWire 是 Selenium 的扩展，可以获取浏览器发出的请求数据。编写代码方式不变，增加额外的 API 来检查请求和响应并即时更改它们。 特性 纯 Python，用户友好的 API 捕
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/selenium/%E5%8F%91%E8%B5%B7api%E8%AF%B7%E6%B1%82seleniumwire/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/selenium/chromedriver/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Selenium - Chromedriver">
-<meta itemprop=description content="批量杀死 chromedriver 进程 $ ps -ef \ | grep chromedriver | grep -v grep \ | awk '{print $2}' \ | awk 'BEGIN{RS=&#34;&#34;;FS=&#34;\n&#34;;OFS=&#34; &#34;}{$1=$1;print $0}' \ | xargs kill -9">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/selenium/chromedriver/ itemprop=url class=post-title-link>Selenium - Chromedriver</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2022-11-22 11:55:25 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-11-22 11:55:25 +0000 UTC">2022-11-22</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-05-31T15:05:57+00:00 itemprop=dateModified datetime=2023-05-31T15:05:57+00:00>2023-05-31</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/selenium itemprop=url rel=index>
-<span itemprop=name>Selenium</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-批量杀死 chromedriver 进程 $ ps -ef \ | grep chromedriver | grep -v grep \ | awk '{print $2}' \ | awk 'BEGIN{RS="";FS="\n";OFS=" "}{$1=$1;print $0}' \ | xargs kill -9
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/selenium/chromedriver/#more rel=contents>
 阅读全文 &#187;
 </a>
 </div>
