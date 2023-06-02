@@ -30,7 +30,7 @@
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
-<link rel=stylesheet href=/css/main.min.331d95fedf2847d8a3c98322839de5db31213d8c091b515a49b2ddd764987b86.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
 <style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
 <script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
 <script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0","permalink":"https://abeelan.github.io/tech/booknotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/","title":"Booknotes - 《计算机网络原理》个人笔记"}</script>
@@ -132,13 +132,7 @@
 <ul>
 <li><a href=#基本概念>基本概念</a>
 <ul>
-<li>
-<ul>
-<li><a href=#协议>协议</a></li>
-<li><a href=#计算机网络功能>计算机网络功能</a></li>
-<li><a href=#计算机网络分类>计算机网络分类</a></li>
-</ul>
-</li>
+<li></li>
 </ul>
 </li>
 <li><a href=#计算机网络结构>计算机网络结构</a></li>
@@ -165,11 +159,7 @@
 <ul>
 <li><a href=#计算机网络应用体系结构>计算机网络应用体系结构</a>
 <ul>
-<li>
-<ul>
-<li><a href=#网络应用通信基本原理>网络应用通信基本原理</a></li>
-</ul>
-</li>
+<li></li>
 </ul>
 </li>
 <li><a href=#域名系统dns>域名系统（DNS）</a>
@@ -207,22 +197,13 @@
 </li>
 <li><a href=#传输层的复用与分解>传输层的复用与分解</a>
 <ul>
-<li><a href=#多路复用与多路分解>多路复用与多路分解</a>
-<ul>
-<li><a href=#无连接的多路复用与多路分解>无连接的多路复用与多路分解</a></li>
-<li><a href=#面向连接的多路复用与多路分解>面向连接的多路复用与多路分解</a></li>
-</ul>
-</li>
+<li><a href=#多路复用与多路分解>多路复用与多路分解</a></li>
 </ul>
 </li>
 <li><a href=#停-等协议与滑动窗口协议>停-等协议与滑动窗口协议</a>
 <ul>
 <li><a href=#停-等协议>停-等协议</a></li>
-<li><a href=#滑动窗口协议>滑动窗口协议</a>
-<ul>
-<li><a href=#gbn-协议-和-sr-协议>GBN 协议 和 SR 协议</a></li>
-</ul>
-</li>
+<li><a href=#滑动窗口协议>滑动窗口协议</a></li>
 </ul>
 </li>
 <li><a href=#udp>UDP</a>
@@ -233,16 +214,8 @@
 <li><a href=#tcp>TCP</a>
 <ul>
 <li><a href=#连接建立三次握手>连接建立（三次握手）</a></li>
-<li><a href=#连接拆除四次挥手>连接拆除（四次挥手）</a>
-<ul>
-<li><a href=#tcp-实现可靠数据传输服务的工作机制>TCP 实现可靠数据传输服务的工作机制</a></li>
-</ul>
-</li>
-<li><a href=#tcp-拥塞控制>TCP 拥塞控制</a>
-<ul>
-<li><a href=#窗口调整的基本策略aimd>窗口调整的基本策略（AIMD）：</a></li>
-</ul>
-</li>
+<li><a href=#连接拆除四次挥手>连接拆除（四次挥手）</a></li>
+<li><a href=#tcp-拥塞控制>TCP 拥塞控制</a></li>
 <li><a href=#tcp-流量控制>TCP 流量控制</a></li>
 </ul>
 </li>
@@ -259,30 +232,14 @@
 </li>
 <li><a href=#网络层拥塞控制>网络层拥塞控制</a>
 <ul>
-<li><a href=#网络层拥塞控制措施>网络层拥塞控制措施</a>
-<ul>
-<li><a href=#1流量感知路由>1.流量感知路由</a></li>
-<li><a href=#2-准入控制>2. 准入控制</a></li>
-<li><a href=#3-流量调节>3. 流量调节</a></li>
-<li><a href=#4-负载脱落>4. 负载脱落</a></li>
-</ul>
-</li>
+<li><a href=#网络层拥塞控制措施>网络层拥塞控制措施</a></li>
 </ul>
 </li>
 <li><a href=#internet-网络层>Internet 网络层</a>
 <ul>
 <li><a href=#ip-数据报格式>IP 数据报格式</a></li>
 <li><a href=#ip-数据报分片>IP 数据报分片</a></li>
-<li><a href=#ipv4-编址>IPv4 编址</a>
-<ul>
-<li><a href=#分类寻址>分类寻址</a></li>
-<li><a href=#特殊地址>特殊地址</a></li>
-<li><a href=#私有地址>私有地址</a></li>
-<li><a href=#无类地址>无类地址</a></li>
-<li><a href=#子网划分>子网划分</a></li>
-<li><a href=#路由聚合>路由聚合</a></li>
-</ul>
-</li>
+<li><a href=#ipv4-编址>IPv4 编址</a></li>
 <li><a href=#动态主机配置协议-hdcp>动态主机配置协议 HDCP</a></li>
 <li><a href=#网络地址转换nat>网络地址转换（NAT）</a></li>
 <li><a href=#互联网控制报文协议icmp>互联网控制报文协议（ICMP）</a></li>
@@ -316,13 +273,7 @@
 <li><a href=#多路访问控制协议>多路访问控制协议</a>
 <ul>
 <li><a href=#信道划分-mac-协议>信道划分 MAC 协议</a></li>
-<li><a href=#随机访问-mac-协议>随机访问 MAC 协议</a>
-<ul>
-<li><a href=#aloha-协议只说不听最早的最基本的无线数据通信协议>ALOHA 协议（<strong>只说不听</strong>）：<strong>最早的</strong>，最基本的无线数据通信协议</a></li>
-<li><a href=#载波监听多路访问协议先听后说csma>载波监听多路访问协议（<strong>先听后说</strong>）CSMA</a></li>
-<li><a href=#带冲突检测的载波多路访问协议先听后说边听边说csmacd>带冲突检测的载波多路访问协议（<strong>先听后说，边听边说</strong>）CSMA/CD</a></li>
-</ul>
-</li>
+<li><a href=#随机访问-mac-协议>随机访问 MAC 协议</a></li>
 <li><a href=#受控接入-mac-协议>受控接入 MAC 协议</a></li>
 </ul>
 </li>
@@ -365,31 +316,12 @@
 </li>
 <li><a href=#基带传输>基带传输</a>
 <ul>
-<li><a href=#数字基带传输编码>数字基带传输编码</a>
-<ul>
-<li><a href=#1-单极不归零码nrz0零电平1正电平>1. 单极不归零码（NRZ）：0（零电平）1（正电平）</a></li>
-<li><a href=#双极不归零码0负电平1正电平>双极不归零码：0（负电平）1（正电平）</a></li>
-<li><a href=#3-单极归零码rz0零电平1正电平>3. 单极归零码（RZ）：0（零电平）1（正电平）</a></li>
-<li><a href=#4-双极归零码0负电平1正电平>4. 双极归零码：0（负电平）1（正电平）</a></li>
-<li><a href=#5-差分码相对码0相邻电平无跳变1相邻电平有跳变>5. 差分码（相对码）0（相邻电平无跳变）1（相邻电平有跳变）</a></li>
-<li><a href=#1-信号交替反转码ami-码0零电平1交替用正电平和负电平表示>1. 信号交替反转码（AMI 码）：0（零电平）1（交替用正电平和负电平表示）</a></li>
-<li><a href=#2-双相码曼彻斯特码0负电平跳到正电平1正电平跳到负电平>2. 双相码（曼彻斯特码）0（负电平跳到正电平）1（正电平跳到负电平）</a></li>
-<li><a href=#3-差分双向码差分曼彻斯特码0相邻电平无跳变1相邻电平有跳变>3. 差分双向码（差分曼彻斯特码）0（相邻电平无跳变）1（相邻电平有跳变）</a></li>
-<li><a href=#4-米勒码延迟调制码>4. 米勒码：延迟调制码</a></li>
-<li><a href=#5-信号反转码cmi-码0负正1正负交替编码>5. 信号反转码（CMI 码）：0（负正）1（正、负交替编码）</a></li>
-</ul>
-</li>
+<li><a href=#数字基带传输编码>数字基带传输编码</a></li>
 </ul>
 </li>
 <li><a href=#频带传输>频带传输</a>
 <ul>
-<li><a href=#数字调制的基本方法>数字调制的基本方法</a>
-<ul>
-<li><a href=#二进制数字调制>二进制数字调制</a></li>
-<li><a href=#多进制数字调制>多进制数字调制</a></li>
-<li><a href=#正交幅值调制-qam幅值相位联合键控apk>正交幅值调制 QAM（幅值相位联合键控（APK））</a></li>
-</ul>
-</li>
+<li><a href=#数字调制的基本方法>数字调制的基本方法</a></li>
 <li><a href=#物理层接口规程>物理层接口规程</a></li>
 </ul>
 </li>
@@ -406,20 +338,10 @@
 </li>
 <li><a href=#移动网络>移动网络</a>
 <ul>
-<li><a href=#蜂窝网络>蜂窝网络</a>
-<ul>
-<li><a href=#蜂窝网络的系统结构>蜂窝网络的系统结构</a></li>
-</ul>
-</li>
+<li><a href=#蜂窝网络>蜂窝网络</a></li>
 <li><a href=#蜂窝网络中的移动性管理>蜂窝网络中的移动性管理</a></li>
 <li><a href=#移动通信-2g3g4g5g-网络>移动通信 2G/3G/4G/5G 网络</a></li>
-<li><a href=#移动-ip-网络>移动 IP 网络</a>
-<ul>
-<li><a href=#代理发现>代理发现</a></li>
-<li><a href=#向归属代理注册>向归属代理注册</a></li>
-<li><a href=#其他典型无线网络>其他典型无线网络</a></li>
-</ul>
-</li>
+<li><a href=#移动-ip-网络>移动 IP 网络</a></li>
 </ul>
 </li>
 </ul>
@@ -429,25 +351,9 @@
 <li>
 <ul>
 <li><a href=#网络安全概述>网络安全概述</a></li>
-<li><a href=#数据加密>数据加密</a>
-<ul>
-<li><a href=#传统加密方式替代密码>传统加密方式：替代密码</a></li>
-<li><a href=#传统加密方式换位密码置换密码>传统加密方式：换位密码（置换密码）</a></li>
-<li><a href=#对称密钥加密>对称密钥加密</a></li>
-<li><a href=#非对称公开密钥加密>非对称/公开密钥加密</a></li>
-</ul>
-</li>
-<li><a href=#消息完整性与数字签名>消息完整性与数字签名</a>
-<ul>
-<li><a href=#消息完整性检测方法>消息完整性检测方法</a></li>
-</ul>
-</li>
-<li><a href=#报文认证>报文认证</a>
-<ul>
-<li><a href=#简单报文验证>简单报文验证</a></li>
-<li><a href=#数字签名>数字签名</a></li>
-</ul>
-</li>
+<li><a href=#数据加密>数据加密</a></li>
+<li><a href=#消息完整性与数字签名>消息完整性与数字签名</a></li>
+<li><a href=#报文认证>报文认证</a></li>
 <li><a href=#身份认证>身份认证</a></li>
 </ul>
 </li>
@@ -520,7 +426,7 @@
 <div class=siteinfo>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
-<div class=item-count id=runTimes data-publishdate=2023-06-01T18:21:12+00:00></div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name>
@@ -544,7 +450,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2021-01-20T15:50:14+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-06-01T16:17:01+00:00></div>
 </div>
 </div>
 </div>
@@ -2214,7 +2120,7 @@ Andorid - Adb远程连接
 </footer>
 <script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
 <script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
-<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":240},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
 <script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
 </body>
 </html>
