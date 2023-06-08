@@ -1,0 +1,511 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Python - Dynaconf 动态配置管理">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - Dynaconf 动态配置管理">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/python/dynaconf-%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-06-02 15:05:11 +0000 UTC">
+<meta property="article:modified_time" content="2023-06-08 13:18:13 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"dynaconf-%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86","permalink":"https://abeelan.github.io/tech/python/dynaconf-%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/","title":"Python - Dynaconf 动态配置管理"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Python - Dynaconf 动态配置管理 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>144</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#安装>安装</a></li>
+<li><a href=#项目初始化>项目初始化</a></li>
+<li><a href=#编写配置文件>编写配置文件</a></li>
+<li><a href=#加载配置>加载配置</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>144</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>21</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>21</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=193374></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=462></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-04-23T18:19:08+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/dynaconf-%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Python - Dynaconf 动态配置管理">
+<meta itemprop=description content="Dynaconf 旨在成为在 Python 中管理配置的最佳选择。它可以从各种来源读取设置，包括环境变量、文件、服务器配置等，它适用于任何类型的 Python 程序。 安装 $ pip install dynaconf # 或者">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Python - Dynaconf 动态配置管理 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-06-02 15:05:11 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-06-02 15:05:11 +0000 UTC">2023-06-02</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-08T13:18:13+00:00 itemprop=dateModified datetime=2023-06-08T13:18:13+00:00>2023-06-08</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1077</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>3分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/python/dynaconf-%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<p>
+<a href=https://www.dynaconf.com/ title=Dynaconf rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Dynaconf
+<i class="fa fa-external-link-alt"></i>
+</a> 旨在成为在 Python 中管理配置的最佳选择。它可以从各种来源读取设置，包括环境变量、文件、服务器配置等，它适用于任何类型的 Python 程序。</p>
+<h2 id=安装>安装</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ pip install dynaconf
+
+<span style=color:#75715e># 或者</span>
+$ poetry add dynaconf
+</code></pre></div><h2 id=项目初始化>项目初始化</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 进入项目路径</span>
+$ cd project-demo
+
+<span style=color:#75715e># 初始化配置文件，支持 toml|yaml|json|ini|py</span>
+<span style=color:#75715e># 默认是 toml 也是最推荐的，这里先用熟悉的 yml 哈</span>
+$ dynaconf init -f yaml
+⚙️  Configuring your Dynaconf environment
+🐍 The file <span style=color:#e6db74>`</span>config.py<span style=color:#e6db74>`</span> was generated.
+  on your code now use <span style=color:#e6db74>`</span>from config import settings<span style=color:#e6db74>`</span>.
+  <span style=color:#f92672>(</span>you must have <span style=color:#e6db74>`</span>config<span style=color:#e6db74>`</span> importable in your PYTHONPATH<span style=color:#f92672>)</span>.
+
+🎛️  settings.yaml created to hold your settings.
+
+🔑 .secrets.yaml created to hold your secrets.
+
+🙈 the .secrets.yaml is also included in <span style=color:#e6db74>`</span>.gitignore<span style=color:#e6db74>`</span>
+  beware to not push your secrets to a public repo
+  or use dynaconf builtin support <span style=color:#66d9ef>for</span> Vault Servers.
+
+🎉 Dynaconf is configured! read more on https://dynaconf.com
+   Use <span style=color:#e6db74>`</span>dynaconf -i config.settings list<span style=color:#e6db74>`</span> to see your settings
+
+<span style=color:#f92672>(</span>package-demo-py3.10<span style=color:#f92672>)</span>
+</code></pre></div><p>生成的文件如下，默认只生成 <code>setting.yml</code> 和 <code>config.py</code>，其他是也支持的且常用的。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ tree
+.
+├── config.py				<span style=color:#75715e># 需要被导入的配置脚本</span>
+├── settings.local.yaml     <span style=color:#75715e># 开发时本地配置</span>
+├── settings.yaml			<span style=color:#75715e># 应用配置</span>
+└── .secrets.yaml   		<span style=color:#75715e># 像密码等敏感信息配置</span>
+</code></pre></div><h2 id=编写配置文件>编写配置文件</h2>
+<p>编辑配置文件如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># setting.yml</span>
+<span style=color:#f92672>debug</span>: <span style=color:#66d9ef>false</span>
+
+<span style=color:#75715e># 线上数据库</span>
+<span style=color:#f92672>database</span>:
+  <span style=color:#f92672>host</span>: <span style=color:#ae81ff>product-env.com  </span>
+  <span style=color:#f92672>port</span>: <span style=color:#ae81ff>3306</span>
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>mydatabase</span>
+  <span style=color:#f92672>username</span>: <span style=color:#ae81ff>myuser</span>
+  <span style=color:#f92672>password</span>: <span style=color:#ae81ff>mypassword</span>
+ 
+<span style=color:#f92672>api_key</span>: <span style=color:#ae81ff>myapikey</span>
+</code></pre></div><h2 id=加载配置>加载配置</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># config.py</span>
+
+<span style=color:#f92672>from</span> pathlib <span style=color:#f92672>import</span> Path
+<span style=color:#f92672>from</span> dynaconf <span style=color:#f92672>import</span> Dynaconf
+
+<span style=color:#75715e># 根目录</span>
+ROOT_DIR <span style=color:#f92672>=</span> Path(__file__)<span style=color:#f92672>.</span>parent
+
+<span style=color:#75715e># 加载配置</span>
+settings <span style=color:#f92672>=</span> Dynaconf(
+    <span style=color:#75715e># 设置环境变量前缀</span>
+    <span style=color:#75715e># 比如：settings.FOO = &#34;bar&#34; 在环境变量中就是 DEMO_FOO=&#34;bar&#34;</span>
+    envvar_prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;DEMO&#34;</span>, 
+    <span style=color:#75715e># 指定根目录</span>
+    base_dir<span style=color:#f92672>=</span>ROOT_DIR,
+    <span style=color:#75715e># 通过列表方式加载多个配置文件</span>
+    settings_files<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;settings.yml&#34;</span>, ],
+    <span style=color:#75715e># 加载 .env 文件</span>
+    load_dotenv<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,  
+)
+</code></pre></div><p>验证配置是否生效</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># test_dynaconf.py</span>
+<span style=color:#f92672>from</span> config <span style=color:#f92672>import</span> settings
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_settings</span>():
+    <span style=color:#e6db74>&#34;&#34;&#34;正常执行完成，没有报错&#34;&#34;&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>debug <span style=color:#f92672>is</span> <span style=color:#66d9ef>False</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>host <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;product-env.com&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>port <span style=color:#f92672>==</span> <span style=color:#ae81ff>3306</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>name <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;mydatabase&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>username <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;myuser&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>password <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;mypassword&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>api_key <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;myapikey&#34;</span>
+</code></pre></div><p>项目开发过程中，通常需要在开发环境中调试，可以通过修改 <code>settings.yml</code> 中的配置项来完成，但是这样在提交测试或生产环境时还得记着修改，比较麻烦。</p>
+<p>所以可以通过 <code>settings.local.yml</code> ，增加本地开发配置，它的优先级比较低，会在后面加载，覆盖掉之前的 <code>settings.yml</code> 配置。</p>
+<blockquote>
+<p>⚠️ 注意</p>
+<p>本地配置内字段需要与 settings.yml 文件内的配置项一致，否则报错：<code>'DynaBox' object has no attribute 'HOST'</code></p>
+<p>为了实现仅修改特定参数，需要在 settings.local.yml 文件内增加配置项：<code>dynaconf_merge: true</code>，表示自动合并到 <code>settings.yml</code>，达到相同配置复用的目的。</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># settings.local.yml</span>
+<span style=color:#75715e># 开发环境配置文件</span>
+<span style=color:#75715e># 开启自动合并相同配置项 </span>
+<span style=color:#f92672>dynaconf_merge</span>: <span style=color:#66d9ef>true</span>
+
+<span style=color:#f92672>debug</span>: <span style=color:#66d9ef>true</span>
+
+<span style=color:#75715e># 本机数据库</span>
+<span style=color:#f92672>database</span>:
+  <span style=color:#f92672>host</span>: <span style=color:#ae81ff>localhost</span>
+</code></pre></div><p>以上我打开了 debug 开关，且数据库的地址为本地，其他配置都不用改，验证配置是否生效。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># test_dynaconf.py</span>
+<span style=color:#75715e># 再次执行之前的用例，发现报错了</span>
+<span style=color:#75715e># AssertionError: assert settings.debug is False</span>
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_dev_settings</span>():
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>debug <span style=color:#f92672>is</span> <span style=color:#66d9ef>True</span>  <span style=color:#75715e># &lt;--</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>host <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;localhost&#34;</span>  <span style=color:#75715e># &lt;--</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>port <span style=color:#f92672>==</span> <span style=color:#ae81ff>3306</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>name <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;mydatabase&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>username <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;myuser&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>database<span style=color:#f92672>.</span>password <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;mypassword&#34;</span>
+    <span style=color:#66d9ef>assert</span> settings<span style=color:#f92672>.</span>api_key <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;myapikey&#34;</span>
+</code></pre></div><p>以上用例正确执行，证明本地配置修改成功。又来了一个问题，上面配置中密码都是明文放在配置文件中的，通常情况下，我们需要避免把敏感信息放入仓库，因此，Dynaconf 还支持通过 <code>.secrets.yaml</code> 配置敏感信息，默认不提交到仓库中。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># .secrets.yml</span>
+<span style=color:#75715e># 存放敏感信息</span>
+<span style=color:#75715e># 记得添加自动合并配置项</span>
+<span style=color:#f92672>dynaconf_merge</span>: <span style=color:#66d9ef>true</span>
+
+<span style=color:#f92672>database</span>:
+  <span style=color:#f92672>username</span>: <span style=color:#ae81ff>myuser</span>
+  <span style=color:#f92672>password</span>: <span style=color:#ae81ff>mypassword</span>
+<span style=color:#f92672>api_key</span>: <span style=color:#ae81ff>myapikey</span>
+</code></pre></div><p>删除 <code>settings.yml</code> 中的 <code>username、password、api_key</code> 配置项，再次执行测试用例，依然正常执行，配置生效。</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python>
+Python
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/fastapi/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%86%B0%E9%98%94%E4%B9%90/ rel=next title="Fastapi - 学习笔记（冰阔乐）">
+<i class="fa fa-chevron-left"></i> Fastapi - 学习笔记（冰阔乐）
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/fastapi/%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE%E6%A1%88%E4%BE%8B/ rel=prev title="Fastapi - 博客项目案例">
+Fastapi - 博客项目案例
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>
