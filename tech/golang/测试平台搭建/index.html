@@ -1,0 +1,674 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Golang - 测试平台搭建">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang - 测试平台搭建">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/golang/%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-06-14 14:03:34 +0000 UTC">
+<meta property="article:modified_time" content="2023-06-25 14:07:32 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA","permalink":"https://abeelan.github.io/tech/golang/%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/","title":"Golang - 测试平台搭建"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Golang - 测试平台搭建 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>150</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#数据库>数据库</a></li>
+<li><a href=#部署后端>部署后端</a></li>
+<li><a href=#部署前端>部署前端</a></li>
+<li><a href=#使用-docker-部署>使用 docker 部署</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>150</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=196578></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=473></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-06-09T14:46:23+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/golang/%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Golang - 测试平台搭建">
+<meta itemprop=description content="数据库 # 扬帆测试平台部署 $ docker run -d -host --name yangfan-mysql \ -p 13306:3306 \ -v $volume/yangfan/mysql:/var/lib/mysql \ -e MYSQL_ROOT_HOST=% \ -e MYSQL_ROOT_PASSWORD=12345 \ mysql:8.0 # --character-set-server=utf8mb4 报错 # --collation-server=utf8mb4_unicode_ci # 1.拷贝SQL文件到mysql容器中 $ docker cp docs/sql/yangfan.sql yangfan-mysql:/yangfan.sql Successfully copied 270.8kB to mysql:/yangfan.sql # 2.">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Golang - 测试平台搭建 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-06-14 14:03:34 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-06-14 14:03:34 +0000 UTC">2023-06-14</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-25T14:07:32+00:00 itemprop=dateModified datetime=2023-06-25T14:07:32+00:00>2023-06-25</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/golang itemprop=url rel=index>
+<span itemprop=name>Golang</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>958</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>2分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/golang/%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h2 id=数据库>数据库</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># 扬帆测试平台部署</span>
+$ docker run -d -host --name yangfan-mysql <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	-p 13306:3306 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	-v $volume/yangfan/mysql:/var/lib/mysql <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	-e MYSQL_ROOT_HOST<span style=color:#f92672>=</span>% <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	-e MYSQL_ROOT_PASSWORD<span style=color:#f92672>=</span><span style=color:#ae81ff>12345</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	mysql:8.0
+    <span style=color:#75715e># --character-set-server=utf8mb4 报错</span>
+    <span style=color:#75715e># --collation-server=utf8mb4_unicode_ci </span>
+    
+ 
+<span style=color:#75715e># 1.拷贝SQL文件到mysql容器中</span>
+$ docker cp docs/sql/yangfan.sql yangfan-mysql:/yangfan.sql
+Successfully copied 270.8kB to mysql:/yangfan.sql
+
+<span style=color:#75715e># 2. 创建数据库</span>
+$ docker exec -it yangfan-mysql bash
+$ mysql -u root -p <span style=color:#ae81ff>12345</span>
+
+mysql&gt; create database yangfan;
+mysql&gt; use yangfan;
+
+<span style=color:#75715e># 3.登陆控制台执行source 命令</span>
+mysql&gt; source yangfan.sql
+
+
+<span style=color:#75715e># 修改配置文件</span>
+
+<span style=color:#75715e># server mysql</span>
+$ vim config.yaml  
+<span style=color:#75715e># vite base path 本机 ip</span>
+$ vim web/.env.production
+$ vim web/.env.development
+<span style=color:#75715e># 修改 nginx 端口</span>
+$ vim web/.docker-compose/nginx/conf.d/my.conf
+<span style=color:#75715e># 修改冲突端口</span>
+$ vim deploy/docker-compose/docker-compose.yaml
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># redis</span>
+$ docker run -d --name redis <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	-p 6379:6379 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	-v $volume/yangfan/redis_data:/data <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	redis:latest <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>	redis-server --appendonly yes --requirepass <span style=color:#ae81ff>123456</span>
+</code></pre></div><h2 id=部署后端>部署后端</h2>
+<p>使用 goland 打开项目，执行命令</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>go mod tidy
+</code></pre></div><p>将配置文件 <code>config.yaml</code> 放到 server 目录下，并修改</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#75715e># config.yaml</span>
+
+<span style=color:#75715e># 阿里云 OSS 没有可忽略</span>
+<span style=color:#f92672>aliyun-oss</span>:
+  <span style=color:#f92672>endpoint</span>: <span style=color:#ae81ff>yourEndpoint</span>
+  <span style=color:#f92672>access-key-id</span>: <span style=color:#ae81ff>yourAccessKeyId</span>
+  <span style=color:#f92672>access-key-secret</span>: <span style=color:#ae81ff>yourAccessKeySecret</span>
+  <span style=color:#f92672>bucket-name</span>: <span style=color:#ae81ff>yourBucketName</span>
+  <span style=color:#f92672>bucket-url</span>: <span style=color:#ae81ff>yourBucketUrl</span>
+  <span style=color:#f92672>base-path</span>: <span style=color:#ae81ff>yourBasePath</span>
+<span style=color:#f92672>autocode</span>:
+  <span style=color:#f92672>transfer-restart</span>: <span style=color:#66d9ef>true</span>
+  <span style=color:#f92672>root</span>: <span style=color:#ae81ff>C:\gva\taylor-test-platform-server\taylor-test-platform</span>
+  <span style=color:#f92672>server</span>: <span style=color:#ae81ff>/server</span>
+  <span style=color:#f92672>server-api</span>: <span style=color:#ae81ff>/api/v1/%s</span>
+  <span style=color:#f92672>server-plug</span>: <span style=color:#ae81ff>/plugin/%s</span>
+  <span style=color:#f92672>server-initialize</span>: <span style=color:#ae81ff>/initialize</span>
+  <span style=color:#f92672>server-model</span>: <span style=color:#ae81ff>/model/%s</span>
+  <span style=color:#f92672>server-request</span>: <span style=color:#ae81ff>/model/%s/request/</span>
+  <span style=color:#f92672>server-router</span>: <span style=color:#ae81ff>/router/%s</span>
+  <span style=color:#f92672>server-service</span>: <span style=color:#ae81ff>/service/%s</span>
+  <span style=color:#f92672>web</span>: <span style=color:#ae81ff>/web/src</span>
+  <span style=color:#f92672>web-api</span>: <span style=color:#ae81ff>/api</span>
+  <span style=color:#f92672>web-form</span>: <span style=color:#ae81ff>/view</span>
+  <span style=color:#f92672>web-table</span>: <span style=color:#ae81ff>/view</span>
+<span style=color:#f92672>aws-s3</span>:
+  <span style=color:#f92672>bucket</span>: <span style=color:#ae81ff>xxxxx-10005608</span>
+  <span style=color:#f92672>region</span>: <span style=color:#ae81ff>ap-shanghai</span>
+  <span style=color:#f92672>endpoint</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>s3-force-path-style</span>: <span style=color:#66d9ef>false</span>
+  <span style=color:#f92672>disable-ssl</span>: <span style=color:#66d9ef>false</span>
+  <span style=color:#f92672>secret-id</span>: <span style=color:#ae81ff>xxxxxxxx</span>
+  <span style=color:#f92672>secret-key</span>: <span style=color:#ae81ff>xxxxxxxx</span>
+  <span style=color:#f92672>base-url</span>: <span style=color:#ae81ff>https://gin.vue.admin</span>
+  <span style=color:#f92672>path-prefix</span>: <span style=color:#ae81ff>github.com/flipped-aurora/gin-vue-admin/server</span>
+<span style=color:#f92672>captcha</span>:
+  <span style=color:#f92672>key-long</span>: <span style=color:#ae81ff>1</span>
+  <span style=color:#f92672>img-width</span>: <span style=color:#ae81ff>240</span>
+  <span style=color:#f92672>img-height</span>: <span style=color:#ae81ff>80</span>
+<span style=color:#f92672>cors</span>:
+  <span style=color:#f92672>mode</span>: <span style=color:#ae81ff>whitelist</span>
+  <span style=color:#f92672>whitelist</span>:
+    - <span style=color:#f92672>allow-origin</span>: <span style=color:#ae81ff>example1.com</span>
+      <span style=color:#f92672>allow-methods</span>: <span style=color:#ae81ff>GET, POST</span>
+      <span style=color:#f92672>allow-headers</span>: <span style=color:#ae81ff>content-type</span>
+      <span style=color:#f92672>expose-headers</span>: <span style=color:#ae81ff>Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers,</span>
+        <span style=color:#ae81ff>Content-Type</span>
+      <span style=color:#f92672>allow-credentials</span>: <span style=color:#66d9ef>true</span>
+    - <span style=color:#f92672>allow-origin</span>: <span style=color:#ae81ff>example2.com</span>
+      <span style=color:#f92672>allow-methods</span>: <span style=color:#ae81ff>GET, POST</span>
+      <span style=color:#f92672>allow-headers</span>: <span style=color:#ae81ff>content-type</span>
+      <span style=color:#f92672>expose-headers</span>: <span style=color:#ae81ff>Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers,</span>
+        <span style=color:#ae81ff>Content-Type</span>
+      <span style=color:#f92672>allow-credentials</span>: <span style=color:#66d9ef>true</span>
+<span style=color:#f92672>db-list</span>:
+  - <span style=color:#f92672>disable</span>: <span style=color:#66d9ef>false</span>
+    <span style=color:#f92672>type</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>alias-name</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>path</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>port</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>config</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>db-name</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>username</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>password</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>max-idle-conns</span>: <span style=color:#ae81ff>10</span>
+    <span style=color:#f92672>max-open-conns</span>: <span style=color:#ae81ff>100</span>
+    <span style=color:#f92672>log-mode</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    <span style=color:#f92672>log-zap</span>: <span style=color:#66d9ef>false</span>
+<span style=color:#f92672>email</span>:
+  <span style=color:#f92672>to</span>: <span style=color:#ae81ff>xxx@qq.com</span>
+  <span style=color:#f92672>port</span>: <span style=color:#ae81ff>465</span>
+  <span style=color:#f92672>from</span>: <span style=color:#ae81ff>xxx@163.com</span>
+  <span style=color:#f92672>host</span>: <span style=color:#ae81ff>smtp.163.com</span>
+  <span style=color:#f92672>is-ssl</span>: <span style=color:#66d9ef>true</span>
+  <span style=color:#f92672>secret</span>: <span style=color:#ae81ff>xxx</span>
+  <span style=color:#f92672>nickname</span>: <span style=color:#ae81ff>test</span>
+<span style=color:#f92672>excel</span>:
+  <span style=color:#f92672>dir</span>: <span style=color:#ae81ff>./resource/excel/</span>
+  
+<span style=color:#75715e># 飞书登录配置项</span>
+<span style=color:#f92672>fs</span>:
+  <span style=color:#f92672>appID</span>:
+  <span style=color:#f92672>appSecret</span>:
+  <span style=color:#f92672>redirectUri</span>: <span style=color:#ae81ff>http://127.0.0.1:8080/api/fsLogin/login</span>
+  <span style=color:#f92672>authorityID</span>: <span style=color:#ae81ff>666</span>
+  <span style=color:#f92672>projectID</span>: <span style=color:#ae81ff>1</span>
+  
+<span style=color:#75715e># 华为 OBS 没有可忽略</span>
+<span style=color:#f92672>hua-wei-obs</span>:
+  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>you-path</span>
+  <span style=color:#f92672>bucket</span>: <span style=color:#ae81ff>you-bucket</span>
+  <span style=color:#f92672>endpoint</span>: <span style=color:#ae81ff>you-endpoint</span>
+  <span style=color:#f92672>access-key</span>: <span style=color:#ae81ff>you-access-key</span>
+  <span style=color:#f92672>secret-key</span>: <span style=color:#ae81ff>you-secret-key</span>
+  
+<span style=color:#75715e># JWT 认证</span>
+<span style=color:#f92672>jwt</span>:
+  <span style=color:#f92672>signing-key</span>: <span style=color:#ae81ff>6c8c168a-d00b-4929-a4cd-75ede0ad8cce</span>
+  <span style=color:#f92672>expires-time</span>: <span style=color:#ae81ff>604800</span>
+  <span style=color:#f92672>buffer-time</span>: <span style=color:#ae81ff>86400</span>
+  <span style=color:#f92672>issuer</span>: <span style=color:#ae81ff>lan</span>
+
+<span style=color:#75715e># 文件上传目录配置</span>
+<span style=color:#f92672>local</span>:
+  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>uploads/file</span>
+  <span style=color:#f92672>store-path</span>: <span style=color:#ae81ff>uploads/file</span>
+  
+<span style=color:#75715e># 数据库配置</span>
+<span style=color:#f92672>mysql</span>:
+  <span style=color:#f92672>path</span>: <span style=color:#ae81ff>127.0.0.1</span>
+  <span style=color:#f92672>port</span>: <span style=color:#e6db74>&#34;3306&#34;</span>
+  <span style=color:#f92672>config</span>: <span style=color:#ae81ff>charset=utf8mb4&amp;parseTime=True&amp;loc=Local</span>
+  <span style=color:#f92672>db-name</span>: <span style=color:#ae81ff>yangfan</span>
+  <span style=color:#f92672>username</span>: <span style=color:#ae81ff>root</span>
+  <span style=color:#f92672>password</span>: <span style=color:#ae81ff>root</span>
+  <span style=color:#f92672>max-idle-conns</span>: <span style=color:#ae81ff>10</span>
+  <span style=color:#f92672>max-open-conns</span>: <span style=color:#ae81ff>100</span>
+  <span style=color:#f92672>log-mode</span>: <span style=color:#ae81ff>debug</span>
+  <span style=color:#f92672>log-zap</span>: <span style=color:#66d9ef>false</span>
+<span style=color:#f92672>redis</span>:
+  <span style=color:#f92672>db</span>: <span style=color:#ae81ff>0</span>
+  <span style=color:#f92672>addr</span>: <span style=color:#ae81ff>127.0.0.1</span>:<span style=color:#ae81ff>6378</span>
+  <span style=color:#f92672>password</span>: <span style=color:#e6db74>&#34;123456&#34;</span>
+<span style=color:#f92672>pgsql</span>:
+  <span style=color:#f92672>path</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>port</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>config</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>db-name</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>username</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>password</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>max-idle-conns</span>: <span style=color:#ae81ff>10</span>
+  <span style=color:#f92672>max-open-conns</span>: <span style=color:#ae81ff>100</span>
+  <span style=color:#f92672>log-mode</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>log-zap</span>: <span style=color:#66d9ef>false</span>
+
+<span style=color:#f92672>qiniu</span>:
+  <span style=color:#f92672>zone</span>: <span style=color:#ae81ff>ZoneHuaDong</span>
+  <span style=color:#f92672>bucket</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>img-path</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>use-https</span>: <span style=color:#66d9ef>false</span>
+  <span style=color:#f92672>access-key</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>secret-key</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  <span style=color:#f92672>use-cdn-domains</span>: <span style=color:#66d9ef>false</span>
+<span style=color:#f92672>system</span>:
+  <span style=color:#f92672>env</span>: <span style=color:#ae81ff>public</span>
+  <span style=color:#f92672>addr</span>: <span style=color:#ae81ff>8888</span>
+  <span style=color:#f92672>db-type</span>: <span style=color:#ae81ff>mysql</span>
+  <span style=color:#f92672>oss-type</span>: <span style=color:#ae81ff>local</span>
+  <span style=color:#f92672>use-multipoint</span>: <span style=color:#66d9ef>false</span>
+  <span style=color:#f92672>use-redis</span>: <span style=color:#66d9ef>false</span>
+  <span style=color:#f92672>iplimit-count</span>: <span style=color:#ae81ff>15000</span>
+  <span style=color:#f92672>iplimit-time</span>: <span style=color:#ae81ff>3600</span>
+<span style=color:#f92672>tencent-cos</span>:
+  <span style=color:#f92672>bucket</span>: <span style=color:#ae81ff>xxxxx-10005608</span>
+  <span style=color:#f92672>region</span>: <span style=color:#ae81ff>ap-shanghai</span>
+  <span style=color:#f92672>secret-id</span>: <span style=color:#ae81ff>xxxxxxxx</span>
+  <span style=color:#f92672>secret-key</span>: <span style=color:#ae81ff>xxxxxxxx</span>
+  <span style=color:#f92672>base-url</span>: <span style=color:#ae81ff>https://gin.vue.admin</span>
+  <span style=color:#f92672>path-prefix</span>: <span style=color:#ae81ff>github.com/flipped-aurora/gin-vue-admin/server</span>
+<span style=color:#f92672>timer</span>:
+  <span style=color:#f92672>start</span>: <span style=color:#66d9ef>true</span>
+  <span style=color:#f92672>spec</span>: <span style=color:#e6db74>&#39;@daily&#39;</span>
+  <span style=color:#f92672>with_seconds</span>: <span style=color:#66d9ef>false</span>
+  <span style=color:#f92672>detail</span>:
+    - <span style=color:#f92672>tableName</span>: <span style=color:#ae81ff>sys_operation_records</span>
+      <span style=color:#f92672>compareField</span>: <span style=color:#ae81ff>created_at</span>
+      <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>2160h</span>
+    - <span style=color:#f92672>tableName</span>: <span style=color:#ae81ff>jwt_blacklists</span>
+      <span style=color:#f92672>compareField</span>: <span style=color:#ae81ff>created_at</span>
+      <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>168h</span>
+<span style=color:#f92672>zap</span>:
+  <span style=color:#f92672>level</span>: <span style=color:#ae81ff>debug</span>
+  <span style=color:#f92672>prefix</span>: <span style=color:#e6db74>&#39;[yangfan]&#39;</span>
+  <span style=color:#f92672>format</span>: <span style=color:#ae81ff>console</span>
+  <span style=color:#f92672>director</span>: <span style=color:#ae81ff>log</span>
+  <span style=color:#f92672>encode-level</span>: <span style=color:#ae81ff>LowercaseColorLevelEncoder</span>
+  <span style=color:#f92672>stacktrace-key</span>: <span style=color:#ae81ff>stacktrace</span>
+  <span style=color:#f92672>max-age</span>: <span style=color:#ae81ff>30</span>
+  <span style=color:#f92672>show-line</span>: <span style=color:#66d9ef>true</span>
+  <span style=color:#f92672>log-in-console</span>: <span style=color:#66d9ef>true</span>
+
+<span style=color:#75715e># 平台其他服务配置</span>
+<span style=color:#f92672>yang-fan</span>:
+  <span style=color:#f92672>background</span>: <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>
+  <span style=color:#f92672>background-grpc-port</span>: <span style=color:#ae81ff>7967</span>
+  <span style=color:#f92672>master</span>: <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>
+  <span style=color:#f92672>master-boomer-prot</span>: <span style=color:#ae81ff>9093</span>
+  <span style=color:#f92672>master-server-prot</span>: <span style=color:#ae81ff>7966</span>
+  <span style=color:#f92672>prometheus-pushgateway-url</span>: <span style=color:#ae81ff>http://localhost:9091/</span>
+  <span style=color:#f92672>grafana-host</span>: <span style=color:#ae81ff>http://localhost:3000/</span>
+  <span style=color:#f92672>grafana-dashboard</span>: <span style=color:#ae81ff>ERv3OaBPYe6A</span>
+  <span style=color:#f92672>grafana-dashboard-name</span>: <span style=color:#ae81ff>yangfan-for-distributed-load-testing</span>
+  <span style=color:#f92672>grafana-dashboard-stats</span>: <span style=color:#ae81ff>WLVhzvOg56Mg</span>
+  <span style=color:#f92672>grafana-dashboard-stats-name</span>: <span style=color:#ae81ff>yangfan-for-node-status</span>
+  <span style=color:#f92672>run-server</span>: <span style=color:#ae81ff>localhost</span>
+  <span style=color:#f92672>run-server-grpc-port</span>: <span style=color:#ae81ff>7968</span>
+</code></pre></div><p>然后运行 main.go 文件。</p>
+<h2 id=部署前端>部署前端</h2>
+<p>使用 vscode 打开项目的 web 目录</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ brew install node@18
+$ npm i
+<span style=color:#75715e># 出现了报错</span>
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR! 
+npm ERR! While resolving: gin-vue-admin@1.0.0
+npm ERR! Found: eslint@6.8.0
+npm ERR! node_modules/eslint
+npm ERR!   dev eslint@<span style=color:#e6db74>&#34;^6.7.2&#34;</span> from the root project
+npm ERR! 
+npm ERR! Could not resolve dependency:
+npm ERR! peer eslint@<span style=color:#e6db74>&#34;&gt;=7.5.0&#34;</span> from @vue/cli-plugin-eslint@5.0.8
+npm ERR! node_modules/@vue/cli-plugin-eslint
+npm ERR!   dev @vue/cli-plugin-eslint@<span style=color:#e6db74>&#34;^5.0.7&#34;</span> from the root project
+
+<span style=color:#75715e># 通过提示的参数先忽略依赖冲突</span>
+$ npm i --force or --legacy-peer-deps
+</code></pre></div><p>启动服务</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ npm run serve
+&gt; gin-vue-admin@1.0.0 serve
+&gt; vite --host --mode development
+
+&gt; 欢迎使用 yangfan
+&gt; 当前版本:v1.2.0
+&gt; 加群方式:微信号：test-instructor QQ群：873175584
+&gt; 默认自动化文档地址:http://127.0.0.1:8888/swagger/index.html
+&gt; 默认前端文件运行地址:http://127.0.0.1:8080
+
+vite v2.9.16 dev server running at:
+
+&gt; Local:    http://localhost:8080/
+&gt; Network:  http://192.168.101.31:8080/
+</code></pre></div><h2 id=使用-docker-部署>使用 docker 部署</h2>
+<p>拉项目</p>
+<p>修改配置文件</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ cd angfan/deploy/yangfan/
+$ vim config/docker.config.yaml
+<span style=color:#75715e># 里面修改数据库的配置</span>
+<span style=color:#75715e># grafana-url 要改成 grafana-host</span>
+
+$ vim docker-compose.yaml
+<span style=color:#75715e># 修改端口号，防止冲突</span>
+
+$ docker-compose up --force-recreate -d
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/golang>
+Golang
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/nodejs/%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/ rel=next title="Nodejs - 命令使用">
+<i class="fa fa-chevron-left"></i> Nodejs - 命令使用
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/golang/gorm-%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8/ rel=prev title="Golang - Gorm 介绍及使用">
+Golang - Gorm 介绍及使用
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>
