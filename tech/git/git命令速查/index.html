@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2021-01-21 10:03:29 +0000 UTC">
-<meta property="article:modified_time" content="2023-07-07 10:48:56 +0000 UTC">
+<meta property="article:modified_time" content="2023-07-07 11:19:05 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -226,7 +226,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=199926></div>
+<div class=item-count id=wordsCount data-count=199948></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -290,7 +290,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-07-07T10:48:56+00:00 itemprop=dateModified datetime=2023-07-07T10:48:56+00:00>2023-07-07</time>
+<time title=修改时间：2023-07-07T11:19:05+00:00 itemprop=dateModified datetime=2023-07-07T11:19:05+00:00>2023-07-07</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -309,7 +309,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>1589</span>
+<span class=post-meta-item-text>字数：</span><span>1611</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -442,6 +442,7 @@ $ git reset --hard <span style=color:#f92672>{</span>commit_version<span style=c
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ cd ~/.ssh
 $ ssh-keygen -t rsa -C <span style=color:#e6db74>&#34;emai@example.com&#34;</span>
 <span style=color:#75715e># 一路回车，得到公钥和私钥</span>
+<span style=color:#75715e># 名称别改，用 git 命令的时候，会默认找 id_rsa</span>
 $ ll
 id_rsa      <span style=color:#75715e># 私钥</span>
 id_rsa.pub  <span style=color:#75715e># 公钥</span>
@@ -458,6 +459,7 @@ id_rsa.pub  <span style=color:#75715e># 公钥</span>
 <li>修改远程仓库 URL 为 SSH</li>
 </ol>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git remote set-url origin git@github.com:username/repository.git
+$ git pull
 </code></pre></div><h3 id=克隆仓库>克隆仓库</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ git clone git@github.com:lanyangbi/lanyangbi.github.io.git
 </code></pre></div><h3 id=关联远程仓库>关联远程仓库</h3>
