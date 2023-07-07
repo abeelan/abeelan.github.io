@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-07-03 17:59:21 +0000 UTC">
-<meta property="article:modified_time" content="2023-07-04 17:24:10 +0000 UTC">
+<meta property="article:modified_time" content="2023-07-07 09:36:30 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -126,7 +126,16 @@
 </ul>
 <div class=sidebar-panel-container>
 <div class="post-toc-wrap sidebar-panel">
-<div class="post-toc animated"><nav id=TableOfContents></nav></div>
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#书中练习题>书中练习题</a>
+<ul>
+<li><a href=#数组和切片>数组和切片</a></li>
+<li><a href=#包>包</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
 </div>
 <div class="site-overview-wrap sidebar-panel">
 <div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
@@ -190,15 +199,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=198244></div>
+<div class=item-count id=wordsCount data-count=199926></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=477></div>
+<div class=item-count id=readTimes data-times=481></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-07-03T17:59:21+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
 </div>
 </div>
 </div>
@@ -254,7 +263,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-07-04T17:24:10+00:00 itemprop=dateModified datetime=2023-07-04T17:24:10+00:00>2023-07-04</time>
+<time title=修改时间：2023-07-07T09:36:30+00:00 itemprop=dateModified datetime=2023-07-07T09:36:30+00:00>2023-07-07</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -273,14 +282,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>76</span>
+<span class=post-meta-item-text>字数：</span><span>1596</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>4分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -299,6 +308,129 @@
 <div class="post-body autonumber" itemprop=articleBody>
 <p>书籍地址：https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/TOC.md</p>
 <p>持续阅读中…</p>
+<h2 id=书中练习题>书中练习题</h2>
+<h3 id=数组和切片>数组和切片</h3>
+<p><strong>问题 7.3</strong></p>
+<p>给定 <code>s := make([]byte, 5)</code>，<code>len(s)</code> 和 <code>cap(s)</code> 分别是多少？<code>s = s[2:4]</code>，<code>len(s)</code> 和 <code>cap(s)</code> 又分别是多少？</p>
+<ul>
+<li>当执行 <code>s = s[2:4]</code> 后，<code>len(s)</code> 和 <code>cap(s)</code> 分别变为 2</li>
+<li>切片操作 <code>s[2:4]</code> 创建了一个新的切片 <code>s</code>，从原始切片 <code>s</code> 的索引 2 开始（包含）到索引 4 结束（不包含），因此新切片的长度为 2</li>
+<li>由于新切片是从原始切片的一部分创建的，所以其容量也是从原始切片的索引 2 开始（包含）到原始切片的末尾（索引 5）结束，即容量为 3</li>
+</ul>
+<p><strong>问题 7.4</strong></p>
+<p>假设 <code>s1 := []byte{'p', 'o', 'e', 'm'}</code> 且 <code>s2 := s1[2:]</code>，<code>s2</code> 的值是多少？如果我们执行 <code>s2[1] = 't'</code>，<code>s1</code> 和 <code>s2</code> 现在的值又分别是多少？</p>
+<ul>
+<li><code>s2</code> 的值为 <code>[]byte{'e', 'm'}</code>，它包含了从原始切片 <code>s1</code> 的索引 2 开始（包含）到末尾的所有元素</li>
+<li>执行 <code>s2[1] = 't'</code>，则会修改 <code>s2</code> 切片的第二个元素（索引为 1），将其值改为字母 &lsquo;t’
+<ul>
+<li><code>s1 = []byte{'p', 'o', 'e', 't'}</code></li>
+<li><code>s2 = []byte{'e', 't'}</code></li>
+</ul>
+</li>
+<li>切片是引用类型，修改 <code>s2</code> 的元素会影响到底层数组，因此也会反映在 <code>s1</code> 上。</li>
+</ul>
+<p><em>如何理解 new、make、slice、map、channel 的关系</em></p>
+<p><em>1.slice、map 以及 channel 都是 golang 内建的一种引用类型，三者在内存中存在多个组成部分，需要对内存组成部分初始化后才能使用，而 make 就是对三者进行初始化的一种操作方式</em></p>
+<p><em>2. new 获取的是存储指定变量内存地址的一个变量，对于变量内部结构并不会执行相应的初始化操作， 所以 slice、map、channel 需要 make 进行初始化并获取对应的内存地址，而非 new 简单的获取内存地址。</em></p>
+<p><strong>练习 7.5</strong></p>
+<p>给定切片 <code>sl</code>，将一个 <code>[]byte</code> 数组追加到 <code>sl</code> 后面。写一个函数 <code>Append(slice, data []byte) []byte</code>，该函数在 <code>sl</code> 不能存储更多数据的时候自动扩容。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+
+<span style=color:#f92672>import</span> <span style=color:#e6db74>&#34;fmt&#34;</span>
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+	<span style=color:#a6e22e>slice</span> <span style=color:#f92672>:=</span> []<span style=color:#66d9ef>byte</span>{<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>}
+	<span style=color:#a6e22e>data</span> <span style=color:#f92672>:=</span> []<span style=color:#66d9ef>byte</span>{<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>}
+	<span style=color:#a6e22e>slice</span> = <span style=color:#a6e22e>Append</span>(<span style=color:#a6e22e>slice</span>, <span style=color:#a6e22e>data</span>)
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#a6e22e>slice</span>)
+}
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Append</span>(<span style=color:#a6e22e>slice</span>, <span style=color:#a6e22e>data</span> []<span style=color:#66d9ef>byte</span>) []<span style=color:#66d9ef>byte</span> {
+	<span style=color:#75715e>// 计算新切片的长度
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>newLen</span> <span style=color:#f92672>:=</span> len(<span style=color:#a6e22e>slice</span>) <span style=color:#f92672>+</span> len(<span style=color:#a6e22e>data</span>)
+
+	<span style=color:#75715e>// 如果容量不够 则进行倍增扩容
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>newLen</span> &lt; cap(<span style=color:#a6e22e>slice</span>) {
+		<span style=color:#a6e22e>newCap</span> <span style=color:#f92672>:=</span> cap(<span style=color:#a6e22e>slice</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>
+		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>newCap</span> &lt; <span style=color:#a6e22e>newLen</span> {
+			<span style=color:#a6e22e>newCap</span> = <span style=color:#a6e22e>newLen</span>
+		}
+		<span style=color:#75715e>// 创建新切片 复制原始切片进来
+</span><span style=color:#75715e></span>		<span style=color:#a6e22e>newSlice</span> <span style=color:#f92672>:=</span> make([]<span style=color:#66d9ef>byte</span>, <span style=color:#a6e22e>newLen</span>, <span style=color:#a6e22e>newCap</span>)
+		copy(<span style=color:#a6e22e>newSlice</span>, <span style=color:#a6e22e>slice</span>)
+		<span style=color:#75715e>// 追加新数据至末尾
+</span><span style=color:#75715e></span>		<span style=color:#a6e22e>newSlice</span> = append(<span style=color:#a6e22e>newSlice</span>, <span style=color:#a6e22e>data</span><span style=color:#f92672>...</span>)
+		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>newSlice</span>
+	}
+
+	<span style=color:#75715e>// 如果容量足够 则直接增加
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>slice</span> = append(<span style=color:#a6e22e>slice</span>, <span style=color:#a6e22e>data</span><span style=color:#f92672>...</span>)
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>slice</span>
+}
+</code></pre></div><p><strong>练习 7.6</strong></p>
+<p>把一个缓存 <code>buf</code> 分片成两个切片：第一个是前 <code>n</code> 个 bytes，后一个是剩余的，用一行代码实现。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>slice1, slice2 := buf[:n], buf[n:]
+</code></pre></div><p><strong>问题 7.5</strong></p>
+<p>假设我们有如下数组：<code>items := [...]int{10, 20, 30, 40, 50}</code></p>
+<p>a) 如果我们写了如下的 <code>for</code> 循环，那么执行完 <code>for</code> 循环后的 <code>items</code> 的值是多少？如果你不确定的话可以测试一下:)</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-go data-lang=go><span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>item</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>items</span> {
+	<span style=color:#a6e22e>item</span> <span style=color:#f92672>*=</span> <span style=color:#ae81ff>2</span>
+}
+
+<span style=color:#75715e>// item 是取出的切片中的元素的副本
+</span><span style=color:#75715e>// 因此，在循环体内对 item 进行修改不会影响原始的数组 items
+</span><span style=color:#75715e>// items 的值仍然是 [10, 20, 30, 40, 50]
+</span></code></pre></div><p>b) 如果 a) 无法正常工作，写一个 <code>for</code> 循环让值可以变成自身的两倍。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-go data-lang=go><span style=color:#66d9ef>for</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>items</span> {
+	<span style=color:#a6e22e>items</span>[<span style=color:#a6e22e>i</span>] <span style=color:#f92672>*=</span> <span style=color:#ae81ff>2</span>
+}
+<span style=color:#75715e>// 使用索引 i 来访问数组元素，并将其乘以 2
+</span></code></pre></div><p><strong>问题 7.6</strong></p>
+<p>通过使用省略号操作符 <code>...</code> 来实现累加方法。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>sum</span>(<span style=color:#a6e22e>nums</span> <span style=color:#f92672>...</span><span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>int</span> {
+	<span style=color:#a6e22e>total</span> <span style=color:#f92672>:=</span> <span style=color:#ae81ff>0</span>
+	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>num</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>nums</span> {
+		<span style=color:#a6e22e>total</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>num</span>
+	}
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>total</span>
+}
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#a6e22e>result</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>Sum</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>)       <span style=color:#75715e>// 结果为 6
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>result</span> = <span style=color:#a6e22e>Sum</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>) <span style=color:#75715e>// 结果为 100
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>result</span> = <span style=color:#a6e22e>Sum</span>(<span style=color:#ae81ff>5</span>)              <span style=color:#75715e>// 结果为 5
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>result</span> = <span style=color:#a6e22e>Sum</span>()               <span style=color:#75715e>// 结果为 0，没有参数时返回初始值
+</span><span style=color:#75715e></span>}
+</code></pre></div><p><strong>练习 7.16</strong></p>
+<p>编写一个程序，使用冒泡排序的方法排序一个包含整数的切片。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+
+<span style=color:#f92672>import</span> <span style=color:#e6db74>&#34;fmt&#34;</span>
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+	<span style=color:#a6e22e>sla</span> <span style=color:#f92672>:=</span> []<span style=color:#66d9ef>int</span>{<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>4</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>89</span>, <span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>68</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>45</span>, <span style=color:#ae81ff>37</span>}
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;before sort: &#34;</span>, <span style=color:#a6e22e>sla</span>)
+	<span style=color:#a6e22e>BubbleSort</span>(<span style=color:#a6e22e>sla</span>) <span style=color:#75715e>// 引用传递
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;after sort:  &#34;</span>, <span style=color:#a6e22e>sla</span>)
+}
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>BubbleSort</span>(<span style=color:#a6e22e>slice</span> []<span style=color:#66d9ef>int</span>) {
+	<span style=color:#75715e>// 确定总共需要排序的个数
+</span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>pass</span> <span style=color:#f92672>:=</span> <span style=color:#ae81ff>1</span>; <span style=color:#a6e22e>pass</span> &lt; len(<span style=color:#a6e22e>slice</span>); <span style=color:#a6e22e>pass</span><span style=color:#f92672>++</span> {
+		<span style=color:#75715e>// 每轮将最大数换到最后
+</span><span style=color:#75715e></span>		<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>:=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> &lt; len(<span style=color:#a6e22e>slice</span>)<span style=color:#f92672>-</span><span style=color:#a6e22e>pass</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span> {
+			<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>slice</span>[<span style=color:#a6e22e>i</span>] &gt; <span style=color:#a6e22e>slice</span>[<span style=color:#a6e22e>i</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>] {
+				<span style=color:#a6e22e>slice</span>[<span style=color:#a6e22e>i</span>], <span style=color:#a6e22e>slice</span>[<span style=color:#a6e22e>i</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>] = <span style=color:#a6e22e>slice</span>[<span style=color:#a6e22e>i</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>], <span style=color:#a6e22e>slice</span>[<span style=color:#a6e22e>i</span>]
+			}
+		}
+	}
+}
+</code></pre></div><h3 id=包>包</h3>
+<p><strong>问题 9.1</strong></p>
+<p>a）一个包能分成多个源文件么？</p>
+<p>一个包可以分成多个源文件。在 Go 中，一个包可以由多个以 <code>.go</code> 扩展名结尾的源文件组成。这种方式可以帮助将相关的代码组织在一起，提高代码的可维护性和可读性。这些源文件可以包含包级别的声明，如常量、变量、函数和结构体等，并共享同一个包名。</p>
+<p>b）一个源文件是否能包含多个包？</p>
+<p>一个源文件只能属于一个包。每个源文件的开头需要通过 <code>package</code> 声明来指定它所属的包。一个包通常对应一个目录，而每个目录下只能包含一个包。这是 Go 语言的约定，用于管理代码结构和避免命名冲突。因此，一个源文件只能包含一个包的定义。如果需要创建多个包，就需要分别放置在不同的源文件中。</p>
 </div>
 <footer class=post-footer>
 <div class=post-tags>
