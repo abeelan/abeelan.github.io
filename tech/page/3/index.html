@@ -74,7 +74,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>156</span>
+<span class=badge>158</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -133,7 +133,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>156</span>
+<span class=site-state-item-count>158</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -185,15 +185,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=201437></div>
+<div class=item-count id=wordsCount data-count=203327></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=487></div>
+<div class=item-count id=readTimes data-times=492></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-06-25T13:53:54+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-04-08T16:17:45+00:00></div>
 </div>
 </div>
 </div>
@@ -218,6 +218,132 @@
 <div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
 </noscript>
 <div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAmysql%E6%9C%8D%E5%8A%A1/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Docker - 搭建Mysql服务">
+<meta itemprop=description content="# 设为 % 使得所有客户端均可连 $ docker run --name=mysql-blocks -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST=% -d mysql:8.0 # sqlalchemy 总是报错： (1045, &#34;Access denied for user 'root'@'192.168.1.3' (using password: YES)&#34;) # 先把密码取消掉 $ docker run --name=mysql-blocks -p 3306:3306 --e MYSQL_ROOT_PASSWORD=&#34;&#34; e MYSQL_ROOT_HOST=% -d mysql:8.0 $ docker exec -it mysql-blocks mysql -u root">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/docker/%E6%90%AD%E5%BB%BAmysql%E6%9C%8D%E5%8A%A1/ itemprop=url class=post-title-link>Docker - 搭建Mysql服务</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-06-01 15:59:44 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-06-01 15:59:44 +0000 UTC">2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-25T14:03:51+00:00 itemprop=dateModified datetime=2023-06-25T14:03:51+00:00>2023-06-25</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/docker itemprop=url rel=index>
+<span itemprop=name>Docker</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+# 设为 % 使得所有客户端均可连 $ docker run --name=mysql-blocks -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST=% -d mysql:8.0 # sqlalchemy 总是报错： (1045, "Access denied for user 'root'@'192.168.1.3' (using password: YES)") # 先把密码取消掉 $ docker run --name=mysql-blocks -p 3306:3306 --e MYSQL_ROOT_PASSWORD="" e MYSQL_ROOT_HOST=% -d mysql:8.0 $ docker exec -it mysql-blocks mysql -u root
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/docker/%E6%90%AD%E5%BB%BAmysql%E6%9C%8D%E5%8A%A1/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAzentao%E7%A6%85%E9%81%93%E6%9C%8D%E5%8A%A1/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Docker - 搭建Zentao禅道服务">
+<meta itemprop=description content="$ docker run --name zentao -p 8081:80 \ -v /volume/zentao/zentaopms:/www/zentaopms \ -v /volume/zentao/mysqldata:/var/lib/mysql \ -e MYSQL_ROOT_PASSWORD=123456 \ -d \ easysoft/zentao:latest">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/docker/%E6%90%AD%E5%BB%BAzentao%E7%A6%85%E9%81%93%E6%9C%8D%E5%8A%A1/ itemprop=url class=post-title-link>Docker - 搭建Zentao禅道服务</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-06-01 15:46:01 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-06-01 15:46:01 +0000 UTC">2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-02T16:42:04+00:00 itemprop=dateModified datetime=2023-06-02T16:42:04+00:00>2023-06-02</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/docker itemprop=url rel=index>
+<span itemprop=name>Docker</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+$ docker run --name zentao -p 8081:80 \ -v /volume/zentao/zentaopms:/www/zentaopms \ -v /volume/zentao/mysqldata:/var/lib/mysql \ -e MYSQL_ROOT_PASSWORD=123456 \ -d \ easysoft/zentao:latest
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/docker/%E6%90%AD%E5%BB%BAzentao%E7%A6%85%E9%81%93%E6%9C%8D%E5%8A%A1/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
 <link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAwhistle%E5%9C%A8%E7%BA%BF%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7/>
@@ -357,7 +483,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Jmeter&Ms - 数据备份与恢复">
-<meta itemprop=description content="MeterSphere 备份，主要是 MySQL 数据库的数据备份和 /opt/metersphere/data 路径下的目录备份。 备份内容： mysqldump 手动备份 /opt/metersphere/data/mysql 编写备份脚本 ms_backup.sh #!/bin/bash 0,0-1 Al#!/bin/bas backupDir=/opt/backup/ms_db_bak if [ ! -d &#34;$backupDir&#34; ]; then mkdir -p &#34;$backupDir&#34; fi currentTime=`date &#34;+%Y-%m-%d-%H-%M-%S&#34;` ms_data=/opt/metersphere/data ms_sql=$backupDir/ms_db_$currentTime.sql echo &#34;======= 数据库备">
+<meta itemprop=description content="数据备份 MeterSphere 备份，主要是 MySQL 数据库的数据备份和 /opt/metersphere/data 路径下的目录备份。 备份内容： mysqldump 手动备份 /opt/metersphere/data/mysql 编写备份脚本 ms_backup.sh #!/bin/bash 0,0-1 Al#!/bin/bas backupDir=/data/backup/ms_db_bak if [ ! -d &#34;$backupDir&#34; ]; then mkdir -p &#34;$backupDir&#34; fi currentTime=`date &#34;+%Y-%m-%d-%H-%M-%S&#34;` ms_data=/opt/metersphere/data ms_sql=$backupDir/ms_db_$currentTime.sql echo &#34;=======">
 </span>
 <header class=post-header>
 <h2 class=post-title itemprop="name headline">
@@ -376,7 +502,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-08T13:18:13+00:00 itemprop=dateModified datetime=2023-06-08T13:18:13+00:00>2023-06-08</time>
+<time title=修改时间：2023-07-18T01:00:05+00:00 itemprop=dateModified datetime=2023-07-18T01:00:05+00:00>2023-07-18</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -395,7 +521,7 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
-MeterSphere 备份，主要是 MySQL 数据库的数据备份和 /opt/metersphere/data 路径下的目录备份。 备份内容： mysqldump 手动备份 /opt/metersphere/data/mysql 编写备份脚本 ms_backup.sh #!/bin/bash 0,0-1 Al#!/bin/bas backupDir=/opt/backup/ms_db_bak if [ ! -d "$backupDir" ]; then mkdir -p "$backupDir" fi currentTime=`date "+%Y-%m-%d-%H-%M-%S"` ms_data=/opt/metersphere/data ms_sql=$backupDir/ms_db_$currentTime.sql echo "======= 数据库备
+数据备份 MeterSphere 备份，主要是 MySQL 数据库的数据备份和 /opt/metersphere/data 路径下的目录备份。 备份内容： mysqldump 手动备份 /opt/metersphere/data/mysql 编写备份脚本 ms_backup.sh #!/bin/bash 0,0-1 Al#!/bin/bas backupDir=/data/backup/ms_db_bak if [ ! -d "$backupDir" ]; then mkdir -p "$backupDir" fi currentTime=`date "+%Y-%m-%d-%H-%M-%S"` ms_data=/opt/metersphere/data ms_sql=$backupDir/ms_db_$currentTime.sql echo "=======
 </div>
 <footer class=post-footer>
 <div class=post-button>
@@ -715,132 +841,6 @@ Alembic 是一个由 SQLAlchemy 开发的数据库迁移工具，可以再应用
 <footer class=post-footer>
 <div class=post-button>
 <a class=btn href=/tech/python/alembic-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E5%B7%A5%E5%85%B7/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/blog/hugo-%E5%BC%80%E5%90%AF%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Blog - Hugo 开启评论功能">
-<meta itemprop=description content="主题：Hogo-Themes-Next 评论插件：giscus 步骤 请确保已配置好站点，且仓库是公开的； 安装 giscus APP ，选择 GitPages 仓库，然后安装； 访问 giscus ，">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/blog/hugo-%E5%BC%80%E5%90%AF%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/ itemprop=url class=post-title-link>Blog - Hugo 开启评论功能</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-05-31 14:27:52 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-31 14:27:52 +0000 UTC">2023-05-31</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-02T16:42:04+00:00 itemprop=dateModified datetime=2023-06-02T16:42:04+00:00>2023-06-02</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/blog itemprop=url rel=index>
-<span itemprop=name>Blog</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-主题：Hogo-Themes-Next 评论插件：giscus 步骤 请确保已配置好站点，且仓库是公开的； 安装 giscus APP ，选择 GitPages 仓库，然后安装； 访问 giscus ，
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/blog/hugo-%E5%BC%80%E5%90%AF%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/poetry-%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Python - Poetry 环境管理">
-<meta itemprop=description content="Poetry 是 Python 项目中创建虚拟环境、管理依赖包、打包发布的工具。 参考： 官方文档 Github Python 3.7+ 优势： 允许声明项目所依赖的库，并管理（安装/更新） 提供了一个锁文件">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/python/poetry-%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/ itemprop=url class=post-title-link>Python - Poetry 环境管理</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-05-30 22:36:38 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-30 22:36:38 +0000 UTC">2023-05-30</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-02T17:57:19+00:00 itemprop=dateModified datetime=2023-06-02T17:57:19+00:00>2023-06-02</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/python itemprop=url rel=index>
-<span itemprop=name>Python</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-Poetry 是 Python 项目中创建虚拟环境、管理依赖包、打包发布的工具。 参考： 官方文档 Github Python 3.7+ 优势： 允许声明项目所依赖的库，并管理（安装/更新） 提供了一个锁文件
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/python/poetry-%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/#more rel=contents>
 阅读全文 &#187;
 </a>
 </div>
