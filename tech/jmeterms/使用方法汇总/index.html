@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-07-11 15:02:37 +0000 UTC">
-<meta property="article:modified_time" content="2023-07-27 01:00:06 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-01 01:00:19 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -130,6 +130,11 @@
 <ul>
 <li><a href=#内置函数使用>内置函数使用</a>
 <ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
 <li><a href=#注意>注意</a></li>
 </ul>
 </li>
@@ -140,6 +145,7 @@
 <li><a href=#for>for</a></li>
 </ul>
 </li>
+<li><a href=#自定义脚本>自定义脚本</a></li>
 </ul>
 </li>
 </ul>
@@ -207,11 +213,11 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=204717></div>
+<div class=item-count id=wordsCount data-count=204922></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=495></div>
+<div class=item-count id=readTimes data-times=496></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -253,7 +259,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Jmeter&Ms - 使用方法汇总">
-<meta itemprop=description content="内置函数使用 整型加法：${__intSum(${user_total},1)} 时间戳(13位)：${__time} 当前时间格式化：${__t">
+<meta itemprop=description content="内置函数使用 参考地址：https://zhuanlan.zhihu.com/p/559416002 整型加法：${__intSum(${use">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">Jmeter&Ms - 使用方法汇总 </h1>
@@ -271,7 +277,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-07-27T01:00:06+00:00 itemprop=dateModified datetime=2023-07-27T01:00:06+00:00>2023-07-27</time>
+<time title=修改时间：2023-08-01T01:00:19+00:00 itemprop=dateModified datetime=2023-08-01T01:00:19+00:00>2023-08-01</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -290,14 +296,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>351</span>
+<span class=post-meta-item-text>字数：</span><span>556</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>2分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -315,10 +321,14 @@
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
 <h2 id=内置函数使用>内置函数使用</h2>
+<p>参考地址：https://zhuanlan.zhihu.com/p/559416002</p>
 <p>整型加法：<code>${__intSum(${user_total},1)}</code></p>
 <p>时间戳(13位)：<code>${__time}</code></p>
 <p>当前时间格式化：<code>${__time(yyyy-MM-dd HH:mm)}</code> ==> <code>2023-07-26 18:53</code></p>
 <p>当前时间加一分钟：<code>${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)}</code> ==> <code>2023-07-26 18:54</code></p>
+<h5 id=相加函数intsum>相加函数（intSum）</h5>
+<p>使用场景：断言、参数计算</p>
+<p>使用方法：<code>${__intSum(${id2},1)}</code>，其中 <code>${id2}</code> 是从接口提取出来的值。代表计算 id2 增加 1 后的结果。</p>
 <blockquote>
 <p>参数编写栏 有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。</p>
 </blockquote>
@@ -334,6 +344,10 @@
 <li>pk 为自定义的变量，表示每次循环的值</li>
 <li>pks 为从上一个接口中提取出的值（通过 jsonpath，匹配多个值），这里不需要 <code>${}</code> ，也不需要在后面添加 _ALL 后缀，直接使用变量名即可。</li>
 </ul>
+<h3 id=自定义脚本>自定义脚本</h3>
+<p>场景特别长的时候，可以用作分割线，更清楚的表示接口集的作用。</p>
+<p>使用方法如下：脚本名称可用作注释，但是注意里面需要忽略脚本状态（500），不然 500 报错影响场景结果。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230728154947707.png alt=image-20230728154947707></p>
 </div>
 <footer class=post-footer>
 <div class=post-tags>

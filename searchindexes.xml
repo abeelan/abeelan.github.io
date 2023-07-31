@@ -33,13 +33,17 @@ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch := make(ch
 跳楼机：失重感很强，刺激。 过山车，是那种车开到最上面然后速降的，来回转了两个圈，一般。 午餐园区内解决，吃完饭在儿童游玩区休息会儿。儿子是真不累，什么都想玩一遍。
 又热又累，不想走路，就直接购买园内小火车票，10块/人，直接去滑沙项目区，这是丈母娘每次必点项目，哈哈。
 我带儿子去海边泳池区域，今天没带泳装，他直接脱光了跳进池子，太尴尬了… 赶紧追上他去商店买了泳裤。</content></entry><entry><title>Blog - Typora 历史版本查看及恢复</title><url>/tech/blog/typora-%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E6%9F%A5%E7%9C%8B%E5%8F%8A%E6%81%A2%E5%A4%8D/</url><categories><category>Blog</category></categories><tags><tag>Blog</tag></tags><content type="html">Mac 打开文本文件 -&amp;gt; 顶部菜单栏：文件 -&amp;gt; 复原到… -&amp;gt; 浏览所有版本。
-这时就会出现一个时间机器的界面，可以查看之前该文件的所有历史版本内容。</content></entry><entry><title>Jmeter&Ms - 使用方法汇总</title><url>/tech/jmeterms/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url><categories><category>Jmeter&Ms</category></categories><tags><tag>Jmeter&Ms</tag></tags><content type="html">内置函数使用 整型加法：${__intSum(${user_total},1)}
+这时就会出现一个时间机器的界面，可以查看之前该文件的所有历史版本内容。</content></entry><entry><title>Jmeter&Ms - 使用方法汇总</title><url>/tech/jmeterms/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url><categories><category>Jmeter&Ms</category></categories><tags><tag>Jmeter&Ms</tag></tags><content type="html">内置函数使用 参考地址：https://zhuanlan.zhihu.com/p/559416002
+整型加法：${__intSum(${user_total},1)}
 时间戳(13位)：${__time}
 当前时间格式化：${__time(yyyy-MM-dd HH:mm)} ==&amp;gt; 2023-07-26 18:53
 当前时间加一分钟：${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)} ==&amp;gt; 2023-07-26 18:54
+相加函数（intSum） 使用场景：断言、参数计算
+使用方法：${__intSum(${id2},1)}，其中 ${id2} 是从接口提取出来的值。代表计算 id2 增加 1 后的结果。
 参数编写栏 有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。
 注意 当 json 带转义转为字符串后，通过 ms 请求，\\\n 会被转义为 \n，注意检查下请求内容中的格式，否则接口数据提交时后端再次 json parse 时可能出错。如上，ms 中写请求体的时候，json 字符串中应修改换行为 \\\\\n
-场景 循环控制器 for pk 为自定义的变量，表示每次循环的值 pks 为从上一个接口中提取出的值（通过 jsonpath，匹配多个值），这里不需要 ${} ，也不需要在后面添加 _ALL 后缀，直接使用变量名即可。</content></entry><entry><title>Bookmarks - 好用的在线工具</title><url>/tech/bookmarks/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/</url><categories><category>Bookmarks</category></categories><tags><tag>Bookmarks</tag></tags><content type="html">以下是一些好用的在线工具。
+场景 循环控制器 for pk 为自定义的变量，表示每次循环的值 pks 为从上一个接口中提取出的值（通过 jsonpath，匹配多个值），这里不需要 ${} ，也不需要在后面添加 _ALL 后缀，直接使用变量名即可。 自定义脚本 场景特别长的时候，可以用作分割线，更清楚的表示接口集的作用。
+使用方法如下：脚本名称可用作注释，但是注意里面需要忽略脚本状态（500），不然 500 报错影响场景结果。</content></entry><entry><title>Bookmarks - 好用的在线工具</title><url>/tech/bookmarks/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/</url><categories><category>Bookmarks</category></categories><tags><tag>Bookmarks</tag></tags><content type="html">以下是一些好用的在线工具。
 画图工具
 excalidraw ：界面优美，不需要登录，使用方便 ⭐️ handraw : 同上，是支持中文手写版本 processon ：流程图、思维导图等等，支持各种图 翻译工具
 deepl ：中文翻译，准确度高，但是慢且收费 欧路词典，我用的 mac 客户端，相当于 deepl 的平替 Json
