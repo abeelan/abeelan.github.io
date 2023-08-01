@@ -36,8 +36,11 @@ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch := make(ch
 这时就会出现一个时间机器的界面，可以查看之前该文件的所有历史版本内容。</content></entry><entry><title>Jmeter&Ms - 使用方法汇总</title><url>/tech/jmeterms/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url><categories><category>Jmeter&Ms</category></categories><tags><tag>Jmeter&Ms</tag></tags><content type="html">内置函数使用 参考地址：https://zhuanlan.zhihu.com/p/559416002
 整型加法：${__intSum(${user_total},1)}
 时间戳(13位)：${__time}
+当前时间 ${__timeShift(,,,,)}
+增加一天 ${__timeShift(,,P1d,,)}
+增加一H ${__timeShift(,,PT1H,,)}
 当前时间格式化：${__time(yyyy-MM-dd HH:mm)} ==&amp;gt; 2023-07-26 18:53
-当前时间加一分钟：${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)} ==&amp;gt; 2023-07-26 18:54
+当前时间格式化加一分钟：${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)} ==&amp;gt; 2023-07-26 18:54
 相加函数（intSum） 使用场景：断言、参数计算
 使用方法：${__intSum(${id2},1)}，其中 ${id2} 是从接口提取出来的值。代表计算 id2 增加 1 后的结果。
 参数编写栏 有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。

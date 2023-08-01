@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-07-11 15:02:37 +0000 UTC">
-<meta property="article:modified_time" content="2023-08-01 01:00:19 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-02 01:00:06 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -213,7 +213,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=204922></div>
+<div class=item-count id=wordsCount data-count=204940></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -277,7 +277,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-01T01:00:19+00:00 itemprop=dateModified datetime=2023-08-01T01:00:19+00:00>2023-08-01</time>
+<time title=修改时间：2023-08-02T01:00:06+00:00 itemprop=dateModified datetime=2023-08-02T01:00:06+00:00>2023-08-02</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -296,7 +296,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>556</span>
+<span class=post-meta-item-text>字数：</span><span>574</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -324,8 +324,11 @@
 <p>参考地址：https://zhuanlan.zhihu.com/p/559416002</p>
 <p>整型加法：<code>${__intSum(${user_total},1)}</code></p>
 <p>时间戳(13位)：<code>${__time}</code></p>
+<p>当前时间 <code>${__timeShift(,,,,)}</code></p>
+<p>增加一天 <code>${__timeShift(,,P1d,,)}</code></p>
+<p>增加一H <code>${__timeShift(,,PT1H,,)}</code></p>
 <p>当前时间格式化：<code>${__time(yyyy-MM-dd HH:mm)}</code> ==> <code>2023-07-26 18:53</code></p>
-<p>当前时间加一分钟：<code>${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)}</code> ==> <code>2023-07-26 18:54</code></p>
+<p>当前时间格式化加一分钟：<code>${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)}</code> ==> <code>2023-07-26 18:54</code></p>
 <h5 id=相加函数intsum>相加函数（intSum）</h5>
 <p>使用场景：断言、参数计算</p>
 <p>使用方法：<code>${__intSum(${id2},1)}</code>，其中 <code>${id2}</code> 是从接口提取出来的值。代表计算 id2 增加 1 后的结果。</p>
