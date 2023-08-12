@@ -74,7 +74,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>159</span>
+<span class=badge>160</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -133,7 +133,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>159</span>
+<span class=site-state-item-count>160</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -185,11 +185,11 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=204940></div>
+<div class=item-count id=wordsCount data-count=205160></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=496></div>
+<div class=item-count id=readTimes data-times=497></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
@@ -218,6 +218,69 @@
 <div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
 </noscript>
 <div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pytest-mock/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Python - Pytest Mock">
+<meta itemprop=description content="安装 $ pip install pytest $ pip install pytest pytest-mock 在测试模块中导入 mocker fixture import pytest def test_example(mocker): ... 示例 def test_run(cli, mocker): mock_run = mocker.patch.object(uvicorn, 'run') result = cli.invoke(cmdline.main, ['server', '-h', '127.0.0.1', '-p', '8080']) assert result.exit_code == 0 mock_run.assert_called_once_with(app=mocker.ANY, host='127.0.0.1', port=8080) 这是一个 Python 单元测试的代码片段。它使用了 mocker">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/python/pytest-mock/ itemprop=url class=post-title-link>Python - Pytest Mock</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-06-01 17:43:31 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-06-01 17:43:31 +0000 UTC">2023-06-01</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-02T16:42:04+00:00 itemprop=dateModified datetime=2023-06-02T16:42:04+00:00>2023-06-02</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+安装 $ pip install pytest $ pip install pytest pytest-mock 在测试模块中导入 mocker fixture import pytest def test_example(mocker): ... 示例 def test_run(cli, mocker): mock_run = mocker.patch.object(uvicorn, 'run') result = cli.invoke(cmdline.main, ['server', '-h', '127.0.0.1', '-p', '8080']) assert result.exit_code == 0 mock_run.assert_called_once_with(app=mocker.ANY, host='127.0.0.1', port=8080) 这是一个 Python 单元测试的代码片段。它使用了 mocker
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/python/pytest-mock/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
 <link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/linux/%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/>
@@ -778,69 +841,6 @@ File Browser：一个具有漂亮界面的功能丰富的文件浏览器，支�
 <footer class=post-footer>
 <div class=post-button>
 <a class=btn href=/tech/linux/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pip-%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Python - Pip 包管理工具">
-<meta itemprop=description content="遇到的问题 安装失败，报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。 $ vim ~/.pip/pip.conf [install] #trusted-host = pypi.douban.com [global] #index-url = https://pypi.tuna.tsinghua.edu.cn/simple">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/python/pip-%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/ itemprop=url class=post-title-link>Python - Pip 包管理工具</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-05-31 18:16:19 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-05-31 18:16:19 +0000 UTC">2023-05-31</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-02T16:42:04+00:00 itemprop=dateModified datetime=2023-06-02T16:42:04+00:00>2023-06-02</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/python itemprop=url rel=index>
-<span itemprop=name>Python</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-遇到的问题 安装失败，报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。 $ vim ~/.pip/pip.conf [install] #trusted-host = pypi.douban.com [global] #index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/python/pip-%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/#more rel=contents>
 阅读全文 &#187;
 </a>
 </div>
