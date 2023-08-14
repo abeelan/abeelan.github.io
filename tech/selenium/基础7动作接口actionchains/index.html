@@ -1,0 +1,730 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Selenium - 动作接口">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Selenium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium - 动作接口">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/selenium/%E5%9F%BA%E7%A1%807%E5%8A%A8%E4%BD%9C%E6%8E%A5%E5%8F%A3actionchains/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2022-11-18 21:11:48 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 01:00:05 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E5%9F%BA%E7%A1%807%E5%8A%A8%E4%BD%9C%E6%8E%A5%E5%8F%A3actionchains","permalink":"https://abeelan.github.io/tech/selenium/%E5%9F%BA%E7%A1%807%E5%8A%A8%E4%BD%9C%E6%8E%A5%E5%8F%A3actionchains/","title":"Selenium - 动作接口"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Selenium - 动作接口 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>181</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#暂停pause>暂停（Pause）</a></li>
+<li><a href=#释放clear>释放（Clear）</a></li>
+<li><a href=#鼠标mouse>鼠标（Mouse）</a>
+<ul>
+<li><a href=#点击>点击</a></li>
+<li><a href=#移动>移动</a></li>
+<li><a href=#拖放>拖放</a></li>
+</ul>
+</li>
+<li><a href=#键盘keyboard>键盘（Keyboard）</a>
+<ul>
+<li><a href=#key>Key</a></li>
+<li><a href=#按下键>按下键</a></li>
+<li><a href=#抬起键>抬起键</a></li>
+<li><a href=#输入字符>输入字符</a></li>
+<li><a href=#向指定元素输入字符>向指定元素输入字符</a></li>
+<li><a href=#复制粘贴>复制粘贴</a></li>
+</ul>
+</li>
+<li><a href=#笔pen>笔（Pen）</a></li>
+<li><a href=#滚轮wheel>滚轮（Wheel）</a>
+<ul>
+<li><a href=#滚动到元素>滚动到元素</a></li>
+<li><a href=#按指定偏移量滚动>按指定偏移量滚动</a></li>
+<li><a href=#基于元素向指定偏移量滚动>基于元素向指定偏移量滚动</a></li>
+<li><a href=#基于元素的偏移量向指定偏移量滚动>基于元素的偏移量向指定偏移量滚动</a></li>
+<li><a href=#基于原点的偏移量向指定偏移量滚动>基于原点的偏移量向指定偏移量滚动</a></li>
+</ul>
+</li>
+<li><a href=#touchaction-动作链接40-不支持>TouchAction 动作链接（4.0+ 不支持）</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>181</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=216150></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=530></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-04-06T18:43:19+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/selenium/%E5%9F%BA%E7%A1%807%E5%8A%A8%E4%BD%9C%E6%8E%A5%E5%8F%A3actionchains/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Selenium - 动作接口">
+<meta itemprop=description content="用于向 Web 浏览器提供虚拟化输入操作的低级接口。 键盘输入 鼠标输入 笔或触摸设备的指针输入 滚轮输入（v4.2+） 实现动作交互依赖ActionChai">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Selenium - 动作接口 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2022-11-18 21:11:48 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-11-18 21:11:48 +0000 UTC">2022-11-18</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T01:00:05+00:00 itemprop=dateModified datetime=2023-08-15T01:00:05+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/selenium itemprop=url rel=index>
+<span itemprop=name>Selenium</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1901</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>4分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/selenium/%E5%9F%BA%E7%A1%807%E5%8A%A8%E4%BD%9C%E6%8E%A5%E5%8F%A3actionchains/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>用于向 Web 浏览器提供虚拟化输入操作的低级接口。</p>
+<ul>
+<li>键盘输入</li>
+<li>鼠标输入</li>
+<li>笔或触摸设备的指针输入</li>
+<li>滚轮输入（v4.2+）</li>
+</ul>
+</blockquote>
+<p>实现动作交互依赖<code>ActionChains</code>库，是对更底层动作类<code>ActionBuilder</code>的封装。</p>
+<p>当调用<code>ActionChains</code>操作方法时，操作事件被存储在<code>ActionChains</code>对象的队列中。在调用<code>perform()</code>时，将按照操作事件的顺序一个接一个触发执行。</p>
+<h2 id=暂停pause>暂停（Pause）</h2>
+<p>鼠标操作链中设置等待时间。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>clickable = driver.find_element(By.ID, &#34;clickable&#34;)
+ActionChains(driver)
+    .move_to_element(clickable)
+    .pause(1)
+    .click_and_hold()
+    .pause(1)
+    .send_keys(&#34;abc&#34;)
+    .perform()
+</code></pre></div><h2 id=释放clear>释放（Clear）</h2>
+<p>当已经生成了动作链但是没有进行<code>perform</code>操作，即使后面创建了新的动作类实例，鼠标依然处于先前的状态，所以需要释放已经生成但没有执行的动作链。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>from selenium.webdriver.common.actions.action_builder import ActionBuilder
+# 释放所有 actions
+ActionBuilder(driver).clear_actions()
+</code></pre></div><h2 id=鼠标mouse>鼠标（Mouse）</h2>
+<h3 id=点击>点击</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 鼠标左键并按住不放</span>
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>click_and_hold(clickable)\
+ <span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 鼠标左键</span>
+clickable <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;click&#34;</span>)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>click(clickable)\
+ <span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 鼠标右键</span>
+clickable <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;clickable&#34;</span>)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>context_click(clickable)\
+ <span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 鼠标左键双击</span>
+clickable <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;clickable&#34;</span>)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>double_click(clickable)\
+ <span style=color:#f92672>.</span>perform()
+
+<span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>鼠标键
+</span><span style=color:#e6db74>部分鼠标无按键不支持，经测试 Mac 与罗技无线鼠标均可
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+<span style=color:#75715e># 鼠标后退键（v4.2+）</span>
+action <span style=color:#f92672>=</span> ActionBuilder(driver)
+action<span style=color:#f92672>.</span>pointer_action<span style=color:#f92672>.</span>pointer_down(MouseButton<span style=color:#f92672>.</span>BACK)
+action<span style=color:#f92672>.</span>pointer_action<span style=color:#f92672>.</span>pointer_up(MouseButton<span style=color:#f92672>.</span>BACK)
+action<span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 鼠标前进键（v4.2+）</span>
+action <span style=color:#f92672>=</span> ActionBuilder(driver)
+action<span style=color:#f92672>.</span>pointer_action<span style=color:#f92672>.</span>pointer_down(MouseButton<span style=color:#f92672>.</span>FORWARD)
+action<span style=color:#f92672>.</span>pointer_action<span style=color:#f92672>.</span>pointer_up(MouseButton<span style=color:#f92672>.</span>FORWARD)
+action<span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=移动>移动</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 将鼠标移动到元素的中心点</span>
+hoverable <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;hover&#34;</span>)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>move_to_element(hoverable)\
+ <span style=color:#f92672>.</span>perform()
+
+<span style=color:#e6db74>&#34;&#34;&#34; 
+</span><span style=color:#e6db74>按偏移量移动
+</span><span style=color:#e6db74>offset(13, 15)    向右移动 13，向下移动 15
+</span><span style=color:#e6db74>offset（-15, -20） 向左移动 15，向上移动 20
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+<span style=color:#75715e># 从元素偏移（左上原点）</span>
+mouse_tracker <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;mouse-tracker&#34;</span>)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>move_to_element_with_offset(mouse_tracker, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>0</span>)\
+ <span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 从元素偏移（中心原点）</span>
+action <span style=color:#f92672>=</span> ActionBuilder(driver)
+action<span style=color:#f92672>.</span>pointer_action<span style=color:#f92672>.</span>move_to_location(<span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>0</span>)
+action<span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 基于当前指针位置的偏移量</span>
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>move_by_offset( <span style=color:#ae81ff>13</span>, <span style=color:#ae81ff>15</span>)\
+ <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=拖放>拖放</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 点击并按住 A 元素，移动到 B 元素，释放鼠标</span>
+draggable <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;draggable&#34;</span>)
+droppable <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;droppable&#34;</span>)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>drag_and_drop(draggable, droppable)\
+ <span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 点击并按住 A 元素，移动到给定的偏移量，释放鼠标</span>
+draggable <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;draggable&#34;</span>)
+start <span style=color:#f92672>=</span> draggable<span style=color:#f92672>.</span>location
+finish <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;droppable&#34;</span>)<span style=color:#f92672>.</span>location
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>drag_and_drop_by_offset(draggable, finish[<span style=color:#e6db74>&#39;x&#39;</span>] <span style=color:#f92672>-</span> start[<span style=color:#e6db74>&#39;x&#39;</span>], finish[<span style=color:#e6db74>&#39;y&#39;</span>] <span style=color:#f92672>-</span> start[<span style=color:#e6db74>&#39;y&#39;</span>])\
+ <span style=color:#f92672>.</span>perform()
+</code></pre></div><h2 id=键盘keyboard>键盘（Keyboard）</h2>
+<h3 id=key>Key</h3>
+<p>模拟键盘上的键操作。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> selenium.webdriver <span style=color:#f92672>import</span> Keys
+
+<span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>The Keys implementation.
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</code></pre></div><h3 id=按下键>按下键</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> selenium.webdriver <span style=color:#f92672>import</span> Keys, ActionChains
+<span style=color:#f92672>from</span> selenium.webdriver.common.by <span style=color:#f92672>import</span> By
+
+<span style=color:#75715e># 按下 shift 键不放，输入字母，得到大写字母</span>
+ActionChains(driver)\
+    <span style=color:#f92672>.</span>key_down(Keys<span style=color:#f92672>.</span>SHIFT)\
+    <span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;abc&#34;</span>)\
+    <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=抬起键>抬起键</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 按下 shift 输入大写 A</span>
+<span style=color:#75715e># 松开 shift 输入小写 b</span>
+ActionChains(driver)\
+    <span style=color:#f92672>.</span>key_down(Keys<span style=color:#f92672>.</span>SHIFT)\
+    <span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;a&#34;</span>)\
+    <span style=color:#f92672>.</span>key_up(Keys<span style=color:#f92672>.</span>SHIFT)\
+    <span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;b&#34;</span>)\
+    <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=输入字符>输入字符</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 基于当前元素</span>
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;abc&#34;</span>)\
+ <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=向指定元素输入字符>向指定元素输入字符</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>text_input <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;textInput&#34;</span>)
+ActionChains(driver)\
+  <span style=color:#f92672>.</span>send_keys_to_element(text_input, <span style=color:#e6db74>&#34;abc&#34;</span>)\
+  <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=复制粘贴>复制粘贴</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>cmd_ctrl <span style=color:#f92672>=</span> Keys<span style=color:#f92672>.</span>COMMAND <span style=color:#66d9ef>if</span> sys<span style=color:#f92672>.</span>platform <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;darwin&#39;</span> <span style=color:#66d9ef>else</span> Keys<span style=color:#f92672>.</span>CONTROL
+
+<span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>官方文档通过 firefox_driver 执行
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+ActionChains(driver)\
+    <span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;Selenium!&#34;</span>)\
+    <span style=color:#f92672>.</span>send_keys(Keys<span style=color:#f92672>.</span>ARROW_LEFT)\
+    <span style=color:#f92672>.</span>key_down(Keys<span style=color:#f92672>.</span>SHIFT)\
+    <span style=color:#f92672>.</span>send_keys(Keys<span style=color:#f92672>.</span>ARROW_UP)\
+    <span style=color:#f92672>.</span>key_up(Keys<span style=color:#f92672>.</span>SHIFT)\
+    <span style=color:#f92672>.</span>key_down(cmd_ctrl)\
+    <span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;xvv&#34;</span>)\
+    <span style=color:#f92672>.</span>key_up(cmd_ctrl)\
+    <span style=color:#f92672>.</span>perform()
+
+<span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>chrome 通过下面的方法实现
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+ele <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(value<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;textInput&#34;</span>)
+ele<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#39;Selenium!&#39;</span>)
+ele<span style=color:#f92672>.</span>send_keys(cmd_ctrl, <span style=color:#e6db74>&#39;a&#39;</span>)
+time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>2</span>)
+<span style=color:#75715e># 键盘的复制操作</span>
+ele<span style=color:#f92672>.</span>send_keys(cmd_ctrl, <span style=color:#e6db74>&#39;c&#39;</span>)
+time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>2</span>)
+<span style=color:#75715e># 键盘的剪切操作</span>
+ele<span style=color:#f92672>.</span>send_keys(cmd_ctrl, <span style=color:#e6db74>&#39;x&#39;</span>)
+time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>2</span>)
+<span style=color:#75715e># 键盘的粘贴操作</span>
+ele<span style=color:#f92672>.</span>send_keys(cmd_ctrl, <span style=color:#e6db74>&#39;v&#39;</span>)
+time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>2</span>)
+<span style=color:#75715e># 键盘的删除操作</span>
+ele<span style=color:#f92672>.</span>send_keys(cmd_ctrl, <span style=color:#e6db74>&#39;a&#39;</span>)
+ele<span style=color:#f92672>.</span>send_keys(Keys<span style=color:#f92672>.</span>BACKSPACE)
+</code></pre></div><h2 id=笔pen>笔（Pen）</h2>
+<blockquote>
+<p>仅支持 chromium；v4.2+</p>
+</blockquote>
+<p>笔是一种指针输入，具有与鼠标基本相同的行为，但也可以具有手写笔独有的事件属性。此外，鼠标有5个按钮，而笔有3个等效的按钮状态：</p>
+<ul>
+<li>0：触摸（默认，相当于左键单击）</li>
+<li>2：筒状按钮（相当于右键单击）</li>
+<li>5：橡皮擦按钮（目前不支持）</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>driver<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#39;https://www.selenium.dev/selenium/web/pointerActionsPage.html&#39;</span>)
+pointer_area <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;pointerArea&#34;</span>)
+pen_input <span style=color:#f92672>=</span> PointerInput(POINTER_PEN, <span style=color:#e6db74>&#34;default pen&#34;</span>)
+action <span style=color:#f92672>=</span> ActionBuilder(driver, mouse<span style=color:#f92672>=</span>pen_input)
+
+<span style=color:#75715e># 使用笔</span>
+action<span style=color:#f92672>.</span>pointer_action\
+  <span style=color:#f92672>.</span>move_to(pointer_area)\
+  <span style=color:#f92672>.</span>pointer_down()\
+  <span style=color:#f92672>.</span>move_by(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>)\
+  <span style=color:#f92672>.</span>pointer_up()
+action<span style=color:#f92672>.</span>perform()
+
+<span style=color:#75715e># 添加指针事件属性</span>
+action<span style=color:#f92672>.</span>pointer_action\
+  <span style=color:#f92672>.</span>move_to(pointer_area)\
+  <span style=color:#f92672>.</span>pointer_down()\
+  <span style=color:#f92672>.</span>move_by(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, tilt_x<span style=color:#f92672>=-</span><span style=color:#ae81ff>72</span>, tilt_y<span style=color:#f92672>=</span><span style=color:#ae81ff>9</span>, twist<span style=color:#f92672>=</span><span style=color:#ae81ff>86</span>)\
+  <span style=color:#f92672>.</span>pointer_up(<span style=color:#ae81ff>0</span>)
+action<span style=color:#f92672>.</span>perform()
+</code></pre></div><h2 id=滚轮wheel>滚轮（Wheel）</h2>
+<h3 id=滚动到元素>滚动到元素</h3>
+<p>一直滚动，直到指定元素出现在屏幕中。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>iframe <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>TAG_NAME, <span style=color:#e6db74>&#34;iframe&#34;</span>)
+ActionChains(driver)\
+  <span style=color:#f92672>.</span>scroll_to_element(iframe)\
+  <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=按指定偏移量滚动>按指定偏移量滚动</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 传入一个 delta x 和 delta y 值，表示向右和向下滚动的量。负值分别代表左和上。</span>
+
+footer <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>TAG_NAME, <span style=color:#e6db74>&#34;footer&#34;</span>)
+<span style=color:#75715e># rect 具有元素位置和大小的字典，取元素的 y 值</span>
+<span style=color:#75715e># {&#39;height&#39;: 23, &#39;width&#39;: 1169, &#39;x&#39;: 8, &#39;y&#39;: 5217.5}</span>
+delta_y <span style=color:#f92672>=</span> int(footer<span style=color:#f92672>.</span>rect[<span style=color:#e6db74>&#39;y&#39;</span>])
+ActionChains(driver)\
+  <span style=color:#f92672>.</span>scroll_by_amount(<span style=color:#ae81ff>0</span>, delta_y)\
+  <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=基于元素向指定偏移量滚动>基于元素向指定偏移量滚动</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>第一个表示起始点，我们将其指定为元素，后两个是 delta x 和 delta y 值。
+</span><span style=color:#e6db74>如果元素在可见窗口之外，它将滚动到屏幕底部，然后页面将根据提供的 delta x 和 delta y 值滚动。
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+iframe <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>TAG_NAME, <span style=color:#e6db74>&#34;iframe&#34;</span>)
+scroll_origin <span style=color:#f92672>=</span> ScrollOrigin<span style=color:#f92672>.</span>from_element(iframe)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>scroll_from_origin(scroll_origin, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>200</span>)\
+ <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=基于元素的偏移量向指定偏移量滚动>基于元素的偏移量向指定偏移量滚动</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>footer <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>TAG_NAME, <span style=color:#e6db74>&#34;footer&#34;</span>)
+scroll_origin <span style=color:#f92672>=</span> ScrollOrigin<span style=color:#f92672>.</span>from_element(footer, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>50</span>)
+ActionChains(driver)\
+ <span style=color:#f92672>.</span>scroll_from_origin(scroll_origin, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>200</span>)\
+ <span style=color:#f92672>.</span>perform()
+</code></pre></div><h3 id=基于原点的偏移量向指定偏移量滚动>基于原点的偏移量向指定偏移量滚动</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>scroll_origin <span style=color:#f92672>=</span> ScrollOrigin<span style=color:#f92672>.</span>from_viewport(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>)
+ActionChains(driver)\
+  <span style=color:#f92672>.</span>scroll_from_origin(scroll_origin, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>200</span>)\
+  <span style=color:#f92672>.</span>perform()
+</code></pre></div><blockquote>
+<p>如果是 4.0.0+ 的版本，不支持TouchActions，模拟鼠标操作的建议使用 ActionChains 如果还是要使用 TouchActions 的话 建议降低 selenium 版本 $ pip install selenium==3.141.0</p>
+</blockquote>
+<h2 id=touchaction-动作链接40-不支持>TouchAction 动作链接（4.0+ 不支持）</h2>
+<ul>
+<li>可以针对 PC、移动端 H5 进行模拟鼠标、键盘操作</li>
+<li>手势控制
+<ul>
+<li>tap：在指定元素上敲击</li>
+<li>double_tap：在指定元素上双击</li>
+<li>tap_and_hold：在指定元素上点击但不释放</li>
+<li>move：手势移动到指定偏移（不释放）</li>
+<li>release：释放手势</li>
+<li>scroll：手势点击并滚动</li>
+<li>scroll_from_element：从某个元素开始手势点击并滚动（向下滑动为负数，向上滑动为正数）</li>
+<li>long_press：长按元素</li>
+<li>flick：手势滑动</li>
+<li>flick_element：从某个元素开始手势滑动（向上滑动为负数，向下滑动为正数）</li>
+<li>perform：执行</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>@Time   : 2021/5/8 11:37 下午
+</span><span style=color:#e6db74>@Author : lan
+</span><span style=color:#e6db74>@Mail   : lanzy.nice@gmail.com
+</span><span style=color:#e6db74>@Desc   :
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>如果是 4.0.0+ 的版本 模拟鼠标操作的建议使用 ActionChains
+</span><span style=color:#e6db74>如果还是要使用 TouchActions 的话 建议降低 selenium 版本
+</span><span style=color:#e6db74>$ pip install selenium==3.141.0
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+<span style=color:#f92672>from</span> time <span style=color:#f92672>import</span> sleep
+<span style=color:#f92672>from</span> selenium <span style=color:#f92672>import</span> webdriver
+<span style=color:#f92672>from</span> selenium.webdriver <span style=color:#f92672>import</span> TouchActions
+<span style=color:#f92672>from</span> selenium.webdriver.common.by <span style=color:#f92672>import</span> By
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestTouchAction</span>:
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>setup_class</span>(self):
+        <span style=color:#75715e># 滑动操作会报如下错误</span>
+        <span style=color:#75715e># selenium.common.exceptions.WebDriverException: Message: unknown command: </span>
+        <span style=color:#75715e># Cannot call non W3C standard command while in W3C mode</span>
+        <span style=color:#75715e># 添加 w3c=False 后解决</span>
+        option <span style=color:#f92672>=</span> webdriver<span style=color:#f92672>.</span>ChromeOptions()
+        option<span style=color:#f92672>.</span>add_experimental_option(<span style=color:#e6db74>&#34;w3c&#34;</span>, <span style=color:#66d9ef>False</span>)
+
+        self<span style=color:#f92672>.</span>driver <span style=color:#f92672>=</span> webdriver<span style=color:#f92672>.</span>Chrome(options<span style=color:#f92672>=</span>option)
+        self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>maximize_window()
+        self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>implicitly_wait(<span style=color:#ae81ff>5</span>)
+        self<span style=color:#f92672>.</span>action <span style=color:#f92672>=</span> TouchActions(self<span style=color:#f92672>.</span>driver)
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>teardown_class</span>(self):
+        sleep(<span style=color:#ae81ff>2</span>)
+        self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>quit()
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_touch_action</span>(self):
+        <span style=color:#e6db74>&#34;&#34;&#34;百度搜索后滑动到最底部&#34;&#34;&#34;</span>
+        self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;http://www.baidu.com&#34;</span>)
+
+        ele_box <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;kw&#34;</span>)
+        ele_btn <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;su&#34;</span>)
+        ele_box<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;selenium 测试&#34;</span>)
+        self<span style=color:#f92672>.</span>action<span style=color:#f92672>.</span>tap(ele_btn)<span style=color:#f92672>.</span>perform()
+
+        <span style=color:#75715e># 如果不重新获取 输入框元素就会报错，原因是页面已经刷新过，之前的元素不能重用</span>
+        <span style=color:#75715e># Message: stale element reference: element is not attached to the page document</span>
+        ele_box <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>ID, <span style=color:#e6db74>&#34;kw&#34;</span>)
+        self<span style=color:#f92672>.</span>action<span style=color:#f92672>.</span>scroll_from_element(ele_box, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2000</span>)<span style=color:#f92672>.</span>perform()
+
+        <span style=color:#75715e># 继续点击「下一页」</span>
+        ele_next <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>driver<span style=color:#f92672>.</span>find_element(By<span style=color:#f92672>.</span>XPATH, <span style=color:#e6db74>&#34;//*[@class=&#39;n&#39;]&#34;</span>)
+        ele_next<span style=color:#f92672>.</span>click()
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/selenium>
+Selenium
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/selenium/%E5%9F%BA%E7%A1%808%E6%89%A7%E8%A1%8Cjs%E8%84%9A%E6%9C%AC/ rel=next title="Selenium - 执行Js脚本">
+<i class="fa fa-chevron-left"></i> Selenium - 执行Js脚本
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/selenium/%E5%9F%BA%E7%A1%806%E9%A1%B5%E9%9D%A2%E5%BC%B9%E6%A1%86alert%E6%93%8D%E4%BD%9C/ rel=prev title="Selenium - 页面弹框Alert操作">
+Selenium - 页面弹框Alert操作
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

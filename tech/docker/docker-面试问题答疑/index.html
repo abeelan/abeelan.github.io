@@ -1,0 +1,502 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Docker - 关于Docker的问题答疑">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker - 关于Docker的问题答疑">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/docker/docker-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2021-08-25 17:01:33 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 01:00:05 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"docker-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91","permalink":"https://abeelan.github.io/tech/docker/docker-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91/","title":"Docker - 关于Docker的问题答疑"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Docker - 关于Docker的问题答疑 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>181</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#问题汇总>问题汇总</a>
+<ul>
+<li><a href=#问题-1在-selenium-grid-中多个-node-是在同一机器上依然是在单机上执行自动化测试如何将这些-node-分布到不同的机器上>问题 1：在 selenium grid 中，多个 node 是在同一机器上，依然是在单机上执行自动化测试，如何将这些 node 分布到不同的机器上？</a></li>
+<li><a href=#问题-2在-docker-selenium-的开源镜像中为什么不支持-ie-浏览器的镜像>问题 2：在 docker selenium 的开源镜像中，为什么不支持 IE 浏览器的镜像？</a></li>
+<li><a href=#问题-3需要测试-tob-产品兼容不同的操作系统比如不同版本的-centosredhatubantu-等等通过在宿主机下载这些镜像去安装软件软件都安装成功能不能认为测试通过>问题 3：需要测试 toB 产品兼容不同的操作系统，比如不同版本的 centos、redhat、ubantu 等等，通过在宿主机下载这些镜像去安装软件，软件都安装成功，能不能认为测试通过？</a></li>
+<li><a href=#问题-4现在需要排查一个容器中的网络问题但是容器没有安装任何的网络排查工具也无法通过网络下载工具这个时候要怎么做>问题 4：现在需要排查一个容器中的网络问题，但是容器没有安装任何的网络排查工具，也无法通过网络下载工具，这个时候要怎么做？</a></li>
+<li><a href=#问题-5-解释一下容器网络的运行原理三种连接方式>问题 5: 解释一下容器网络的运行原理（三种连接方式）</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#问题-6dockerfile-run-指令执行多个命令时下面那种方式更好一些>问题 6：dockerfile RUN 指令，执行多个命令时，下面那种方式更好一些？</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#问题-7-自动化测试环境搭建及使用一种简单的模式>问题 7: 自动化测试环境搭建及使用，一种简单的模式</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>181</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=216150></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=530></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-04-06T18:43:19+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/docker-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Docker - 关于Docker的问题答疑">
+<meta itemprop=description content="关于 docker 的一些问题。 问题汇总 问题 1：在 selenium grid 中，多个 node 是在同一机器上，依然是在单机上执行自动化测试，如何将这些 node 分布到不同的机器上？ $ docker exec -it chrome bash">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Docker - 关于Docker的问题答疑 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2021-08-25 17:01:33 +0000 UTC" itemprop="dateCreated datePublished" datetime="2021-08-25 17:01:33 +0000 UTC">2021-08-25</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T01:00:05+00:00 itemprop=dateModified datetime=2023-08-15T01:00:05+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/docker itemprop=url rel=index>
+<span itemprop=name>Docker</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>2032</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>5分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/docker/docker-%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E7%AD%94%E7%96%91/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<p>关于 docker 的一些问题。</p>
+<h2 id=问题汇总>问题汇总</h2>
+<h3 id=问题-1在-selenium-grid-中多个-node-是在同一机器上依然是在单机上执行自动化测试如何将这些-node-分布到不同的机器上>问题 1：在 selenium grid 中，多个 node 是在同一机器上，依然是在单机上执行自动化测试，如何将这些 node 分布到不同的机器上？</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker exec -it chrome bash
+$ env | grep HUB
+HUB_PORT_4444_TCP_ADDR<span style=color:#f92672>=</span>172.17.0.3
+HUB_PORT_4444_TCP_PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>4444</span>
+</code></pre></div><p><code>--link hub</code> 的原理是将目标容器的 HUB 信息以环境变量的形式注入到容器内，如果两个容器不在同一机器上无法使用 &ndash;link 参数。</p>
+<p>那么，在其他机器上启动容器的时候，可以通过 -e 参数，填写上面获取的 IP 地址和端口，以设置环境变量的方式传递给容器信息，即可实现多机器运行 node 节点。</p>
+<h3 id=问题-2在-docker-selenium-的开源镜像中为什么不支持-ie-浏览器的镜像>问题 2：在 docker selenium 的开源镜像中，为什么不支持 IE 浏览器的镜像？</h3>
+<p>因为容器并不虚拟化自己的内核，一台机器上所有的容器都使用宿主机的内核。</p>
+<p>而 docker 只能安装在 linux 系统上，因为容器的底层逻辑需要 linux 内核的能力，而 IE 浏览器是使用 windows 内核驱动的，所以无法制作 IE 浏览器的镜像。</p>
+<p>容器都是使用宿主机的内核，如果运行的软件挑内核或者内核版本，那么尽量不要用容器来运行。</p>
+<p>windows 上之所以能运行 docker，是因为先安装了 linux 系统，然后再安装的 docker，微软已经在开发自己的 docker，但是目前还没有太多人使用。</p>
+<h3 id=问题-3需要测试-tob-产品兼容不同的操作系统比如不同版本的-centosredhatubantu-等等通过在宿主机下载这些镜像去安装软件软件都安装成功能不能认为测试通过>问题 3：需要测试 toB 产品兼容不同的操作系统，比如不同版本的 centos、redhat、ubantu 等等，通过在宿主机下载这些镜像去安装软件，软件都安装成功，能不能认为测试通过？</h3>
+<p>不能；因为容器使用的内核是宿主机的内核，比如在 ubantu 上安装 centos 镜像，运行内核依然是 ubantu，centos 镜像只是安装了一些 centos 的软件供用户使用而已，所以在容器安装成功，不能真的代表在 centos 操作系统上运行成功。</p>
+<p>所以总结下来任何对内核有要求的场景尽量不要使用容器测试。</p>
+<h3 id=问题-4现在需要排查一个容器中的网络问题但是容器没有安装任何的网络排查工具也无法通过网络下载工具这个时候要怎么做>问题 4：现在需要排查一个容器中的网络问题，但是容器没有安装任何的网络排查工具，也无法通过网络下载工具，这个时候要怎么做？</h3>
+<p>可以启动一个带有网络排查工具的容器，然后通过 container 网络模式将新创建的容器挂载到要排查的容器上。这样两个容器的网络就是互通的，就可以抓取到目标容器的网络流量。</p>
+<p>还有一种方法就是不用启动新的容器，而是直接让宿主机切换到容器网络的名称空间</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker inspect jenkins
+<span style=color:#75715e># 查找容器 PID -&gt; 24171</span>
+
+<span style=color:#75715e># 进入该 pid 对应的地址</span>
+$ cd /proc/24171
+
+<span style=color:#75715e># ns = namespace 名称空间</span>
+$ cd ns
+
+<span style=color:#75715e># 在宿主机上切换到容器的名称空间</span>
+<span style=color:#75715e># -n 代表切换 network namespace</span>
+$ nsenter --help
+$ nsenter -t <span style=color:#ae81ff>24171</span> -n
+
+<span style=color:#75715e># 查看只有两个网络设备，代表成功切换到容器网络</span>
+$ ifconfig
+<span style=color:#75715e># 退出网络名称空间，可以看到宿主机是有多个网络设备的</span>
+$ exit
+</code></pre></div><h3 id=问题-5-解释一下容器网络的运行原理三种连接方式>问题 5: 解释一下容器网络的运行原理（三种连接方式）</h3>
+<h5 id=桥接模式创建虚拟网卡>桥接模式（创建虚拟网卡）</h5>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210826234228534.png alt=image-20210826234228534></p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210827003822267.png alt=image-20210827003822267></p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210826235559874.png alt=image-20210826235559874></p>
+<h5 id=host-模式不创建虚拟网卡直接使用宿主机网络>host 模式（不创建虚拟网卡，直接使用宿主机网络）</h5>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210826235611583.png alt=image-20210826235611583></p>
+<h5 id=容器网络模式打破容器间的界限应用场景较多很关键>容器网络模式（打破容器间的界限，应用场景较多，很关键。）</h5>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210826235656404.png alt=image-20210826235656404></p>
+<p>通过 container 模式进行 mock server 原理图</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210827000417357.png alt=image-20210827000417357></p>
+<p>通过 container 模式进行多服务日志收集上传原理图</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210827004238174.png alt=image-20210827004238174></p>
+<p>通过 container 模式，进程共享，可以进行故障注入</p>
+<p>sandbox 连接到容器 A 的进程内，A 进程运行的同时，sandbox 进行一些故障注入。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210827004339146.png alt=image-20210827004339146></p>
+<h3 id=问题-6dockerfile-run-指令执行多个命令时下面那种方式更好一些>问题 6：dockerfile RUN 指令，执行多个命令时，下面那种方式更好一些？</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-docker data-lang=docker><span style=color:#75715e>### 方式一 ###</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>FROM</span><span style=color:#e6db74> centos:7</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> yum install -y wegt vim git<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> yum install -y wget<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> yum install -y git<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e>### 方式二 ###</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>FROM</span><span style=color:#e6db74> centos:7</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> yum install -y wegt vim git <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span> <span style=color:#f92672>&amp;&amp;</span> yum install -y wget <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span> <span style=color:#f92672>&amp;&amp;</span> yum install -y git<span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>用两种方式分别构建镜像，查看 dockerfile 的执行过程</p>
+<h5 id=使用方式一构建镜像>使用方式一构建镜像</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ docker build -t tmp .
+<span style=color:#75715e># . 代表存放 dockerfile 的目录，开始构建时，先将当前目录下的所有文件打包发送给 docker 进程</span>
+<span style=color:#75715e># 所以 dockerfile 独立保存在一个目录下而且该目录下不要放无关的文件</span>
+Sending build context to Docker daemon 4.608kB
+
+<span style=color:#75715e># 每执行安装一个命令都会重新新建一个临时容器，安装完成后会移除该中间容器</span>
+Step 3/3: yum install -y git
+---&gt; Running in xxxxxx
+Removing intermediate container xxxxxx
+
+<span style=color:#75715e># 再次进行构建，会自动使用缓存，如果修改 dockerfile，哪行被修改重新执行哪行，其他行依然会使用缓存。</span>
+
+<span style=color:#75715e># 优点：</span>
+<span style=color:#75715e># 拆分步骤后，可以复用缓存，提高效率</span>
+
+<span style=color:#75715e># 缺点：</span>
+<span style=color:#75715e># 镜像是分层的，一个 RUN 指令就是一层，每多一层就会有一层的io性能开销，如果多个 RUN 指令会影响性能。</span>
+</code></pre></div><h5 id=为什么会提升性能开销>为什么会提升性能开销？</h5>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210827103626572.png alt=image-20210827103626572></p>
+<p>解释：当前 X 目录下有 A 文件，Y 目录下有 B 文件，如果管理员需要分别对 AB 两个文件操作的话，需要切换目录，但是如果文件多的话，切换目录是非常麻烦的，所以，docker 底层是文件共享系统 overlay2，通过 <code>docker info</code> 可以查看；</p>
+<p>共享文件系统 Z 里面会有 AB 两个文件，对 A 文件添加字符串 hello 后，X 目录下的 A 文件也会同步修改，就不用切换目录；</p>
+<p>对 Z 目录的 B 文件添加字符串 world 后，Y 目录下的 B 文件不会同步修改，而是在 A 目录下面新建一个文件，记录 B 文件的修改；</p>
+<p>这是因为 docker 文件系统只会对第一个文件开发读写权限，其他文件全部仅可读，视图文件层 Z 目录的 B 文件，其实是通过 Y 目录的 B 文件读内容 merge X 目录 B 文件的更改，展示到 Z 目录下。</p>
+<p>那么，文件过多的话，merge 操作会增加，所以会增加系统读写开销，拖慢性能。</p>
+<h5 id=使用方式二再次构建镜像>使用方式二再次构建镜像</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-dockerfile data-lang=dockerfile><span style=color:#75715e># 缺点：</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 使用方式二，修改 RUN 指令内的任意一个东西，都会整条命令全部重新执行，没有使用缓存。</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 优点：</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 节省性能开销</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><h5 id=总结>总结：</h5>
+<p>开发 dockerfile 过程中，可以使用多个 RUN 指令的方式，这样便于调试，提高效率；</p>
+<p>如果 dockerfile 已经开发完成，需要将 RUN 指令合并，减少层数，减少 IO 性能开销。</p>
+<h3 id=问题-7-自动化测试环境搭建及使用一种简单的模式>问题 7: 自动化测试环境搭建及使用，一种简单的模式</h3>
+<p>在 dockerfile 内定义安装 python 环境，设置启动脚本，即容器启动就会运行 entrypoint.sh 脚本</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210827120136493.png alt=image-20210827120136493></p>
+<p>容器启动即去拉取最新代码，然后运行测试程序。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20210827120238266.png alt=image-20210827120238266></p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/docker>
+Docker
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/docker/%E6%90%AD%E5%BB%BAyapi%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/ rel=next title="Docker - 搭建Yapi及使用记录">
+<i class="fa fa-chevron-left"></i> Docker - 搭建Yapi及使用记录
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/docker/%E6%90%AD%E5%BB%BAselenium%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/ rel=prev title="Docker - 搭建Selenium测试环境">
+Docker - 搭建Selenium测试环境
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

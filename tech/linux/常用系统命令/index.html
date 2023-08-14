@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-06-01 16:17:01 +0000 UTC">
-<meta property="article:modified_time" content="2023-06-02 19:09:57 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 01:00:06 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>160</span>
+<span class=badge>181</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -129,8 +129,16 @@
 <div class="post-toc animated"><nav id=TableOfContents>
 <ul>
 <li><a href=#系统>系统</a></li>
-<li><a href=#资源>资源</a></li>
+<li><a href=#文件管理>文件管理</a>
+<ul>
+<li><a href=#文本处理vivim>文本处理（vi/vim）</a></li>
+</ul>
+</li>
+<li><a href=#资源管理>资源管理</a>
+<ul>
 <li><a href=#磁盘和分区>磁盘和分区</a></li>
+</ul>
+</li>
 <li><a href=#网络>网络</a></li>
 <li><a href=#进程>进程</a></li>
 <li><a href=#用户>用户</a></li>
@@ -149,7 +157,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>160</span>
+<span class=site-state-item-count>181</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -201,15 +209,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=205164></div>
+<div class=item-count id=wordsCount data-count=216150></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=497></div>
+<div class=item-count id=readTimes data-times=530></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:26:10+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-04-06T18:43:19+00:00></div>
 </div>
 </div>
 </div>
@@ -265,7 +273,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-02T19:09:57+00:00 itemprop=dateModified datetime=2023-06-02T19:09:57+00:00>2023-06-02</time>
+<time title=修改时间：2023-08-15T01:00:06+00:00 itemprop=dateModified datetime=2023-08-15T01:00:06+00:00>2023-08-15</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -284,14 +292,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>773</span>
+<span class=post-meta-item-text>字数：</span><span>1656</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>2分钟</span>
+<span>4分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -350,31 +358,117 @@ $ dmidecode | grep <span style=color:#e6db74>&#34;Product Name&#34;</span>
 
 <span style=color:#75715e># 查看网卡信息</span>
 $ dmesg | grep -i eth
-</code></pre></div><h2 id=资源>资源</h2>
+</code></pre></div><h2 id=文件管理>文件管理</h2>
+<ul>
+<li>查看文件信息：<code>$ ls -al</code>(list)</li>
+<li>切换工作目录：<code>$ cd</code>(chage directory)</li>
+<li>显示当前路径：<code>$ pwd</code></li>
+<li>创建新目录：<code>$ mkdir</code></li>
+<li>创建新文件：<code>$ touch</code></li>
+<li>删除文件或目录：<code>$ rm -rf</code></li>
+<li>拷贝文件：<code>$ cp</code></li>
+<li>剪切文件：<code>$ mv</code></li>
+<li>建立链接文件：<code>$ ln</code>
+<ul>
+<li>软链接：添加 <code>-s</code> 参数，不占用磁盘空间，原文件删除后，链接失效</li>
+<li>硬链接：占用磁盘空间，原文件删除后链接文件依然存在，不影响使用；只能链接普通文件，不能链接目录</li>
+</ul>
+</li>
+<li>查找文件：<code>$ find</code></li>
+<li>查看文件内容
+<ul>
+<li><code>cat</code>：查看整个文件</li>
+<li><code>less</code>：按屏展示；空格下一页；d 上一页；q 退出</li>
+<li><code>more</code>：同 less，增加百分比展示</li>
+<li><code>head</code>：从文件头部开始，默认展示前 10 行，通过 <code>-n</code> 参数指定展示行数</li>
+<li><code>tail</code>：同 head，从文件尾部开始</li>
+<li><code>diff</code>：比较两个文件的差异</li>
+</ul>
+</li>
+<li>打包压缩：<code>$ tar</code>；<code>-zcvf</code>：压缩；<code>-zxvf</code>：解压缩；<code>-C</code>： 指定路径</li>
+<li>修改文件权限：<code>$ chmod 777 filename</code>；r：read（4）；w：write（2）；x：execute（1）；-：无权限（0）</li>
+<li>文件属性，如图：</li>
+</ul>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211213172505682.png alt></p>
+<h3 id=文本处理vivim>文本处理（vi/vim）</h3>
+<ul>
+<li>
+<p>跳到开始行：gg</p>
+</li>
+<li>
+<p>跳到末尾行：G（shift + g）</p>
+</li>
+<li>
+<p>行首跳行尾：$</p>
+</li>
+<li>
+<p>行尾跳行首：&lt;</p>
+</li>
+<li>
+<p>屏幕输出：<code>echo</code></p>
+</li>
+<li>
+<p>输出重定向：<code>></code></p>
+</li>
+</ul>
+<h2 id=资源管理>资源管理</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ free -m                <span style=color:#75715e># 查看内存使用量和交换区使用量</span>
-$ df -h                  <span style=color:#75715e># 查看各分区使用情况</span>
+$ df -h                  <span style=color:#75715e># 查看磁盘各分区使用情况</span>
 $ du -sh &lt;目录名&gt;         <span style=color:#75715e># 查看指定目录的大小</span>
 $ uptime                 <span style=color:#75715e># 查看系统运行时间、用户数、负载</span>
 $ cat /proc/loadavg      <span style=color:#75715e># 查看系统负载</span>
+
 $ grep MemTotal /proc/meminfo   <span style=color:#75715e># 查看内存总量</span>
 $ grep MemFree /proc/meminfo    <span style=color:#75715e># 查看空闲内存量</span>
-</code></pre></div><h2 id=磁盘和分区>磁盘和分区</h2>
+</code></pre></div><h3 id=磁盘和分区>磁盘和分区</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ mount | column -t      <span style=color:#75715e># 查看挂接的分区状态</span>
 $ fdisk -l               <span style=color:#75715e># 查看所有分区</span>
 $ swapon -s              <span style=color:#75715e># 查看所有交换分区</span>
 $ hdparm -i /dev/hda     <span style=color:#75715e># 查看磁盘参数(仅适用于IDE设备)</span>
 $ dmesg | grep IDE       <span style=color:#75715e># 查看启动时IDE设备检测状况</span>
 </code></pre></div><h2 id=网络>网络</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ ifconfig               <span style=color:#75715e># 查看所有网络接口的属性</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ ping 					 <span style=color:#75715e># 测试远程主机连通性 -c 设置次数；-i 设置时间间隔</span>
+$ ifconfig               <span style=color:#75715e># 查看所有网络接口的属性</span>
 $ iptables -L            <span style=color:#75715e># 查看防火墙设置</span>
 $ route -n               <span style=color:#75715e># 查看路由表</span>
 $ netstat -lntp          <span style=color:#75715e># 查看所有监听端口</span>
 $ netstat -antp          <span style=color:#75715e># 查看所有已经建立的连接</span>
 $ netstat -s             <span style=color:#75715e># 查看网络统计信息</span>
 </code></pre></div><h2 id=进程>进程</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ ps -ef                 <span style=color:#75715e># 查看所有进程</span>
-$ top                    <span style=color:#75715e># 实时显示进程状态</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ ps -ef   <span style=color:#75715e># 查看所有进程</span>
+$ top      <span style=color:#75715e># 实时显示进程状态</span>
+$ kill     <span style=color:#75715e># 结束进程; kill -9 强制杀死进程</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># ps 命令</span>
+<span style=color:#75715e># 获得当前所有进程列表</span>
+$ ps -ef  <span style=color:#75715e># UNIX 风格参数，单减号</span>
+<span style=color:#75715e># UID：启动这些进程的用户</span>
+<span style=color:#75715e># PID：进程 ID</span>
+<span style=color:#75715e># PPID：进程ID</span>
+<span style=color:#75715e># STIME：进程启动时的系统时间</span>
+<span style=color:#75715e># TTY：进程启动时的终端设备</span>
+<span style=color:#75715e># TIME：运行进程累计时间 </span>
+<span style=color:#75715e># CMD：启动进程时的名称</span>
 
+$ ps aux  <span style=color:#75715e># BSD 风格，无符号</span>
+<span style=color:#75715e># USER PID </span>
+<span style=color:#75715e># %CPU </span>
+<span style=color:#75715e># %MEM    </span>
+<span style=color:#75715e># VSZ：进程在内存中的大小,以千字节(KB)为单位，虚拟内存</span>
+<span style=color:#75715e># RSS：进程在未换出时占用的物理内存，保留内存</span>
+<span style=color:#75715e># STAT：代表当前进程状态的双字符状态码</span>
+<span style=color:#75715e># TIME：进程运行时间</span>
+<span style=color:#75715e># COMMAND：启动进程时的命令</span>
+
+$ ps --pid pidlist <span style=color:#75715e># GUN 风格，双减号</span>
+
+<span style=color:#75715e># 自定义输出指标</span>
+$ ps -o pid,ppid,psr,thcount,tid,cmd -M
+<span style=color:#75715e># psr：运行在哪个 cpu 上</span>
+<span style=color:#75715e># thcount：线程数</span>
+<span style=color:#75715e># tid：线程号</span>
+<span style=color:#75715e># cmd：对应的执行命令</span>
+
+<span style=color:#75715e># 查看除 grep 命令外的进程名信息</span>
 $ ps -ef | grep -v grep | grep <span style=color:#f92672>{</span>process_name<span style=color:#f92672>}</span>
 </code></pre></div><h2 id=用户>用户</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ w                          <span style=color:#75715e># 查看活动用户</span>
@@ -382,10 +476,23 @@ $ id &lt;用户名&gt;                 <span style=color:#75715e># 查看指定�
 $ last                       <span style=color:#75715e># 查看用户登录日志</span>
 $ cut -d: -f1 /etc/passwd    <span style=color:#75715e># 查看系统所有用户</span>
 $ cut -d: -f1 /etc/group     <span style=color:#75715e># 查看系统所有组</span>
-$ crontab -l                 <span style=color:#75715e># 查看当前用户的计划任务</span>
+
 </code></pre></div><h2 id=服务>服务</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ chkconfig --list              <span style=color:#75715e># 列出所有系统服务</span>
 $ chkconfig --list | grep on    <span style=color:#75715e># 列出所有启动的系统服务</span>
+</code></pre></div><p>定时任务</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># 启动服务</span>
+$ service crond start 
+<span style=color:#75715e># 停止服务</span>
+$ service crond stop
+<span style=color:#75715e># 重启服务</span>
+$ service crond restart 
+<span style=color:#75715e># 查看服务状态</span>
+$ service crond status
+<span style=color:#75715e># 设置定时任务</span>
+$ crontab -e
+<span style=color:#75715e># 查看定时任务</span>
+$ crontab -l                 
 </code></pre></div><h2 id=程序>程序</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ rpm -qa                <span style=color:#75715e># 查看所有安装的软件包</span>
 </code></pre></div>
