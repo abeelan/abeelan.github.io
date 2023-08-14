@@ -8,34 +8,34 @@
 <link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
 <link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
 <link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
-<meta itemprop=name content="Jenkins - Jenkins Pipline Esbook">
+<meta itemprop=name content="Python - Requests请求鉴权">
 <meta itemprop=description content="It's better late than never.">
 <meta itemprop=datePublished zgotmplz>
 <meta itemprop=dateModified zgotmplz>
 <meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
-<meta itemprop=keywords content="Jenkins">
+<meta itemprop=keywords content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jenkins - Jenkins Pipline Esbook">
+<meta property="og:title" content="Python - Requests请求鉴权">
 <meta property="og:description" content="It's better late than never.">
 <meta property="og:image" content="/imgs/avatar.png">
 <meta property="og:image:width" content="312">
 <meta property="og:image:height" content="312">
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg">
-<meta property="og:url" content="https://abeelan.github.io/tech/jenkins/jenkins-pipline-esbook/">
+<meta property="og:url" content="https://abeelan.github.io/tech/python/requests-%E8%AF%B7%E6%B1%82%E9%89%B4%E6%9D%83/">
 <meta property="og:site_name" content="ABEE">
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
-<meta property="article:published_time" content="2021-11-26 16:41:25 +0000 UTC">
-<meta property="article:modified_time" content="2023-06-02 16:42:04 +0000 UTC">
+<meta property="article:published_time" content="2022-10-23 22:41:18 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-14 16:23:37 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
 <link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
 <style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
 <script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
-<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"jenkins-pipline-esbook","permalink":"https://abeelan.github.io/tech/jenkins/jenkins-pipline-esbook/","title":"Jenkins - Jenkins Pipline Esbook"}</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"requests-%E8%AF%B7%E6%B1%82%E9%89%B4%E6%9D%83","permalink":"https://abeelan.github.io/tech/python/requests-%E8%AF%B7%E6%B1%82%E9%89%B4%E6%9D%83/","title":"Python - Requests请求鉴权"}</script>
 <script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
-<title>Jenkins - Jenkins Pipline Esbook - ABEE</title>
+<title>Python - Requests请求鉴权 - ABEE</title>
 <noscript>
 <link rel=stylesheet href=/css/noscript.css>
 </noscript>
@@ -126,22 +126,7 @@
 </ul>
 <div class=sidebar-panel-container>
 <div class="post-toc-wrap sidebar-panel">
-<div class="post-toc animated"><nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#1安装-jenkins-插件>1、安装 Jenkins 插件</a></li>
-<li><a href=#2安装-allure>2、安装 allure</a>
-<ul>
-<li></li>
-</ul>
-</li>
-<li><a href=#3创建流水线任务>3、创建流水线任务</a></li>
-<li><a href=#构建后效果图>构建后效果图</a></li>
-</ul>
-</li>
-</ul>
-</nav></div>
+<div class="post-toc animated"><nav id=TableOfContents></nav></div>
 </div>
 <div class="site-overview-wrap sidebar-panel">
 <div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
@@ -205,7 +190,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=205160></div>
+<div class=item-count id=wordsCount data-count=205164></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -213,7 +198,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-07-11T15:02:37+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:26:10+00:00></div>
 </div>
 </div>
 </div>
@@ -240,7 +225,7 @@
 <div class="main-inner post posts-expand">
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/jenkins/jenkins-pipline-esbook/>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/requests-%E8%AF%B7%E6%B1%82%E9%89%B4%E6%9D%83/>
 <span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
 <meta itemprop=image content="/imgs/avatar.png">
 <meta itemprop=name content="ABEE">
@@ -250,11 +235,11 @@
 <meta itemprop=description content="It's better late than never.">
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Jenkins - Jenkins Pipline Esbook">
-<meta itemprop=description content="1、安装 Jenkins 插件 Extended Choice Parameter：参数化 stage view：用于展示流水线进度视图 groovy postbuild：执行 groovy 脚本请求 allure：报告展示 2、">
+<meta itemprop=name content="Python - Requests请求鉴权">
+<meta itemprop=description content="接口鉴权的通用解决方案： 认证信息的获取 认证信息的携带 auth 鉴权请求方法 import requests from requests.auth import HTTOBasicAuth proxy = { &#34;http&#34;: &#34;http://127.0.0.1:8888&#34;, &#34;https&#34;: &#34;https://127.0.0.1:8888&#34; } r = requests.get( url=&#34;https://baidu.com&#34;, proxies=proxy, verify=False, auth=HttpBasicAuth(&#34;username&#34;, &#34;password&#34;) )">
 </span>
 <header class=post-header>
-<h1 class=post-title itemprop="name headline">Jenkins - Jenkins Pipline Esbook </h1>
+<h1 class=post-title itemprop="name headline">Python - Requests请求鉴权 </h1>
 <div class=post-meta-container>
 <div class=post-meta-items>
 <span class=post-meta-item>
@@ -262,14 +247,14 @@
 <i class="far fa-calendar"></i>
 </span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2021-11-26 16:41:25 +0000 UTC" itemprop="dateCreated datePublished" datetime="2021-11-26 16:41:25 +0000 UTC">2021-11-26</time>
+<time title="发表于：2022-10-23 22:41:18 +0000 UTC" itemprop="dateCreated datePublished" datetime="2022-10-23 22:41:18 +0000 UTC">2022-10-23</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-02T16:42:04+00:00 itemprop=dateModified datetime=2023-06-02T16:42:04+00:00>2023-06-02</time>
+<time title=修改时间：2023-08-14T16:23:37+00:00 itemprop=dateModified datetime=2023-08-14T16:23:37+00:00>2023-08-14</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -277,8 +262,8 @@
 </span>
 <span class=post-meta-item-text>分类于：</span>
 <span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/jenkins itemprop=url rel=index>
-<span itemprop=name>Jenkins</span>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
 </a>
 </span>
 </span>
@@ -288,14 +273,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>593</span>
+<span class=post-meta-item-text>字数：</span><span>56</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>2分钟</span>
+<span>1分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -304,7 +289,7 @@
 <span class=post-meta-item-text>
 浏览：
 </span>
-<span id=busuanzi_value_page_pv data-path=/tech/jenkins/jenkins-pipline-esbook/>
+<span id=busuanzi_value_page_pv data-path=/tech/python/requests-%E8%AF%B7%E6%B1%82%E9%89%B4%E6%9D%83/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -312,94 +297,33 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
-<h3 id=1安装-jenkins-插件>1、安装 Jenkins 插件</h3>
+<p>接口鉴权的通用解决方案：</p>
 <ul>
-<li>Extended Choice Parameter：参数化</li>
-<li>stage view：用于展示流水线进度视图</li>
-<li>groovy postbuild：执行 groovy 脚本请求</li>
-<li>allure：报告展示</li>
+<li>认证信息的获取</li>
+<li>认证信息的携带</li>
 </ul>
-<h3 id=2安装-allure>2、安装 allure</h3>
-<h5 id=安装-node>安装 node</h5>
-<p>先安装 node，未安装 node 直接启动 allure 会报错：<code>/usr/bin/env: node: No such file or directory</code></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 创建安装目录</span>
-$ mkdir node <span style=color:#f92672>&amp;&amp;</span> cd node
-<span style=color:#75715e># 下载安装包</span>
-$ wget https://npm.taobao.org/mirrors/node/v15.8.0/node-v15.8.0-linux-x64.tar.gz
-<span style=color:#75715e># 解压缩安装包</span>
-$ tar -zxvf node-v15.8.0-linux-x64.tar.gz
-<span style=color:#75715e># 创建软链</span>
-$ ln -s /data/node/node-v15.8.0-linux-x64/bin/npm /usr/bin/npm
-$ ln -s /data/node/node-v15.8.0-linux-x64/bin/node /usr/bin/node
-</code></pre></div><h5 id=安装-allure>安装 allure</h5>
-<p><strong>方法一</strong></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ npm install -g allure-commandline --save-dev
-</code></pre></div><p><strong>方法二</strong></p>
-<p>下载包推送到服务器上解压</p>
-<p>下载地址：https://registry.npmjs.org/allure-commandline/-/allure-commandline-2.13.0.tgz</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 上传到服务器上，-be 是防止乱码卡死</span>
-$ rz -be 
-$ tar -zxvf allure-commandline-2.13.0.tgz
-$ ln -s /data/allure/package/bin/allure /usr/bin/allure
-</code></pre></div><h3 id=3创建流水线任务>3、创建流水线任务</h3>
-<p>3.1、 创建项目</p>
-<p>3.2、 配置项目</p>
-<ul>
-<li>参数化构建过程：用于选择脚本执行环境</li>
-</ul>
-<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126162844064.png alt=image-20211126162844064></p>
-<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126162946642.png alt=image-20211126162946642></p>
-<ul>
-<li>添加流水线脚本</li>
-</ul>
-<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126163120691.png alt=image-20211126163120691></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-groovy data-lang=groovy>pipeline <span style=color:#f92672>{</span>
+<img src="/Users/lan/Library/Application Support/typora-user-images/image-20221023224410166.png" alt=image-20221023224410166 style=zoom:50%>
+<p>auth 鉴权请求方法</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> requests
+<span style=color:#f92672>from</span> requests.auth <span style=color:#f92672>import</span> HTTOBasicAuth
 
-    agent any
+proxy <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#34;http&#34;</span>: <span style=color:#e6db74>&#34;http://127.0.0.1:8888&#34;</span>,
+    <span style=color:#e6db74>&#34;https&#34;</span>: <span style=color:#e6db74>&#34;https://127.0.0.1:8888&#34;</span>
+}
 
-    stages <span style=color:#f92672>{</span>
-        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;拉取代码&#39;</span><span style=color:#f92672>){</span>
-            steps <span style=color:#f92672>{</span>
-                <span style=color:#75715e>// 拉取代码，可选 svn、git 等，通过 pipline 语法生成
-</span><span style=color:#75715e></span>                <span style=color:#75715e>// 只需要添加仓库 URL 和 证书 即可，其他默认就行
-</span><span style=color:#75715e></span>            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;验证环境&#39;</span><span style=color:#f92672>){</span>
-            steps <span style=color:#f92672>{</span>
-                <span style=color:#75715e>// 安装运行环境
-</span><span style=color:#75715e></span>                sh <span style=color:#e6db74>&#34;pip3 install -r requirements.txt&#34;</span>
-                <span style=color:#75715e>// 验证测试环境
-</span><span style=color:#75715e></span>                sh <span style=color:#e6db74>&#34;chmod 777 ./ci/env.sh&#34;</span>
-                sh <span style=color:#e6db74>&#34;sh ci/env.sh&#34;</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;运行测试&#39;</span><span style=color:#f92672>){</span>
-            steps<span style=color:#f92672>{</span>
-                sh <span style=color:#e6db74>&#34;python3 run.py ${env.choice}&#34;</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;生成报告&#39;</span><span style=color:#f92672>){</span>
-            steps<span style=color:#f92672>{</span>
-                script<span style=color:#f92672>{</span>  
-                <span style=color:#75715e>// 集成allure
-</span><span style=color:#75715e></span>                allure includeProperties: <span style=color:#66d9ef>false</span><span style=color:#f92672>,</span> jdk: <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>,</span> report: <span style=color:#e6db74>&#39;reports/allure-report&#39;</span><span style=color:#f92672>,</span> results: <span style=color:#f92672>[[</span>path: <span style=color:#e6db74>&#39;reports/allure-result&#39;</span><span style=color:#f92672>]]</span>
-            <span style=color:#f92672>}</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-   <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-
-
-</code></pre></div><p>3.3、 配置 allure 插件</p>
-<p>Dashboard - 系统管理 - 全局工具配置 - Allure Commandline</p>
-<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126164054741.png alt=image-20211126164054741></p>
-<h3 id=构建后效果图>构建后效果图</h3>
-<p>![image-20211129102413817](/Users/lan/Library/Application Support/typora-user-images/image-20211129102413817.png)</p>
+r <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(
+    url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://baidu.com&#34;</span>, 
+    proxies<span style=color:#f92672>=</span>proxy, 
+    verify<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, 
+    auth<span style=color:#f92672>=</span>HttpBasicAuth(<span style=color:#e6db74>&#34;username&#34;</span>, <span style=color:#e6db74>&#34;password&#34;</span>)
+)
+</code></pre></div>
 </div>
 <footer class=post-footer>
 <div class=post-tags>
-<a href=/tags/jenkins>
-Jenkins
+<a href=/tags/python>
+Python
 </a>
 </div>
 <div class=addthis_inline_share_toolbox style=text-align:center></div>
@@ -420,13 +344,13 @@ Jenkins
 </div>
 <div class=post-nav>
 <div class="post-nav-next post-nav-item">
-<a href=/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ rel=next title="Python - Jmespath基本操作">
-<i class="fa fa-chevron-left"></i> Python - Jmespath基本操作
+<a href=/tech/python/websocket%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81/ rel=next title="Python - Websocket请求发送">
+<i class="fa fa-chevron-left"></i> Python - Websocket请求发送
 </a>
 </div>
 <div class="post-nav-prev post-nav-item">
-<a href=/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96ci%E5%85%A8%E6%B5%81%E7%A8%8B%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/ rel=prev title="Jenkins - 接口自动化Ci全流程搭建记录">
-Jenkins - 接口自动化Ci全流程搭建记录
+<a href=/tech/python/requests-xmltodict%E5%B0%86xml%E5%86%85%E5%AE%B9%E8%BD%AC%E4%B8%BA%E5%AD%97%E5%85%B8/ rel=prev title="Python - Requests Xmltodict将Xml内容转为字典">
+Python - Requests Xmltodict将Xml内容转为字典
 <i class="fa fa-chevron-right"></i>
 </a>
 </div>
