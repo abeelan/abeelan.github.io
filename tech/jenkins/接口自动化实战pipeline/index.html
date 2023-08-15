@@ -1,0 +1,472 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Jenkins - Jenkins Pipline Esbook">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins - Jenkins Pipline Esbook">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E6%88%98pipeline/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2021-11-26 16:41:25 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-16 01:00:05 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E6%88%98pipeline","permalink":"https://abeelan.github.io/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E6%88%98pipeline/","title":"Jenkins - Jenkins Pipline Esbook"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Jenkins - Jenkins Pipline Esbook - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>261</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#1安装-jenkins-插件>1、安装 Jenkins 插件</a></li>
+<li><a href=#2安装-allure>2、安装 allure</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#3创建流水线任务>3、创建流水线任务</a></li>
+<li><a href=#构建后效果图>构建后效果图</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>261</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=270490></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=686></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E6%88%98pipeline/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Jenkins - Jenkins Pipline Esbook">
+<meta itemprop=description content="1、安装 Jenkins 插件 Extended Choice Parameter：参数化 stage view：用于展示流水线进度视图 groovy postbuild：执行 groovy 脚本请求 allure：报告展示 2、">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Jenkins - Jenkins Pipline Esbook </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2021-11-26 16:41:25 +0000 UTC" itemprop="dateCreated datePublished" datetime="2021-11-26 16:41:25 +0000 UTC">2021-11-26</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-16T01:00:05+00:00 itemprop=dateModified datetime=2023-08-16T01:00:05+00:00>2023-08-16</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/jenkins itemprop=url rel=index>
+<span itemprop=name>Jenkins</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>593</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>2分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E6%88%98pipeline/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h3 id=1安装-jenkins-插件>1、安装 Jenkins 插件</h3>
+<ul>
+<li>Extended Choice Parameter：参数化</li>
+<li>stage view：用于展示流水线进度视图</li>
+<li>groovy postbuild：执行 groovy 脚本请求</li>
+<li>allure：报告展示</li>
+</ul>
+<h3 id=2安装-allure>2、安装 allure</h3>
+<h5 id=安装-node>安装 node</h5>
+<p>先安装 node，未安装 node 直接启动 allure 会报错：<code>/usr/bin/env: node: No such file or directory</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 创建安装目录</span>
+$ mkdir node <span style=color:#f92672>&amp;&amp;</span> cd node
+<span style=color:#75715e># 下载安装包</span>
+$ wget https://npm.taobao.org/mirrors/node/v15.8.0/node-v15.8.0-linux-x64.tar.gz
+<span style=color:#75715e># 解压缩安装包</span>
+$ tar -zxvf node-v15.8.0-linux-x64.tar.gz
+<span style=color:#75715e># 创建软链</span>
+$ ln -s /data/node/node-v15.8.0-linux-x64/bin/npm /usr/bin/npm
+$ ln -s /data/node/node-v15.8.0-linux-x64/bin/node /usr/bin/node
+</code></pre></div><h5 id=安装-allure>安装 allure</h5>
+<p><strong>方法一</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ npm install -g allure-commandline --save-dev
+</code></pre></div><p><strong>方法二</strong></p>
+<p>下载包推送到服务器上解压</p>
+<p>下载地址：https://registry.npmjs.org/allure-commandline/-/allure-commandline-2.13.0.tgz</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 上传到服务器上，-be 是防止乱码卡死</span>
+$ rz -be 
+$ tar -zxvf allure-commandline-2.13.0.tgz
+$ ln -s /data/allure/package/bin/allure /usr/bin/allure
+</code></pre></div><h3 id=3创建流水线任务>3、创建流水线任务</h3>
+<p>3.1、 创建项目</p>
+<p>3.2、 配置项目</p>
+<ul>
+<li>参数化构建过程：用于选择脚本执行环境</li>
+</ul>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126162844064.png alt=image-20211126162844064></p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126162946642.png alt=image-20211126162946642></p>
+<ul>
+<li>添加流水线脚本</li>
+</ul>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126163120691.png alt=image-20211126163120691></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-groovy data-lang=groovy>pipeline <span style=color:#f92672>{</span>
+
+    agent any
+
+    stages <span style=color:#f92672>{</span>
+        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;拉取代码&#39;</span><span style=color:#f92672>){</span>
+            steps <span style=color:#f92672>{</span>
+                <span style=color:#75715e>// 拉取代码，可选 svn、git 等，通过 pipline 语法生成
+</span><span style=color:#75715e></span>                <span style=color:#75715e>// 只需要添加仓库 URL 和 证书 即可，其他默认就行
+</span><span style=color:#75715e></span>            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;验证环境&#39;</span><span style=color:#f92672>){</span>
+            steps <span style=color:#f92672>{</span>
+                <span style=color:#75715e>// 安装运行环境
+</span><span style=color:#75715e></span>                sh <span style=color:#e6db74>&#34;pip3 install -r requirements.txt&#34;</span>
+                <span style=color:#75715e>// 验证测试环境
+</span><span style=color:#75715e></span>                sh <span style=color:#e6db74>&#34;chmod 777 ./ci/env.sh&#34;</span>
+                sh <span style=color:#e6db74>&#34;sh ci/env.sh&#34;</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;运行测试&#39;</span><span style=color:#f92672>){</span>
+            steps<span style=color:#f92672>{</span>
+                sh <span style=color:#e6db74>&#34;python3 run.py ${env.choice}&#34;</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+        stage<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;生成报告&#39;</span><span style=color:#f92672>){</span>
+            steps<span style=color:#f92672>{</span>
+                script<span style=color:#f92672>{</span>  
+                <span style=color:#75715e>// 集成allure
+</span><span style=color:#75715e></span>                allure includeProperties: <span style=color:#66d9ef>false</span><span style=color:#f92672>,</span> jdk: <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>,</span> report: <span style=color:#e6db74>&#39;reports/allure-report&#39;</span><span style=color:#f92672>,</span> results: <span style=color:#f92672>[[</span>path: <span style=color:#e6db74>&#39;reports/allure-result&#39;</span><span style=color:#f92672>]]</span>
+            <span style=color:#f92672>}</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+   <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+
+</code></pre></div><p>3.3、 配置 allure 插件</p>
+<p>Dashboard - 系统管理 - 全局工具配置 - Allure Commandline</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211126164054741.png alt=image-20211126164054741></p>
+<h3 id=构建后效果图>构建后效果图</h3>
+<p>![image-20211129102413817](/Users/lan/Library/Application Support/typora-user-images/image-20211129102413817.png)</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/jenkins>
+Jenkins
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/python/jmespath%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ rel=next title="Python - Jmespath基本操作">
+<i class="fa fa-chevron-left"></i> Python - Jmespath基本操作
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/jenkins/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AE%9E%E6%88%98pipeline+dockerfile/ rel=prev title="Jenkins - 接口自动化Ci全流程搭建记录">
+Jenkins - 接口自动化Ci全流程搭建记录
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

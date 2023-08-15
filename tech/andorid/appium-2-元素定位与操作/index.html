@@ -1,0 +1,534 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Andorid - Appium 2 元素定位与操作">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Andorid">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Andorid - Appium 2 元素定位与操作">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/andorid/appium-2-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D%E4%B8%8E%E6%93%8D%E4%BD%9C/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-04-05 10:33:07 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 14:18:48 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"appium-2-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D%E4%B8%8E%E6%93%8D%E4%BD%9C","permalink":"https://abeelan.github.io/tech/andorid/appium-2-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D%E4%B8%8E%E6%93%8D%E4%BD%9C/","title":"Andorid - Appium 2 元素定位与操作"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Andorid - Appium 2 元素定位与操作 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>261</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#元素定位>元素定位</a>
+<ul>
+<li><a href=#dom-结构>DOM 结构</a></li>
+<li><a href=#android>Android</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#ios>iOS</a></li>
+</ul>
+</li>
+<li><a href=#元素操作>元素操作</a>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>261</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=270490></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=686></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/andorid/appium-2-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D%E4%B8%8E%E6%93%8D%E4%BD%9C/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Andorid - Appium 2 元素定位与操作">
+<meta itemprop=description content="Appium 常用 API。 元素定位 DOM 结构 dom：Document Object Model，文档对象模型。 dom 应用：用于表示界面的控件层级，界面的结构化描述。常见的格式">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Andorid - Appium 2 元素定位与操作 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-05 10:33:07 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-05 10:33:07 +0000 UTC">2023-04-05</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T14:18:48+00:00 itemprop=dateModified datetime=2023-08-15T14:18:48+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/andorid itemprop=url rel=index>
+<span itemprop=name>Andorid</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1440</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>3分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/andorid/appium-2-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D%E4%B8%8E%E6%93%8D%E4%BD%9C/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>Appium 常用 API。</p>
+</blockquote>
+<h2 id=元素定位>元素定位</h2>
+<h3 id=dom-结构>DOM 结构</h3>
+<ul>
+<li>dom：<code>Document Object Model</code>，文档对象模型。</li>
+<li>dom 应用：用于表示界面的控件层级，界面的结构化描述。常见的格式为 <code>html\xml</code>。核心元素为节点和属性。</li>
+</ul>
+<p>Andoid 应用的层级结构和 <code>html</code> 不一样，是一个定制的 <code>xml</code>。<code>App source</code> 类似于 dom，表示界面所有控件的结构。每个控件都有它的属性，但没有 css 属性。</p>
+<p>IOS 与 Android 的 dom 结构类似，但是属性有所区别，例：</p>
+<ul>
+<li>Android resourceid = iOS name</li>
+<li>Android content-des = IOS accessibility-id</li>
+</ul>
+<h3 id=android>Android</h3>
+<h5 id=uiautomator-定位表达式>Uiautomator 定位表达式</h5>
+<p>uiautomator 是安卓的工作引擎，比 xpath 速度快。缺点是表达式书写复杂，容易写错，IDE 没有提示。</p>
+<p>写法参考：</p>
+<ul>
+<li>
+<p>
+<a href=http://appium.io/docs/en/writing-running-appium/android/uiautomator-uiselector/, title="Appium Selector" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Appium Selector
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+</li>
+<li>
+<p>
+<a href=https://developer.android.com/reference/androidx/test/uiautomator/UiSelector title="Android Selector" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Android Selector
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 点击按钮（通过文本定位）</span>
+driver<span style=color:#f92672>.</span>find_element_by_android_uiautomator(
+    <span style=color:#e6db74>&#39;new UiSelector().text(&#34;登录&#34;)&#39;</span>
+)<span style=color:#f92672>.</span>click()
+
+<span style=color:#75715e># 输入文本（通过 ID 定位）</span>
+driver<span style=color:#f92672>.</span>find_element_by_android_uiautomator(
+    <span style=color:#e6db74>&#39;new UiSelector().resourceId(&#34;login_account&#34;)&#39;</span>
+)<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;123456&#34;</span>)
+
+<span style=color:#75715e># 点击按钮（通过 ID 定位）</span>
+driver<span style=color:#f92672>.</span>find_element_by_android_uiautomator(
+    <span style=color:#e6db74>&#39;new UiSelector().resourceId(&#34;button_next&#34;)&#39;</span>
+)<span style=color:#f92672>.</span>click()
+
+<span style=color:#75715e># 点击推荐（组合定位，通过 ID 查找父元素定位子元素）</span>
+recommend <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;new UiSelector().resourceId(&#34;title_text&#34;).childSelector(text(&#34;推荐&#34;))&#39;</span>
+driver<span style=color:#f92672>.</span>find_element_by_android_uiautomator(recommend)<span style=color:#f92672>.</span>click()
+
+<span style=color:#75715e># 页面滑动找到「猜你喜欢」并点击（滚动查找，直到元素出现）</span>
+text <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;new UiScrollable(&#39;</span> \
+       <span style=color:#e6db74>&#39;new UiSelector().scrollable(true).instance(0)).scrollIntoView(&#39;</span> \
+       <span style=color:#e6db74>&#39;new UiSelector().text(&#34;猜你喜欢&#34;).instance(0));&#39;</span>
+driver<span style=color:#f92672>.</span>find_element_by_android_uiautomator(text)<span style=color:#f92672>.</span>click()
+</code></pre></div><h5 id=toast-控件定位>Toast 控件定位</h5>
+<p>简易消息提示框，在当前页面显示一个浮动的显示块，与 <code>dialog</code> 不同，它永远不会获得焦点，尽可能不引人注意，同时向用户提供必要的信息，时间到后自动消失。</p>
+<p>它是系统级别的控件，<code>APP</code> 发送内容和指定时间给系统，由系统弹框，这类的控件不在 <code>APP</code> 内，需要特殊的控件识别方法。</p>
+<p><strong>定位原理</strong></p>
+<ul>
+<li><code>appium</code> 使用 <code>uiautomator</code> 底层的机制来分析抓取 <code>toast</code>，并且把 <code>toast</code> 放到控件树里面，但是它本身并不属于控件</li>
+<li>获取页面内容 <code>getPageSource</code> 无法找到</li>
+<li>必须使用 <code>xpath</code> 查找</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>driver<span style=color:#f92672>.</span>find_element_by_xpath(<span style=color:#e6db74>&#34;//*[@class=&#39;android.widget.Toast&#39;]&#34;</span>)<span style=color:#f92672>.</span>text)
+driver<span style=color:#f92672>.</span>find_element_by_xpath(<span style=color:#e6db74>&#34;//*[contains(@text, &#39;暂无更新&#39;)]&#34;</span>)<span style=color:#f92672>.</span>text)
+</code></pre></div><h3 id=ios>iOS</h3>
+<h2 id=元素操作>元素操作</h2>
+<h5 id=元素的常用操作>元素的常用操作</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 点击</span>
+ele<span style=color:#f92672>.</span>click()
+
+<span style=color:#75715e># 输入文本</span>
+ele<span style=color:#f92672>.</span>send_keys(<span style=color:#e6db74>&#34;hello world&#34;</span>)
+<span style=color:#75715e># 设置可编辑元素的内容</span>
+ele<span style=color:#f92672>.</span>set_value()
+<span style=color:#75715e># 清空可编辑元素的内容</span>
+ele<span style=color:#f92672>.</span>clear() 
+
+<span style=color:#75715e># bool 是否展示</span>
+ele<span style=color:#f92672>.</span>is_dispalyed()
+<span style=color:#75715e># bool 是否可用</span>
+ele<span style=color:#f92672>.</span>is_enable()
+<span style=color:#75715e># bool 是否选中</span>
+ele<span style=color:#f92672>.</span>is_selected()
+
+<span style=color:#75715e># 根据属性键获取属性值</span>
+ele<span style=color:#f92672>.</span>get_attribute(<span style=color:#e6db74>&#34;attr_key&#34;</span>)
+</code></pre></div><h5 id=元素的常用属性>元素的常用属性</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 获取元素文本 </span>
+ele<span style=color:#f92672>.</span>text
+
+<span style=color:#75715e># 获取元素坐标 [&#34;y&#34;: 10, &#34;x&#34;: 300]</span>
+ele<span style=color:#f92672>.</span>location
+
+<span style=color:#75715e># 获取元素尺寸 [&#34;width&#34;: 300, &#34;height&#34;: 500]</span>
+ele<span style=color:#f92672>.</span>size
+
+<span style=color:#e6db74>&#34;&#34;&#34;获取属性示例&#34;&#34;&#34;</span>
+<span style=color:#75715e># 只有通过元素才可以调用该方法，获取元素的属性以及元素的信息</span>
+book_image <span style=color:#f92672>=</span> driver<span style=color:#f92672>.</span>find_element_by_id(<span style=color:#e6db74>&#34;niv_image_book_shelf_item_grid&#34;</span>)
+print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;书籍书籍封面 content-desc：</span><span style=color:#e6db74>{</span>book_image<span style=color:#f92672>.</span>get_attribute(<span style=color:#e6db74>&#39;content-desc&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;书籍书籍封面 resource-id：</span><span style=color:#e6db74>{</span>book_image<span style=color:#f92672>.</span>get_attribute(<span style=color:#e6db74>&#39;resource-id&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;书籍书籍封面 enabled：</span><span style=color:#e6db74>{</span>book_image<span style=color:#f92672>.</span>get_attribute(<span style=color:#e6db74>&#39;enabled&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;书籍书籍封面 clickable：</span><span style=color:#e6db74>{</span>book_image<span style=color:#f92672>.</span>get_attribute(<span style=color:#e6db74>&#39;clickable&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;书籍书籍封面 bounds：</span><span style=color:#e6db74>{</span>book_image<span style=color:#f92672>.</span>get_attribute(<span style=color:#e6db74>&#39;bounds&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</code></pre></div><h5 id=touchaction>TouchAction</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> appium.webdriver.common.touch_action <span style=color:#f92672>import</span> TouchAction
+
+<span style=color:#75715e># 短按</span>
+press(self, el<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>, x<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>, y<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>)
+<span style=color:#75715e># 长按 </span>
+long_press(self, el<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>, x<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>, y<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>, duration<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</span>(ms))
+<span style=color:#75715e># 点击</span>
+tap(self,el<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,x<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,y<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,count<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+<span style=color:#75715e># 释放，结束屏幕上的一系列动作的命令操作</span>
+release(self)
+<span style=color:#75715e># 移动到</span>
+move_to(self,el<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,x<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,y<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>)
+<span style=color:#75715e># 等待</span>
+wait(self,ms<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)
+<span style=color:#75715e># 执行</span>
+perform(self)
+
+<span style=color:#75715e># 组合示例 </span>
+<span style=color:#75715e># 点击 -&gt; 等待 -&gt; 移动 -&gt; 释放 -&gt; 执行</span>
+TouchAction(driver)<span style=color:#f92672>.</span>press(x,y)<span style=color:#f92672>.</span>wait(<span style=color:#ae81ff>1000</span>)<span style=color:#f92672>.</span>move_to(x2,y2)<span style=color:#f92672>.</span>release()<span style=color:#f92672>.</span>perform()
+</code></pre></div><h5 id=multitouch>MultiTouch</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python><span style=color:#75715e># 多点触控</span>
+action0 <span style=color:#f92672>=</span> TouchAction()<span style=color:#f92672>.</span>tap(ele0)
+action1 <span style=color:#f92672>=</span> TouchAction()<span style=color:#f92672>.</span>tap(ele1)
+MultiTouch()<span style=color:#f92672>.</span>add(action0)<span style=color:#f92672>.</span>add(action1)<span style=color:#f92672>.</span>perform()
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/andorid>
+Andorid
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/andorid/appium-1-%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/ rel=next title="Andorid - Appium 1 运行原理">
+<i class="fa fa-chevron-left"></i> Andorid - Appium 1 运行原理
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/ios/appium-ios-%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D/ rel=prev title="Ios - Appium Ios 元素定位">
+Ios - Appium Ios 元素定位
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

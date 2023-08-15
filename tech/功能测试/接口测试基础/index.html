@@ -1,0 +1,500 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="功能测试 - 接口测试基础">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="功能测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="功能测试 - 接口测试基础">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-04-05 10:32:58 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 14:16:52 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80","permalink":"https://abeelan.github.io/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/","title":"功能测试 - 接口测试基础"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>功能测试 - 接口测试基础 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>261</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#get-与-post-的区别>Get 与 Post 的区别</a></li>
+<li><a href=#cookie>Cookie</a></li>
+<li><a href=#session>Session</a></li>
+<li><a href=#token>Token</a></li>
+<li><a href=#传统身份验证>传统身份验证</a></li>
+<li><a href=#基于-token-的身份验证>基于 Token 的身份验证</a></li>
+<li><a href=#cookie-与-session-的区别>cookie 与 session 的区别</a></li>
+<li><a href=#session-与-token-的区别>session 与 token 的区别</a>
+<ul>
+<li><a href=#打破误解>打破误解</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>261</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=270490></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=686></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="功能测试 - 接口测试基础">
+<meta itemprop=description content="做接口测试时，经常会接触到 get、post，token、cookie、session，关于他们的区别，这里详细记录一下。 Get 与 Post 的区别 通过 curl 发">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">功能测试 - 接口测试基础 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-05 10:32:58 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-05 10:32:58 +0000 UTC">2023-04-05</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T14:16:52+00:00 itemprop=dateModified datetime=2023-08-15T14:16:52+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95 itemprop=url rel=index>
+<span itemprop=name>功能测试</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>2615</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>6分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>做接口测试时，经常会接触到 get、post，token、cookie、session，关于他们的区别，这里详细记录一下。</p>
+</blockquote>
+<h2 id=get-与-post-的区别>Get 与 Post 的区别</h2>
+<p>通过 curl 发送两个请求，保存信息到文件内，进行比较。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ curl -s <span style=color:#e6db74>&#34;http://httpbin.org/status/200&#34;</span> -v &amp;&gt;/tmp/get
+$ curl -s <span style=color:#e6db74>&#34;http://httpbin.org/status/200&#34;</span> -d <span style=color:#e6db74>&#34;a=1&#34;</span> -v &amp;&gt;/tmp/post
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/abeelan/image-hosting-service/raw/master/img/image-20211201171933427.png alt="diff check"></p>
+<ul>
+<li>http 的 method 字段不同</li>
+<li>数据传输方式不同
+<ul>
+<li>get：以 ？分割 URL 和传输数据，参数之间以 & 相连
+<ul>
+<li>英文 + 数字 会原样发送</li>
+<li>空格会转换为 +</li>
+<li>中文或者其他字符，会转为 base64</li>
+</ul>
+</li>
+<li>post：数据存放在 body 内进行传输，可以支持 form、json、xml、binary 等各种数据格式</li>
+</ul>
+</li>
+<li>post 请求的响应头带有 <code>Content-Length</code> 和 <code>Content-Type</code>
+<ul>
+<li><code>Content-Length</code> 代表 body 的长度，这个长度必须精准</li>
+<li><code>Content-Type</code> 代表响应的数据格式</li>
+</ul>
+</li>
+<li>行业通用的规范
+<ul>
+<li>无状态变化的建议使用 get 请求</li>
+<li>数据的写入与状态的修改建议使用 post 请求</li>
+</ul>
+</li>
+</ul>
+<h2 id=cookie>Cookie</h2>
+<p>cookie 是一个非常具体的东西，指的就是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。</p>
+<p>cookie 由服务器生成，发送给浏览器，浏览器把 cookie 以 kv 形式保存到文本文件内，下次请求同一网站时会把该 cookie 发送给服务器。由于 cookie 是存在客户端上的，所以浏览器加入了一些限制确保 cookie 不会被恶意使用，同时不会占据太多磁盘空间，所以每个域的 cookie 数量是有限的，且每个域的 cookie 只作用于自己的网站。</p>
+<h2 id=session>Session</h2>
+<p>session 从字面上讲，就是会话。这个就类似于你和一个人交谈，你怎么知道当前和你交谈的是张三而不是李四呢？对方肯定有某种特征（长相等）表明他就是张三。</p>
+<p>session 也是类似的道理，服务器要知道当前发请求给自己的是谁。为了做这种区分，服务器就要给每个客户端分配不同的“身份标识”，然后客户端每次向服务器发请求的时候，都带上这个“身份标识”，服务器就知道这个请求来自于谁了。至于客户端怎么保存这个“身份标识”，可以有很多种方式，对于浏览器客户端，大家都默认采用 cookie 的方式。</p>
+<p>服务器使用 session 把用户的信息临时保存在了服务器上，用户离开网站后 session 会被销毁。这种用户信息存储方式相对 cookie 来说更安全，可是 session 有一个缺陷：如果web服务器做了负载均衡，那么下一个操作请求到了另一台服务器的时候 session 会丢失。</p>
+<h2 id=token>Token</h2>
+<p>Token 是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个 Token 返回给客户端，以后客户端只需带上这个 Token 前来请求数据即可，无需再次带上用户名和密码。</p>
+<p>最简单的 token 组成:</p>
+<ul>
+<li>uid(用户唯一的身份标识)</li>
+<li>time(当前时间的时间戳)</li>
+<li>sign(签名，由token的前几位+盐以哈希算法压缩成一定长的十六进制字符串，可以防止恶意第三方拼接 token 请求服务器)</li>
+</ul>
+<p>使用 Token 的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。</p>
+<h2 id=传统身份验证>传统身份验证</h2>
+<p>HTTP 是一种没有状态的协议，也就是它并不知道是谁访问应用。客户端通过用户名和密码进行身份验证后，再次发送请求，还得验证一下。</p>
+<p>解决办法：用户身份验证通过后，在服务端会生成一条记录用来保存用户数据，然后把这条记录的 ID 号发送给客户端，客户端将收到的 ID 号存储在 Cookie 里。客户端再次发送请求的时候，带着 Cookie 信息，服务端收到请求后会验证 Cookie 信息是否已经存在，如果存在，说明用户已经通过了身份验证，就把用户请求的数据返回给客户端。</p>
+<p>这就是 Session 的工作流程，服务端保存登录用户的信息，并返回 sessionId，sessionId 可以放在请求的 cookie 或 query 中标记。Session 并不是永久性存储，服务端会定期清理过期的 Session 。</p>
+<h2 id=基于-token-的身份验证>基于 Token 的身份验证</h2>
+<p>使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：</p>
+<ul>
+<li>客户端使用用户名跟密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务端会签发一个 Token，发送给客户端，Token 可以设置有效期</li>
+<li>客户端收到 Token 以后存储起来，比如放在 Cookie 里或者 Local Storage 里</li>
+<li>客户端每次向服务端发起请求都需要带着 Token</li>
+<li>服务端收到请求，验证 Token 的真实性和有效期
+<ul>
+<li>成功，向客户端返回数据</li>
+<li>失败，返回错误信息，重新登录</li>
+</ul>
+</li>
+</ul>
+<p>Token 是个凭据，丢失后可以重新认证。当然也会存在泄漏问题，比如别人拿到你的手机，获取到 Token，在过期之前就都可以以你的身份在别的地方登录。</p>
+<p>解决这个问题办法：将请求URL、时间戳、Token 三者进行合并加盐签名，服务端校验有效性。</p>
+<h2 id=cookie-与-session-的区别>cookie 与 session 的区别</h2>
+<ol>
+<li>
+<p>cookie 数据存放在客户端上，session 数据放在服务器上。</p>
+</li>
+<li>
+<p>cookie 不安全，别人可以分析存放在本地的 cookie 进行复用，考虑到安全应当使用session。</p>
+</li>
+<li>
+<p>session 会保存在服务器上一段时间，当用户增多，会比较占用你服务器的性能，考虑到减轻服务器性能方面，应当使用 cookie。</p>
+</li>
+<li>
+<p>单个 cookie 保存的数据不能超过 4K，很多浏览器都限制一个站点最多保存 20 个 cookie。</p>
+</li>
+<li>
+<p>一般将登录等重要信息存放为 SESSION，其他信息如果需要保留，可以放在 COOKIE 中。</p>
+</li>
+</ol>
+<h2 id=session-与-token-的区别>session 与 token 的区别</h2>
+<ol>
+<li>
+<p>session 和 token 并不矛盾，作为身份认证 token 安全性比 session 好，因为每个请求都有签名还能防止监听以及重放攻击。</p>
+</li>
+<li>
+<p>Session 是一种 HTTP 存储机制，目的是为无状态的 HTTP 提供的持久机制。所谓 Session 认证只是简单的把用户信息存储到 Session 里，因为 SID 的不可预测性，暂且认为是安全的，这是一种认证手段。 而 Token，如果指的是 OAuth Token 或类似的机制的话，提供的是<strong>认证</strong>和<strong>授权</strong>，认证是针对用户，授权是针对应用。其目的是让应用有权利访问用户的信息。这里的 Token 是唯一的。不可以转移到其它 App 上，也不可以转到其它 用户 上。</p>
+</li>
+</ol>
+<p>Session 只提供一种简单的认证，即有此 SID，即认为有此用户的全部权利，是需要严格保密的，这个数据应该只保存在站方，不应该共享给其它网站或者第三方 App。 所以简单来说，如果你的用户数据可能需要和第三方共享，或者允许第三方调用 API 接口，用 Token。如果永远只是自己的网站，自己的 App，用什么就无所谓了。</p>
+<h3 id=打破误解>打破误解</h3>
+<p>“只要关闭浏览器 ，session 就消失了？”</p>
+<p>不对。对session来说，除非程序通知服务器删除一个 session，否则服务器会一直保留，程序一般都是在用户做 log off 的时候发个指令去删除 session。</p>
+<p>然而浏览器从来不会主动在关闭之前通知服务器它将要关闭，因此服务器根本不会有机会知道浏览器已经关闭。</p>
+<p>之所以会有这种错觉，是大部分 session 机制都使用会话 cookie 来保存 session id，而关闭浏览器后这个 session id 就消失了，再次连接服务器时也就无法找到原来的 session。如果服务器设置的 cookie 被保存在硬盘上，或者使用某种手段改写浏览器发出的 HTTP 请求头，把原来的 session id 发送给服务器，则再次打开浏览器仍然能够打开原来的 session.</p>
+<p>恰恰是由于关闭浏览器不会导致 session 被删除，迫使服务器为 session 设置了一个失效时间，当距离客户端上一次使用 session 的时间超过这个失效时间时，服务器就可以以为客户端已经停止了活动，才会把session 删除以节省存储空间。</p>
+<p>
+<a href=https://www.cnblogs.com/JamesWang1993/p/8593494.html title=来源 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+来源
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%e5%8a%9f%e8%83%bd%e6%b5%8b%e8%af%95>
+功能测试
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E5%8F%8A%E6%8A%93%E5%8C%85%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/ rel=next title="功能测试 - 网络基础及抓包方法汇总">
+<i class="fa fa-chevron-left"></i> 功能测试 - 网络基础及抓包方法汇总
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-whistle/ rel=prev title="功能测试 - 抓包工具 Whistle">
+功能测试 - 抓包工具 Whistle
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

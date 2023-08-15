@@ -74,7 +74,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>234</span>
+<span class=badge>261</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -133,7 +133,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>234</span>
+<span class=site-state-item-count>261</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -169,7 +169,7 @@
 <div class=siteinfo>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
-<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name>
@@ -185,15 +185,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=248800></div>
+<div class=item-count id=wordsCount data-count=270490></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=624></div>
+<div class=item-count id=readTimes data-times=686></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-08-14T16:43:09+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
 </div>
 </div>
 </div>
@@ -218,6 +218,258 @@
 <div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
 </noscript>
 <div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/docker-%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E6%9D%83%E9%99%90%E4%B8%8D%E8%B6%B3/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Docker - Docker 执行命令提示权限不足">
+<meta itemprop=description content="登录 Ubuntu 服务器上使用 docker 命令报错： permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get &ldquo; http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json&#34;: dial unix /var/run/docker.sock: connect: permission denied 根据 官方文档：以非 root 用户身份管理 Docker 进行操作。 # 1. 创建 docker 用户组 $ sudo groupadd">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/docker/docker-%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E6%9D%83%E9%99%90%E4%B8%8D%E8%B6%B3/ itemprop=url class=post-title-link>Docker - Docker 执行命令提示权限不足</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-15 15:09:05 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-15 15:09:05 +0000 UTC">2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T15:10:40+00:00 itemprop=dateModified datetime=2023-08-15T15:10:40+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/docker itemprop=url rel=index>
+<span itemprop=name>Docker</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+登录 Ubuntu 服务器上使用 docker 命令报错： permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get &ldquo; http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied 根据 官方文档：以非 root 用户身份管理 Docker 进行操作。 # 1. 创建 docker 用户组 $ sudo groupadd
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/docker/docker-%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E6%9D%83%E9%99%90%E4%B8%8D%E8%B6%B3/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/andorid/uiautomator%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Andorid - Uiautomator冲突问题解决">
+<meta itemprop=description content="启动 appium server 后，再次启动 weditor 连接设备报错 [E 221216 18:20:07 web:2162] 500 GET /api/v1/devices/android%3Aemulator-5554/screenshot (::1) 2133.77ms 解决办法： 停掉 appium 服务 执行命令：python3 -m uiautomator2 init 重装手机上的 agent 服务 目前已知调用 android uiautomator 会冲">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/andorid/uiautomator%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/ itemprop=url class=post-title-link>Andorid - Uiautomator冲突问题解决</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-15 14:32:08 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-15 14:32:08 +0000 UTC">2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T14:34:46+00:00 itemprop=dateModified datetime=2023-08-15T14:34:46+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/andorid itemprop=url rel=index>
+<span itemprop=name>Andorid</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+启动 appium server 后，再次启动 weditor 连接设备报错 [E 221216 18:20:07 web:2162] 500 GET /api/v1/devices/android%3Aemulator-5554/screenshot (::1) 2133.77ms 解决办法： 停掉 appium 服务 执行命令：python3 -m uiautomator2 init 重装手机上的 agent 服务 目前已知调用 android uiautomator 会冲
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/andorid/uiautomator%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/jmeterms/ms-%E5%89%8D%E7%BD%AE%E6%9B%B4%E6%96%B0%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Jmeter&Ms - Ms 前置更新请求体中的数据">
+<meta itemprop=description content="需求 metersphere 接口平台，需求如下： 设置请求前置脚本，修改 「请求体」 内容，然后用更新后的请求体发起请求 将 address 的值(jsonObject)，转为字符串，其">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/jmeterms/ms-%E5%89%8D%E7%BD%AE%E6%9B%B4%E6%96%B0%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE/ itemprop=url class=post-title-link>Jmeter&Ms - Ms 前置更新请求体中的数据</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-15 14:05:22 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-15 14:05:22 +0000 UTC">2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T14:12:19+00:00 itemprop=dateModified datetime=2023-08-15T14:12:19+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/jmeterms itemprop=url rel=index>
+<span itemprop=name>Jmeter&Ms</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+需求 metersphere 接口平台，需求如下： 设置请求前置脚本，修改 「请求体」 内容，然后用更新后的请求体发起请求 将 address 的值(jsonObject)，转为字符串，其
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/jmeterms/ms-%E5%89%8D%E7%BD%AE%E6%9B%B4%E6%96%B0%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/httprunner/golang-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Httprunner - Golang 源码分析">
+<meta itemprop=description content="先上图，debug 按步骤查看的代码逻辑。">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/httprunner/golang-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/ itemprop=url class=post-title-link>Httprunner - Golang 源码分析</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-15 11:20:42 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-15 11:20:42 +0000 UTC">2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T11:21:38+00:00 itemprop=dateModified datetime=2023-08-15T11:21:38+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/httprunner itemprop=url rel=index>
+<span itemprop=name>Httprunner</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+先上图，debug 按步骤查看的代码逻辑。
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/httprunner/golang-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
 <link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/%E9%9A%8F%E7%AC%94/%E9%80%9A%E8%BF%87api%E5%AE%9E%E7%8E%B0%E7%A7%BB%E5%8A%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8D%A1%E7%AD%BE%E5%88%B0/>
@@ -589,258 +841,6 @@ pytest.ini 是 pytest 的默认配置文件，名称不可更改。 可以修改
 <footer class=post-footer>
 <div class=post-button>
 <a class=btn href=/tech/python/pytest-ini%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pytest-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Python - Pytest 异常处理">
-<meta itemprop=description content="try&mldr;except&mldr; 同 python 用法 pytest.raises() def test_raise(): # 当捕获到预期的异常，且异常信息也匹配时，就忽略该异常，认为用例执行通过，match 可以不写 with pytest.raises(ZeroDivisionError, match=&#34;除数不">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/python/pytest-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/ itemprop=url class=post-title-link>Python - Pytest 异常处理</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-08-14 19:10:26 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 19:10:26 +0000 UTC">2023-08-14</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/python itemprop=url rel=index>
-<span itemprop=name>Python</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-try&mldr;except&mldr; 同 python 用法 pytest.raises() def test_raise(): # 当捕获到预期的异常，且异常信息也匹配时，就忽略该异常，认为用例执行通过，match 可以不写 with pytest.raises(ZeroDivisionError, match="除数不
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/python/pytest-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pytest-mark%E4%BD%9C%E7%94%A8/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Python - Pytest Mark作用">
-<meta itemprop=description content="参数化用例 单参数 import pytest search_list = [&#34;a&#34;, &#34;b&#34;] @pytest.mark.parametrize(&#34;name&#34;, search_list) def test_search(name): assert name in search_list 多参数 @pytest.mark.parametrize( &#34;input_num, expect&#34;, [(&#34;3+5&#34;, 8), (&#34;2+3&#34;, 5), (&#34;6+3&#34;, 9)], # 多参数传递需要通过列表或元组嵌套的方式传递 ids=[&#34;add1&#34;, &#34;add2&#34;, &#34;add3&#34;] # 用例标识，个数与前面">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/python/pytest-mark%E4%BD%9C%E7%94%A8/ itemprop=url class=post-title-link>Python - Pytest Mark作用</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-08-14 19:08:10 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 19:08:10 +0000 UTC">2023-08-14</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/python itemprop=url rel=index>
-<span itemprop=name>Python</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-参数化用例 单参数 import pytest search_list = ["a", "b"] @pytest.mark.parametrize("name", search_list) def test_search(name): assert name in search_list 多参数 @pytest.mark.parametrize( "input_num, expect", [("3+5", 8), ("2+3", 5), ("6+3", 9)], # 多参数传递需要通过列表或元组嵌套的方式传递 ids=["add1", "add2", "add3"] # 用例标识，个数与前面
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/python/pytest-mark%E4%BD%9C%E7%94%A8/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/mitmproxy/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Python - Mitmproxy">
-<meta itemprop=description content="&#34;&#34;&#34; @Time : 2021/6/28 6:44 下午 @Author : lan @Mail : lanzy.nice@gmail.com @Desc : HTTP-specific events. 针对http，常用的API http.HTTPFlow 实例 flow flow.request.headers #获取所有头信息，包含Host、User-Agent、Content-">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/python/mitmproxy/ itemprop=url class=post-title-link>Python - Mitmproxy</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-08-14 19:06:52 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 19:06:52 +0000 UTC">2023-08-14</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/python itemprop=url rel=index>
-<span itemprop=name>Python</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-""" @Time : 2021/6/28 6:44 下午 @Author : lan @Mail : lanzy.nice@gmail.com @Desc : HTTP-specific events. 针对http，常用的API http.HTTPFlow 实例 flow flow.request.headers #获取所有头信息，包含Host、User-Agent、Content-
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/python/mitmproxy/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/requests-%E5%BC%82%E5%B8%B8%E7%B1%BB/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Python - Requests 异常类">
-<meta itemprop=description content="所有异常类型 requests. exceptions .HTTPError：HTTP错误 requests.exceptions.ConnectionError：连接错误 reque">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/python/requests-%E5%BC%82%E5%B8%B8%E7%B1%BB/ itemprop=url class=post-title-link>Python - Requests 异常类</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-08-14 19:06:14 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 19:06:14 +0000 UTC">2023-08-14</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/python itemprop=url rel=index>
-<span itemprop=name>Python</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-所有异常类型 requests. exceptions .HTTPError：HTTP错误 requests.exceptions.ConnectionError：连接错误 reque
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/python/requests-%E5%BC%82%E5%B8%B8%E7%B1%BB/#more rel=contents>
 阅读全文 &#187;
 </a>
 </div>

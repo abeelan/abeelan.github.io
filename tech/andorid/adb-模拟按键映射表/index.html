@@ -1,0 +1,1503 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Andorid - Adb模拟按键映射表">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Andorid">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Andorid - Adb模拟按键映射表">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/andorid/adb-%E6%A8%A1%E6%8B%9F%E6%8C%89%E9%94%AE%E6%98%A0%E5%B0%84%E8%A1%A8/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-08-14 17:25:45 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-16 01:00:05 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"adb-%E6%A8%A1%E6%8B%9F%E6%8C%89%E9%94%AE%E6%98%A0%E5%B0%84%E8%A1%A8","permalink":"https://abeelan.github.io/tech/andorid/adb-%E6%A8%A1%E6%8B%9F%E6%8C%89%E9%94%AE%E6%98%A0%E5%B0%84%E8%A1%A8/","title":"Andorid - Adb模拟按键映射表"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Andorid - Adb模拟按键映射表 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>261</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#使用方式>使用方式</a></li>
+<li><a href=#keycode列表>KEYCODE列表</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>261</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=270490></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=686></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/andorid/adb-%E6%A8%A1%E6%8B%9F%E6%8C%89%E9%94%AE%E6%98%A0%E5%B0%84%E8%A1%A8/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Andorid - Adb模拟按键映射表">
+<meta itemprop=description content="使用方式 $ adb shell input keyevent <KEYCODE> # 举个例子 $ adb shell input keyevent 4 # 这条命令相当于按了设备的 Backkey 键 $ adb shell input keyevent 82 # 可以解锁屏幕 KEYCODE列表 0 &ndash;> &ldquo;KEYCODE_UNKNOWN&rdquo; 1 &ndash;> &ldquo;KEYCODE_MENU&rdquo; 2 &ndash;> &ldquo;KEYCODE_SOFT_RIGHT&rdquo; 3 &ndash;> &ldquo;KEYCODE_HOME&rdquo;">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Andorid - Adb模拟按键映射表 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-14 17:25:45 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 17:25:45 +0000 UTC">2023-08-14</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-16T01:00:05+00:00 itemprop=dateModified datetime=2023-08-16T01:00:05+00:00>2023-08-16</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/andorid itemprop=url rel=index>
+<span itemprop=name>Andorid</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>2126</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>5分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/andorid/adb-%E6%A8%A1%E6%8B%9F%E6%8C%89%E9%94%AE%E6%98%A0%E5%B0%84%E8%A1%A8/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h2 id=使用方式>使用方式</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ adb shell input keyevent &lt;KEYCODE&gt;
+<span style=color:#75715e># 举个例子</span>
+$ adb shell input keyevent <span style=color:#ae81ff>4</span>  <span style=color:#75715e># 这条命令相当于按了设备的 Backkey 键</span>
+$ adb shell input keyevent <span style=color:#ae81ff>82</span> <span style=color:#75715e># 可以解锁屏幕</span>
+</code></pre></div><h2 id=keycode列表>KEYCODE列表</h2>
+<p>0 &ndash;> &ldquo;KEYCODE_UNKNOWN&rdquo;</p>
+<p>1 &ndash;> &ldquo;KEYCODE_MENU&rdquo;</p>
+<p>2 &ndash;> &ldquo;KEYCODE_SOFT_RIGHT&rdquo;</p>
+<p>3 &ndash;> &ldquo;KEYCODE_HOME&rdquo;</p>
+<p>4 &ndash;> &ldquo;KEYCODE_BACK&rdquo;</p>
+<p>5 &ndash;> &ldquo;KEYCODE_CALL&rdquo;</p>
+<p>6 &ndash;> &ldquo;KEYCODE_ENDCALL&rdquo;</p>
+<p>7 &ndash;> &ldquo;KEYCODE_0&rdquo;</p>
+<p>8 &ndash;> &ldquo;KEYCODE_1&rdquo;</p>
+<p>9 &ndash;> &ldquo;KEYCODE_2&rdquo;</p>
+<p>10 &ndash;> &ldquo;KEYCODE_3&rdquo;</p>
+<p>11 &ndash;> &ldquo;KEYCODE_4&rdquo;</p>
+<p>12 &ndash;> &ldquo;KEYCODE_5&rdquo;</p>
+<p>13 &ndash;> &ldquo;KEYCODE_6&rdquo;</p>
+<p>14 &ndash;> &ldquo;KEYCODE_7&rdquo;</p>
+<p>15 &ndash;> &ldquo;KEYCODE_8&rdquo;</p>
+<p>16 &ndash;> &ldquo;KEYCODE_9&rdquo;</p>
+<p>17 &ndash;> &ldquo;KEYCODE_STAR&rdquo;</p>
+<p>18 &ndash;> &ldquo;KEYCODE_POUND&rdquo;</p>
+<p>19 &ndash;> &ldquo;KEYCODE_DPAD_UP&rdquo;</p>
+<p>20 &ndash;> &ldquo;KEYCODE_DPAD_DOWN&rdquo;</p>
+<p>21 &ndash;> &ldquo;KEYCODE_DPAD_LEFT&rdquo;</p>
+<p>22 &ndash;> &ldquo;KEYCODE_DPAD_RIGHT&rdquo;</p>
+<p>23 &ndash;> &ldquo;KEYCODE_DPAD_CENTER&rdquo;</p>
+<p>24 &ndash;> &ldquo;KEYCODE_VOLUME_UP&rdquo;</p>
+<p>25 &ndash;> &ldquo;KEYCODE_VOLUME_DOWN&rdquo;</p>
+<p>26 &ndash;> &ldquo;KEYCODE_POWER&rdquo;</p>
+<p>27 &ndash;> &ldquo;KEYCODE_CAMERA&rdquo;</p>
+<p>28 &ndash;> &ldquo;KEYCODE_CLEAR&rdquo;</p>
+<p>29 &ndash;> &ldquo;KEYCODE_A&rdquo;</p>
+<p>30 &ndash;> &ldquo;KEYCODE_B&rdquo;</p>
+<p>31 &ndash;> &ldquo;KEYCODE_C&rdquo;</p>
+<p>32 &ndash;> &ldquo;KEYCODE_D&rdquo;</p>
+<p>33 &ndash;> &ldquo;KEYCODE_E&rdquo;</p>
+<p>34 &ndash;> &ldquo;KEYCODE_F&rdquo;</p>
+<p>35 &ndash;> &ldquo;KEYCODE_G&rdquo;</p>
+<p>36 &ndash;> &ldquo;KEYCODE_H&rdquo;</p>
+<p>37 &ndash;> &ldquo;KEYCODE_I&rdquo;</p>
+<p>38 &ndash;> &ldquo;KEYCODE_J&rdquo;</p>
+<p>39 &ndash;> &ldquo;KEYCODE_K&rdquo;</p>
+<p>40 &ndash;> &ldquo;KEYCODE_L&rdquo;</p>
+<p>41 &ndash;> &ldquo;KEYCODE_M&rdquo;</p>
+<p>42 &ndash;> &ldquo;KEYCODE_N&rdquo;</p>
+<p>43 &ndash;> &ldquo;KEYCODE_O&rdquo;</p>
+<p>44 &ndash;> &ldquo;KEYCODE_P&rdquo;</p>
+<p>45 &ndash;> &ldquo;KEYCODE_Q&rdquo;</p>
+<p>46 &ndash;> &ldquo;KEYCODE_R&rdquo;</p>
+<p>47 &ndash;> &ldquo;KEYCODE_S&rdquo;</p>
+<p>48 &ndash;> &ldquo;KEYCODE_T&rdquo;</p>
+<p>49 &ndash;> &ldquo;KEYCODE_U&rdquo;</p>
+<p>50 &ndash;> &ldquo;KEYCODE_V&rdquo;</p>
+<p>51 &ndash;> &ldquo;KEYCODE_W&rdquo;</p>
+<p>52 &ndash;> &ldquo;KEYCODE_X&rdquo;</p>
+<p>53 &ndash;> &ldquo;KEYCODE_Y&rdquo;</p>
+<p>54 &ndash;> &ldquo;KEYCODE_Z&rdquo;</p>
+<p>55 &ndash;> &ldquo;KEYCODE_COMMA&rdquo;</p>
+<p>56 &ndash;> &ldquo;KEYCODE_PERIOD&rdquo;</p>
+<p>57 &ndash;> &ldquo;KEYCODE_ALT_LEFT&rdquo;</p>
+<p>58 &ndash;> &ldquo;KEYCODE_ALT_RIGHT&rdquo;</p>
+<p>59 &ndash;> &ldquo;KEYCODE_SHIFT_LEFT&rdquo;</p>
+<p>60 &ndash;> &ldquo;KEYCODE_SHIFT_RIGHT&rdquo;</p>
+<p>61 &ndash;> &ldquo;KEYCODE_TAB&rdquo;</p>
+<p>62 &ndash;> &ldquo;KEYCODE_SPACE&rdquo;</p>
+<p>63 &ndash;> &ldquo;KEYCODE_SYM&rdquo;</p>
+<p>64 &ndash;> &ldquo;KEYCODE_EXPLORER&rdquo;</p>
+<p>65 &ndash;> &ldquo;KEYCODE_ENVELOPE&rdquo;</p>
+<p>66 &ndash;> &ldquo;KEYCODE_ENTER&rdquo;</p>
+<p>67 &ndash;> &ldquo;KEYCODE_DEL&rdquo;</p>
+<p>68 &ndash;> &ldquo;KEYCODE_GRAVE&rdquo;</p>
+<p>69 &ndash;> &ldquo;KEYCODE_MINUS&rdquo;</p>
+<p>70 &ndash;> &ldquo;KEYCODE_EQUALS&rdquo;</p>
+<p>71 &ndash;> &ldquo;KEYCODE_LEFT_BRACKET&rdquo;</p>
+<p>72 &ndash;> &ldquo;KEYCODE_RIGHT_BRACKET&rdquo;</p>
+<p>73 &ndash;> &ldquo;KEYCODE_BACKSLASH&rdquo;</p>
+<p>74 &ndash;> &ldquo;KEYCODE_SEMICOLON&rdquo;</p>
+<p>75 &ndash;> &ldquo;KEYCODE_APOSTROPHE&rdquo;</p>
+<p>76 &ndash;> &ldquo;KEYCODE_SLASH&rdquo;</p>
+<p>77 &ndash;> &ldquo;KEYCODE_AT&rdquo;</p>
+<p>78 &ndash;> &ldquo;KEYCODE_NUM&rdquo;</p>
+<p>79 &ndash;> &ldquo;KEYCODE_HEADSETHOOK&rdquo;</p>
+<p>80 &ndash;> &ldquo;KEYCODE_FOCUS&rdquo;</p>
+<p>81 &ndash;> &ldquo;KEYCODE_PLUS&rdquo;</p>
+<p>82 &ndash;> &ldquo;KEYCODE_MENU&rdquo;</p>
+<p>83 &ndash;> &ldquo;KEYCODE_NOTIFICATION&rdquo;</p>
+<p>84 &ndash;> &ldquo;KEYCODE_SEARCH&rdquo;</p>
+<p>85 &ndash;> &ldquo;TAG_LAST_KEYCODE&rdquo;</p>
+<h1 id=电话键>电话键</h1>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_CALL</th>
+<th>拨号键</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_ENDCALL</td>
+<td>挂机键</td>
+<td>6</td>
+</tr>
+<tr>
+<td>KEYCODE_HOME</td>
+<td>按键Home</td>
+<td>3</td>
+</tr>
+<tr>
+<td>KEYCODE_MENU</td>
+<td>
+<a href=http://www.haogongju.net/tag/%e8%8f%9c%e5%8d%95 title=菜单 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+菜单
+<i class="fa fa-external-link-alt"></i>
+</a>键</td>
+<td>82</td>
+</tr>
+<tr>
+<td>KEYCODE_BACK</td>
+<td>返回键</td>
+<td>4</td>
+</tr>
+<tr>
+<td>KEYCODE_S
+<a href=http://www.haogongju.net/tag/EA title=EA rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+EA
+<i class="fa fa-external-link-alt"></i>
+</a>RCH</td>
+<td>
+<a href=http://www.haogongju.net/tag/%e6%90%9c%e7%b4%a2 title=搜索 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+搜索
+<i class="fa fa-external-link-alt"></i>
+</a>键</td>
+<td>84</td>
+</tr>
+<tr>
+<td>KEYCODE_CAMERA</td>
+<td>拍照键</td>
+<td>27</td>
+</tr>
+<tr>
+<td>KEYCODE_FOCUS</td>
+<td>拍照对焦键</td>
+<td>80</td>
+</tr>
+<tr>
+<td>KEYCODE_POWER</td>
+<td>电源键</td>
+<td>26</td>
+</tr>
+<tr>
+<td>KEYCODE_NOTIFICATION</td>
+<td>通知键</td>
+<td>83</td>
+</tr>
+<tr>
+<td>KEYCODE_MUTE</td>
+<td>话筒静音键</td>
+<td>91</td>
+</tr>
+<tr>
+<td>KEYCODE_VOLUME_MUTE</td>
+<td>扬声器静音键</td>
+<td>164</td>
+</tr>
+<tr>
+<td>KEYCODE_VOLUME_UP</td>
+<td>音量增加键</td>
+<td>24</td>
+</tr>
+<tr>
+<td>KEYCODE_VOLUME_DOWN</td>
+<td>音量减小键</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_NUM</th>
+<th>按键Number modifier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_INFO</td>
+<td>按键Info</td>
+</tr>
+<tr>
+<td>KEYCODE_
+<a href=http://www.haogongju.net/tag/App title=APP rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+APP
+<i class="fa fa-external-link-alt"></i>
+</a>_SW
+<a href=http://www.haogongju.net/tag/IT title=IT rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+IT
+<i class="fa fa-external-link-alt"></i>
+</a>CH</td>
+<td>按键App switch</td>
+</tr>
+<tr>
+<td>KEYCODE_BOOKMARK</td>
+<td>按键Bookmark</td>
+</tr>
+<tr>
+<td>KEYCODE_AVR_INPUT</td>
+<td>按键A/V Receiver input</td>
+</tr>
+<tr>
+<td>KEYCODE_AVR_POWER</td>
+<td>按键A/V Receiver power</td>
+</tr>
+<tr>
+<td>KEYCODE_CAPTIONS</td>
+<td>按键Toggle captions</td>
+</tr>
+<tr>
+<td>KEYCODE_CHANNEL_DOWN</td>
+<td>按键Channel down</td>
+</tr>
+<tr>
+<td>KEYCODE_CHANNEL_UP</td>
+<td>按键Channel up</td>
+</tr>
+<tr>
+<td>KEYCODE_CLEAR</td>
+<td>按键Clear</td>
+</tr>
+<tr>
+<td>KEYCODE_DVR</td>
+<td>按键DVR</td>
+</tr>
+<tr>
+<td>KEYCODE_ENVELOPE</td>
+<td>按键Envelope special function</td>
+</tr>
+<tr>
+<td>KEYCODE_E
+<a href=http://www.haogongju.net/tag/XP title=XP rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+XP
+<i class="fa fa-external-link-alt"></i>
+</a>LORER</td>
+<td>按键Explorer special function</td>
+</tr>
+<tr>
+<td>KEYCODE_FORWARD</td>
+<td>按键Forward</td>
+</tr>
+<tr>
+<td>KEYCODE_FORWARD_DEL</td>
+<td>按键Forward Delete</td>
+</tr>
+<tr>
+<td>KEYCODE_FUNCTION</td>
+<td>按键Function modifier</td>
+</tr>
+<tr>
+<td>KEYCODE_G
+<a href=http://www.haogongju.net/tag/UI title=UI rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+UI
+<i class="fa fa-external-link-alt"></i>
+</a>DE</td>
+<td>按键Guide</td>
+</tr>
+<tr>
+<td>KEYCODE_HEADSETHOOK</td>
+<td>按键Headset Hook</td>
+</tr>
+<tr>
+<td>KEYCODE_META_LEFT</td>
+<td>按键Left Meta modifier</td>
+</tr>
+<tr>
+<td>KEYCODE_META_RIGHT</td>
+<td>按键Right Meta modifier</td>
+</tr>
+<tr>
+<td>KEYCODE_PICTSYMBOLS</td>
+<td>按键Picture Symbols modifier</td>
+</tr>
+<tr>
+<td>KEYCODE_PROG_BL
+<a href=http://www.haogongju.net/tag/UE title=UE rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+UE
+<i class="fa fa-external-link-alt"></i>
+</a></td>
+<td>按键Blue “programmable”</td>
+</tr>
+<tr>
+<td>KEYCODE_PROG_GREEN</td>
+<td>按键Green “programmable”</td>
+</tr>
+<tr>
+<td>KEYCODE_PROG_RED</td>
+<td>按键Red “programmable”</td>
+</tr>
+<tr>
+<td>KEYCODE_PROG_YELLOW</td>
+<td>按键Yellow “programmable”</td>
+</tr>
+<tr>
+<td>KEYCODE_SETTINGS</td>
+<td>按键Settings</td>
+</tr>
+<tr>
+<td>KEYCODE_SOFT_LEFT</td>
+<td>按键Soft Left</td>
+</tr>
+<tr>
+<td>KEYCODE_SOFT_RIGHT</td>
+<td>按键Soft Right</td>
+</tr>
+<tr>
+<td>KEYCODE_STB_INPUT</td>
+<td>按键Set-top-box input</td>
+</tr>
+<tr>
+<td>KEYCODE_STB_POWER</td>
+<td>按键Set-top-box power</td>
+</tr>
+<tr>
+<td>KEYCODE_SWITCH_CHARSET</td>
+<td>按键Switch Charset modifier</td>
+</tr>
+<tr>
+<td>KEYCODE_SYM</td>
+<td>按键Symbol modifier</td>
+</tr>
+<tr>
+<td>KEYCODE_SYSRQ</td>
+<td>按键System Request / Print Screen</td>
+</tr>
+<tr>
+<td>KEYCODE_TV</td>
+<td>按键TV</td>
+</tr>
+<tr>
+<td>KEYCODE_TV_INPUT</td>
+<td>按键TV input</td>
+</tr>
+<tr>
+<td>KEYCODE_TV_POWER</td>
+<td>按键TV power</td>
+</tr>
+<tr>
+<td>KEYCODE_WINDOW</td>
+<td>按键Window</td>
+</tr>
+<tr>
+<td>KEYCODE_UNKNOWN</td>
+<td>未知按键</td>
+</tr>
+</tbody>
+</table>
+<p>控制键</p>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_ENTER</th>
+<th>回车键</th>
+<th>66</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_ESCAPE</td>
+<td>ESC键</td>
+<td>111</td>
+</tr>
+<tr>
+<td>KEYCODE_DPAD_CENTER</td>
+<td>
+<a href=http://www.haogongju.net/tag/%e5%af%bc%e8%88%aa title=导航 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+导航
+<i class="fa fa-external-link-alt"></i>
+</a>键 确定键</td>
+<td>23</td>
+</tr>
+<tr>
+<td>KEYCODE_DPAD_UP</td>
+<td>导航键 向上</td>
+<td>19</td>
+</tr>
+<tr>
+<td>KEYCODE_DPAD_DOWN</td>
+<td>导航键 向下</td>
+<td>20</td>
+</tr>
+<tr>
+<td>KEYCODE_DPAD_LEFT</td>
+<td>导航键 向左</td>
+<td>21</td>
+</tr>
+<tr>
+<td>KEYCODE_DPAD_RIGHT</td>
+<td>导航键 向右</td>
+<td>22</td>
+</tr>
+<tr>
+<td>KEYCODE_MOVE_HOME</td>
+<td>光标
+<a href=http://www.haogongju.net/tag/%e7%a7%bb%e5%8a%a8 title=移动 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+移动
+<i class="fa fa-external-link-alt"></i>
+</a>到开始键</td>
+<td>122</td>
+</tr>
+<tr>
+<td>KEYCODE_MOVE_END</td>
+<td>光标移动到末尾键</td>
+<td>123</td>
+</tr>
+<tr>
+<td>KEYCODE_PAGE_UP</td>
+<td>向上翻页键</td>
+<td>92</td>
+</tr>
+<tr>
+<td>KEYCODE_PAGE_DOWN</td>
+<td>向下翻页键</td>
+<td>93</td>
+</tr>
+<tr>
+<td>KEYCODE_DEL</td>
+<td>退格键</td>
+<td>67</td>
+</tr>
+<tr>
+<td>KEYCODE_FORWARD_DEL</td>
+<td>删除键</td>
+<td>112</td>
+</tr>
+<tr>
+<td>KEYCODE_
+<a href=http://www.haogongju.net/tag/in title=IN rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+IN
+<i class="fa fa-external-link-alt"></i>
+</a>SERT</td>
+<td>插入键</td>
+<td>124</td>
+</tr>
+<tr>
+<td>KEYCODE_TAB</td>
+<td>Tab键</td>
+<td>61</td>
+</tr>
+<tr>
+<td>KEYCODE_NUM_LOCK</td>
+<td>小键盘锁</td>
+<td>143</td>
+</tr>
+<tr>
+<td>KEYCODE_CAPS_LOCK</td>
+<td>大写锁定键</td>
+<td>115</td>
+</tr>
+<tr>
+<td>KEYCODE_BREAK</td>
+<td>Break/Pause键</td>
+<td>121</td>
+</tr>
+<tr>
+<td>KEYCODE_SCROLL_LOCK</td>
+<td>滚动锁定键</td>
+<td>116</td>
+</tr>
+<tr>
+<td>KEYCODE_ZOOM_IN</td>
+<td>放大键</td>
+<td>168</td>
+</tr>
+<tr>
+<td>KEYCODE_ZOOM_OUT</td>
+<td>缩小键</td>
+<td>169</td>
+</tr>
+</tbody>
+</table>
+<h1 id=组合键>组合键</h1>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_ALT_LEFT</th>
+<th>Alt+Left</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_ALT_RIGHT</td>
+<td>Alt+Right</td>
+</tr>
+<tr>
+<td>KEYCODE_CTRL_LEFT</td>
+<td>Control+Left</td>
+</tr>
+<tr>
+<td>KEYCODE_CTRL_RIGHT</td>
+<td>Control+Right</td>
+</tr>
+<tr>
+<td>KEYCODE_SHIFT_LEFT</td>
+<td>Shift+Left</td>
+</tr>
+<tr>
+<td>KEYCODE_SHIFT_RIGHT</td>
+<td>Shift+Right</td>
+</tr>
+</tbody>
+</table>
+<p>基本</p>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_0</th>
+<th>按键'0'</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_1</td>
+<td>按键'1'</td>
+<td>8</td>
+</tr>
+<tr>
+<td>KEYCODE_2</td>
+<td>按键'2'</td>
+<td>9</td>
+</tr>
+<tr>
+<td>KEYCODE_3</td>
+<td>按键'3'</td>
+<td>10</td>
+</tr>
+<tr>
+<td>KEYCODE_4</td>
+<td>按键'4'</td>
+<td>11</td>
+</tr>
+<tr>
+<td>KEYCODE_5</td>
+<td>按键'5'</td>
+<td>12</td>
+</tr>
+<tr>
+<td>KEYCODE_6</td>
+<td>按键'6'</td>
+<td>13</td>
+</tr>
+<tr>
+<td>KEYCODE_7</td>
+<td>按键'7'</td>
+<td>14</td>
+</tr>
+<tr>
+<td>KEYCODE_8</td>
+<td>按键'8'</td>
+<td>15</td>
+</tr>
+<tr>
+<td>KEYCODE_9</td>
+<td>按键'9'</td>
+<td>16</td>
+</tr>
+<tr>
+<td>KEYCODE_A</td>
+<td>按键&rsquo;A'</td>
+<td>29</td>
+</tr>
+<tr>
+<td>KEYCODE_B</td>
+<td>按键&rsquo;B'</td>
+<td>30</td>
+</tr>
+<tr>
+<td>KEYCODE_C</td>
+<td>按键&rsquo;C'</td>
+<td>31</td>
+</tr>
+<tr>
+<td>KEYCODE_D</td>
+<td>按键&rsquo;D'</td>
+<td>32</td>
+</tr>
+<tr>
+<td>KEYCODE_E</td>
+<td>按键&rsquo;E'</td>
+<td>33</td>
+</tr>
+<tr>
+<td>KEYCODE_F</td>
+<td>按键&rsquo;F'</td>
+<td>34</td>
+</tr>
+<tr>
+<td>KEYCODE_G</td>
+<td>按键&rsquo;G'</td>
+<td>35</td>
+</tr>
+<tr>
+<td>KEYCODE_H</td>
+<td>按键&rsquo;H'</td>
+<td>36</td>
+</tr>
+<tr>
+<td>KEYCODE_I</td>
+<td>按键&rsquo;I'</td>
+<td>37</td>
+</tr>
+<tr>
+<td>KEYCODE_J</td>
+<td>按键&rsquo;J'</td>
+<td>38</td>
+</tr>
+<tr>
+<td>KEYCODE_K</td>
+<td>按键&rsquo;K'</td>
+<td>39</td>
+</tr>
+<tr>
+<td>KEYCODE_L</td>
+<td>按键&rsquo;L'</td>
+<td>40</td>
+</tr>
+<tr>
+<td>KEYCODE_M</td>
+<td>按键&rsquo;M'</td>
+<td>41</td>
+</tr>
+<tr>
+<td>KEYCODE_N</td>
+<td>按键&rsquo;N'</td>
+<td>42</td>
+</tr>
+<tr>
+<td>KEYCODE_O</td>
+<td>按键&rsquo;O'</td>
+<td>43</td>
+</tr>
+<tr>
+<td>KEYCODE_P</td>
+<td>按键&rsquo;P'</td>
+<td>44</td>
+</tr>
+<tr>
+<td>KEYCODE_Q</td>
+<td>按键&rsquo;Q'</td>
+<td>45</td>
+</tr>
+<tr>
+<td>KEYCODE_R</td>
+<td>按键&rsquo;R'</td>
+<td>46</td>
+</tr>
+<tr>
+<td>KEYCODE_S</td>
+<td>按键&rsquo;S'</td>
+<td>47</td>
+</tr>
+<tr>
+<td>KEYCODE_T</td>
+<td>按键&rsquo;T'</td>
+<td>48</td>
+</tr>
+<tr>
+<td>KEYCODE_U</td>
+<td>按键&rsquo;U'</td>
+<td>49</td>
+</tr>
+<tr>
+<td>KEYCODE_V</td>
+<td>按键&rsquo;V'</td>
+<td>50</td>
+</tr>
+<tr>
+<td>KEYCODE_W</td>
+<td>按键&rsquo;W'</td>
+<td>51</td>
+</tr>
+<tr>
+<td>KEYCODE_X</td>
+<td>按键&rsquo;X'</td>
+<td>52</td>
+</tr>
+<tr>
+<td>KEYCODE_Y</td>
+<td>按键&rsquo;Y'</td>
+<td>53</td>
+</tr>
+<tr>
+<td>KEYCODE_Z</td>
+<td>按键&rsquo;Z'</td>
+<td>54</td>
+</tr>
+</tbody>
+</table>
+<p>符号</p>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_PLUS</th>
+<th>按键'+'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_MINUS</td>
+<td>按键'-'</td>
+</tr>
+<tr>
+<td>KEYCODE_STAR</td>
+<td>按键'*'</td>
+</tr>
+<tr>
+<td>KEYCODE_SLASH</td>
+<td>按键'/'</td>
+</tr>
+<tr>
+<td>KEYCODE_EQUALS</td>
+<td>按键'='</td>
+</tr>
+<tr>
+<td>KEYCODE_AT</td>
+<td>按键'@'</td>
+</tr>
+<tr>
+<td>KEYCODE_POUND</td>
+<td>按键'#'</td>
+</tr>
+<tr>
+<td>KEYCODE_AP
+<a href=http://www.haogongju.net/tag/OS title=OS rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+OS
+<i class="fa fa-external-link-alt"></i>
+</a>TROPHE</td>
+<td>按键''' (单引号)</td>
+</tr>
+<tr>
+<td>KEYCODE_BACKSLASH</td>
+<td>按键''</td>
+</tr>
+<tr>
+<td>KEYCODE_COMMA</td>
+<td>按键','</td>
+</tr>
+<tr>
+<td>KEYCODE_PERIOD</td>
+<td>按键'.'</td>
+</tr>
+<tr>
+<td>KEYCODE_LEFT_BRACKET</td>
+<td>按键'['</td>
+</tr>
+<tr>
+<td>KEYCODE_RIGHT_BRACKET</td>
+<td>按键']'</td>
+</tr>
+<tr>
+<td>KEYCODE_
+<a href=http://www.haogongju.net/tag/SEM title=SEM rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+SEM
+<i class="fa fa-external-link-alt"></i>
+</a>ICOLON</td>
+<td>按键';'</td>
+</tr>
+<tr>
+<td>KEYCODE_GRAVE</td>
+<td>按键'`'</td>
+</tr>
+<tr>
+<td>KEYCODE_SPACE</td>
+<td>空格键</td>
+</tr>
+</tbody>
+</table>
+<p>小键盘</p>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_NUMPAD_0</th>
+<th>小键盘按键'0'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_NUMPAD_1</td>
+<td>小键盘按键'1'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_2</td>
+<td>小键盘按键'2'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_3</td>
+<td>小键盘按键'3'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_4</td>
+<td>小键盘按键'4'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_5</td>
+<td>小键盘按键'5'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_6</td>
+<td>小键盘按键'6'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_7</td>
+<td>小键盘按键'7'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_8</td>
+<td>小键盘按键'8'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_9</td>
+<td>小键盘按键'9'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_ADD</td>
+<td>小键盘按键'+'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_SUBTRACT</td>
+<td>小键盘按键'-'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_MULT
+<a href=http://www.haogongju.net/tag/IP title=IP rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+IP
+<i class="fa fa-external-link-alt"></i>
+</a>LY</td>
+<td>小键盘按键'*'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_DIV
+<a href=http://www.haogongju.net/tag/IDE title=IDE rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+IDE
+<i class="fa fa-external-link-alt"></i>
+</a></td>
+<td>小键盘按键'/'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_EQUALS</td>
+<td>小键盘按键'='</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_COMMA</td>
+<td>小键盘按键','</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_DOT</td>
+<td>小键盘按键'.'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_LEFT_PAREN</td>
+<td>小键盘按键'('</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_RIGHT_PAREN</td>
+<td>小键盘按键')'</td>
+</tr>
+<tr>
+<td>KEYCODE_NUMPAD_ENTER</td>
+<td>小键盘按键回车</td>
+</tr>
+</tbody>
+</table>
+<p>功能键</p>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_F1</th>
+<th>按键F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_F2</td>
+<td>按键F2</td>
+</tr>
+<tr>
+<td>KEYCODE_F3</td>
+<td>按键F3</td>
+</tr>
+<tr>
+<td>KEYCODE_F4</td>
+<td>按键F4</td>
+</tr>
+<tr>
+<td>KEYCODE_F5</td>
+<td>按键F5</td>
+</tr>
+<tr>
+<td>KEYCODE_F6</td>
+<td>按键F6</td>
+</tr>
+<tr>
+<td>KEYCODE_F7</td>
+<td>按键F7</td>
+</tr>
+<tr>
+<td>KEYCODE_F8</td>
+<td>按键F8</td>
+</tr>
+<tr>
+<td>KEYCODE_F9</td>
+<td>按键F9</td>
+</tr>
+<tr>
+<td>KEYCODE_F10</td>
+<td>按键F10</td>
+</tr>
+<tr>
+<td>KEYCODE_F11</td>
+<td>按键F11</td>
+</tr>
+<tr>
+<td>KEYCODE_F12</td>
+<td>按键F12</td>
+</tr>
+</tbody>
+</table>
+<p>多媒体键</p>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_
+<a href=http://www.haogongju.net/tag/MED title=MED rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+MED
+<i class="fa fa-external-link-alt"></i>
+</a>IA_PLAY</th>
+<th>多媒体键 播放</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_MEDIA_STOP</td>
+<td>多媒体键 停止</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_PAUSE</td>
+<td>多媒体键 暂停</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_PLAY_PAUSE</td>
+<td>多媒体键 播放/暂停</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_FAST_FORWARD</td>
+<td>多媒体键 快进</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_REWIND</td>
+<td>多媒体键 快退</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_NEXT</td>
+<td>多媒体键 下一首</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_
+<a href=http://www.haogongju.net/tag/PR title=PR rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+PR
+<i class="fa fa-external-link-alt"></i>
+</a>EVIOUS</td>
+<td>多媒体键 上一首</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_CLOSE</td>
+<td>多媒体键 关闭</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_EJECT</td>
+<td>多媒体键 弹出</td>
+</tr>
+<tr>
+<td>KEYCODE_MEDIA_RECORD</td>
+<td>多媒体键 录音</td>
+</tr>
+</tbody>
+</table>
+<p>手柄按键</p>
+<table>
+<thead>
+<tr>
+<th>KEYCODE_BUTTON_1</th>
+<th>通用
+<a href=http://www.haogongju.net/tag/%e6%b8%b8%e6%88%8f title=游戏 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+游戏
+<i class="fa fa-external-link-alt"></i>
+</a>手柄按钮#1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KEYCODE_BUTTON_2</td>
+<td>通用游戏手柄按钮 #2</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_3</td>
+<td>通用游戏手柄按钮 #3</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_4</td>
+<td>通用游戏手柄按钮 #4</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_5</td>
+<td>通用游戏手柄按钮 #5</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_6</td>
+<td>通用游戏手柄按钮 #6</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_7</td>
+<td>通用游戏手柄按钮 #7</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_8</td>
+<td>通用游戏手柄按钮 #8</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_9</td>
+<td>通用游戏手柄按钮 #9</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_10</td>
+<td>通用游戏手柄按钮 #10</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_11</td>
+<td>通用游戏手柄按钮 #11</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_12</td>
+<td>通用游戏手柄按钮 #12</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_13</td>
+<td>通用游戏手柄按钮 #13</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_14</td>
+<td>通用游戏手柄按钮 #14</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_15</td>
+<td>通用游戏手柄按钮 #15</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_16</td>
+<td>通用游戏手柄按钮 #16</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_A</td>
+<td>游戏手柄按钮 A</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_B</td>
+<td>游戏手柄按钮 B</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_C</td>
+<td>游戏手柄按钮 C</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_X</td>
+<td>游戏手柄按钮 X</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_Y</td>
+<td>游戏手柄按钮 Y</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_Z</td>
+<td>游戏手柄按钮 Z</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_L1</td>
+<td>游戏手柄按钮 L1</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_L2</td>
+<td>游戏手柄按钮 L2</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_R1</td>
+<td>游戏手柄按钮 R1</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_R2</td>
+<td>游戏手柄按钮 R2</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_MODE</td>
+<td>游戏手柄按钮 Mode</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_SELECT</td>
+<td>游戏手柄按钮 Select</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_START</td>
+<td>游戏手柄按钮 Start</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_THUMBL</td>
+<td>Left Thumb Button</td>
+</tr>
+<tr>
+<td>KEYCODE_BUTTON_THUMBR</td>
+<td>Right Thumb Button</td>
+</tr>
+</tbody>
+</table>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/andorid>
+Andorid
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/andorid/adb-%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/ rel=next title="Andorid - Adb命令汇总">
+<i class="fa fa-chevron-left"></i> Andorid - Adb命令汇总
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/linux/ubuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/ rel=prev title="Linux - Ubuntu安装软件汇总">
+Linux - Ubuntu安装软件汇总
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

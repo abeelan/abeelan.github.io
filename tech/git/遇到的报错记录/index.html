@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2021-01-21 10:26:10 +0000 UTC">
-<meta property="article:modified_time" content="2023-08-14 16:23:37 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-16 01:00:05 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>234</span>
+<span class=badge>261</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -126,7 +126,17 @@
 </ul>
 <div class=sidebar-panel-container>
 <div class="post-toc-wrap sidebar-panel">
-<div class="post-toc animated"><nav id=TableOfContents></nav></div>
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#operation-timed-out>Operation timed out</a></li>
+<li><a href=#not-a-git-repository>not a git repository</a></li>
+<li><a href=#failed-to-push-some-refs-to-xxx>failed to push some refs to xxx</a></li>
+<li><a href=#unable-to-access403>unable to access（403）</a></li>
+<li><a href=#device-not-configured>Device not configured</a></li>
+<li><a href=#changes-not-staged-for-commit>Changes not staged for commit</a></li>
+<li><a href=#命令行中文乱码>命令行中文乱码</a></li>
+</ul>
+</nav></div>
 </div>
 <div class="site-overview-wrap sidebar-panel">
 <div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
@@ -138,7 +148,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>234</span>
+<span class=site-state-item-count>261</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -174,7 +184,7 @@
 <div class=siteinfo>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
-<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name>
@@ -190,15 +200,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=248800></div>
+<div class=item-count id=wordsCount data-count=270490></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=624></div>
+<div class=item-count id=readTimes data-times=686></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-08-14T16:43:09+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
 </div>
 </div>
 </div>
@@ -236,7 +246,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Git - 遇到的报错记录">
-<meta itemprop=description content="使用过程中遇到的报错信息记录。 问题：下载仓库时报错 443 $ git clone xxx Cloning into 'xxx'... fatal: unable to access 'xxx': Failed to connect to github.com port 443: Operation timed out 取消全局代理，问题解决。 $ git config --global --unset http.proxy $ git config --global">
+<meta itemprop=description content="使用过程中遇到的报错信息记录。 Operation timed out 问题：下载仓库时报错 443 $ git clone xxx Cloning into 'xxx'... fatal: unable to access 'xxx': Failed to connect to github.com port 443: Operation timed out 取消全局代理，问题解决。 $ git config --global --unset http.proxy $">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">Git - 遇到的报错记录 </h1>
@@ -254,7 +264,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-14T16:23:37+00:00 itemprop=dateModified datetime=2023-08-14T16:23:37+00:00>2023-08-14</time>
+<time title=修改时间：2023-08-16T01:00:05+00:00 itemprop=dateModified datetime=2023-08-16T01:00:05+00:00>2023-08-16</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -273,14 +283,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>311</span>
+<span class=post-meta-item-text>字数：</span><span>513</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>2分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -300,6 +310,7 @@
 <blockquote>
 <p>使用过程中遇到的报错信息记录。</p>
 </blockquote>
+<h2 id=operation-timed-out>Operation timed out</h2>
 <p><strong>问题：下载仓库时报错 443</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git clone xxx
 Cloning into <span style=color:#e6db74>&#39;xxx&#39;</span>...
@@ -308,6 +319,7 @@ fatal: unable to access <span style=color:#e6db74>&#39;xxx&#39;</span>: Failed t
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git config --global --unset http.proxy
 $ git config --global --unset https.proxy
 </code></pre></div><p>Mac 在无线设置中，代理项内手动关闭也行。</p>
+<h2 id=not-a-git-repository>not a git repository</h2>
 <p><strong>问题：fatal: not a git repository (or any of the parent directories)</strong></p>
 <p>原因：命令必须在 git 仓库目录内执行（git init除外），在仓库目录外执行是没有意义的</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git add readme.md
@@ -318,6 +330,7 @@ fatal: pathspec <span style=color:#e6db74>&#39;readme.md&#39;</span> did not mat
 <li>文件是否存在</li>
 <li>是否写错了文件名</li>
 </ul>
+<h2 id=failed-to-push-some-refs-to-xxx>failed to push some refs to xxx</h2>
 <p><strong>问题：error: failed to push some refs to xxx</strong></p>
 <p>原因：远程仓库有本地未同步的文件</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git push origin main
@@ -326,11 +339,31 @@ error: failed to push some refs to <span style=color:#e6db74>&#39;https://github
 <span style=color:#75715e># 重新提交即可</span>
 $ git pull --rebase origin main
 $ git push origin main
-</code></pre></div><p><strong>问题：fatal: could not read Username for &lsquo;
+</code></pre></div><h2 id=unable-to-access403>unable to access（403）</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>remote: You are not allowed to push code to this project.
+fatal: unable to access <span style=color:#e6db74>&#39;https://gitlab.joyame.com/test/sixdu_u2.git/&#39;</span>: The requested URL returned error: <span style=color:#ae81ff>403</span>
+</code></pre></div><p>gitlab 提交一直提示权限不够，更新权限到主程序员即可。</p>
+<h2 id=device-not-configured>Device not configured</h2>
+<p><strong>问题：fatal: could not read Username for &lsquo;
 <a href=https://github.com title=https://github.com rel="noopener external nofollow noreferrer" target=_blank class=exturl>
 https://github.com
 <i class="fa fa-external-link-alt"></i>
 </a>&rsquo;: Device not configured</strong></p>
+<h2 id=changes-not-staged-for-commit>Changes not staged for commit</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>On branch master
+Changes not staged <span style=color:#66d9ef>for</span> commit:
+</code></pre></div><p>推送不到远程仓库，提示该信息。</p>
+<p>解决：<code>git commit -am "message"</code>，添加一个 <code>-a</code> 参数，表示新增。</p>
+<h2 id=命令行中文乱码>命令行中文乱码</h2>
+<p>问题：使用命令行提交时，中文乱码。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git commit -m <span style=color:#e6db74>&#34;selenium cookies api&#34;</span>
+<span style=color:#f92672>[</span>main 2cc063e<span style=color:#f92672>]</span> selenium cookies api
+ <span style=color:#ae81ff>2</span> files changed, <span style=color:#ae81ff>448</span> insertions<span style=color:#f92672>(</span>+<span style=color:#f92672>)</span>
+ create mode <span style=color:#ae81ff>100644</span> <span style=color:#e6db74>&#34;16.\351\235\242\350\257\225/\346\265\213\350\257\225\350\267\257\347\272\277\345\217\202\350\200\203.md&#34;</span>
+ create mode <span style=color:#ae81ff>100644</span> <span style=color:#e6db74>&#34;5.selenium/\344\275\277\347\224\250cookies.md&#34;</span>
+</code></pre></div><p>解决</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git config --global core.quotepath false
+</code></pre></div>
 </div>
 <footer class=post-footer>
 <div class=post-tags>
@@ -361,7 +394,7 @@ Git
 </a>
 </div>
 <div class="post-nav-prev post-nav-item">
-<a href=/tech/git/git%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5/ rel=prev title="Git - Git命令速查">
+<a href=/tech/git/%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E7%AC%94%E8%AE%B0/ rel=prev title="Git - Git命令速查">
 Git - Git命令速查
 <i class="fa fa-chevron-right"></i>
 </a>

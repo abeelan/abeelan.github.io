@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-05-05 18:31:48 +0000 UTC">
-<meta property="article:modified_time" content="2023-06-02 16:42:04 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-16 01:00:05 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>234</span>
+<span class=badge>261</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -132,7 +132,7 @@
 <ul>
 <li><a href=#下载代码>下载代码</a></li>
 <li><a href=#启动依赖服务>启动依赖服务</a></li>
-<li><a href=#启动服务>启动服务</a></li>
+<li><a href=#启动-py-服务>启动 py 服务</a></li>
 <li><a href=#报错记录>报错记录</a></li>
 </ul>
 </li>
@@ -156,7 +156,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>234</span>
+<span class=site-state-item-count>261</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -192,7 +192,7 @@
 <div class=siteinfo>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
-<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name>
@@ -208,15 +208,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=248800></div>
+<div class=item-count id=wordsCount data-count=270490></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=624></div>
+<div class=item-count id=readTimes data-times=686></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-08-14T16:43:09+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
 </div>
 </div>
 </div>
@@ -254,7 +254,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Fastapi - Pity 环境搭建">
-<meta itemprop=description content="下载后端项目 下载代码 启动依赖服务 直接通过 docker-compose 实现会更加方便 注意： mysql 要选择 8.0 的，5.7 已知会报错，需要额外增加配置项 $ mkdir pity $ vim docker-compose.yml # docker-compose.yml version: &#34;3&#34; services: mysql: image: mysql:8.0">
+<meta itemprop=description content="官方文档：https://wuranxu.github.io/pityDoc Github：https://github.com/wuranx">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">Fastapi - Pity 环境搭建 </h1>
@@ -272,7 +272,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-02T16:42:04+00:00 itemprop=dateModified datetime=2023-06-02T16:42:04+00:00>2023-06-02</time>
+<time title=修改时间：2023-08-16T01:00:05+00:00 itemprop=dateModified datetime=2023-08-16T01:00:05+00:00>2023-08-16</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -291,14 +291,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>305</span>
+<span class=post-meta-item-text>字数：</span><span>587</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>2分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -315,6 +315,11 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>官方文档：https://wuranxu.github.io/pityDoc
+Github：https://github.com/wuranxu/pity
+在线体验：http://121.5.2.74:8006</p>
+</blockquote>
 <h2 id=下载后端项目>下载后端项目</h2>
 <h3 id=下载代码>下载代码</h3>
 <h3 id=启动依赖服务>启动依赖服务</h3>
@@ -323,9 +328,14 @@
 <ul>
 <li>mysql 要选择 8.0 的，5.7 已知会报错，需要额外增加配置项</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ mkdir pity
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ git clone https://github.com/wuranxu/pity.git
+
+<span style=color:#75715e># 创建 python 的虚拟环境，然后装包</span>
+$ pip install --upgrade pip
+$ pip install -r requirements.txt -i https://pypi.douban.com/simple/
 $ vim docker-compose.yml
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yml data-lang=yml><span style=color:#75715e># docker-compose.yml</span>
+<span style=color:#75715e># 启动数据库和 redis</span>
 <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3&#34;</span>
 
 <span style=color:#f92672>services</span>:
@@ -360,15 +370,53 @@ $ vim docker-compose.yml
 <span style=color:#f92672>networks</span>:
   <span style=color:#f92672>pity-net</span>:
     <span style=color:#f92672>driver</span>: <span style=color:#ae81ff>bridge</span>
+    
+<span style=color:#75715e># 实测版本</span>
+<span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3&#34;</span>
+<span style=color:#f92672>services</span>:
+  <span style=color:#f92672>pity-mysql</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>mysql:8.0</span>
+    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>pity_mysql</span>
+    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#e6db74>&#34;3308:3306&#34;</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>./mysql:/var/lib/mysql</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>MYSQL_ROOT_PASSWORD</span>: <span style=color:#ae81ff>Pitytester666666</span>
+      <span style=color:#f92672>MYSQL_DATABASE</span>: <span style=color:#ae81ff>pity</span>
+      <span style=color:#f92672>TZ</span>: <span style=color:#ae81ff>Asia/Shanghai</span>
+
+  <span style=color:#f92672>pity-redis</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>redis</span>
+    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>pity_redis</span>
+    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>redis-server --requirepass 123456</span>
+    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>TZ</span>: <span style=color:#ae81ff>Asia/Shanghai</span>
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#e6db74>&#34;6379:6379&#34;</span>
+    <span style=color:#f92672>volumes</span>:
+      -  <span style=color:#ae81ff>./redis:/data</span>
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># 启动容器服务</span>
 $ docker-compose up -d
-</code></pre></div><h3 id=启动服务>启动服务</h3>
-<p>conf/dev.env 中修改对应的配置，执行 pity.py 文件。</p>
-<h3 id=报错记录>报错记录</h3>
+</code></pre></div><h3 id=启动-py-服务>启动 py 服务</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># 修改下配置文件 conf/dev.env 中 mysql redis 服务配置信息</span>
+$ python pity.py
+</code></pre></div><h3 id=报错记录>报错记录</h3>
+<p>报错一</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>&gt; import aioify
+&gt; ...
+&gt; FileNotFoundError: [Errno 2] No such file or directory: &#39;/Users/lan/workspace/github/pity/venv/lib/python3.10/site-packages/stdlib_list/lists/3.10.txt&#39;
+</code></pre></div><blockquote>
+<p>参考 Github Issues：https://github.com/yifeikong/aioify/issues/23</p>
+</blockquote>
+<p>解决办法：切换为 pyhon 3.9 版本。</p>
+<p>报错二</p>
 <blockquote>
 <p>redis.exceptions.ResponseError: AUTH <password> called without any password configured for the default user. Are you sure your configuration is correct?</p>
 </blockquote>
-<p>取消 pity 配置文件中的密码</p>
+<p>取消 pity 配置文件中的密码。</p>
 <h2 id=前端项目-pityweb>前端项目 pityWeb</h2>
 <h3 id=下载项目代码>下载项目代码</h3>
 <h3 id=安装依赖>安装依赖</h3>

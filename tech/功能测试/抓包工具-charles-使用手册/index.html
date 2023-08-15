@@ -1,0 +1,587 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="功能测试 - 抓包工具 Charles 使用手册">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="功能测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="功能测试 - 抓包工具 Charles 使用手册">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-charles-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-04-05 10:20:40 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 14:16:24 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-charles-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C","permalink":"https://abeelan.github.io/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-charles-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/","title":"功能测试 - 抓包工具 Charles 使用手册"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>功能测试 - 抓包工具 Charles 使用手册 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>261</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#抓取-pc-端请求-charles-使用手册mdcharles-使用手册md>抓取 PC 端请求 [Charles 使用手册.md](Charles 使用手册.md)</a>
+<ul>
+<li><a href=#http-请求>HTTP 请求</a></li>
+<li><a href=#https-请求>HTTPS 请求</a></li>
+</ul>
+</li>
+<li><a href=#抓取移动端请求>抓取移动端请求</a>
+<ul>
+<li><a href=#设置-charles>设置 Charles</a></li>
+<li><a href=#手机设置>手机设置</a>
+<ul>
+<li><a href=#iphone设置抓取-http>iPhone设置抓取 HTTP</a></li>
+<li><a href=#android-设置抓取-http>Android 设置抓取 HTTP</a></li>
+<li><a href=#iphoneandroid-抓取-https>iphone/Android 抓取 HTTPS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#map-功能>Map 功能</a>
+<ul>
+<li><a href=#map-local>Map Local</a></li>
+<li><a href=#map-remote>Map Remote</a></li>
+</ul>
+</li>
+<li><a href=#rewrite>Rewrite</a></li>
+<li><a href=#throttle模拟慢网速请求>Throttle（模拟慢网速请求）</a></li>
+<li><a href=#breakpoints>Breakpoints</a></li>
+<li><a href=#简单的压力并发>简单的压力并发</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>261</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-04-05T10:32:59+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=270490></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=686></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-01-21T10:03:29+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-charles-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="功能测试 - 抓包工具 Charles 使用手册">
+<meta itemprop=description content="很多年前跟同事（yanan）一起写的使用手册，放在这里做个备份吧~ 抓取 PC 端请求 [Charles 使用手册.md](Charles 使用手册.md) HTTP 请求 默认抓">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">功能测试 - 抓包工具 Charles 使用手册 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-05 10:20:40 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-05 10:20:40 +0000 UTC">2023-04-05</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T14:16:24+00:00 itemprop=dateModified datetime=2023-08-15T14:16:24+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95 itemprop=url rel=index>
+<span itemprop=name>功能测试</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>2867</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>6分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-charles-%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>很多年前跟同事（yanan）一起写的使用手册，放在这里做个备份吧~</p>
+</blockquote>
+<br>
+<h2 id=抓取-pc-端请求-charles-使用手册mdcharles-使用手册md>抓取 PC 端请求 [Charles 使用手册.md](Charles 使用手册.md)</h2>
+<h3 id=http-请求>HTTP 请求</h3>
+<p>默认抓取pc端http请求（可在 <code>Proxy - Windows Proxy</code> 勾选抓取/不勾选不抓取）</p>
+<h3 id=https-请求>HTTPS 请求</h3>
+<ol>
+<li>选择 <code>Help->SSL Proxying->Install Charles Root Certificate</code>，下载安装证书
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113332487.png alt=image-20230815113332487></li>
+<li>点击安装证书，然后一路下一步，显示导入成功，点击确定。
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113355819.png alt=image-20230815113355819></li>
+</ol>
+<p>此时去IE浏览器 工具栏 - internet选项 - 内容 - 证书 - 受信任的根证书颁发机构下找到Charles Proxy证书为成功。 如下图：<br>
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113419393.png alt=image-20230815113419393></p>
+<p>如找不到，则在中级证书颁发机构导出，受信任的根证书颁发机构导入。</p>
+<br>
+<h2 id=抓取移动端请求>抓取移动端请求</h2>
+<h3 id=设置-charles>设置 Charles</h3>
+<p>要截取手机上的网络请求，首先需要将 Charles 的代理功能打开。</p>
+<ol>
+<li>在Charles的菜单栏上选择 “Proxy”->“Proxy Setting”</li>
+<li>填入代理端口 8888（默认）并且勾选 “Enable transparent HTTP proxying” 就完成了再Charles上的设置。</li>
+</ol>
+<h3 id=手机设置>手机设置</h3>
+<h4 id=iphone设置抓取-http>iPhone设置抓取 HTTP</h4>
+<ol>
+<li>
+<p>获取Charles运行所在电脑的IP地址：
+Charles的顶部菜单的 <code>Help->Local IP Address</code>，即可在弹出的对话框中看到IP地址。</p>
+</li>
+<li>
+<p>在iPhone的 设置->无限局域网中，找到当前链接的 WiFi，点击右边的详情键，进入WiFi详细信息，包括IP地址，子网掩码等信息。在其最底部有【HTTP代理】一项，将其切换成手动，然后填上Charles运行所在的电脑IP，以及端口 8888。</p>
+</li>
+<li>
+<p>设置好之后，打开 iPhone 上的任意需要网络通讯的程序，就可以看到 Charles 弹出 iPhone请求连接的确认菜单，点击“allow”即可完成设置。</p>
+</li>
+</ol>
+<h4 id=android-设置抓取-http>Android 设置抓取 HTTP</h4>
+<p>在手机的设置->WLAN中，找到当前连接的WiFi名称：</p>
+<ol>
+<li>长按连接的WiFi或者点击连接的WiFi</li>
+<li>打开高级选项或者滑动到底部代理处</li>
+<li>在代理一栏选择手动</li>
+<li>代理服务器主机名填写电脑的IP地址</li>
+<li>代理服务器端口填写Charles设置的端口号：8888</li>
+<li>点击【保存】/【确定】后即可</li>
+<li>打开手机上的任意需要网络通讯的程序，就可以看到 Charles 弹出 iPhone 请求连接的确认菜单，点击“allow”即可完成设置。</li>
+</ol>
+<h4 id=iphoneandroid-抓取-https>iphone/Android 抓取 HTTPS</h4>
+<ol>
+<li>
+<p>选择 <code>Help -> SSL Proxying -> Install Charles Root Certificate on a Mobile Device or Remote Browser</code>，弹框点击确定；</p>
+</li>
+<li>
+<p>Android/iphone手机浏览器访问地址：
+<a href=chls.pro/ssl title=chls.pro/ssl>
+chls.pro/ssl
+</a>, 根据提示下载安装ca证书;</p>
+</li>
+<li>
+<p>安装完成后，点击<code>Proxy -> SSL Proxy Settings -> SSL Proxy->勾选 Enable SSL Proxying</code>
+Add添加要抓取的站点、端口号（*代表任意的站点）</p>
+</li>
+<li>
+<p>再次抓取，即可成功（Andorid 7.0 以上无法抓取，需要客户端修改配置文件）
+<a href=https://android-developers.googleblog.com/2016/07/changes-to-trusted-certificate.html title=如何修改？ rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+如何修改？
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+</li>
+</ol>
+<h2 id=map-功能>Map 功能</h2>
+<ul>
+<li>Map Remote 是将指定的网络请求重定向到另一个网址</li>
+<li>Map Local 是将指定的网络请求重定向到本地文件</li>
+</ul>
+<h3 id=map-local>Map Local</h3>
+<p>Map Local 功能，需要填写重定向的源地址和本地的目标文件。对于一些复杂的网络请求结果，可以先使用Charles 提供的“Save Response…”功能，将请求结果保存到本地，如下图所示。然后稍加修改，使其成为我们的目标映射文件。</p>
+<p>下图是一个示例，将一个指定的网络请求通过Map Local 功能映射到了本地的一个经过修改的文件中，分两步进行介绍:</p>
+<ol>
+<li>
+<p>首先选中某个请求（eg:status_control.m）右键，选择Map Local，出现如图所示：
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113445714.png alt=image-20230815113445714></p>
+</li>
+<li>
+<p>将修改后的文件，导入Charles中，如下图：
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113510883.png alt=image-20230815113510883></p>
+</li>
+<li>
+<p>重新刷新页面，就可以看到调试的那个文件其实是从本地加载的。</p>
+</li>
+</ol>
+<h3 id=map-remote>Map Remote</h3>
+<p>Map Remote 功能，需要分别填写网络重定向的源地址和目的地址，对于不需要限制的条件，可以留空。</p>
+<ol>
+<li>
+<p>首先选中某个请求（eg: a.com）右键，选择 Map Remote，表示匹配 a.com 下的所有文件，将其重定向到 b.com 下;</p>
+</li>
+<li>
+<p>上面的配置通过 map Remote 就是实现了区别对待本地系统的不同请求，将指定路径下的请求重定向到指定的环境。</p>
+</li>
+</ol>
+<h2 id=rewrite>Rewrite</h2>
+<p>Rewrite功能重写对应的内容，主要可以对某些匹配请求的 header、host、url、path、query param、response status、body进行 rewrite。
+Rewrite规则简单说明，指出对应的作用及其使用场景。
+<strong>Header</strong></p>
+<ul>
+<li>作用：可以对请求或者响应的 header 内容进行操作，包括添加、修改及删除</li>
+<li>使用场景：在需要对header进行处理时用到，例如为了用上某个环境数据，可能需要对应cookie，这时本地开发是可以在请求的header中加上cooker信息；也可以重写响应header的信息</li>
+</ul>
+<p><strong>Host</strong></p>
+<ul>
+<li>主要是对请求就行host修改，以达到本地请求获取指定host环境中的数据，常见于mock数据</li>
+</ul>
+<p><strong>url</strong></p>
+<ul>
+<li>作用：修改url中某些部分，可以用别的url进行替换或者url裁剪时间戳或者md5等</li>
+<li>使用场景：场景使用非常多，既可以对host也可以对path进行rewrite，可以满足指定host下的请求重定向到其他host对应的path下</li>
+</ul>
+<p><strong>Path</strong>
+主要 rewrite path 内容使用指定rewrite规则的path来响应指定的请求的path，它可以对path进行裁剪</p>
+<p><strong>query param</strong></p>
+<ul>
+<li>作用：可以对param进行操作，包括修改、添加、删除等</li>
+<li>使用场景：有时请求可能多传递了不必要的参数，这时可以rewrite功能去掉多余的参数；另外也可以添加请求必须而暂时无法提供的参数</li>
+</ul>
+<p><strong>response status</strong></p>
+<ul>
+<li>很少用到，就是对response的状态码进行rewrite</li>
+</ul>
+<p><strong>Body</strong></p>
+<ul>
+<li>作用：对请求的相应内容做修改，一般是对某一个或几个值进行rewrite，用新的值来替代返回的值</li>
+<li>使用场景：可以用来mock数据，比如说在开发中为了测试功能需要请求的某个数组字段有值，但是当前环境无法给出，就可以使用该功能</li>
+</ul>
+<ol>
+<li>
+<p>选择 Tools->Rewrite，在弹出的对话框中勾选 Enable Rewrite 启用 rewrite 功能。点击左侧Sets 中的 Add 按钮，添加一条 Rewrite 规则，可以设置一个名字；</p>
+</li>
+<li>
+<p>点击右侧 Location 中的 Add，可以全部留空匹配所有请求，也可以根据要过滤的指定接口，然后点击OK确认；</p>
+</li>
+<li>
+<p>点击 Rules 中的 Add 按钮，添加一条规则，弹出窗口设置如下：
+修改 <code>Response Header</code> 匹配 <code>Content-Type=text/plain</code> 的项，并将其替换成
+<code>Content-Type=application/json;charset=UTF-8</code>（根据实际情况进行设置），点击ok保存;</p>
+</li>
+<li>
+<p>再次使用MapLocal功能时，发现乱码问题已经解决了（前提是所映射的本地文件也是UTF-8编码，通常在Mac系统中，默认支持的中文编码就是UTF-8）</p>
+</li>
+</ol>
+<h2 id=throttle模拟慢网速请求>Throttle（模拟慢网速请求）</h2>
+<p>选择 <code>Proxy-> Throtting setting</code>，打开后如下图设置：（如果要针对某一个地址限速，在Hosts里可以add要限速的url）
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113532981.png alt=image-20230815113532981></p>
+<p>在工具栏点击图标，即可直接开启模拟慢速网络。</p>
+<h2 id=breakpoints>Breakpoints</h2>
+<p>对于只是想临时修改一次网络请求结果，这个时候，使用 Rewrite 功能虽然也可以达到目的，但是过于麻烦，对于临时性的修改，最好使用 Breakpoints 功能。</p>
+<p>Breakpoints 功能类似我们在 Xcode 中设置的断点一样，当指定的网络请求发生时，Charles 会截获该请求，这个时候，我们可以在 Charles 中临时修改网络请求的返回内容。</p>
+<ol>
+<li>
+<p>找到需要进行断点设置的请求（在请求的父目录打断点），如下图：
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113558861.png alt=image-20230815113558861></p>
+</li>
+<li>
+<p>查看未修改前，手机上对应请求的界面显示</p>
+</li>
+<li>
+<p>再次进入手机这个界面，会通过刚从打断点的域名来请求数据，就会被断点拦住，如下图：
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113615547.png alt=image-20230815113615547></p>
+</li>
+<li>
+<p>可以编辑请求，点击执行，如果响应也打了断点，则响应回来了也可以编辑响应；</p>
+</li>
+<li>
+<p>编辑完成后，点击执行，即可看到客户端展示断点设置的内容。</p>
+</li>
+</ol>
+<h2 id=简单的压力并发>简单的压力并发</h2>
+<p>右键请求 - Repeat Advanced 设置并发线程数及打压次数，设置完毕，点击 ok
+<img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230815113633304.png alt=image-20230815113633304></p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%e5%8a%9f%e8%83%bd%e6%b5%8b%e8%af%95>
+功能测试
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/mac/%E6%9F%A5%E6%89%BE%E5%B9%B6%E5%88%A0%E9%99%A4%E5%A4%A7%E6%96%87%E4%BB%B6%E5%85%B6%E4%BB%96%E9%A1%B9%E5%8D%A0%E7%94%A8%E8%BF%87%E5%A4%9A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ rel=next title="Mac - 查找并删除大文件（其他项占用过多解决方案）">
+<i class="fa fa-chevron-left"></i> Mac - 查找并删除大文件（其他项占用过多解决方案）
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/docker/docker-compose%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/ rel=prev title="Docker - Docker Compose配置文件参数详解">
+Docker - Docker Compose配置文件参数详解
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>
