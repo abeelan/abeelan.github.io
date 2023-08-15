@@ -1,0 +1,621 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Linux - 脚本 语法基础">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux - 脚本 语法基础">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/linux/%E8%84%9A%E6%9C%AC-%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-08-14 17:21:59 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 01:01:05 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E8%84%9A%E6%9C%AC-%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80","permalink":"https://abeelan.github.io/tech/linux/%E8%84%9A%E6%9C%AC-%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/","title":"Linux - 脚本 语法基础"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Linux - 脚本 语法基础 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>234</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#shell>Shell</a></li>
+<li><a href=#命名规则>命名规则</a></li>
+<li><a href=#定义与使用变量>定义与使用变量</a></li>
+<li><a href=#变量类型>变量类型</a></li>
+<li><a href=#基本运算>基本运算</a></li>
+<li><a href=#控制语句>控制语句</a></li>
+<li><a href=#for-循环>for 循环</a></li>
+<li><a href=#while-循环>while 循环</a></li>
+<li><a href=#以脚本方式运行程序>以脚本方式运行程序</a></li>
+<li><a href=#脚本参数传递>脚本参数传递</a></li>
+<li><a href=#path-变量>PATH 变量</a></li>
+<li><a href=#应用安装>应用安装</a>
+<ul>
+<li><a href=#开源镜像站>开源镜像站</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>234</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>25</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>25</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=248800></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=624></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-08-14T16:43:09+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/linux/%E8%84%9A%E6%9C%AC-%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Linux - 脚本 语法基础">
+<meta itemprop=description content="Shell Shell 是一种应用程序，提供用户通过界面访问操作系统内核的服务。shell 脚本是为 shell 编写的脚本程序，Linux 的 shell 编程种类较多，比如： /bin/sh /bin/bash /bin/zsh 通常">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Linux - 脚本 语法基础 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-14 17:21:59 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 17:21:59 +0000 UTC">2023-08-14</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/linux itemprop=url rel=index>
+<span itemprop=name>Linux</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1264</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>3分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/linux/%E8%84%9A%E6%9C%AC-%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h2 id=shell>Shell</h2>
+<p>Shell 是一种应用程序，提供用户通过界面访问操作系统内核的服务。shell 脚本是为 shell 编写的脚本程序，Linux 的 shell 编程种类较多，比如：</p>
+<ul>
+<li>/bin/sh</li>
+<li>/bin/bash</li>
+<li>/bin/zsh</li>
+</ul>
+<p>通常情况下，sh 和 bash 是不区分的，下文以 bash 为例。</p>
+<h2 id=命名规则>命名规则</h2>
+<ul>
+<li>命名只能使用英文字母、数字和下划线，首字符不能以数字开头</li>
+<li>不能包含空格</li>
+<li>不能使用标点符号</li>
+<li>不能使用 bash 内的关键字（可用 help 命令查看保留关键字）</li>
+</ul>
+<h2 id=定义与使用变量>定义与使用变量</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 定义变量</span>
+$ name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;shell&#34;</span>
+<span style=color:#75715e># 使用变量</span>
+$ echo hello $name
+hello shell
+
+<span style=color:#75715e># 定义只读变量</span>
+$ a<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+$ readonly a
+$ echo $a
+<span style=color:#ae81ff>1</span>
+<span style=color:#75715e># 重新赋值就会报错</span>
+$ a<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
+bash: a: readonly variable
+
+<span style=color:#75715e># 删除变量</span>
+$ b<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
+$ echo $b
+<span style=color:#ae81ff>2</span>
+$ unset b  <span style=color:#75715e># 删除</span>
+$ echo $b
+
+<span style=color:#75715e># 无法删除只读变量</span>
+$ unset a
+bash: unset: a: cannot unset: readonly variable
+</code></pre></div><p>变量只作用于当前窗口，关掉窗口重新打开，变量就失效了，对只读变量同样有效。</p>
+<h2 id=变量类型>变量类型</h2>
+<ul>
+<li>
+<p>字符串: <code>a="123"</code></p>
+</li>
+<li>
+<p>拼接字符串: <code>b="$a, 456"</code></p>
+</li>
+<li>
+<p>数组:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>values=(v1 v2 v3)
+</code></pre></div><ul>
+<li>取单个值: <code>v2=${values[1]}</code></li>
+<li>取全部值: <code>echo ${values[*]}</code></li>
+<li>添加元素: <code>values[3]=4</code></li>
+</ul>
+</li>
+</ul>
+<h2 id=基本运算>基本运算</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ a<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>
+$ b<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>
+
+<span style=color:#75715e># 严格遵守空格</span>
+$ expr $a + $b  <span style=color:#75715e># 30</span>
+$ expr $a - $b  <span style=color:#75715e># -10</span>
+$ expr $a <span style=color:#ae81ff>\*</span> $b <span style=color:#75715e># 200; 乘号需要转义</span>
+$ expr $b / $a  <span style=color:#75715e># 2；取商</span>
+$ expr $a % $b  <span style=color:#75715e># 10；取余</span>
+
+<span style=color:#75715e># 两数相加其他写法</span>
+$ echo <span style=color:#e6db74>`</span>expr $a + $b<span style=color:#e6db74>`</span>
+$ echo <span style=color:#66d9ef>$((</span>$a<span style=color:#f92672>+</span>$b<span style=color:#66d9ef>))</span>
+$ echo $<span style=color:#f92672>[</span>$a+$b<span style=color:#f92672>]</span>
+
+$ <span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> $a <span style=color:#f92672>==</span> $b <span style=color:#f92672>]</span>; <span style=color:#66d9ef>then</span> echo true; <span style=color:#66d9ef>else</span> echo flase; <span style=color:#66d9ef>fi</span>  <span style=color:#75715e># false</span>
+$ <span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> $a !<span style=color:#f92672>=</span> $b <span style=color:#f92672>]</span>; <span style=color:#66d9ef>then</span> echo true; <span style=color:#66d9ef>else</span> echo flase; <span style=color:#66d9ef>fi</span>  <span style=color:#75715e># true</span>
+</code></pre></div><ul>
+<li><code>-eq</code>：相等</li>
+<li><code>-ne</code>：不等</li>
+<li><code>-gt</code>：大于</li>
+<li><code>-lt</code>：小于</li>
+<li><code>-ge</code>：大于等于</li>
+<li><code>-le</code>：小于等于</li>
+</ul>
+<h2 id=控制语句>控制语句</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ <span style=color:#66d9ef>if</span> condition;
+&gt; <span style=color:#66d9ef>then</span>
+&gt;    commands;
+&gt; <span style=color:#66d9ef>elif</span> condition;
+&gt; <span style=color:#66d9ef>then</span>
+&gt;    commands;
+&gt; <span style=color:#66d9ef>else</span>
+&gt;    commands;
+&gt; <span style=color:#66d9ef>fi</span>
+</code></pre></div><p>示例：两数比较大小</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ a<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+$ b<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
+$ <span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> $a -eq $b <span style=color:#f92672>]</span>;
+&gt; <span style=color:#66d9ef>then</span> 
+&gt;   echo <span style=color:#e6db74>&#34;equal&#34;</span>;
+&gt; <span style=color:#66d9ef>elif</span> <span style=color:#f92672>[</span> $a -lt $b <span style=color:#f92672>]</span>;
+&gt; <span style=color:#66d9ef>then</span>
+&gt;   echo <span style=color:#e6db74>&#34;less than&#34;</span>;
+&gt; <span style=color:#66d9ef>else</span> 
+&gt;   echo <span style=color:#e6db74>&#34;greater than&#34;</span>;
+&gt; <span style=color:#66d9ef>fi</span>
+less than
+</code></pre></div><h2 id=for-循环>for 循环</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 方式一</span>
+$ <span style=color:#66d9ef>for</span> var in var1 var2 var3
+&gt; <span style=color:#66d9ef>do</span>
+&gt;    commands
+&gt; <span style=color:#66d9ef>done</span>
+
+<span style=color:#75715e># 方式二</span>
+$ <span style=color:#66d9ef>for</span> <span style=color:#f92672>((</span>i<span style=color:#f92672>=</span>1; i&lt;j; i++<span style=color:#f92672>))</span>
+&gt; <span style=color:#66d9ef>do</span>
+&gt;    commands
+&gt; <span style=color:#66d9ef>done</span>
+</code></pre></div><p>示例：逐行打印文件内容</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ <span style=color:#66d9ef>for</span> i in <span style=color:#e6db74>${</span>cat hotWords<span style=color:#e6db74>}</span>;
+&gt; <span style=color:#66d9ef>do</span>
+&gt;    echo $i;
+&gt; <span style=color:#66d9ef>done</span>
+</code></pre></div><h2 id=while-循环>while 循环</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ <span style=color:#66d9ef>while</span> condition
+&gt; <span style=color:#66d9ef>do</span>
+&gt;    commands;
+&gt; <span style=color:#66d9ef>done</span>
+</code></pre></div><p>示例：递减 & 循环读取并打印内容</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 例 1: 递减</span>
+$ <span style=color:#66d9ef>while</span> <span style=color:#f92672>((</span>$a&gt;<span style=color:#f92672>=</span>0<span style=color:#f92672>))</span>; 
+&gt; <span style=color:#66d9ef>do</span> 
+&gt;    echo $a; 
+&gt;    let <span style=color:#e6db74>&#34;a--&#34;</span>; <span style=color:#75715e># let 计算表达式</span>
+&gt; <span style=color:#66d9ef>done</span>
+
+<span style=color:#75715e># 例 2: 循环读取文件内容并打印</span>
+<span style=color:#75715e># read 命令用于从终端或者文件中读取输入指令</span>
+$ <span style=color:#66d9ef>while</span> read line;
+&gt; <span style=color:#66d9ef>do</span> 
+&gt;    echo $line;
+&gt; <span style=color:#66d9ef>done</span> &lt; hotWords
+</code></pre></div><h2 id=以脚本方式运行程序>以脚本方式运行程序</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ echo <span style=color:#e6db74>&#34;echo demo&#34;</span> &gt; demo
+
+<span style=color:#75715e># 运行 sh 脚本方式一</span>
+$ sh demo
+demo
+
+<span style=color:#75715e># 运行方式二; 需要先添加可执行权限</span>
+$ chmod +x demo
+$ ./demo
+demo
+</code></pre></div><h2 id=脚本参数传递>脚本参数传递</h2>
+<ul>
+<li><code>$0</code> 脚本名称</li>
+<li><code>$1~$n</code> 获取参数</li>
+<li><code>$#</code> 传递到脚本的参数个数</li>
+<li><code>$$</code> 脚本运行的进程 ID</li>
+<li><code>$*</code> 以一个单字符串显示所有向脚本传递的参数</li>
+<li><code>$?</code> 显示最后命令的退出状态，非 0 都表示有错误</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ cat demo
+echo <span style=color:#e6db74>&#34;脚本名称：</span>$0<span style=color:#e6db74>&#34;</span>
+echo <span style=color:#e6db74>&#34;参数一值：</span>$1<span style=color:#e6db74>&#34;</span>
+echo <span style=color:#e6db74>&#34;参数个数：</span>$#<span style=color:#e6db74>&#34;</span>
+echo <span style=color:#e6db74>&#34;进程ID：  </span>$$<span style=color:#e6db74>&#34;</span>
+echo <span style=color:#e6db74>&#34;整串参数：</span>$*<span style=color:#e6db74>&#34;</span>
+echo <span style=color:#e6db74>&#34;退出状态：</span>$?<span style=color:#e6db74>&#34;</span>
+
+$ sh demo <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>5</span> <span style=color:#ae81ff>6</span>
+脚本名称：demo
+参数一值：1
+参数个数：6
+进程ID：  <span style=color:#ae81ff>22173</span>
+整串参数：1 <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>5</span> <span style=color:#ae81ff>6</span>
+退出状态：0
+</code></pre></div><h2 id=path-变量>PATH 变量</h2>
+<ul>
+<li>PATH 变量是一个路径列表，以 <code>:</code> 隔开；</li>
+<li>如果可执行程序所在的目录在 PATH 变量路径列表里，那么输入命令时可以省略路径</li>
+<li>路径列表前面的路径为优先匹配路径，匹配到即停止，可以用来实现新老版本程序的命令更换</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+<span style=color:#75715e># /usr/local/bin 里面的 python version = 2.7</span>
+<span style=color:#75715e># /usr/bin 里面的 python version = 3.6</span>
+
+<span style=color:#75715e># 会先使用路径列表前面的 python 版本</span>
+$ which python
+/usr/local/bin/python  <span style=color:#75715e># 2.7 </span>
+</code></pre></div><p>设置环境变量，并使其立马生效；修改后如果不 source 该配置文件，则每次用户重新登录时才会自动生效。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ vim ~/.bash_profile
+$ source ~/.bash_profile
+</code></pre></div><h2 id=应用安装>应用安装</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 1. yum: centos/redhat</span>
+$ yum search $package
+$ yum install $package
+$ yum remove $package
+
+<span style=color:#75715e># 2. apt-get: ubuntu debian</span>
+$ apt-cache search $package
+$ apt-get install $package               
+$ apt-get uninstall $package
+
+<span style=color:#75715e># 3. 源码编译安装：make; make install</span>
+</code></pre></div><h3 id=开源镜像站>开源镜像站</h3>
+<ul>
+<li>
+<a href=https://mirrors.huaweicloud.com title=华为镜像 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+华为镜像
+<i class="fa fa-external-link-alt"></i>
+</a></li>
+<li>
+<a href=https://developer.aliyun.com/mirror title=阿里云 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+阿里云
+<i class="fa fa-external-link-alt"></i>
+</a></li>
+<li>
+<a href=http://pypi.douban.com/simple/ title=豆瓣 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+豆瓣
+<i class="fa fa-external-link-alt"></i>
+</a></li>
+</ul>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/linux>
+Linux
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/linux/ubuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/ rel=next title="Linux - Ubuntu安装软件汇总">
+<i class="fa fa-chevron-left"></i> Linux - Ubuntu安装软件汇总
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/linux/%E5%91%BD%E4%BB%A4-%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5rsync/ rel=prev title="Linux - 命令 远程同步（Rsync）">
+Linux - 命令 远程同步（Rsync）
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="性能测试 - 性能测试指标">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="性能测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能测试 - 性能测试指标">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-08-14 18:08:48 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 01:01:05 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87","permalink":"https://abeelan.github.io/tech/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/","title":"性能测试 - 性能测试指标"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>性能测试 - 性能测试指标 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>234</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#常用的性能测试术语>常用的性能测试术语</a>
+<ul>
+<li><a href=#事务transaction>事务（Transaction）</a></li>
+<li><a href=#请求响应时间>请求响应时间</a></li>
+<li><a href=#事务响应时间>事务响应时间</a></li>
+<li><a href=#并发用户数>并发用户数</a></li>
+<li><a href=#吞吐量>吞吐量</a></li>
+<li><a href=#tpstransactionper-second>TPS（transactionper second）</a></li>
+<li><a href=#点击率>点击率</a></li>
+<li><a href=#资源利用率>资源利用率</a></li>
+</ul>
+</li>
+<li><a href=#性能测试行业指标维度>性能测试行业指标维度</a>
+<ul>
+<li><a href=#响应时间>响应时间</a></li>
+<li><a href=#并发用户数-1>并发用户数</a></li>
+<li><a href=#并发>并发</a></li>
+<li><a href=#吞吐量tps--每秒事务数>吞吐量（TPS → 每秒事务数）</a></li>
+<li><a href=#思考时间think-time>思考时间（Think Time）</a></li>
+<li><a href=#成功率>成功率</a></li>
+</ul>
+</li>
+<li><a href=#常见性能压力测试工具>常见性能压力测试工具</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>234</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>25</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>25</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=248800></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=624></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-08-14T16:43:09+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="性能测试 - 性能测试指标">
+<meta itemprop=description content="常用的性能测试术语 事务（Transaction） 在 web 性能测试中，一个事务过程如下，一般的响应时间都是针对事务而言的。 从用户发送请求 web serv">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">性能测试 - 性能测试指标 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-14 18:08:48 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 18:08:48 +0000 UTC">2023-08-14</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95 itemprop=url rel=index>
+<span itemprop=name>性能测试</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>3155</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>7分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h2 id=常用的性能测试术语>常用的性能测试术语</h2>
+<h3 id=事务transaction>事务（Transaction）</h3>
+<p>在 web 性能测试中，一个事务过程如下，一般的响应时间都是针对事务而言的。</p>
+<ul>
+<li>从用户发送请求</li>
+<li>web server接受到请求，进行处理</li>
+<li>web server向DB获取数据</li>
+<li>生成用户的object(页面)</li>
+<li>返回给用户</li>
+</ul>
+<h3 id=请求响应时间>请求响应时间</h3>
+<p>请求响应时间指的是从客户端发起的一个请求开始，到客户端接收到从服务器端返回的响应结束，这个过程所耗费的时间。</p>
+<p>在某些工具中，响应通常会称为“TTLB”，即"time to last byte"，意思是从发起一个请求开始，到客户端接收到最后一个字节的响应所耗费的时间，响应时间的单位一般为“秒”或者“毫秒”。</p>
+<p>一个公式可以表示：响应时间＝网络响应时间+应用程序响应时间。标准可参考国外的3/5/10原则：</p>
+<p>（1）在3秒钟之内，页面给予用户响应并有所显示，可认为是“很不错的”；</p>
+<p>（2）在3~5秒钟内，页面给予用户响应并有所显示，可认为是“好的”；</p>
+<p>（3）在5~10秒钟内，页面给予用户响应并有所显示，可认为是“勉强接受的”；</p>
+<p>（4）超过10秒就让人有点不耐烦了，用户很可能不会继续等待下去；</p>
+<h3 id=事务响应时间>事务响应时间</h3>
+<p>事务可能由一系列请求组成,事务的响应时间主要是针对用户而言,属于宏观上的概念，是为了向用户说明业务响应时间而提出的.例如:跨行取款事务的响应时间就是由一系列的请求组成的.事务响应时间是直接衡量系统性能的参数.</p>
+<h3 id=并发用户数>并发用户数</h3>
+<p>并发一般分为2种情况。</p>
+<ul>
+<li>
+<p>一种是严格意义上的并发，即所有的用户在同一时刻做同一件事情或者操作，这种操作一般指做同一类型的业务。比如在信用卡审批业务中，一定数目的拥护在同一时刻对已经完成的审批业务进行提交；还有一种特例，即所有用户进行完全一样的操作，例如在信用卡审批业务中，所有的用户可以一起申请业务，或者修改同一条记录。</p>
+</li>
+<li>
+<p>另外一种并发是广义范围的并发。这种并发与前一种并发的区别是，尽管多个用户对系统发出了请求或者进行了操作，但是这些请求或者操作可以是相同的，也可以是不同的。对整个系统而言，仍然是有很多用户同时对系统进行操作，因此也属于并发的范畴。</p>
+</li>
+</ul>
+<p>可以看出，后一种并发是包含前一种并发的。</p>
+<p>而且后一种并发更接近用户的实际使用情况，因此对于大多数的系统，只有数量很少的用户进行“严格意义上的并发”。对于WEB性能测试而言，这2种并发情况一般都需要进行测试，通常做法是先进行严格意义上的并发测试。严格意义上的用户并发一般发生在使用比较频繁的模块中，尽管发生的概率不是很大，但是一旦发生性能问题，后果很可能是致命的。严格意义上的并发测试往往和功能测试关联起来，因为并发功能遇到异常通常都是程序问题，这种测试也是健壮性和稳定性测试的一部分。</p>
+<p>用户并发数量：关于用户并发的数量，有2种常见的错误观点。 一种错误观点是把并发用户数量理解为使用系统的全部用户的数量，理由是这些用户可能同时使用系统；还有一种比较接近正确的观点是把在线用户数量理解为并发用户数量。实际上在线用户也不一定会和其他用户发生并发，例如正在浏览网页的用户，对服务器没有任何影响，但是，在线用户数量是计算并发用户数量的主要依据之一。</p>
+<h3 id=吞吐量>吞吐量</h3>
+<p>指的是在一次性能测试过程中网络上传输的数据量的总和.吞吐量/传输时间,就是吞吐率.</p>
+<h3 id=tpstransactionper-second>TPS（transactionper second）</h3>
+<p>每秒钟系统能够处理的交易或者事务的数量.它是衡量系统处理能力的重要指标.</p>
+<h3 id=点击率>点击率</h3>
+<p>每秒钟用户向WEB服务器提交的HTTP请求数.这个指标是WEB应用特有的一个指标:WEB应用是"请求-响应"模式,用户发出一次申请,服务器就要处理一次,所以点击是WEB应用能够处理的交易的最小单位.如果把每次点击定义为一个交易,点击率和TPS就是一个概念.容易看出,点击率越大,对服务器的压力越大.点击率只是一个性能参考指标,重要的是分析点击时产生的影响。需要注意的是,这里的点击并非指鼠标的一次单击操作,因为在一次单击操作中,客户端可能向服务器发出多个HTTP请求.</p>
+<h3 id=资源利用率>资源利用率</h3>
+<p>指的是对不同的系统资源的使用程度,例如服务器的CPU利用率,磁盘利用率等.资源利用率是分析系统性能指标进而改善性能的主要依据,因此是WEB性能测试工作的重点.</p>
+<p>资源利用率主要针对WEB服务器,操作系统,数据库服务器,网络等,是测试和分析瓶颈的主要参考.在WEB性能测试中,更根据需要采集相应的参数进行分析。</p>
+<h2 id=性能测试行业指标维度>性能测试行业指标维度</h2>
+<ul>
+<li>响应时间（RT）</li>
+<li>每秒事物处理能力（TPS）</li>
+<li>并发用户数</li>
+<li>吞吐量</li>
+<li>系统资源使用率</li>
+<li>思考时间</li>
+</ul>
+<h3 id=响应时间>响应时间</h3>
+<p>RT(Response Time)，对请求做出响应所需要的时间，是用户感知软件性能的主要指标。</p>
+<p>响应时间包括：</p>
+<ul>
+<li>客户端页面渲染时间</li>
+<li>请求/响应数据网络传输时间</li>
+<li>服务器处理时间</li>
+<li>数据库处理时间</li>
+</ul>
+<p>对于 WEB 系统，很多年前的非官方标准是 2/5/8 秒，现在 5 秒应该是极限了。</p>
+<p>随着并发数量的增加，响应时间也会增加。</p>
+<p><em>比如银行 10 个柜台，每给用户办理一个业务的时间是 10 分钟</em></p>
+<ul>
+<li>并发 1 个人办理业务 - 平均响应时间 10 分钟</li>
+<li>并发10 个人办理业务 - 平均响应时间 10 分钟</li>
+<li>并发20 个人办理业务 - 平均响应时间 15 分钟</li>
+<li>并发 30 个人办理业务 - 平均响应时间 20 分钟</li>
+<li>&mldr;</li>
+</ul>
+<h3 id=并发用户数-1>并发用户数</h3>
+<p>用户数的三个概念</p>
+<ul>
+<li>系统用户数：总注册用户数，数据库存储用户数</li>
+<li>在线用户数：总在线用户数，只是同时在线</li>
+<li>并发用户数（两个都需要做，根据业务）
+<ul>
+<li>广义：同一时间做不同的事，但是都对服务器进行了请求（网购浏览）</li>
+<li>狭义：用户同一时间做同一件事（秒杀）</li>
+</ul>
+</li>
+</ul>
+<p>系统用户数对服务性能产生的影响很小，因为用户注册后会保存在数据库的磁盘上，存储用户数量受磁盘空间大小影响。当服务端查询数据库的时候，用户数量大则寻址时间长，用户数量小则寻址时间短。</p>
+<p>进行测试前，需要初始化环境：</p>
+<ul>
+<li>warm up（热机），磁盘 → 内存 → CPU，让数据先跑一会儿，更接近生产环境后再开始统计数据。</li>
+<li>构造测试数据</li>
+<li>网络环境或场景接近</li>
+</ul>
+<p><strong>平均并发用户数的计算：</strong></p>
+<p>C=nL/TC = nL / T C=nL/T</p>
+<ul>
+<li>C → 平均并发用户数</li>
+<li>n → 平均每天访问用户数（login session）</li>
+<li>L → 一天内用户从登录到退出的平均时间</li>
+<li>T → 一天内多长时间有用户在使用系统</li>
+</ul>
+<p><strong>并发用户数峰值计算：</strong></p>
+<p>C≈c+3∗3C \approx c + 3 * \sqrt3 C≈c+3∗√3</p>
+<p>性能拐点：当用户数到达一定数量后，响应时间明显增加的点。</p>
+<h3 id=并发>并发</h3>
+<ul>
+<li>绝对并发：同一时间服务器处理的请求数
+<ul>
+<li>比如：实时聊天室，同时在线人数 — 长连接</li>
+<li>websocket</li>
+</ul>
+</li>
+<li>相对并发：一段时间内，服务器处理的请求数（通常是1 秒）
+<ul>
+<li>web 应用基本都是 http 请求，短连接：请求/响应 → 结束</li>
+<li>约等于并发吞吐量</li>
+</ul>
+</li>
+</ul>
+<h3 id=吞吐量tps--每秒事务数>吞吐量（TPS → 每秒事务数）</h3>
+<p>指<strong>单位时间内系统处理用户的请求数</strong>，吞吐量指标反应的是服务器承受的压力，体现负载能力。</p>
+<p>从业务角度看：吞吐量可以是请求数/秒、页面数/秒、处理业务数/小时，等等</p>
+<p>从网络角度看：字节/秒</p>
+<ul>
+<li>T PS — transaction — 事务 — 多个操作（涉及数据库变更操作）— 淘宝下单</li>
+<li>Q PS — Query — 查询 — 不涉及数据变动的操作 — 淘宝查询商品</li>
+</ul>
+<p><strong>计算公式</strong></p>
+<p>F = VU∗R/tF = VU*R/tF = VU∗R/t</p>
+<ul>
+<li>F → 吞吐量</li>
+<li>VU → 表示虚拟用户个数</li>
+<li>R → 表示每个用户发出的请求数</li>
+<li>T → 表示性能测试所用的时间</li>
+</ul>
+<p>随着用户请求的增加，吞吐量会上升，当达到最大值时，吞吐量保持在一个区间，达到性能瓶颈。</p>
+<ul>
+<li>如果该线震荡，表示可能是内存原因</li>
+<li>如果该线平整，表示可能是网络原因</li>
+</ul>
+<p><strong>如何知道系统的最大吞吐量？</strong></p>
+<p>初期阶段，吞吐量会随着并发量（线程）增加而增加。</p>
+<p>吞吐量达到一定值后，趋于平稳，这个点看作系统的瓶颈。</p>
+<blockquote>
+<p>不断增加并发量， 直至吞吐量不再增加【性能拐点】</p>
+</blockquote>
+<p><img src=/imgs/img-lazy-loading.gif data-src="https://secure2.wostatic.cn/static/hvAPbBiYcE1RYoeXpqikdE/image.png?auth_key=1692007676-4xo5thWiuZH1rEkuYr8y3G-0-e211d756c00f4d9cd32ebd161ee0237d" alt=img></p>
+<h3 id=思考时间think-time>思考时间（Think Time）</h3>
+<p>用户进行操作时每个请求之间的时间间隔，模拟真实用户的操作。</p>
+<h3 id=成功率>成功率</h3>
+<p>在高并发的情况下，程序是否会出现处理失败的情况。</p>
+<p>10000/s 请求，失败了 100，成功率为 99%</p>
+<p>部分场景对于成功率要求很高，否则很影响用户体验，比如支付。</p>
+<h2 id=常见性能压力测试工具>常见性能压力测试工具</h2>
+<ul>
+<li>Apache Jmeter：Java 语言开发，开源</li>
+<li>LoadRunner：C 语言开发，商业</li>
+<li>Locust：python 语言开发，开源</li>
+</ul>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%e6%80%a7%e8%83%bd%e6%b5%8b%e8%af%95>
+性能测试
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/jmeterms/jmeter-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/ rel=next title="Jmeter&Ms - Jmeter 快速入门">
+<i class="fa fa-chevron-left"></i> Jmeter&Ms - Jmeter 快速入门
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/selenium/%E5%9F%BA%E7%A1%805form%E8%A1%A8%E5%8D%95/ rel=prev title="Selenium - 基础5：Form表单">
+Selenium - 基础5：Form表单
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

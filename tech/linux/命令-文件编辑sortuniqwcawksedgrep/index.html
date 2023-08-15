@@ -1,0 +1,703 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Linux - 命令 文件编辑（Sort、Uniq、Wc、Awk、Sed、Grep）">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux - 命令 文件编辑（Sort、Uniq、Wc、Awk、Sed、Grep）">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/linux/%E5%91%BD%E4%BB%A4-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91sortuniqwcawksedgrep/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-08-14 17:15:17 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-15 01:01:05 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"%E5%91%BD%E4%BB%A4-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91sortuniqwcawksedgrep","permalink":"https://abeelan.github.io/tech/linux/%E5%91%BD%E4%BB%A4-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91sortuniqwcawksedgrep/","title":"Linux - 命令 文件编辑（Sort、Uniq、Wc、Awk、Sed、Grep）"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Linux - 命令 文件编辑（Sort、Uniq、Wc、Awk、Sed、Grep） - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>234</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#sort>sort</a></li>
+<li><a href=#uniq>uniq</a></li>
+<li><a href=#wc>wc</a></li>
+<li><a href=#grep>grep</a></li>
+<li><a href=#awk>awk</a></li>
+<li><a href=#sed>sed</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>234</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>25</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>25</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=248800></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=624></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-08-14T16:43:09+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/linux/%E5%91%BD%E4%BB%A4-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91sortuniqwcawksedgrep/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Linux - 命令 文件编辑（Sort、Uniq、Wc、Awk、Sed、Grep）">
+<meta itemprop=description content="Linux 常用文本编辑命令 sort 对文本内容进行排序。 常用参数： -b：忽略每行左侧的空白字符 -n：按数字大小排序 -V：按照数字版本排序 -h：根据存储容量排">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Linux - 命令 文件编辑（Sort、Uniq、Wc、Awk、Sed、Grep） </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-14 17:15:17 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 17:15:17 +0000 UTC">2023-08-14</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/linux itemprop=url rel=index>
+<span itemprop=name>Linux</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1918</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>4分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/linux/%E5%91%BD%E4%BB%A4-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91sortuniqwcawksedgrep/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<blockquote>
+<p>Linux 常用文本编辑命令</p>
+</blockquote>
+<h2 id=sort>sort</h2>
+<p>对文本内容进行排序。</p>
+<p>常用参数：</p>
+<ul>
+<li>-b：忽略每行左侧的空白字符</li>
+<li>-n：按数字大小排序</li>
+<li>-V：按照数字版本排序</li>
+<li>-h：根据存储容量排序（KB、MB、GB）</li>
+<li>-r：倒序</li>
+<li>-t：指定排序后的分隔符，默认为空格</li>
+<li>-k：按指定的列排序</li>
+<li>-o：把结果保存到文件</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ sort testfile -n
+$ cat testfile | sort -o test.log
+</code></pre></div><h2 id=uniq>uniq</h2>
+<p>检查和删除文件中重复的行或列，只检查相邻行，一般与 sort 配合使用。</p>
+<p>常用参数：</p>
+<ul>
+<li>-c：统计重复次数</li>
+<li>-f：跳过前 N 列</li>
+<li>-s：跳过前 N 个字符</li>
+<li>-w：仅对前 N 个字符进行比较</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 构造测试数据</span>
+$ cat testfile
+tom male <span style=color:#ae81ff>18</span>
+alex male <span style=color:#ae81ff>19</span>
+ali womale <span style=color:#ae81ff>15</span>
+jerry male <span style=color:#ae81ff>18</span>
+kd male <span style=color:#ae81ff>18</span>
+
+<span style=color:#75715e># 根据同岁人口的数量排行</span>
+$ cat testfile | sort -k <span style=color:#ae81ff>3</span> -n | uniq -c -f <span style=color:#ae81ff>2</span> | sort -nr
+  <span style=color:#ae81ff>3</span> jerry male <span style=color:#ae81ff>18</span>
+  <span style=color:#ae81ff>1</span> ali womale <span style=color:#ae81ff>15</span>
+  <span style=color:#ae81ff>1</span> alex male <span style=color:#ae81ff>19</span>
+</code></pre></div><h2 id=wc>wc</h2>
+<p>字符统计。</p>
+<p>常用参数：</p>
+<ul>
+<li>-c：统计字节数</li>
+<li>-l：统计行数</li>
+<li>-w：统计单词数</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ cat testfile
+hello world
+tester
+gogogo!
+<span style=color:#ae81ff>\n</span>
+<span style=color:#ae81ff>\n</span>
+
+<span style=color:#75715e># 行数、单词数、字符数（换行符、空格也算字符）</span>
+$ cat testfile | wc
+  <span style=color:#ae81ff>5</span>       <span style=color:#ae81ff>4</span>      <span style=color:#ae81ff>29</span>
+</code></pre></div><h2 id=grep>grep</h2>
+<p>基于正则表达式查找满足条件的行或者字符串。</p>
+<p><strong>内容检索：</strong></p>
+<ul>
+<li>-o：根据正则仅提取内容</li>
+<li>-A1：取匹配到内容的后一行</li>
+<li>-B2：取匹配到内容的前两行</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ grep go testfile
+gogogo!
+
+$ grep <span style=color:#e6db74>&#34;[a-z]*er &#34;</span> testfile
+tester lan
+
+$ grep -o <span style=color:#e6db74>&#34;[a-z]*er &#34;</span> -A1 testfile
+tester
+gogogo!
+</code></pre></div><p><strong>文件检索：</strong></p>
+<ul>
+<li>-r：递归查找目录</li>
+<li>-h：仅展示匹配的内容，不展示匹配的文件名，默认是展示的（-H）</li>
+<li>-l：仅展示匹配的文件名，不展示匹配的内容</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ grep -r hello tmp
+tmp/testfile:hello world
+
+$ grep -r -h hello tmp
+hello world
+
+$ grep -r -l hello tmp
+tmp/testfile
+</code></pre></div><p><strong>范围约束：</strong></p>
+<ul>
+<li>-i：忽略大小写</li>
+<li>-v：不显示匹配的行</li>
+<li>-E：使用扩展正则表达式</li>
+<li>&ndash;include：文件/目录范围约束，仅在匹配的文件内查找内容</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 默认区分大小写</span>
+$ grep HELLO testfile
+
+<span style=color:#75715e># -i 忽略大小写</span>
+$ grep -i HELLO testfile
+hello world
+
+<span style=color:#75715e># -v 除匹配的行外都显示，空行也显示</span>
+$ grep -v -r hello testfile
+testfile:tester lan
+testfile:gogogo!
+testfile:
+testfile:
+
+<span style=color:#75715e># -E 写正则表达式可以不使用转义符</span>
+<span style=color:#75715e># ^$ 代表空行，所以这里输出了两个空行</span>
+$ grep -E <span style=color:#e6db74>&#34;^</span>$<span style=color:#e6db74>&#34;</span> testfile
+
+$ grep -r test tmp --include <span style=color:#e6db74>&#34;test*&#34;</span>
+tmp/testfile:tester lan
+</code></pre></div><p>通过 grep 过滤进程时，由于 grep 本身会开启新进程，所以通过 -v 参数过滤匹配行，才是真正想要的内容。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ ps -ef | grep ssh
+ <span style=color:#ae81ff>501</span> <span style=color:#ae81ff>35036</span>     <span style=color:#ae81ff>1</span>   <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>301121</span>   ??       0:00.19 /usr/bin/ssh-agent -l
+ <span style=color:#ae81ff>501</span> <span style=color:#ae81ff>57090</span> <span style=color:#ae81ff>49928</span>   <span style=color:#ae81ff>0</span> 12:20上午 ttys000  0:00.00 grep ssh
+ 
+$ ps -ef | grep ssh | grep -v grep
+ <span style=color:#ae81ff>501</span> <span style=color:#ae81ff>35036</span>     <span style=color:#ae81ff>1</span>   <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>301121</span>  ??  0:00.19 /usr/bin/ssh-agent -l
+</code></pre></div><h2 id=awk>awk</h2>
+<p>根据定位到的数据处理其中的分段。</p>
+<p>awk 具备完整的编程特性，比如执行命令，网络请求等。核心语法：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 匹配表达式 + 行为表达式</span>
+$ awk <span style=color:#e6db74>&#39;pattern{action}&#39;</span>
+</code></pre></div><p><strong>上下文变量</strong></p>
+<ul>
+<li>开始 BEGIN 结束 END</li>
+<li>行数 NR</li>
+<li>字段与字段数 $1 $2 .. $N $NF</li>
+<li>整行 $0</li>
+<li>字段分隔符 FS，简写 -F</li>
+<li>输出数据的字段分隔符 OFS</li>
+<li>记录分隔符 RS</li>
+<li>输出字段的行分隔符 ORS</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 通过逗号分隔取第一二列</span>
+$ echo <span style=color:#e6db74>&#39;1, 2, 3&#39;</span> | awk -F , <span style=color:#e6db74>&#39;{print $1, $2}&#39;</span>
+<span style=color:#ae81ff>1</span>  <span style=color:#ae81ff>2</span>
+</code></pre></div><p><strong>字段变量用法</strong></p>
+<ul>
+<li>-F：参数指定字段分隔符，可以用 ｜ 指定多个分隔符，例：<code>-F '&lt;|>'</code></li>
+<li>BEGIN{FS="_"} 也可以表示分隔符</li>
+<li>$0 表示当前的记录</li>
+<li>$1 表示第一个字段</li>
+<li>$N 表示第 N 个字段</li>
+<li>$NF 表示最后一个字段</li>
+<li>$(NF-1) 表示倒数第二个字段</li>
+</ul>
+<p><strong>pattern 表达式</strong></p>
+<ul>
+<li>正则匹配
+<ul>
+<li>根据字段匹配：$1~/pattern/</li>
+<li>整行匹配简写：/pattern/</li>
+</ul>
+</li>
+<li>比较表达式
+<ul>
+<li>$2>2</li>
+<li>$1==&ldquo;b&rdquo;</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 获取第三行的内容</span>
+$ echo <span style=color:#e6db74>&#39;1
+</span><span style=color:#e6db74>&gt; 2
+</span><span style=color:#e6db74>&gt; 3&#39;</span> | awk <span style=color:#e6db74>&#34;NR==3&#34;</span>
+<span style=color:#ae81ff>3</span>
+
+<span style=color:#75715e># 正则匹配 3</span>
+<span style=color:#75715e># 默认 action 为 {print $0}</span>
+<span style=color:#75715e># 下面的 awk 等价于 awk &#39;$1~/3/{print $0}&#39;</span>
+$ echo <span style=color:#e6db74>&#39;1
+</span><span style=color:#e6db74>&gt; 2
+</span><span style=color:#e6db74>&gt; 3&#39;</span> | awk <span style=color:#e6db74>&#39;$1~/3/&#39;</span>
+</code></pre></div><p>匹配表达式案例</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 开始和结束</span>
+$ awk <span style=color:#e6db74>&#39;BEGIN{}END{}&#39;</span>
+
+<span style=color:#75715e># 正则：整行匹配</span>
+$ awk <span style=color:#e6db74>&#39;/test/&#39;</span>
+<span style=color:#75715e># 正则：字段匹配</span>
+$ awk <span style=color:#e6db74>&#39;$2~/test/&#39;</span>
+
+<span style=color:#75715e># 取第二行</span>
+$ awk <span style=color:#e6db74>&#39;NR==2&#39;</span>
+<span style=color:#75715e># 去掉第一行</span>
+$ awk <span style=color:#e6db74>&#39;NR&gt;1&#39;</span>
+
+<span style=color:#75715e># 区间选则，包含开始和结束行，中间以逗号隔开</span>
+$ awk <span style=color:#e6db74>&#39;/aa/, /bb/&#39;</span>
+$ awk <span style=color:#e6db74>&#39;/1/, NR==2&#39;</span>
+</code></pre></div><p><strong>action 表达式</strong></p>
+<p>如果行为表达式前面没有 pattern 表达式，则代表对所有数据生效。</p>
+<ul>
+<li>打印：{print $2}</li>
+<li>赋值：{$1=&ldquo;abc&rdquo;}</li>
+<li>处理函数</li>
+<li>原始内容：$0</li>
+<li>更新后内容：{$1=$1;print $0}</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 单行转多行</span>
+$ echo 1:2:3 | awk <span style=color:#e6db74>&#39;BEGIN{RS=&#34;:&#34;}{print $0}&#39;</span>
+<span style=color:#ae81ff>1</span>
+<span style=color:#ae81ff>2</span>
+<span style=color:#ae81ff>3</span>
+
+<span style=color:#75715e># 多行转单行</span>
+$ echo <span style=color:#e6db74>&#39;1
+</span><span style=color:#e6db74>&gt; 2
+</span><span style=color:#e6db74>&gt; 3&#39;</span> | awk <span style=color:#e6db74>&#39;BEGIN{RS=&#34;&#34;;FS=&#34;\n&#34;;OFS=&#34;:&#34;}{$1=$1;print $0}&#39;</span>
+1:2:3
+
+<span style=color:#75715e># 多行转多行方法二</span>
+$ echo <span style=color:#e6db74>&#39;1
+</span><span style=color:#e6db74>&gt; 2
+</span><span style=color:#e6db74>&gt; 3&#39;</span> | awk <span style=color:#e6db74>&#39;BEGIN{RS=&#34;&#34;;FS=&#34;\n&#34;;OFS=&#34;:&#34;}{$1=$1;print $0}&#39;</span>
+1:2:3
+
+<span style=color:#75715e># 求第二列平均数</span>
+$ echo <span style=color:#e6db74>&#39;1,10
+</span><span style=color:#e6db74>&gt; 2,20
+</span><span style=color:#e6db74>&gt; 3,30&#39;</span> | awk <span style=color:#e6db74>&#39;BEGIN{total=0;FS=&#34;,&#34;}{total+=$2}END{print total/NR}&#39;</span>
+<span style=color:#ae81ff>20</span>
+</code></pre></div><p><strong>词典/array 结构</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 求第三列总数</span>
+$ echo <span style=color:#e6db74>&#39;a, 1, 10
+</span><span style=color:#e6db74>&gt; a, 2, 20
+</span><span style=color:#e6db74>&gt; b, 1, 30
+</span><span style=color:#e6db74>&gt; b, 2, 40&#39;</span> | awk <span style=color:#e6db74>&#39;{data[$1]+=$3} END{for(k in data) print k, data[k]}&#39;</span>
+a, <span style=color:#ae81ff>30</span>
+b, <span style=color:#ae81ff>70</span>
+
+<span style=color:#75715e># 求第三列平均数</span>
+$ echo <span style=color:#e6db74>&#39;a, 1, 10
+</span><span style=color:#e6db74>a, 2, 20
+</span><span style=color:#e6db74>b, 1, 30
+</span><span style=color:#e6db74>b, 2, 40&#39;</span> | awk <span style=color:#e6db74>&#39;{data[$1]+=$3; count[$1]+=1} END{for(k in data) print k, data[k]/count[k]}&#39;</span>
+a, <span style=color:#ae81ff>15</span>
+b, <span style=color:#ae81ff>35</span>
+</code></pre></div><h2 id=sed>sed</h2>
+<p>流式编译器，定位并修改数据。</p>
+<p>基本语法：sed [addr]X[options]</p>
+<p>常用参数：</p>
+<ul>
+<li>-e：根据表达式处理文本</li>
+<li>-n：仅展示处理后的结果</li>
+<li>-i：直接修改源文件</li>
+<li>-E：扩展表达式</li>
+<li>-debug：调试模式</li>
+</ul>
+<p><strong>pattern 表达式</strong></p>
+<ul>
+<li>行数 20</li>
+<li>行数范围 20,40</li>
+<li>正则匹配 /pattern/</li>
+<li>区间匹配 //,//</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ sed -n <span style=color:#e6db74>&#39;1p&#39;</span> testfile
+hello world
+
+$ sed -n <span style=color:#e6db74>&#39;2,3p&#39;</span> testfile
+tester lan
+gogogo!
+
+$ sed -n <span style=color:#e6db74>&#39;/world/p&#39;</span> testfile
+hello world
+</code></pre></div><p><strong>action 表达式</strong></p>
+<ul>
+<li>p 打印，结合 -n 参数使用</li>
+<li>s 查找替换</li>
+<li>d 删除</li>
+<li>a 在内容匹配行之后追加</li>
+<li>c 取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行</li>
+<li>i 插入内容到匹配行之前</li>
+<li>e 执行命令</li>
+<li>分组匹配与字段提取</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 删除最后一行, $ 在这里不是正则，代表最后一行</span>
+$ sed <span style=color:#e6db74>&#39;$d&#39;</span> testfile
+
+<span style=color:#75715e># 删除多行</span>
+$ sed <span style=color:#e6db74>&#39;1,3d&#39;</span> testfile
+</code></pre></div><p>s 表达式</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 替换</span>
+$ echo <span style=color:#e6db74>&#39;good night&#39;</span> | sed <span style=color:#e6db74>&#39;s/night/evening/&#39;</span>
+good evening
+
+<span style=color:#75715e># / 可以用任意符号代替，只要三个符号是一致的就行</span>
+$ echo <span style=color:#e6db74>&#39;good night&#39;</span> | sed <span style=color:#e6db74>&#39;s#night#evening!#&#39;</span>
+good evening!
+
+<span style=color:#75715e># 默认只会替换第一个符合表达式的内容</span>
+$ echo <span style=color:#e6db74>&#39;good night&#39;</span> | sed <span style=color:#e6db74>&#39;s#o#_#&#39;</span>
+g_od night
+
+<span style=color:#75715e># 通过 g 参数替换全局</span>
+$ echo <span style=color:#e6db74>&#39;good night&#39;</span> | sed <span style=color:#e6db74>&#39;s#o#_#g&#39;</span>
+g__d night
+
+<span style=color:#75715e># 通过 &amp; 匹配内容，n 前面添加 123</span>
+$ echo <span style=color:#e6db74>&#39;good night&#39;</span> | sed <span style=color:#e6db74>&#39;s/n/123&amp;/&#39;</span>
+good 123night
+
+<span style=color:#75715e># n 后面添加 123</span>
+$ echo <span style=color:#e6db74>&#39;good night&#39;</span> | sed <span style=color:#e6db74>&#39;s/n/&amp;123/&#39;</span>
+good n123ight
+</code></pre></div><p>反向引用</p>
+<ul>
+<li>使用 () 对数据进行分组</li>
+<li>使用 <code>\3 \2 \1</code> 反向引用分组</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 将 123 倒序替换</span>
+$ echo <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>5</span> | sed -E <span style=color:#e6db74>&#39;s#([1-3]) ([1-3]) ([1-3])#\3 \2 \1#&#39;</span>
+<span style=color:#ae81ff>0</span> <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>5</span>
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/linux>
+Linux
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/linux/%E4%B8%89%E5%89%91%E5%AE%A2%E5%91%BD%E4%BB%A4%E7%BB%83%E4%B9%A0/ rel=next title="Linux - 三剑客命令练习">
+<i class="fa fa-chevron-left"></i> Linux - 三剑客命令练习
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/linux/%E5%91%BD%E4%BB%A4-ssh/ rel=prev title="Linux - 命令 Ssh">
+Linux - 命令 Ssh
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>
