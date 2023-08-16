@@ -8,34 +8,34 @@
 <link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
 <link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
 <link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
-<meta itemprop=name content="Linux - Ubuntu安装软件汇总">
+<meta itemprop=name content="Python - Pymysql 连接数据库">
 <meta itemprop=description content="It's better late than never.">
 <meta itemprop=datePublished zgotmplz>
 <meta itemprop=dateModified zgotmplz>
 <meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
-<meta itemprop=keywords content="Linux">
+<meta itemprop=keywords content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux - Ubuntu安装软件汇总">
+<meta property="og:title" content="Python - Pymysql 连接数据库">
 <meta property="og:description" content="It's better late than never.">
 <meta property="og:image" content="/imgs/avatar.png">
 <meta property="og:image:width" content="312">
 <meta property="og:image:height" content="312">
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg">
-<meta property="og:url" content="https://abeelan.github.io/tech/linux/ubuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/">
+<meta property="og:url" content="https://abeelan.github.io/tech/python/pymysql-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/">
 <meta property="og:site_name" content="ABEE">
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
-<meta property="article:published_time" content="2023-08-14 17:23:53 +0000 UTC">
-<meta property="article:modified_time" content="2023-08-15 01:01:05 +0000 UTC">
+<meta property="article:published_time" content="2023-04-05 10:32:37 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-16 14:01:15 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
 <link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
 <style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
 <script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
-<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"ubuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB","permalink":"https://abeelan.github.io/tech/linux/ubuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/","title":"Linux - Ubuntu安装软件汇总"}</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"pymysql-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93","permalink":"https://abeelan.github.io/tech/python/pymysql-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/","title":"Python - Pymysql 连接数据库"}</script>
 <script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
-<title>Linux - Ubuntu安装软件汇总 - ABEE</title>
+<title>Python - Pymysql 连接数据库 - ABEE</title>
 <noscript>
 <link rel=stylesheet href=/css/noscript.css>
 </noscript>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>261</span>
+<span class=badge>282</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -128,13 +128,7 @@
 <div class="post-toc-wrap sidebar-panel">
 <div class="post-toc animated"><nav id=TableOfContents>
 <ul>
-<li><a href=#重启>重启</a></li>
-<li><a href=#查看-ip-地址>查看 ip 地址</a></li>
-<li><a href=#安装包>安装包</a></li>
-<li><a href=#显示磁盘大小>显示磁盘大小</a></li>
-<li><a href=#安装-adb>安装 adb</a></li>
-<li><a href=#设置静态-ip-地址>设置静态 IP 地址</a></li>
-<li><a href=#安装-docker>安装 docker</a></li>
+<li><a href=#pymysql>pymysql</a></li>
 </ul>
 </nav></div>
 </div>
@@ -148,7 +142,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>261</span>
+<span class=site-state-item-count>282</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -200,15 +194,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=270490></div>
+<div class=item-count id=wordsCount data-count=281035></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=686></div>
+<div class=item-count id=readTimes data-times=720></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-04-05T10:19:40+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-05-11T11:03:40+00:00></div>
 </div>
 </div>
 </div>
@@ -235,7 +229,7 @@
 <div class="main-inner post posts-expand">
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/linux/ubuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pymysql-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/>
 <span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
 <meta itemprop=image content="/imgs/avatar.png">
 <meta itemprop=name content="ABEE">
@@ -245,11 +239,11 @@
 <meta itemprop=description content="It's better late than never.">
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Linux - Ubuntu安装软件汇总">
-<meta itemprop=description content="基础命令 重启 $ reboot 查看 ip 地址 $ ip addr show 安装包 # 安装 ssh，已安装则忽略 $ sudo apt-get install ssh # 输入密码 $ apt install net-tools # ifconfig 命令 显示磁盘大小 # 查看硬盘剩余空间 -H $ df -hl">
+<meta itemprop=name content="Python - Pymysql 连接数据库">
+<meta itemprop=description content="python 连接数据库操作 pymysql import pymysql def get_connect(): connect = pymysql.connect( host=&#34;xxx.com&#34;, port=3306, user=&#34;test&#34;, password=&#34;test1234&#34;, database=&#34;database_name&#34;, charset=&#34;utf8mb4&#34; ) return connect def execute_sql(sql): connect = get_connect() cursor = connect.cursor() cursor.execute(sql) # 执行 sql record = cursor.fetchone() # 查询记录 return record if __name__ == '__main__': print(execute_sql(&#34;select * from table_name&#34;))">
 </span>
 <header class=post-header>
-<h1 class=post-title itemprop="name headline">Linux - Ubuntu安装软件汇总 </h1>
+<h1 class=post-title itemprop="name headline">Python - Pymysql 连接数据库 </h1>
 <div class=post-meta-container>
 <div class=post-meta-items>
 <span class=post-meta-item>
@@ -257,14 +251,14 @@
 <i class="far fa-calendar"></i>
 </span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-08-14 17:23:53 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 17:23:53 +0000 UTC">2023-08-14</time>
+<time title="发表于：2023-04-05 10:32:37 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-05 10:32:37 +0000 UTC">2023-04-05</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
+<time title=修改时间：2023-08-16T14:01:15+00:00 itemprop=dateModified datetime=2023-08-16T14:01:15+00:00>2023-08-16</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -272,8 +266,8 @@
 </span>
 <span class=post-meta-item-text>分类于：</span>
 <span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/linux itemprop=url rel=index>
-<span itemprop=name>Linux</span>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
 </a>
 </span>
 </span>
@@ -283,14 +277,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>750</span>
+<span class=post-meta-item-text>字数：</span><span>56</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>2分钟</span>
+<span>1分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -299,7 +293,7 @@
 <span class=post-meta-item-text>
 浏览：
 </span>
-<span id=busuanzi_value_page_pv data-path=/tech/linux/ubuntu%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/>
+<span id=busuanzi_value_page_pv data-path=/tech/python/pymysql-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -307,120 +301,38 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
-<h1 id=基础命令>基础命令</h1>
-<h2 id=重启>重启</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ reboot
-</code></pre></div><h2 id=查看-ip-地址>查看 ip 地址</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ ip addr show
-</code></pre></div><h2 id=安装包>安装包</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 安装 ssh，已安装则忽略</span>
-$ sudo apt-get install ssh
-<span style=color:#75715e># 输入密码</span>
+<blockquote>
+<p>python 连接数据库操作</p>
+</blockquote>
+<h2 id=pymysql>pymysql</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> pymysql
 
-$ apt install net-tools  <span style=color:#75715e># ifconfig 命令</span>
-</code></pre></div><h2 id=显示磁盘大小>显示磁盘大小</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 查看硬盘剩余空间 -H</span>
-$ df -hl
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_connect</span>():
+    connect <span style=color:#f92672>=</span> pymysql<span style=color:#f92672>.</span>connect(
+    	host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;xxx.com&#34;</span>,
+        port<span style=color:#f92672>=</span><span style=color:#ae81ff>3306</span>,
+        user<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;test&#34;</span>,
+        password<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;test1234&#34;</span>,
+        database<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;database_name&#34;</span>,
+        charset<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf8mb4&#34;</span>
+    )
+    <span style=color:#66d9ef>return</span> connect
 
-<span style=color:#75715e># 查看硬盘的分区</span>
-$ sudo fdisk -l  
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>execute_sql</span>(sql):
+    connect <span style=color:#f92672>=</span> get_connect()
+    cursor <span style=color:#f92672>=</span> connect<span style=color:#f92672>.</span>cursor()
+    cursor<span style=color:#f92672>.</span>execute(sql)  <span style=color:#75715e># 执行 sql</span>
+    record <span style=color:#f92672>=</span> cursor<span style=color:#f92672>.</span>fetchone()  <span style=color:#75715e># 查询记录</span>
+    <span style=color:#66d9ef>return</span> record
 
-<span style=color:#75715e># 查看 IDE硬盘信息</span>
-$ sudo hdparm -i /dev/hda  
-
-<span style=color:#75715e># 查看STAT硬盘信息</span>
-$ sudo hdparm -I /dev/sda  <span style=color:#75715e># 或 </span>
-$ sudo apt-get install blktool
-$ sudo blktool /dev/sda id
-
-<span style=color:#75715e># 查看目录占用空间</span>
-$ du -hs 目录名
-
-<span style=color:#75715e># 优盘没法卸载</span>
-$ sync fuser -km /media/usbdisk
-</code></pre></div><h2 id=安装-adb>安装 adb</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 通过apt-get安装adb</span>
-$ sudo add-apt-repository ppa:nilarimogard/webupd8
-$ sudo apt-get update
-$ sudo apt-get install android-tools-adb
-
-$ adb devices
-* daemon not running; starting now at tcp:5037
-* daemon started successfully
-List of devices attached
-1a34c478  unauthorized
-
-<span style=color:#75715e># 未许可设备连接</span>
-<span style=color:#75715e># 重新开启「开发者选项 - USB 调试」，重启 adb server</span>
-<span style=color:#75715e># 在手机弹框中选择允许，即可成功连接</span>
-
-<span style=color:#e6db74>&#34;注意：如果是未找到设备，那么继续向下看，以下内容未经实践，来源网络&#34;</span>
-
-<span style=color:#75715e># 将 Android 设备连接至电脑，查看设备连接详情</span>
-$ lsusb
-Bus <span style=color:#ae81ff>002</span> Device 002: ID 8087:8000 Intel Corp. Integrated Rate Matching Hub
-Bus <span style=color:#ae81ff>002</span> Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus <span style=color:#ae81ff>001</span> Device 002: ID 8087:8008 Intel Corp. Integrated Rate Matching Hub
-Bus <span style=color:#ae81ff>001</span> Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus <span style=color:#ae81ff>004</span> Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus <span style=color:#ae81ff>003</span> Device 004: ID 1a2c:2c27 China Resource Semico Co., Ltd USB Keyboard
-Bus <span style=color:#ae81ff>003</span> Device 003: ID 046d:c077 Logitech, Inc. M105 Optical Mouse
-<span style=color:#e6db74>&#34;Bus 003 Device 002: ID 18d1:4ee9 Google Inc. Nexus/Pixel Device (MIDI + debug)&#34;</span>
-Bus <span style=color:#ae81ff>003</span> Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-
-
-<span style=color:#75715e># 创建 adb_usb.ini 文件并写入 id</span>
-$ echo 0x18d1 &gt; ~/.android/adb_usb.ini
-
-<span style=color:#75715e># 添加权限</span>
-$ sudo vim /etc/udev/rules.d/70-android.rules
-<span style=color:#75715e># 加入以下内容，注意红色部分对应的就是lsusb得到的id</span>
-SUBSYSTEM<span style=color:#f92672>==</span><span style=color:#e6db74>&#34;usb&#34;</span>, ATTRS<span style=color:#f92672>{</span>idVendor<span style=color:#f92672>}==</span><span style=color:#e6db74>&#34;18d1&#34;</span>, ATTRS<span style=color:#f92672>{</span>idProduct<span style=color:#f92672>}==</span><span style=color:#e6db74>&#34;1002&#34;</span>, MODE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0666&#34;</span>
-
-<span style=color:#75715e># 重启 USB 服务</span>
-$ sudo chmod a+rx /etc/udev/rules.d/70-android.rules
-$ sudo service udev restart
-
-<span style=color:#75715e># 重启adb服务</span>
-$ adb kill-server
-$ sudo adbstart-server
-$ adb devices
-Listof devices attached
-1a34c478    device
-</code></pre></div><h2 id=设置静态-ip-地址>设置静态 IP 地址</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 修改静态 IP 地址</span>
-$ vim /etc/netplan/00-installer-config.yaml
-<span style=color:#75715e># This is the network config written by &#39;subiquity&#39;</span>
-network:
-  ethernets:
-    enp2s0:
-      dhcp4: no
-      optional: true
-      addresses: <span style=color:#f92672>[</span>192.168.1.222/24<span style=color:#f92672>]</span> <span style=color:#75715e># 配置的静态ip地址和掩码</span>
-      routes:
-        - to: default
-          via: 192.168.1.1  <span style=color:#75715e># 网关地址</span>
-      nameservers:
-        addresses: <span style=color:#f92672>[</span>114.114.114.114,8.8.8.8<span style=color:#f92672>]</span>
-  version: <span style=color:#ae81ff>2</span>
-  
-<span style=color:#75715e># 查看网络服务状态</span>
-$ sudo networkctl status
-
-<span style=color:#75715e># 重启网卡，加载配置</span>
-$ sudo netplan apply
-</code></pre></div><h2 id=安装-docker>安装 docker</h2>
-<p>卸载自带的 docker 旧版本</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash><span style=color:#75715e># 卸载 docker</span>
-<span style=color:#75715e># 该版本 docker 遇到问题，所以重装一下</span>
-<span style=color:#75715e># 挂载目录只能放在用户目录下</span>
-$ sudo snap remove --purge docker
-</code></pre></div><p>使用 apt-get 安装：https://docs.docker.com/engine/install/ubuntu/?spm=wolai.workspace.0.0.144bcbd9dmCyVL</p>
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    print(execute_sql(<span style=color:#e6db74>&#34;select * from table_name&#34;</span>))
+</code></pre></div>
 </div>
 <footer class=post-footer>
 <div class=post-tags>
-<a href=/tags/linux>
-Linux
+<a href=/tags/python>
+Python
 </a>
 </div>
 <div class=addthis_inline_share_toolbox style=text-align:center></div>
@@ -441,13 +353,13 @@ Linux
 </div>
 <div class=post-nav>
 <div class="post-nav-next post-nav-item">
-<a href=/tech/andorid/adb-%E6%A8%A1%E6%8B%9F%E6%8C%89%E9%94%AE%E6%98%A0%E5%B0%84%E8%A1%A8/ rel=next title="Andorid - Adb模拟按键映射表">
-<i class="fa fa-chevron-left"></i> Andorid - Adb模拟按键映射表
+<a href=/tech/python/%E5%85%B3%E9%94%AE%E5%AD%97-else-%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/ rel=next title="Python - 关键字 Else 语法总结">
+<i class="fa fa-chevron-left"></i> Python - 关键字 Else 语法总结
 </a>
 </div>
 <div class="post-nav-prev post-nav-item">
-<a href=/tech/linux/%E8%84%9A%E6%9C%AC-%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/ rel=prev title="Linux - 脚本 语法基础">
-Linux - 脚本 语法基础
+<a href=/tech/python/traceback-%E8%8E%B7%E5%8F%96%E8%B0%83%E7%94%A8%E8%80%85%E7%9A%84%E5%87%BD%E6%95%B0%E5%90%8D%E7%A7%B0/ rel=prev title="Python - Traceback 获取调用者的函数名称">
+Python - Traceback 获取调用者的函数名称
 <i class="fa fa-chevron-right"></i>
 </a>
 </div>

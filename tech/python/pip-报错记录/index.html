@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-05-31 18:16:19 +0000 UTC">
-<meta property="article:modified_time" content="2023-08-15 01:00:05 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-17 01:00:05 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>261</span>
+<span class=badge>282</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -128,12 +128,11 @@
 <div class="post-toc-wrap sidebar-panel">
 <div class="post-toc animated"><nav id=TableOfContents>
 <ul>
-<li><a href=#遇到的问题>遇到的问题</a>
-<ul>
-<li><a href=#问题一>问题一</a></li>
-<li><a href=#问题二>问题二</a></li>
-</ul>
-</li>
+<li><a href=#装包错误no-matching-distribution-found-for-pbr>装包错误：No matching distribution found for pbr</a></li>
+<li><a href=#配置源内未找到安装包地址>配置源内未找到安装包地址</a></li>
+<li><a href=#pip-不可用>pip 不可用</a></li>
+<li><a href=#psycopg2-安装失败pg_config-executable-not-found>psycopg2 安装失败：pg_config executable not found.</a></li>
+<li><a href=#crypto-import-error-导包失败>Crypto: import error 导包失败</a></li>
 </ul>
 </nav></div>
 </div>
@@ -147,7 +146,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>261</span>
+<span class=site-state-item-count>282</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -199,15 +198,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=270490></div>
+<div class=item-count id=wordsCount data-count=281035></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=686></div>
+<div class=item-count id=readTimes data-times=720></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-04-05T10:19:40+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-05-11T11:03:40+00:00></div>
 </div>
 </div>
 </div>
@@ -245,7 +244,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Python - Pip 包管理工具">
-<meta itemprop=description content="遇到的问题 问题一 安装失败，报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。 $ vim ~/.pip/pip.conf [install] #trusted-host = pypi.douban.com [global] #index-url = https://pypi.tuna.tsinghua.edu.cn/simple 问题二 pip 不可用：Attrib">
+<meta itemprop=description content="遇到的问题 装包错误：No matching distribution found for pbr $ pip install -r requirements.txt -i http://pypi.douban.com/simple/ ERROR: Could not find a version that satisfies the requirement pbr (from versions: none) ERROR: No matching distribution found for pbr 解决办法：信任该源，安装成功 $ pip install pbr --trusted-host pypi.douban.com 配置源内未">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">Python - Pip 包管理工具 </h1>
@@ -263,7 +262,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:00:05+00:00 itemprop=dateModified datetime=2023-08-15T01:00:05+00:00>2023-08-15</time>
+<time title=修改时间：2023-08-17T01:00:05+00:00 itemprop=dateModified datetime=2023-08-17T01:00:05+00:00>2023-08-17</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -282,14 +281,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>341</span>
+<span class=post-meta-item-text>字数：</span><span>580</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>2分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -306,8 +305,15 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
-<h2 id=遇到的问题>遇到的问题</h2>
-<h3 id=问题一>问题一</h3>
+<p>遇到的问题</p>
+<h2 id=装包错误no-matching-distribution-found-for-pbr>装包错误：No matching distribution found for pbr</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ pip install -r requirements.txt -i http://pypi.douban.com/simple/
+
+ERROR: Could not find a version that satisfies the requirement pbr <span style=color:#f92672>(</span>from versions: none<span style=color:#f92672>)</span>
+ERROR: No matching distribution found <span style=color:#66d9ef>for</span> pbr
+</code></pre></div><p>解决办法：信任该源，安装成功</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ pip install pbr --trusted-host pypi.douban.com
+</code></pre></div><h2 id=配置源内未找到安装包地址>配置源内未找到安装包地址</h2>
 <p>安装失败，报错日志说是未在清华源中找到某个版本~ 取消掉镜像配置，重新安装。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ vim ~/.pip/pip.conf
 
@@ -316,7 +322,7 @@
 
 <span style=color:#f92672>[</span>global<span style=color:#f92672>]</span>
 <span style=color:#75715e>#index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span>
-</code></pre></div><h3 id=问题二>问题二</h3>
+</code></pre></div><h2 id=pip-不可用>pip 不可用</h2>
 <p>pip 不可用：<code>AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'</code></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Python data-lang=Python>   <span style=color:#f92672>from</span> pip._vendor.urllib3.contrib <span style=color:#f92672>import</span> pyopenssl
   File <span style=color:#e6db74>&#34;/usr/local/lib/python3.7/site-packages/pip/_vendor/urllib3/contrib/pyopenssl.py&#34;</span>, line <span style=color:#ae81ff>46</span>, <span style=color:#f92672>in</span> <span style=color:#f92672>&lt;</span>module<span style=color:#f92672>&gt;</span>
@@ -336,6 +342,43 @@
 <span style=color:#75715e># 找到该行，注释掉</span>
 <span style=color:#75715e># !wq</span>
 </code></pre></div><p>参考：https://stackoverflow.com/questions/73830524/attributeerror-module-lib-has-no-attribute-x509-v-flag-cb-issuer-check?spm=wolai.workspace.0.0.11cc417chQdpKo</p>
+<h2 id=psycopg2-安装失败pg_config-executable-not-found>psycopg2 安装失败：pg_config executable not found.</h2>
+<ul>
+<li>python 3.7</li>
+<li>Mac</li>
+</ul>
+<p>安装 psycopg2</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ pip install psycopg2
+...
+Error: pg_config executable not found.  <span style=color:#75715e># 报错</span>
+...
+</code></pre></div><p><strong>解决</strong></p>
+<p>
+<a href=https://stackoverflow.com/questions/11618898/pg-config-executable-not-found title=stackoverflow.com rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+stackoverflow.com
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ which pg_config
+pg_config not found
+
+<span style=color:#75715e># mac</span>
+$ brew install postgresql@11
+$ ll /usr/local/Cellar | grep postgresql
+drwxr-xr-x  <span style=color:#ae81ff>3</span> lan  admin    96B <span style=color:#ae81ff>12</span> <span style=color:#ae81ff>27</span> 12:00 postgresql@11
+
+<span style=color:#75715e># pg_config 在 bin 目录下，添加到环境变量内</span>
+$ PATH<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/usr/local/Cellar/postgresql@11/11.17_3/bin:</span>$PATH<span style=color:#e6db74>&#34;</span>
+$ pip install psycopg2
+Successfully installed psycopg2-2.9.5
+</code></pre></div><p>刚开始下载的 <code>postgresql@14</code> 失败，报错需要安装 python3.9，安装了 11 版本，问题解决。</p>
+<h2 id=crypto-import-error-导包失败>Crypto: import error 导包失败</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> Crypto.Cipher <span style=color:#f92672>import</span> AES
+<span style=color:#75715e># 出现 import error</span>
+</code></pre></div><p>解决</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ pip install pycryptodome
+<span style=color:#75715e># 进入 \Lib\site-packages</span>
+<span style=color:#75715e># 将 crypto 首字母小写改为大写</span>
+</code></pre></div>
 </div>
 <footer class=post-footer>
 <div class=post-tags>

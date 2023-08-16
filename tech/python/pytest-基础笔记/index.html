@@ -1,0 +1,673 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Python - Pytest 基础笔记">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - Pytest 基础笔记">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/python/pytest-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2023-04-05 10:32:29 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-16 13:57:49 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"pytest-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0","permalink":"https://abeelan.github.io/tech/python/pytest-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/","title":"Python - Pytest 基础笔记"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Python - Pytest 基础笔记 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>282</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#通过-python-调用>通过 python 调用</a></li>
+<li><a href=#命令行参数>命令行参数</a></li>
+<li><a href=#对异常断言>对异常断言</a></li>
+<li><a href=#autouse>autouse</a></li>
+<li><a href=#重写-fixtures>重写 fixtures</a>
+<ul>
+<li><a href=#在-conftest-层重写>在 conftest 层重写</a></li>
+<li><a href=#在-module-层重写>在 module 层重写</a></li>
+<li><a href=#参数化重写>参数化重写</a></li>
+</ul>
+</li>
+<li><a href=#monkeypatch>Monkeypatch</a></li>
+<li><a href=#临时文件>临时文件</a></li>
+<li><a href=#捕获警告信息>捕获警告信息</a></li>
+<li><a href=#skip-和-xfail>skip 和 xfail</a></li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>282</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>24</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=281035></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=720></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-05-11T11:03:40+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pytest-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Python - Pytest 基础笔记">
+<meta itemprop=description content="通过 python 调用 $ python -m pytest [...] 等同于直接调用 pytest，通过 python 调用会将当前目录添加到 sys.path 退出码 Exit code 0: 找到所有测试用例并测试通过 Exit code 1: 部分用例运行失败 Exit">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Python - Pytest 基础笔记 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-04-05 10:32:29 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-05 10:32:29 +0000 UTC">2023-04-05</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-16T13:57:49+00:00 itemprop=dateModified datetime=2023-08-16T13:57:49+00:00>2023-08-16</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>1941</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>4分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/python/pytest-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<h2 id=通过-python-调用>通过 python 调用</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ python -m pytest <span style=color:#f92672>[</span>...<span style=color:#f92672>]</span>
+</code></pre></div><p>等同于直接调用 pytest，通过 python 调用会将当前目录添加到 sys.path</p>
+<p>退出码</p>
+<ul>
+<li>Exit code 0: 找到所有测试用例并测试通过</li>
+<li>Exit code 1: 部分用例运行失败</li>
+<li>Exit code 2: 用户中断了测试</li>
+<li>Exit code 3: 执行过程中发生了内部错误</li>
+<li>Exit code 4: pytest 命令行使用错误</li>
+<li>Exit code 5: 没有找到任何测试用例</li>
+</ul>
+<h2 id=命令行参数>命令行参数</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#75715e># 显示 pytest 的 import 的路径</span>
+$ pytest --version
+<span style=color:#75715e># 显示所有 fixtures</span>
+$ pytest --fixtures
+<span style=color:#75715e># 显示帮助信息</span>
+$ pytest -h | --help
+
+<span style=color:#75715e># 说明：可以输出用例更加详细的执行信息，比如用例所在的文件及用例名称等</span>
+$ pytest -v 
+<span style=color:#75715e># 说明：输出用例中的调试信息，比如控制台打印信息等</span>
+$ pytest -s 
+<span style=color:#75715e># 说明：标记，执行特定的测试用例</span>
+$ pytest -m 
+<span style=color:#75715e># 说明：&#34;关键字&#34;执行用例包含“关键字”的用例</span>
+$ pytest -k 
+<span style=color:#75715e># 说明：简化控制台的输出，两个.. 点代替了 pass 结果</span>
+$ pytest -q 
+<span style=color:#75715e># 控制台输入不展示警告信息</span>
+$ pytest -v -p no:warnings --color<span style=color:#f92672>=</span>yes
+
+<span style=color:#75715e># 按 features 运行测试用例</span>
+$ pytest --alluredir<span style=color:#f92672>=</span>report/xml --allure_features<span style=color:#f92672>=</span>测试登录功能 test_case.py
+
+<span style=color:#75715e># 按 story 运行测试用例</span>
+$ pytest --alluredir<span style=color:#f92672>=</span>report/xml --allure_stories<span style=color:#f92672>=</span>测试登录成功的场景 test_case.py
+
+<span style=color:#75715e># 按 severity 运行测试用例</span>
+$ pytest --alluredir<span style=color:#f92672>=</span>report/xml --allure_severities<span style=color:#f92672>=</span>blocker test_case.py
+
+<span style=color:#e6db74>&#34;&#34;&#34; 指定失败次数后停止
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+<span style=color:#75715e># 用例失败1次后停止执行</span>
+$ pytest -x
+<span style=color:#75715e># 用例失败5次后停止执行</span>
+$ pytest --maxfail<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>
+
+<span style=color:#e6db74>&#34;&#34;&#34; 运行指定测试用例
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+$ pytest test_demo.py
+<span style=color:#75715e># 指定目录</span>
+$ pytest test/
+<span style=color:#75715e># 指定关键字：包含 demo 且 不包含 foo 的用例</span>
+<span style=color:#75715e># and not 是表达式</span>
+$ pytest -k <span style=color:#e6db74>&#34;demo and not foo&#34;</span>
+<span style=color:#75715e># 通过 :: 指定</span>
+$ pytest test_demo.py::TestClass::test_method
+<span style=color:#75715e># 通过标签指定 @pytest.mark.smoke</span>
+$ pytest -m smoke
+
+<span style=color:#e6db74>&#34;&#34;&#34; 修改 traceback 的打印
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+<span style=color:#75715e># 在回溯信息中显示本地变量</span>
+$ pytest --showlocals
+$ pytest -1 
+<span style=color:#75715e># 不同信息显示方式，auto 为默认</span>
+$ pytest --tb<span style=color:#f92672>=</span>auto | long | short | line | native | no
+
+<span style=color:#e6db74>&#34;&#34;&#34; 生成简略的报告汇总
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+$ pytest -ra 
+<span style=color:#75715e># 可追加参数列表如下：</span>
+f - failed
+E - error
+s - skipped
+x - xfailed
+X - xpassed
+p - passed
+P - passed with output
+a - all except pP
+
+<span style=color:#e6db74>&#34;&#34;&#34; 分析测试时间
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+<span style=color:#75715e># 显示最慢的 10 个测试步骤</span>
+<span style=color:#75715e># 小于 0.01s 不会显示异常，如需显示，追加 -vv 参数</span>
+$ pytest --durations<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>
+
+<span style=color:#75715e># 禁用插件 doctest</span>
+$ pytest -p no:doctest
+
+<span style=color:#e6db74>&#34;&#34;&#34; 在 python 代码中运行 pytest
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+pytest.main<span style=color:#f92672>()</span>
+pytest.main<span style=color:#f92672>([</span><span style=color:#e6db74>&#39;-x&#39;</span>, <span style=color:#e6db74>&#39;testdir&#39;</span><span style=color:#f92672>])</span>
+<span style=color:#75715e># 指定插件</span>
+pytest.main<span style=color:#f92672>([</span><span style=color:#e6db74>&#39;-q&#39;</span><span style=color:#f92672>]</span>, plugins<span style=color:#f92672>=[</span>MyPlugins<span style=color:#f92672>()])</span>
+</code></pre></div><h2 id=对异常断言>对异常断言</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> pytest
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_exc</span>():
+    <span style=color:#66d9ef>with</span> pytest<span style=color:#f92672>.</span>raises(<span style=color:#a6e22e>ZeroDivisionError</span>):
+        <span style=color:#ae81ff>1</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>0</span>
+        
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_excinfo</span>():
+    <span style=color:#66d9ef>with</span> pytest<span style=color:#f92672>.</span>raises(<span style=color:#a6e22e>RuntimeError</span>) <span style=color:#66d9ef>as</span> excinfo:
+        <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>f</span>():
+            f()
+    	f()
+    <span style=color:#66d9ef>assert</span> <span style=color:#e6db74>&#34;Maximun recursion&#34;</span> <span style=color:#f92672>in</span> str(excinfo<span style=color:#f92672>.</span>value)
+
+<span style=color:#75715e># excinfo 包含了异常的详细信息，属性为 type、value、traceback</span>
+<span style=color:#75715e># 可以通过 match 参数来正则匹配一个异常发生</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>func</span>():
+    <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#34;Exception 123 raised&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_excinfo_match</span>():
+    <span style=color:#66d9ef>with</span> pytest<span style=color:#f92672>.</span>raises(<span style=color:#a6e22e>ValueError</span>, match<span style=color:#f92672>=</span><span style=color:#e6db74>r</span><span style=color:#e6db74>&#34;.* 123 .*&#34;</span>):
+        func()
+        
+        
+<span style=color:#75715e># pytest.warns 来判断是否产生了特定的警告信息</span>
+<span style=color:#75715e># conftets.py</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>pytest_assertrepr_compare</span>(config, op, left, right)
+	<span style=color:#75715e># 自定义断言注释</span>
+    <span style=color:#66d9ef>if</span> isinstance(left, Demo) <span style=color:#f92672>and</span> isinstance(right, Demo) <span style=color:#f92672>and</span> op<span style=color:#f92672>==</span><span style=color:#e6db74>&#34;==&#34;</span>:
+        <span style=color:#66d9ef>return</span> [<span style=color:#e6db74>&#34;test：&#34;</span>, <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>left<span style=color:#f92672>.</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74> != </span><span style=color:#e6db74>{</span>right<span style=color:#f92672>.</span>val<span style=color:#e6db74>}</span><span style=color:#e6db74>]</span>
+    <span style=color:#f92672>...</span>
+</code></pre></div><h2 id=autouse>autouse</h2>
+<ul>
+<li>
+<p>pytest.fixture(autouse=True)表示无需其他声明会自动调用这个 fixture</p>
+</li>
+<li>
+<p>autouse fixture 遵守 scope 的定义，如果为 session，则无论定义在哪儿都只会运行一次，如果为 class，则表示在每个 class 中只运行一次。</p>
+</li>
+<li>
+<p>如果在 conftest.py 中定义了 autouse，那么该目录下所有的测试用例都会自动使用该 fixture</p>
+</li>
+</ul>
+<p>谨慎使用该功能，如果只是希望提在项目中提供一个 fixture，而不是想要在每个测试用例中激活使用的，那么可以将 fixture 移动到 conftest.py 中并不要定义 autouse</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># conftest.py</span>
+<span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>fixture
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>demo</span>(request, db):
+	db<span style=color:#f92672>.</span>begin()
+	<span style=color:#66d9ef>yield</span>
+	db<span style=color:#f92672>.</span>rollback()
+
+<span style=color:#75715e># use</span>
+<span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>mark<span style=color:#f92672>.</span>usefixtures(<span style=color:#e6db74>&#34;demo&#34;</span>)
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestClass</span>:
+	<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_method</span>(self)
+		<span style=color:#f92672>...</span>
+</code></pre></div><p>TestClass 内所有的用例都会调用 demo fixture，而其他测试类或测试函数则不会调用，除非他们也添加了 fixture 的引用。</p>
+<h2 id=重写-fixtures>重写 fixtures</h2>
+<h3 id=在-conftest-层重写>在 conftest 层重写</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>tests<span style=color:#f92672>/</span>
+	__init__<span style=color:#f92672>.</span>py
+	conftest<span style=color:#f92672>.</span>py
+        <span style=color:#f92672>import</span> pytest
+        <span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>fixture
+        <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>username</span>(): 
+            <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;username&#34;</span>
+    test_something<span style=color:#f92672>.</span>py
+		<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_username</span>(username): 
+            <span style=color:#66d9ef>assert</span> username <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;username&#34;</span>
+     
+	subfolder<span style=color:#f92672>/</span>
+		__init__<span style=color:#f92672>.</span>py
+		conftest<span style=color:#f92672>.</span>py    
+			<span style=color:#f92672>import</span> pytest
+            <span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>fixture
+			<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>username</span>(username):
+				<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;overridden‐username&#34;</span>
+		test_something<span style=color:#f92672>.</span>py
+			<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_username</span>(username):
+				<span style=color:#66d9ef>assert</span> username <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;overridden‐username&#34;</span>
+</code></pre></div><h3 id=在-module-层重写>在 module 层重写</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>tests<span style=color:#f92672>/</span>
+	__init__<span style=color:#f92672>.</span>py
+	conftest<span style=color:#f92672>.</span>py
+        <span style=color:#f92672>import</span> pytest
+        <span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>fixture
+        <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>username</span>(): 
+            <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;username&#34;</span>
+    test_something<span style=color:#f92672>.</span>py
+    	<span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>fixture
+        <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>username</span>():
+            <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;overridden‐username&#34;</span>
+		<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_username</span>(username): 
+            <span style=color:#66d9ef>assert</span> username <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;overridden‐username&#34;</span>
+</code></pre></div><h3 id=参数化重写>参数化重写</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>tests<span style=color:#f92672>/</span>
+	__init__<span style=color:#f92672>.</span>py
+	conftest<span style=color:#f92672>.</span>py
+        <span style=color:#f92672>import</span> pytest
+        <span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>fixture
+        <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>username</span>(): 
+            <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;username&#34;</span>
+    test_something<span style=color:#f92672>.</span>py
+    	<span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>mark,parametrize(<span style=color:#e6db74>&#34;username&#34;</span>, [<span style=color:#e6db74>&#39;username-demo&#39;</span>])
+        <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_username</span>(username):
+            <span style=color:#66d9ef>assert</span> username <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;username-demo&#34;</span>
+</code></pre></div><h2 id=monkeypatch>Monkeypatch</h2>
+<p>有时我们需要修改函数的全局配置或类似网络访问这些不容易测试的代码。monkeypatch 可以用来安全的设置、删除一个属性、字典项或环境变量。</p>
+<h2 id=临时文件>临时文件</h2>
+<ul>
+<li>可以通过 tmp_path 来提供一个唯一的临时文件夹供函数调用。</li>
+<li>tmp_path_factory：是一个 session 作用域的 fixture，可以在任意的 fixture 或者用例中创建任何想要的临时文件</li>
+<li>tmpdir：可以为测试用例提供一个唯一的临时文件夹。</li>
+<li>tmpdir_factory</li>
+</ul>
+<h2 id=捕获警告信息>捕获警告信息</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> warnings
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>api_v1</span>():
+    warnings<span style=color:#f92672>.</span>warn(<span style=color:#a6e22e>UserWarning</span>(<span style=color:#e6db74>&#34;api v1, should use func from v2&#34;</span>))
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_demo</span>():
+    <span style=color:#66d9ef>assert</span> apu_v1() <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>
+</code></pre></div><p>运行用例后，会在日志信息内展示警告信息。</p>
+<p>-W 参数可以用来控制是否显示警告，甚至控制是否将警告转为 Error</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ pytest -q test_demo.py -W error::UserWarning
+</code></pre></div><p>将警告信息转为报错。</p>
+<p>在 pytest.ini 中也可以控制警告。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-ini data-lang=ini><span style=color:#66d9ef>[pytest]</span>
+<span style=color:#75715e># 忽略所有的用户告警，但是会将其他的所有告警转换成 error</span>
+<span style=color:#a6e22e>filterwarnings</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>
+</span><span style=color:#e6db74>	error
+</span><span style=color:#e6db74>	ignore::UserWarning</span>
+	
+<span style=color:#75715e># 禁止捕获告警</span>
+<span style=color:#a6e22e>addopts</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>-p no::warnings</span>
+
+<span style=color:#75715e># 废弃告警和将要废弃告警</span>
+<span style=color:#75715e># 忽略能够匹配所给正则表达式的DeprecationWarning</span>
+<span style=color:#a6e22e>filterwarnings</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>
+</span><span style=color:#e6db74>	ignore:.*U.*mode is deprecated:DeprecationWarning</span>
+</code></pre></div><p>当一个告警与多个配置匹配的话，那么放在最后的配置项生效。</p>
+<h2 id=skip-和-xfail>skip 和 xfail</h2>
+<p>跳过测试用例</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 方式一 装饰器</span>
+<span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>mark<span style=color:#f92672>.</span>skip(reason<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;skip test&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_skip</span>():
+    <span style=color:#f92672>...</span>
+
+<span style=color:#75715e># 方式二 代码内</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_skip2</span>():
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> flag:
+        pytest<span style=color:#f92672>.</span>skip(<span style=color:#e6db74>&#34;flag is False, skip!&#34;</span>)
+</code></pre></div><p>跳过整个模块</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
+<span style=color:#f92672>import</span> pytest
+
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> sys<span style=color:#f92672>.</span>platform<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;win&#34;</span>):
+    pytest<span style=color:#f92672>.</span>skip(<span style=color:#e6db74>&#34;skipping windows-only tests&#34;</span>, allow_module_level<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</code></pre></div><p>可以使用 skipif 控制在某些条件下跳过测试。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
+<span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>mark<span style=color:#f92672>.</span>skipif(sys<span style=color:#f92672>.</span>version_info <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>6</span>), reason<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;require python 3.6 or higher&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_func</span>():
+    <span style=color:#f92672>...</span>
+</code></pre></div><p>在查找用例时，如果判断 skipif 的条件是 True，该用例会被跳过。</p>
+<p>可以再各个模块中共享 skipif 标记。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># test_module.py</span>
+<span style=color:#f92672>import</span> module_name
+minversion <span style=color:#f92672>=</span> pytest<span style=color:#f92672>.</span>mark<span style=color:#f92672>.</span>skipif(
+	module_name<span style=color:#f92672>.</span>__versioninfo__ <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>),
+    reason<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;at least module-1.1 required&#34;</span>
+)
+
+<span style=color:#a6e22e>@minversion</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_func</span>():
+    <span style=color:#f92672>...</span>
+    
+<span style=color:#75715e># test_other_module.py</span>
+<span style=color:#f92672>from</span> test_module <span style=color:#f92672>import</span> minversion
+
+<span style=color:#a6e22e>@minversion</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_module</span>():
+    <span style=color:#f92672>...</span>
+</code></pre></div><p>在大型项目中一般将这些共享标记放在一个文件里供其他模块调用。</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python>
+Python
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+<a href=/tech/python/pytest-setup%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%AF%8F%E6%9D%A1%E7%94%A8%E4%BE%8B%E9%83%BD%E4%BC%9A%E9%87%8D%E7%BD%AE/ rel=next title="Python - Pytest Setup中的实例变量每条用例都会重置">
+<i class="fa fa-chevron-left"></i> Python - Pytest Setup中的实例变量每条用例都会重置
+</a>
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/python/pytest-html-%E6%8A%A5%E5%91%8A/ rel=prev title="Python - Pytest Html 报告">
+Python - Pytest Html 报告
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

@@ -8,34 +8,34 @@
 <link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
 <link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
 <link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
-<meta itemprop=name content="Python - Python 运行报错记录">
+<meta itemprop=name content="Python - Pytest Xdist 分布式执行">
 <meta itemprop=description content="It's better late than never.">
 <meta itemprop=datePublished zgotmplz>
 <meta itemprop=dateModified zgotmplz>
 <meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
 <meta itemprop=keywords content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python - Python 运行报错记录">
+<meta property="og:title" content="Python - Pytest Xdist 分布式执行">
 <meta property="og:description" content="It's better late than never.">
 <meta property="og:image" content="/imgs/avatar.png">
 <meta property="og:image:width" content="312">
 <meta property="og:image:height" content="312">
 <meta property="og:image:type" content="image/jpeg/png/svg/jpg">
-<meta property="og:url" content="https://abeelan.github.io/tech/python/python-%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/">
+<meta property="og:url" content="https://abeelan.github.io/tech/python/pytest-xdist-%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%A7%E8%A1%8C/">
 <meta property="og:site_name" content="ABEE">
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
-<meta property="article:published_time" content="2023-08-14 19:18:20 +0000 UTC">
-<meta property="article:modified_time" content="2023-08-15 01:01:05 +0000 UTC">
+<meta property="article:published_time" content="2023-04-05 10:32:22 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-16 13:53:01 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
 <link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
 <style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
 <script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
-<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"python-%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95","permalink":"https://abeelan.github.io/tech/python/python-%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/","title":"Python - Python 运行报错记录"}</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"pytest-xdist-%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%A7%E8%A1%8C","permalink":"https://abeelan.github.io/tech/python/pytest-xdist-%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%A7%E8%A1%8C/","title":"Python - Pytest Xdist 分布式执行"}</script>
 <script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
-<title>Python - Python 运行报错记录 - ABEE</title>
+<title>Python - Pytest Xdist 分布式执行 - ABEE</title>
 <noscript>
 <link rel=stylesheet href=/css/noscript.css>
 </noscript>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>261</span>
+<span class=badge>282</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -128,9 +128,17 @@
 <div class="post-toc-wrap sidebar-panel">
 <div class="post-toc animated"><nav id=TableOfContents>
 <ul>
+<li><a href=#安装>安装</a></li>
+<li><a href=#使用>使用</a>
+<ul>
+<li><a href=#分发算法配置>分发算法配置</a></li>
+</ul>
+</li>
+<li><a href=#工作原理>工作原理</a></li>
 <li><a href=#遇到的问题>遇到的问题</a>
 <ul>
-<li><a href=#报错一>报错一</a></li>
+<li><a href=#如何让-scopesession-的-fixture-在-test-session-中仅仅执行一次>如何让 scope=session 的 fixture 在 test session 中仅仅执行一次</a></li>
+<li><a href=#小栗子>小栗子</a></li>
 </ul>
 </li>
 </ul>
@@ -146,7 +154,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>261</span>
+<span class=site-state-item-count>282</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -198,15 +206,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=270490></div>
+<div class=item-count id=wordsCount data-count=281035></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=686></div>
+<div class=item-count id=readTimes data-times=720></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-04-05T10:19:40+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2021-05-11T11:03:40+00:00></div>
 </div>
 </div>
 </div>
@@ -233,7 +241,7 @@
 <div class="main-inner post posts-expand">
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/python-%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pytest-xdist-%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%A7%E8%A1%8C/>
 <span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
 <meta itemprop=image content="/imgs/avatar.png">
 <meta itemprop=name content="ABEE">
@@ -243,11 +251,11 @@
 <meta itemprop=description content="It's better late than never.">
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Python - Python 运行报错记录">
-<meta itemprop=description content="遇到的问题 报错一 【Python】Library not loaded: /usr/local/opt/openssl/lib/libssl.1.0.0.dylib Mac Big Sur 11.5.1 运行 python 程序出现报错： import ssl File &#34;/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py&#34;, line 98, in <module> import _ssl # if we can't import it, let the error propagate ImportError: dlopen(/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload/_ssl.cpython-37m-darwin.so, 2): Library not loaded: /usr/local/opt/openssl/lib/libssl.1.0.0.dylib Referenced from: /usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload/_ssl.cpython-37m-darwin.so">
+<meta itemprop=name content="Python - Pytest Xdist 分布式执行">
+<meta itemprop=description content="分布式测试插件： pytest-xdist 安装 $ pip install pytest-xdist 使用 测试代码准备 class Test: def test_sleep_2(self): sleep(2) assert False def test_sleep_3(self): sleep(3) assert True # 未使用插件执行，共等待 5 秒 $ pytest test_xdist.py # 1 failed, 1 passed in 5.22s # 调起 2 个进程执行任务">
 </span>
 <header class=post-header>
-<h1 class=post-title itemprop="name headline">Python - Python 运行报错记录 </h1>
+<h1 class=post-title itemprop="name headline">Python - Pytest Xdist 分布式执行 </h1>
 <div class=post-meta-container>
 <div class=post-meta-items>
 <span class=post-meta-item>
@@ -255,14 +263,14 @@
 <i class="far fa-calendar"></i>
 </span>
 <span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-08-14 19:18:20 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 19:18:20 +0000 UTC">2023-08-14</time>
+<time title="发表于：2023-04-05 10:32:22 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-04-05 10:32:22 +0000 UTC">2023-04-05</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
+<time title=修改时间：2023-08-16T13:53:01+00:00 itemprop=dateModified datetime=2023-08-16T13:53:01+00:00>2023-08-16</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -281,14 +289,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>225</span>
+<span class=post-meta-item-text>字数：</span><span>1392</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>1分钟</span>
+<span>3分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -297,7 +305,7 @@
 <span class=post-meta-item-text>
 浏览：
 </span>
-<span id=busuanzi_value_page_pv data-path=/tech/python/python-%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99%E8%AE%B0%E5%BD%95/>
+<span id=busuanzi_value_page_pv data-path=/tech/python/pytest-xdist-%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%A7%E8%A1%8C/>
 <i class="fa fa-sync fa-spin"></i>
 </span>
 </span>
@@ -305,25 +313,92 @@
 </div>
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
+<p>分布式测试插件：
+<a href=https://pypi.org/project/pytest-xdist title=pytest-xdist rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+pytest-xdist
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<h2 id=安装>安装</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell>$ pip install pytest-xdist
+</code></pre></div><h2 id=使用>使用</h2>
+<p>测试代码准备</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Test</span>:
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_sleep_2</span>(self):
+        sleep(<span style=color:#ae81ff>2</span>)
+        <span style=color:#66d9ef>assert</span> <span style=color:#66d9ef>False</span>
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_sleep_3</span>(self):
+        sleep(<span style=color:#ae81ff>3</span>)
+        <span style=color:#66d9ef>assert</span> <span style=color:#66d9ef>True</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 未使用插件执行，共等待 5 秒</span>
+$ pytest test_xdist.py
+<span style=color:#75715e>#  1 failed, 1 passed in 5.22s</span>
+
+<span style=color:#75715e># 调起 2 个进程执行任务</span>
+$ pytest -n <span style=color:#ae81ff>2</span>
+<span style=color:#75715e># 1 failed, 1 passed in 3.87s</span>
+
+<span style=color:#75715e># 调起与计算机 CPU 内核一样多的进程</span>
+$ pytest -n auto
+<span style=color:#75715e># 1 failed, 1 passed in 4.84s</span>
+</code></pre></div><p>由于启动 CPU 进程也需要时间，所以用例较少的情况下，8 个进程甚至比 2 个进程消耗的时间还要长。用例过多的情况下，系统资源占用过高，导致性能下降。</p>
+<p>因此，不推荐使用 <code>auto</code> 参数，指定一半的进程数给测试任务就可以了。</p>
+<h3 id=分发算法配置>分发算法配置</h3>
+<ul>
+<li>&ndash;dist load：默认算法，分发用例给任何可用于执行的进程，不保证顺序；</li>
+<li>&ndash;dist loadscope：根据类分组，同一个类下的测试用例都分配给同一个进程运行；</li>
+<li>&ndash;dist loadfile：根据 py 文件分组，同一个文件内的用例分配给同一个进程运行，当文件数小于进程数时，启动文件数个进程；</li>
+<li>&ndash;dist each：每个进程都会运行此用例，也就是有多少个进程用例就运行多少遍。</li>
+<li>&ndash;dist no：不使用并发执行</li>
+</ul>
+<h2 id=工作原理>工作原理</h2>
+<ol>
+<li>控制器在测试开始时根据 -n 参数指定的值产生一个或多个工人，每个工人就是一个迷你的执行器；</li>
+<li>工人收集完成的测试用例，将测试集发送会控制器，控制器本身不执行任何收集；</li>
+<li>控制器接收所有工人反馈的集合，并执行一些健壮性检查以确保所有工人收集的测试是相同的，如果出现不同，则退出。</li>
+<li>如果都相同，那么将测试集合转换为简单索引列表，与原测试集合索引位置相同，这样做可以节省带宽，控制器分配给工人需要执行的索引列表，工人根据列表内 ID 执行测试集合内对应的任务；</li>
+<li>如果 &ndash;dist each，则向每一个工人都发送完整的测试索引列表；</li>
+<li>如果 &ndash;dist load，每次分配大约 25% 的索引列表给每个工人，剩余任务等工人执行完成后继续分发；</li>
+<li>当工人执行完全部任务时，会将结果返回给控制器，控制器就可以继续使用其他插件，比如报告插件；</li>
+<li>全部工作执行完成后，控制器向工人发送关闭信号，进程结束。</li>
+</ol>
 <h2 id=遇到的问题>遇到的问题</h2>
-<h3 id=报错一>报错一</h3>
-<p>【Python】Library not loaded: /usr/local/opt/openssl/lib/libssl.1.0.0.dylib</p>
-<blockquote>
-<p>Mac Big Sur 11.5.1</p>
-</blockquote>
-<p>运行 python 程序出现报错：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>import ssl
- File <span style=color:#e6db74>&#34;/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/ssl.py&#34;</span>, line 98, in &lt;module&gt;
-   import _ssl             <span style=color:#75715e># if we can&#39;t import it, let the error propagate</span>
-ImportError: dlopen<span style=color:#f92672>(</span>/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload/_ssl.cpython-37m-darwin.so, 2<span style=color:#f92672>)</span>: Library not loaded: /usr/local/opt/openssl/lib/libssl.1.0.0.dylib
- Referenced from: /usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload/_ssl.cpython-37m-darwin.so
- Reason: image not found
-</code></pre></div><p>原因是升级了 OpenSSL，重新下载低版本软链即可。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-Bash data-lang=Bash>$ brew install rbenv/tap/openssl@1.0
-$ ln -sfn /usr/local/Cellar/openssl@1.0/1.0.2t /usr/local/opt/openssl
-</code></pre></div><blockquote>
-<p>参考：https://stackoverflow.com/questions/59006602/dyld-library-not-loaded-usr-local-opt-openssl-lib-libssl-1-0-0-dylib</p>
-</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>ERROR collecting：Different tests were collected between gw0 and gw1 
+</code></pre></div><p>原因是参数化测试用例，使用了随机值，导致并发收集测试用例时，<code>gw0</code> 和 <code>gw1</code> 两个工人收集到的 test id 出现不一致，解决这个问题的办法就是使用固定的参数，即参数生成好后存放起来，再传给参数化装饰器。</p>
+<p>在
+<a href=https://github.com/pytest-dev/pytest-xdist/issues/432 title=GitHub rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+GitHub
+<i class="fa fa-external-link-alt"></i>
+</a> 上找到了关于这个错误的解释，设计如此，所以修改自己的测试用例吧！</p>
+<h3 id=如何让-scopesession-的-fixture-在-test-session-中仅仅执行一次>如何让 scope=session 的 fixture 在 test session 中仅仅执行一次</h3>
+<p>pytest-xdist是让每个worker进程执行属于自己的测试用例集下的所有测试用例</p>
+<p>这意味着在不同进程中，不同的测试用例可能会调用同一个scope范围级别较高（例如session）的fixture，该fixture则会被执行多次，这不符合scope=session的预期。</p>
+<p>解决办法：虽然pytest-xdist没有内置的支持来确保会话范围的夹具仅执行一次，但是可以通过使用锁定文件进行进程间通信来实现。</p>
+<h3 id=小栗子>小栗子</h3>
+<ol>
+<li>下面的示例只需要执行一次login（因为它是只需要执行一次来定义配置选项，等等）</li>
+<li>当第一次请求这个fixture时，则会利用FileLock仅产生一次fixture数据</li>
+<li>当其他进程再次请求这个fixture时，则会从文件中读取数据</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> pytest
+<span style=color:#f92672>from</span> filelock <span style=color:#f92672>import</span> FileLock
+
+
+<span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>fixture(scope<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;session&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>login</span>():
+    print(<span style=color:#e6db74>&#34;====登录功能，返回账号，token===&#34;</span>)
+    <span style=color:#66d9ef>with</span> FileLock(<span style=color:#e6db74>&#34;session.lock&#34;</span>):
+        name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;testyy&#34;</span>
+        token <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;npoi213bn4&#34;</span>
+        <span style=color:#75715e># web ui自动化</span>
+        <span style=color:#75715e># 声明一个driver，再返回</span>
+
+        <span style=color:#75715e># 接口自动化</span>
+        <span style=color:#75715e># 发起一个登录请求，将token返回都可以这样写</span>
+
+    <span style=color:#66d9ef>yield</span> name, token
+    print(<span style=color:#e6db74>&#34;====退出登录！！！====&#34;</span>)
+</code></pre></div>
 </div>
 <footer class=post-footer>
 <div class=post-tags>
@@ -349,13 +424,13 @@ Python
 </div>
 <div class=post-nav>
 <div class="post-nav-next post-nav-item">
-<a href=/tech/python/pycharm-jetbrains%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/ rel=next title="Python - Pycharm Jetbrains全家桶无法打开">
-<i class="fa fa-chevron-left"></i> Python - Pycharm Jetbrains全家桶无法打开
+<a href=/tech/python/pytest-rerunstimeout%E6%8F%92%E4%BB%B6%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/ rel=next title="Python - Pytest Reruns&Timeout插件兼容性问题">
+<i class="fa fa-chevron-left"></i> Python - Pytest Reruns&Timeout插件兼容性问题
 </a>
 </div>
 <div class="post-nav-prev post-nav-item">
-<a href=/tech/python/pytest-hook%E6%8F%92%E4%BB%B6/ rel=prev title="Python - Pytest Hook插件">
-Python - Pytest Hook插件
+<a href=/tech/git/%E8%AE%B0%E5%BD%95%E5%90%91%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8F%90%E4%BA%A4pr%E8%BF%87%E7%A8%8B/ rel=prev title="Git - 记录向开源项目提交Pr过程">
+Git - 记录向开源项目提交Pr过程
 <i class="fa fa-chevron-right"></i>
 </a>
 </div>
