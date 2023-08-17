@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-07-11 15:02:37 +0000 UTC">
-<meta property="article:modified_time" content="2023-08-17 01:00:05 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-18 01:00:06 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -128,27 +128,21 @@
 <div class="post-toc-wrap sidebar-panel">
 <div class="post-toc animated"><nav id=TableOfContents>
 <ul>
-<li><a href=#内置函数使用>内置函数使用</a>
+<li><a href=#内置函数使用>内置函数使用</a></li>
+<li><a href=#请求体中字符转义问题>请求体中字符转义问题</a></li>
+<li><a href=#断言>断言</a>
 <ul>
-<li><a href=#相加函数intsum>相加函数（intSum）</a></li>
-</ul>
-</li>
-<li><a href=#脚本>脚本</a>
-<ul>
-<li><a href=#控制台常用代码片段>控制台常用代码片段</a></li>
+<li><a href=#正则>正则</a></li>
 </ul>
 </li>
 <li><a href=#场景>场景</a>
 <ul>
-<li><a href=#循环控制器>循环控制器</a>
-<ul>
-<li><a href=#for>for</a></li>
-</ul>
-</li>
-<li><a href=#自定义脚本>自定义脚本</a></li>
+<li><a href=#条件控制器>条件控制器</a></li>
+<li><a href=#循环控制器---foreach>循环控制器 - ForEach</a></li>
 <li><a href=#使用-csv-文件参数化>使用 csv 文件参数化</a></li>
 </ul>
 </li>
+<li><a href=#自定义脚本>自定义脚本</a></li>
 </ul>
 </nav></div>
 </div>
@@ -214,7 +208,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=281035></div>
+<div class=item-count id=wordsCount data-count=280798></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -222,7 +216,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-04-05T10:32:22+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-04-23T18:19:08+00:00></div>
 </div>
 </div>
 </div>
@@ -260,7 +254,7 @@
 </span>
 <span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
 <meta itemprop=name content="Jmeter&Ms - 使用方法汇总">
-<meta itemprop=description content="内置函数使用 参考地址：https://zhuanlan.zhihu.com/p/559416002 整型加法：${__intSum(${use">
+<meta itemprop=description content="内置函数使用 请求参数栏或请求体转为 JSON-SCHEMA 后，参数值输入框中有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。 时间函数： 时">
 </span>
 <header class=post-header>
 <h1 class=post-title itemprop="name headline">Jmeter&Ms - 使用方法汇总 </h1>
@@ -278,7 +272,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-17T01:00:05+00:00 itemprop=dateModified datetime=2023-08-17T01:00:05+00:00>2023-08-17</time>
+<time title=修改时间：2023-08-18T01:00:06+00:00 itemprop=dateModified datetime=2023-08-18T01:00:06+00:00>2023-08-18</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -297,7 +291,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>681</span>
+<span class=post-meta-item-text>字数：</span><span>797</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -322,52 +316,67 @@
 </header>
 <div class="post-body autonumber" itemprop=articleBody>
 <h2 id=内置函数使用>内置函数使用</h2>
-<p>参考地址：https://zhuanlan.zhihu.com/p/559416002</p>
-<p>整型加法：<code>${__intSum(${user_total},1)}</code></p>
-<p>时间戳(13位)：<code>${__time}</code></p>
-<p>当前时间 <code>${__timeShift(,,,,)}</code></p>
-<p>增加一天 <code>${__timeShift(,,P1d,,)}</code></p>
-<p>增加一H <code>${__timeShift(,,PT1H,,)}</code></p>
-<p>当前时间格式化：</p>
+<p>请求参数栏或请求体转为 JSON-SCHEMA 后，参数值输入框中有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。</p>
+<p>时间函数：</p>
 <ul>
-<li><code>${__timeShift(yyyy-MM-dd HH:mm,,,,)}</code> ==> <code>2023-07-26 18:53</code></li>
-<li><code>${__timeShift(yyyy-MM,,,,)}</code>==> <code>2023-08</code></li>
+<li>时间戳(13位)：<code>${__time}</code></li>
 </ul>
+<p>时间格式化函数：</p>
+<ul>
+<li>
+<p>当前时间：<code>${__timeShift(,,,,)}</code></p>
+</li>
+<li>
+<p>当前时间增加一天： <code>${__timeShift(,,P1d,,)}</code></p>
+</li>
+<li>
+<p>当前时间减小一小时： <code>${__timeShift(,,PT-1H,,)}</code></p>
+</li>
+<li>
+<p>当前时间格式化展示：<code>${__timeShift(yyyy-MM-dd HH:mm,,,,)}</code> ==> <code>2023-07-26 18:53</code></p>
+</li>
+<li>
+<p>当前时间仅显示年月：<code>${__timeShift(yyyy-MM,,,,)}</code>==> <code>2023-08</code></p>
+</li>
+<li>
 <p>当前时间格式化加一分钟：<code>${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)}</code> ==> <code>2023-07-26 18:54</code></p>
-<h3 id=相加函数intsum>相加函数（intSum）</h3>
-<p>使用场景：断言、参数计算</p>
-<p>使用方法：<code>${__intSum(${id2},1)}</code>，其中 <code>${id2}</code> 是从接口提取出来的值。代表计算 id2 增加 1 后的结果。</p>
-<p>参数编写栏 有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。</p>
-<blockquote>
-<p><strong>注意</strong></p>
-<p>当 json 带转义转为字符串后，通过 ms 请求，<code>\\\n</code> 会被转义为 <code>\n</code>，注意检查下请求内容中的格式，否则接口数据提交时后端再次 json parse 时可能出错。如上，ms 中写请求体的时候，json 字符串中应修改换行为 <code>\\\\\n</code></p>
-</blockquote>
-<h2 id=脚本>脚本</h2>
-<h3 id=控制台常用代码片段>控制台常用代码片段</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#75715e>// 控制台打印
-</span><span style=color:#75715e></span>log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;hello&#34;</span><span style=color:#f92672>);</span>
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;1&#34;</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;1&#34;</span><span style=color:#f92672>);</span>
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;1+{}={}&#34;</span><span style=color:#f92672>,</span> k1<span style=color:#f92672>,</span> k2<span style=color:#f92672>);</span>
-
-<span style=color:#75715e>// 获取变量类型名
-</span><span style=color:#75715e></span>var<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>();</span>
-</code></pre></div><h2 id=场景>场景</h2>
-<h3 id=循环控制器>循环控制器</h3>
-<h4 id=for>for</h4>
+</li>
+</ul>
+<p>整型相加函数（intSum）：</p>
+<ul>
+<li><code>${__intSum(${user_total},1)}</code>，其中 <code>${user_total}</code> 是从接口提取出来的值</li>
+</ul>
+<p>ms 内置函数：</p>
+<ul>
+<li>@cname：自动生成中文名字</li>
+<li>@ctitle：自动生成中文标题</li>
+</ul>
+<h2 id=请求体中字符转义问题>请求体中字符转义问题</h2>
+<p>当 json 带转义转为字符串后，通过 ms 请求，<code>\\\n</code> 会被转义为 <code>\n</code>，注意检查下请求内容中的格式，否则接口数据提交时后端再次 json parse 时可能出错。如上，ms 中写请求体的时候，json 字符串中应修改换行为 <code>\\\\\n</code>。</p>
+<h2 id=断言>断言</h2>
+<h3 id=正则>正则</h3>
+<ul>
+<li>判断不为空：<code>^.*</code>(数字开头 /d，字符开头 /s)</li>
+</ul>
+<h2 id=场景>场景</h2>
+<h3 id=条件控制器>条件控制器</h3>
+<p>变量引用格式为 <code>${salary}</code> 后面跟判断条件。</p>
+<h3 id=循环控制器---foreach>循环控制器 - ForEach</h3>
 <p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230726151446164.png alt=image-20230726151446164></p>
 <ul>
-<li>pk 为自定义的变量，表示每次循环的值</li>
+<li>pk 为自定义的变量，表示每次循环的值，类似于 <code>for i in range(10)</code> 中的 <code>i</code></li>
 <li>pks 为从上一个接口中提取出的值（通过 jsonpath，匹配多个值），这里不需要 <code>${}</code> ，也不需要在后面添加 _ALL 后缀，直接使用变量名即可。</li>
+<li>可设置循环间隔时间</li>
 </ul>
-<h3 id=自定义脚本>自定义脚本</h3>
-<p>场景特别长的时候，可以用作分割线，更清楚的表示接口集的作用。</p>
-<p>使用方法如下：脚本名称可用作注释，但是注意里面需要忽略脚本状态（500），不然 500 报错影响场景结果。</p>
-<p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230728154947707.png alt=image-20230728154947707></p>
 <h3 id=使用-csv-文件参数化>使用 csv 文件参数化</h3>
 <p>创建场景 - 场景变量 - 添加左侧下拉框选择 CSV - 点击添加</p>
 <p>输入变量名，多个以 分隔符 分开。</p>
 <p>添加文件，文件第一行为变量名，后续行为数据，点击确定。</p>
 <p>在后续的接口中使用 <code>${var_name}</code> 使用变量。</p>
+<h2 id=自定义脚本>自定义脚本</h2>
+<p>场景特别长的时候，可以用作分割线，更清楚的表示接口集的作用。</p>
+<p>使用方法如下：脚本名称可用作注释，但是注意里面需要忽略脚本状态（500），不然 500 报错影响场景结果。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230728154947707.png alt=image-20230728154947707></p>
 </div>
 <footer class=post-footer>
 <div class=post-tags>

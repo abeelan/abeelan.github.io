@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-04-23 18:19:08 +0000 UTC">
-<meta property="article:modified_time" content="2023-07-03 18:00:35 +0000 UTC">
+<meta property="article:modified_time" content="2023-08-18 01:00:06 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -131,10 +131,10 @@
 <li><a href=#jsr223>JSR223</a></li>
 <li><a href=#beanshell>BeanShell</a>
 <ul>
+<li><a href=#控制台常用代码片段>控制台常用代码片段</a></li>
 <li><a href=#生成手机号>生成手机号</a></li>
 <li><a href=#生成随机中文姓名>生成随机中文姓名</a></li>
 <li><a href=#生成-13-位时间戳>生成 13 位时间戳</a></li>
-<li><a href=#前置脚本修改请求体中部分字段的值dict-str然后用更新后的请求体发起请求>前置脚本：修改请求体中部分字段的值（dict->str），然后用更新后的请求体发起请求</a></li>
 <li><a href=#对响应值整体进行-urldecode-解码>对响应值整体进行 urldecode 解码</a></li>
 <li><a href=#对响应部分字段进行-urldecode-解码---递归实现>对响应部分字段进行 urldecode 解码 - 递归实现</a></li>
 <li><a href=#修改响应头类型>修改响应头类型</a></li>
@@ -212,7 +212,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=281035></div>
+<div class=item-count id=wordsCount data-count=280798></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
@@ -220,7 +220,7 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-04-05T10:32:22+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-04-23T18:19:08+00:00></div>
 </div>
 </div>
 </div>
@@ -276,7 +276,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-07-03T18:00:35+00:00 itemprop=dateModified datetime=2023-07-03T18:00:35+00:00>2023-07-03</time>
+<time title=修改时间：2023-08-18T01:00:06+00:00 itemprop=dateModified datetime=2023-08-18T01:00:06+00:00>2023-08-18</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -295,7 +295,7 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>2922</span>
+<span class=post-meta-item-text>字数：</span><span>2527</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
@@ -326,7 +326,15 @@
 <h2 id=beanshell>BeanShell</h2>
 <p>BeanShell（也称 Bsh）是一种小巧、免费且高度可扩展的 Java 脚本语言，可以直接在 JVM 中运行。在 JMeter 中，BeanShell 可以用于编写断言、前置处理器、后置处理器等逻辑处理任务。</p>
 <p>与 JSR223 断言不同，JMeter 内置了 BeanShell 断言，因此无需安装其他插件或库即可使用。BeanShell 语法类似于 Java，可以很容易地编写出复杂的验证逻辑和数据处理任务，同时还支持使用 Java 类和方法。</p>
-<h3 id=生成手机号>生成手机号</h3>
+<h3 id=控制台常用代码片段>控制台常用代码片段</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#75715e>// 控制台打印
+</span><span style=color:#75715e></span>log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;hello&#34;</span><span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;1&#34;</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;1&#34;</span><span style=color:#f92672>);</span>
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;1+{}={}&#34;</span><span style=color:#f92672>,</span> k1<span style=color:#f92672>,</span> k2<span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 获取变量类型名
+</span><span style=color:#75715e></span>var<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>();</span>
+</code></pre></div><h3 id=生成手机号>生成手机号</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.apache.commons.lang3.RandomStringUtils<span style=color:#f92672>;</span>
 
 <span style=color:#75715e>// 生成随机的手机号
@@ -362,62 +370,7 @@ vars<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span 
 <span style=color:#66d9ef>long</span> timestamp <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date<span style=color:#f92672>().</span><span style=color:#a6e22e>getTime</span><span style=color:#f92672>();</span>
 String strTimestamp <span style=color:#f92672>=</span> Long<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>timestamp<span style=color:#f92672>);</span>
 log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; timestamp(13): &#34;</span> <span style=color:#f92672>+</span> strTimestamp<span style=color:#f92672>);</span>
-</code></pre></div><h3 id=前置脚本修改请求体中部分字段的值dict-str然后用更新后的请求体发起请求>前置脚本：修改请求体中部分字段的值（dict->str），然后用更新后的请求体发起请求</h3>
-<p>调试如下接口：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json><span style=color:#960050;background-color:#1e0010>接口：https:</span><span style=color:#75715e>//httpbin.org/post
-</span><span style=color:#75715e></span><span style=color:#960050;background-color:#1e0010>方法：post</span>
-<span style=color:#960050;background-color:#1e0010>请求体：</span>
-{
-  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;John&#34;</span>,
-  <span style=color:#f92672>&#34;age&#34;</span>: <span style=color:#ae81ff>30</span>,
-  <span style=color:#f92672>&#34;address&#34;</span>: {
-    <span style=color:#f92672>&#34;street&#34;</span>: <span style=color:#e6db74>&#34;123 Main St&#34;</span>,
-    <span style=color:#f92672>&#34;city&#34;</span>: <span style=color:#e6db74>&#34;Anytown&#34;</span>,
-    <span style=color:#f92672>&#34;state&#34;</span>: <span style=color:#e6db74>&#34;CA&#34;</span>,
-    <span style=color:#f92672>&#34;zip&#34;</span>: <span style=color:#e6db74>&#34;12345&#34;</span>
-  }
-}
-
-<span style=color:#960050;background-color:#1e0010>实现：将</span> <span style=color:#960050;background-color:#1e0010>address</span> <span style=color:#960050;background-color:#1e0010>的值，修改为字符串，其他字段保持不变。</span>
-</code></pre></div><p>新增 beanshell 脚本</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.json.JSONObject<span style=color:#f92672>;</span>
-
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt;&#34;</span><span style=color:#f92672>);</span>
-
-<span style=color:#75715e>// 获取请求体内容，数组的第一个元素就是请求体
-</span><span style=color:#75715e></span>String request <span style=color:#f92672>=</span> sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getArgument</span><span style=color:#f92672>(</span>0<span style=color:#f92672>).</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type: &#34;</span> <span style=color:#f92672>+</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span> 
-
-<span style=color:#75715e>// 将请求体转为 json 对象
-</span><span style=color:#75715e></span>JSONObject json <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> JSONObject<span style=color:#f92672>(</span>request<span style=color:#f92672>);</span>
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; 初始请求体: {}&#34;</span><span style=color:#f92672>,</span> json<span style=color:#f92672>);</span>
-<span style=color:#75715e>// 提取 json 内的字段值
-</span><span style=color:#75715e></span>JSONObject data <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>getJSONObject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;address&#34;</span><span style=color:#f92672>);</span>
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; address: {}&#34;</span><span style=color:#f92672>,</span> data<span style=color:#f92672>);</span>
-<span style=color:#75715e>// 将 address 的 json 对象转为字符串
-</span><span style=color:#75715e></span>String dataString <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
-<span style=color:#75715e>// 重新填充到请求体内
-</span><span style=color:#75715e></span>json<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;address&#34;</span><span style=color:#f92672>,</span> dataString<span style=color:#f92672>);</span>
-String updatedRequest <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type（update）: &#34;</span> <span style=color:#f92672>+</span> updatedRequest<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-
-<span style=color:#75715e>// 重新添加更新后的请求体
-</span><span style=color:#75715e></span>sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>removeAllArguments</span><span style=color:#f92672>();</span>
-<span style=color:#75715e>// sampler.addArgument(&#34;updateRequest&#34;, updatedRequest);  # 会自动 urlencode，导致编码问题
-</span><span style=color:#75715e></span>sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>addNonEncodedArgument</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>,</span> updatedRequest<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>);</span>
-
-<span style=color:#75715e>// 打印当前的请求体
-</span><span style=color:#75715e></span>String request <span style=color:#f92672>=</span> sampler<span style=color:#f92672>.</span><span style=color:#a6e22e>getArguments</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getArgument</span><span style=color:#f92672>(</span>0<span style=color:#f92672>).</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
-log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; 最终请求体: {}&#34;</span><span style=color:#f92672>,</span> request<span style=color:#f92672>);</span>
-</code></pre></div><p><strong>遇到的问题</strong></p>
-<p>调用该前置脚本后，控制台输出的请求体是正常编码，但是在请求内容中，请求体的编码格式为 urlencode，导致请求出错。
-<img src=/imgs/img-lazy-loading.gif data-src=https://img2023.cnblogs.com/blog/2660913/202303/2660913-20230329153919219-2078597313.png alt=image></p>
-<p>后来在 jmeter 官方找到
-<a href=https://jmeter.apache.org/api/org/apache/jmeter/protocol/http/sampler/HTTPSamplerBase.html#addNonEncodedArgument%28java.lang.String,java.lang.String,java.lang.String%29 title=addNonEncodedArgument rel="noopener external nofollow noreferrer" target=_blank class=exturl>
-addNonEncodedArgument
-<i class="fa fa-external-link-alt"></i>
-</a> 函数，问题解决，已更新到上面的脚本中。</p>
-<h3 id=对响应值整体进行-urldecode-解码>对响应值整体进行 urldecode 解码</h3>
+</code></pre></div><h3 id=对响应值整体进行-urldecode-解码>对响应值整体进行 urldecode 解码</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.net.URLDecoder<span style=color:#f92672>;</span>
 
 String response <span style=color:#f92672>=</span> prev<span style=color:#f92672>.</span><span style=color:#a6e22e>getResponseDataAsString</span><span style=color:#f92672>();</span>
