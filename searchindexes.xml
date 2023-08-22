@@ -1,4 +1,177 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Python - Gdb 查看程序调试信息</title><url>/tech/python/gdb-%E6%9F%A5%E7%9C%8B%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[ Mac
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Golang - 基础笔记</title><url>/tech/golang/%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/</url><categories><category>Golang</category></categories><tags><tag>Golang</tag></tags><content type="html"><![CDATA[环境配置 下载 Golang  下载地址：https://go.dev/dl/ 安装一路下一步即可  $ go version go version go1.20.5 darwin/amd64 下载 Goland  下载地址：https://www.jetbrains.com/go/download/#section=mac 激活教程：https://shimo.im/docs/WY3hd8Jt8KHgvVty/read  环境验证 打开 goland，创建项目 go-basic，项目下创建主文件 main.go 文件，作为程序入口
+// main.go  package main import &#34;fmt&#34; func main() { fmt.Println(&#34;hello world&#34;) } 点击左侧执行按钮，控制台出现 hello world 即可。
+2、基础知识-结构、包、变量、数据类型 项目结构  pkg：存放包 src：存放项目源码 bin：可执行文件 一个项目必须有一个 main 包和 main 函数  1.11 以后，可以随意编写自己的项目结构，建议遵循官方
+声明变量  变量以字母开头，不可以是数字或特殊字符 不能用关键字  package main import &#34;fmt&#34; func main() { // 显式声明变量的关键字 var 	// 关键字 变量名 变量类型 = 变量值 	var a string = &#34;hello world !&#34; // 隐式声明，系统自动根据值判断类型 	b := &#34;hello world !!&#34; fmt.Println(a) fmt.Println(b) } 关键字 关键字不能作为变量名的单词
+包管理（2 个）
+ import package  程序实体声明与定义（8 个）
+ chan const func interface map struct type var  程序流程控制（15 个）
+ break case continue default defer else fallthrough for go goto if range return select switch  预定义标识符（36 个）
+ append bool、false、true byte cap close int、int8、int16、int32、int64 float32、float64 complex、conplex64、complex128 uint、uint8、uint16、uint32、uint64 copy imag iota len make new nil panic print、println real recover string uintptr  注释  单行注释：// 我是注释 多行注释：/* 我是注释 */  包 一个文件夹下不能出现多个包，只能有一个包，但是可以有多个文件
+package foo // 包里面的变量名或方法名首字母大写表示共有，可以在其他包使用 // 首字母小写表示私有 var F string = &#34;foo package&#34; package main import ( &#34;fmt&#34; &#34;go-basic/foo&#34; ) func main() { fmt.Println(foo.F) } 上面为导包的常用方法，还可以两种方法：
+import ( &#34;fmt&#34; bar &#34;go-basic/foo&#34; // &lt;-- ) func main() { fmt.Println(bar.F) // &lt;-- 通过别名引入 } import ( &#34;fmt&#34; . &#34;go-basic/foo&#34; // &lt;-- ) func main() { fmt.Println(F) // &lt;-- 直接使用变量 } 数据类型 // 数据类型判断 package main import &#34;fmt&#34; func main() { var num int num = 10 // 选择 Print(format string: ...) 	fmt.Printf(&#34;%T&#34;, num) } // 这里打印的就是变量的类型  // 数据类型的转换 package main import ( &#34;fmt&#34; &#34;strconv&#34; ) func main() { str1 := &#34;123&#34; int1, _ := strconv.Atoi(str1) fmt.Println(&#34;str to int: &#34;, int1) int2 := 123 str2 := strconv.Itoa(int2) fmt.Println(&#34;int to str: &#34;, str2) } 3、基础知识-流程控制语句 流程可控制语句包括：
+  递增递减语句：自增、自减
+  条件语句：if、if else、if elseif
+  选择语句：switch
+  循环语句：for
+  跳转语句：
+   多层循环嵌套跳出：break、continue  调整执行位置：goto      package main import &#34;fmt&#34; func main() { i := 0 i++ fmt.Println(i) i-- fmt.Println(i) } // 输出 1 0 // go 没有 ++i 这种语法，就上面这一种 package main import &#34;fmt&#34; func main() { a := 8 if a &lt;= 5 { fmt.Println(&#34;区间：0 - 5&#34;) } else if a &lt;= 10 { fmt.Println(&#34;区间：6 - 10&#34;) } else { fmt.Println(&#34;区间: 11+&#34;) } } package main import &#34;fmt&#34; func main() { a := 0 switch a { case 0: fmt.Println(&#34;0&#34;) fallthrough // 匹配到后穿过继续执行下一个，仅执行下一个 	case 1: fmt.Println(&#34;1&#34;) case 2: fmt.Println(&#34;2&#34;) default: fmt.Println(&#34;没匹配到！&#34;) } } // 输出： 0 1 package main import &#34;fmt&#34; func main() { // 死循环；没有结束条件，一直运行 	for { fmt.Println(&#34;go!&#34;) } // 直到型循环 	a := 0 for { a++ fmt.Println(a) if a &gt; 10 { break } } b := 1 for b &lt; 10 { b++ fmt.Println(b) } // 传统 for 	for a := 1; a &lt; 10; a++ { fmt.Println(a) } } package main import &#34;fmt&#34; func main() { a := 0 A: for a &lt; 10 { a++ fmt.Println(a) if a == 5 { break A goto B } } B: fmt.Println(&#34;我来到 B 了！&#34;) } 4、数组和切片 package main import &#34;fmt&#34; func main() { // 声明数组长度 	a := [3]int{1, 2, 3} // 自动确定数组长度 	b := [...]int{4, 5, 6} // 通过创建数组对象 	var c = new([10]int) c[5] = 8 fmt.Println(a, b, c) } package main import &#34;fmt&#34; func main() { zoo := [...]string{&#34;熊猫&#34;, &#34;狮子&#34;, &#34;老虎&#34;} for i := 0; i &lt; len(zoo); i++ { fmt.Println(zoo[i] + &#34;冲啊！&#34;) } /* 熊猫冲啊！ 狮子冲啊！ 老虎冲啊！ */ for i, v := range zoo { fmt.Println(i, v) } /* 0 熊猫 1 狮子 2 老虎 */ // 数组的情况下 容量和长度一般相等 	fmt.Println(cap(zoo), len(zoo)) } package main import &#34;fmt&#34; func main() { arr2 := [3][3]int{ [3]int{0, 1, 2}, [3]int{1, 2, 3}, [3]int{2, 3, 4}, // 这里逗号不能省略 	} fmt.Println(arr2) } 数组切片 package main import &#34;fmt&#34; func main() { a := [3]int{1, 2, 3} cl := a[1:] // [2 3] 	cl1 := a[0:1] // [1] 前开后闭 	cl2 := a[:1] // [1] 从开始取到下标 1 结束，不包括下标 1 	cl3 := a[1:] // [2, 3] 从下标 1 取到最后  fmt.Println(cl1, cl2, cl3) // 切片是原数组的一部分，修改切片后原数组也发生改变 	cl[1] = 5 fmt.Println(cl) // [2 5] 	fmt.Println(a) // [1 2 5]  // 数组容量是固定的，但是切片可以添加 	cl = append(cl, 8) fmt.Println(cl) // [2 5 8] 切片在原有的基础上增加了 8  // 切片在 append 后，再修改数据，就不会影响原数组了 	cl[0] = 6 fmt.Println(a, cl) // a[1 2 5] cl[6 5 8]  // 原数组是没有 append copy 等方法的  // 只有在切片上才有，创建一个空切片的方法如下  var cli1 []int cli2 := make([]int, 4, 6) // 这种方式可以直接放 len cap } package main import &#34;fmt&#34; func main() { a := [3]int{1, 2, 3} cl := a[:] fmt.Println(len(cl), cap(cl)) // 3 3 	// 向切片添加数据后，到达临界值会自动扩容，避免多次申请空间 	cl = append(cl, 5) fmt.Println(len(cl), cap(cl)) // 4 6 	cl = append(cl, 5) fmt.Println(len(cl), cap(cl)) // 5 6 	cl = append(cl, 5) fmt.Println(len(cl), cap(cl)) // 6 6 	cl = append(cl, 5) fmt.Println(len(cl), cap(cl)) // 7 12 } package main import &#34;fmt&#34; func main() { a := [3]int{0, 1, 2} cl1 := a[:] // [0, 1, 2] 	cl2 := a[2:] // [2]  // 把第二个数组的内容复制到第一个数组 	copy(cl1, cl2) fmt.Println(cl1) // [2 1 2] 第一位有数据了就自动跳过了  // 复制到指定切片的地方 	copy(cl1[1:2], cl2) fmt.Println(cl1) } 5、map声明和使用 map 是类似于字典或哈希表的键值对，key-value
+package main import &#34;fmt&#34; func main() { // 声明方式一 var 	var m1 map[string]string m1 = map[string]string{} // 声明方式二 隐式声明 	m2 := map[string]string{} // 声明方式三 make 	m3 := make(map[string]string) fmt.Println(m1) // map[gender:male name:tom] 	fmt.Println(m2) // map[] 	fmt.Println(m3) // map[] } package main import &#34;fmt&#34; func main() { // 基础的声明和使用 	m1 := map[string]string{} // 使用 	m1[&#34;name&#34;] = &#34;tom&#34; m1[&#34;gender&#34;] = &#34;male&#34; fmt.Println(m1) // map[gender:male name:tom]  // go 的 map 键可以是任意的，不局限与字符串 	m2 := map[int]bool{} m2[1] = true m2[2] = false fmt.Println(m2) // map[1:true 2:false]  // 通过声明值为接口，可以放各种类型的数据，混合类型 	m3 := map[int]interface{}{} m3[0] = &#34;string&#34; m3[1] = 18 m3[2] = [3]int{0, 1, 2} m3[3] = false fmt.Println(m3) // map[0:string 1:18 2:[0 1 2] 3:false] } package main import &#34;fmt&#34; func main() { m := map[string]interface{}{} m[&#34;a&#34;] = 1 m[&#34;b&#34;] = true m[&#34;c&#34;] = &#34;test&#34; m[&#34;d&#34;] = false for k, v := range m { fmt.Println(k, v) } /* d false a 1 b true c test */ } 6、函数 func 声明及调用 go 语言中函数内不可再声明函数
+函数名首字母大写可以被别的包调用，小写为本包私有
+package main import &#34;fmt&#34; func main() { OutputUint(10, &#34;请输入正整数！&#34;) // 10 	OutputUint(-10, &#34;请输入正整数！&#34;) // 请输入正整数！ } func OutputUint(num int, errMsg string) { if num &gt;= 0 { fmt.Println(num) } else { fmt.Println(errMsg) } } package main import &#34;fmt&#34; func main() { r11, r12 := OutputUint(10, &#34;请输入正整数！&#34;) fmt.Println(r11, r12) r21, r22 := OutputUint(-10, &#34;请输入正整数！&#34;) fmt.Println(r21, r22) } func OutputUint(num int, errMsg string) (rNum int, isUint bool) { if num &gt;= 0 { fmt.Println(num) return num, true } else { fmt.Println(errMsg) return num, false } } /* 10 10 true 请输入正整数！ -10 false */ // 函数的返回值还有一种写法 // 函数体内给返回值变量赋值然后直接写个 retrun 就行 func OutputUint(num int, errMsg string) (rNum int, isUint bool) { rNum = num if num &gt;= 0 { isUint = true } else { isUint = false } return } /* 10 true -10 false */ package main import &#34;fmt&#34; func main() { // 匿名函数可以在函数体内调用 	f := func(str string) { fmt.Println(str) } f(&#34;我是匿名函数！&#34;) } 函数参数不定长 package main import &#34;fmt&#34; func main() { demo(18, &#34;a&#34;, &#34;b&#34;, &#34;c&#34;) } // 传入不定长度的参数 func demo(num int, data ...string) { // &lt;-- 	fmt.Println(num) // 18 	fmt.Println(data) // [a b c] } 那如果本来就有一个字符串数组，想要传递给 demo 函数呢？可以这样做
+package main import &#34;fmt&#34; func main() { arr := []string{&#34;a&#34;, &#34;b&#34;, &#34;c&#34;} demo(18, arr...) // &lt;-- } func demo(num int, data ...string) { fmt.Println(num) // 这里可以通过 for 循环打印整个不定项参数的内容 	for k, v := range data { fmt.Println(k, v) } } /* 18 0 a 1 b 2 c */ 自调用函数 package main import &#34;fmt&#34; func main() { (func() { fmt.Println(&#34;我是自调用函数，声明即执行，没人能调用我！&#34;) })() } // 一对括号括起来，然后外面再来一对括号 闭包函数 函数返回一个函数
+package main import &#34;fmt&#34; func main() { closureFunc() // 没有任何输出 	closureFunc()(10) // 输出：我是闭包函数最终执行的语句，给我的值是： 10 } func closureFunc() func(int) { return func(num int) { fmt.Println(&#34;我是闭包函数最终执行的语句，给我的值是:&#34;, num) } } 延迟调用函数 无论函数放在哪里，都是最后才被调用
+package main import &#34;fmt&#34; func main() { defer deferFunc() // 虽然写在第一行，但是是最后执行 	fmt.Println(&#34;called.&#34;) fmt.Println(&#34;called.&#34;) fmt.Println(&#34;called.&#34;) } func deferFunc() { fmt.Println(&#34;我是 deferFunc 函数！&#34;) } /* called. called. called. called. 我是 deferFunc 函数！ */ 7、指针和地址 指针用 * 表示，表示这个变量本身没有存储任何值，而是拿到数据的内存地址
+地址：和指针搭配使用
+变量指针 package main import &#34;fmt&#34; func main() { var a int a = 123 fmt.Println(a) // 123  var b int b = a // a 的值赋值给 b 	fmt.Println(a, b) // 123 123  b = 456 // b 的修改不会引起 a 的变动 	fmt.Println(a, b) // 123 456  // 重点来了 使用指针修改变量 	var c *int c = &amp;a // 把 c 指针指向 a 的内存地址，通过 &amp;a 取变量的内存地址 	*c = 456 // 修改 c 指针所指向内存地址的值（也就是 a 的值） 	fmt.Println(a) // 456 	fmt.Println(c) // 0xc00010e008 指针变量输出的是内存地址 	fmt.Println(*c) // 456 通过 *c 来取该地址的值  fmt.Println(a == *c, &amp;a == c) // true true } 数组指针和指针数组 package main import &#34;fmt&#34; func main() { var arr [3]string arr = [3]string{&#34;a&#34;, &#34;b&#34;, &#34;c&#34;} fmt.Println(arr) // 数组指针：数组里面都是值，指整个数组的指针地址 	var arrP *[3]string arrP = &amp;arr fmt.Println(arrP) // &amp;[a b c] 数组地址 	fmt.Println(*arrP) // [a b c] 数组值 } package main import &#34;fmt&#34; func main() { a := &#34;a&#34; b := &#34;b&#34; c := &#34;c&#34; array := [3]string{a, b, c} array[1] = &#34;m&#34; fmt.Println(b) // b ;依然是 b，数组内的值不会改变原始变量的值  // 如果指针数组的话可以通过指针修改变量 	// 指针数组：数组里面存的都是指针 	var arr [3]*string arr = [3]*string{&amp;a, &amp;b, &amp;c} fmt.Println(arr) // [0xc000014270 0xc000014280 0xc000014290]  *arr[1] = &#34;m&#34; fmt.Println(b) // m ;通过指针更改了数组内的值 } 函数指针 package main import &#34;fmt&#34; func main() { s := &#34;我是初始值&#34; f(s) // 函数的值传递 	fmt.Println(s) // 我是初始值 ;未被修改  fPoint(&amp;s) // 函数的地址传递 	fmt.Println(s) // fPoint 函数体内重新赋值 ;被成功修改 } func f(str string) { str = &#34;f 函数体内重新赋值&#34; } func fPoint(strPoint *string) { *strPoint = &#34;fPoint 函数体内重新赋值&#34; } 8、结构体struct声明和使用 结构体是一个可以存储不同数据类型的数据类型，声明完成后，可以像其他数据类型一样使用，也有指针、值等等
+声明结构体 package main import &#34;fmt&#34; func main() { // 通过 var 关键字声明 	var tom UserStruct tom.Name = &#34;tom&#34; tom.Age = 18 tom.Male = true tom.Hobbies = []string{&#34;抽烟&#34;, &#34;喝酒&#34;, &#34;烫头&#34;} fmt.Println(tom) // {tom 18 true [抽烟 喝酒 烫头]}  // 隐式声明 	jerry := UserStruct{ &#34;jerry&#34;, 18, true, []string{&#34;吃饭&#34;, &#34;睡觉&#34;, &#34;打豆豆&#34;}, } fmt.Println(jerry) // {jerry 18 true [吃饭 睡觉 打豆豆]}  // 第三种写法，比较明确 	lisa := UserStruct{ Name: &#34;lisa&#34;, Age: 18, Male: false, Hobbies: []string{&#34;学习&#34;}, } fmt.Println(lisa) // {lisa 18 false [学习]}  // 第四种写法 通过 new 一个对象 	faker := new(UserStruct) faker.Name = &#34;faker&#34; fmt.Println(faker) // &amp;{faker 0 false []} 是一个地址 	// 以上所有方式不写参数都会有默认值 } type UserStruct struct { // 大写开头公有 首字母小写私有 	Name string Age uint Male bool Hobbies []string } package main import &#34;fmt&#34; func main() { tom := UserStruct{ &#34;tom&#34;, 18, true, []string{&#34;吃饭&#34;, &#34;睡觉&#34;}, } UsFunc(tom) } type UserStruct struct { // 大写开头公有 首字母小写私有 	Name string Age uint Male bool Hobbies []string } func UsFunc(us UserStruct) { fmt.Println(us) // {tom 18 true [吃饭 睡觉]} } 结构体可以有自己的方法 package main import &#34;fmt&#34; func main() { tom := UserStruct{ Name: &#34;Tom&#34;, } msg := tom.Song(&#34;Little Star&#34;) fmt.Println(msg) // Tom 唱了一首《Little Star》，大家觉得泰裤辣！ } type UserStruct struct { // 大写开头公有 首字母小写私有 	Name string Age uint Male bool Hobbies []string } func (us *UserStruct) Song(name string) (rStr string) { // 声明一个结构体函数 	rStr = fmt.Sprintf(&#34;%s 唱了一首《%s》，大家觉得泰裤辣！&#34;, us.Name, name) return } 结构体嵌套结构体 package main import &#34;fmt&#34; func main() { tom := UserStruct{ Name: &#34;Tom&#34;, } tom.Home.City = &#34;北京&#34; tom.HomeStruct.Address = &#34;昌平区回龙观&#34; fmt.Println(tom) // {Tom 0 false [] {北京 } { 昌平区回龙观}}  tom.Home.Info() // 假装打印具体的信息 	tom.HomeStruct.Info() // 假装打印具体的信息(同上) } type UserStruct struct { // 大写开头公有 首字母小写私有 	Name string Age uint Male bool Hobbies []string Home HomeStruct // 完整写法 	HomeStruct // 简写 如果没有给别名 则直接通过原名称调用 } type HomeStruct struct { City string Address string } func (home HomeStruct) Info() { // 嵌套的结构体也可以定义结构体方法 	fmt.Println(&#34;假装打印具体的信息&#34;) } 9、接口interface介绍和使用 接口是一类规范，是一些方法的集合
+package main import &#34;fmt&#34; // Car 定义一个汽车的接口 type Car interface { AddOil() Driver() } // Audi 定义第一辆车的结构体 type Audi struct { Name string } func (audi Audi) AddOil() { fmt.Println(audi.Name, &#34; 加油中...&#34;) } func (audi Audi) Driver() { fmt.Println(audi.Name, &#34; 行驶中...&#34;) } // Volvo 定义第二辆车的结构体 type Volvo struct { Name string } func (volvo Volvo) AddOil() { fmt.Println(volvo.Name, &#34; 加油中...&#34;) } func (volvo Volvo) Driver() { fmt.Println(volvo.Name, &#34; 行驶中...&#34;) } func main() { // 使用方法一 	var car1 Car audi := Audi{ Name: &#34;Audi&#34;, } car1 = audi // car 可以接收实现该接口的数据 	car1.AddOil() // Audi 加油中... 	car1.Driver() // Audi 行驶中...  // 简写形式 	car2 := Volvo{ Name: &#34;Volvo&#34;, } car2.AddOil() // Volvo 加油中... 	car2.Driver() // Volvo 行驶中... } package main import &#34;fmt&#34; func main() { Foo(&#34;哈哈&#34;) // 哈哈 	Foo(19) // 19 	Foo([5]int{1, 2, 3, 4, 5}) // [1 2 3 4 5] } // Foo 传参为接口时，是一个泛型函数，接收任何传参 func Foo(any interface{}) { fmt.Println(any) } 根据这个泛型的特性，声明一个函数，调用该函数就自动开始执行接口的所有函数
+func main() { audi := Audi{ Name: &#34;Audi&#34;, } CalledAllFunc(audi) } func CalledAllFunc(car Car) { car.AddOil() car.Driver() } 还有一种场景，接口是在别的包定义的，导入包过来后，想使用怎么办？
+// C 全局的 var C Car func main() { audi := Audi{ Name: &#34;Audi&#34;, } InitCar(audi) C.Driver() // &lt;-- 这里通过 C 也能调用 	C.AddOil() } func InitCar(car Car) { // 将数据初始化到全局变量的接口中 	C = car } 10、并发（goroutine&amp;channel） 协程 声明和使用 ⭐️ goroutine
+在调用一个方法的前面加上 go 就是 goroutine，让方法异步执行，相当于 协程。
+package main import &#34;fmt&#34; func main() { Run() } func Run() { fmt.Println(&#34;Running...&#34;) } // 输出：Running... func main() { go Run() } // 没有任何输出 原因是主程序开始运行后，由于 Run 函数是异步执行的，并不会阻塞当前主程序。
+所以主程序就直接结束，导致 Run 还没来得及输出。
+package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { go Run() time.Sleep(1 * time.Second) // 主程序等待一秒再结束 } func Run() { fmt.Println(&#34;Running...&#34;) } // 输出：Running... 在等待的一秒钟，异步函数也在执行，所以输出结果，1 秒结束后主程序停止。
+这次通过一个循环打印数字的方式，看看到底是什么时候执行的 Run 函数
+package main import &#34;fmt&#34; func main() { go Run() for i := 0; i &lt; 50; i++ { fmt.Println(i) } } func Run() { fmt.Println(&#34;Running...&#34;) } /* 25 26 Running... 27 28 */ 每次运行后，Run 函数的输出位置都是不一样的，也就是不确定异步的 Run 函数到底什么时候执行，跟当前主线程就没关系了~控制不了。
+协程管理器 如果在主线程内要等待协程执行完毕，可以使用 协程管理器。
+package main import ( &#34;fmt&#34; &#34;sync&#34; ) func main() { wg := sync.WaitGroup{} wg.Add(1) // 设置为 1 表示正在执行 	go Run(&amp;wg) // 这里必须传地址，否则修改无效，造成死锁 	wg.Wait() // 等待协程执行完毕 } func Run(wg *sync.WaitGroup) { fmt.Println(&#34;Running...&#34;) wg.Done() // Done 执行完毕后设置为 -1 } 协程间通讯工具 ⭐️ channel
+channel 是 goroutine 之间的通讯桥梁
+定义 chan：
+ 可读可取：c:=make(chan int) 可读：var readChan &lt;- chan int = c 可取：var setChan chan &lt;- int = c 有缓冲：c:=make(chan int, 5) 无缓冲：c:=make(chan int)  有/无缓冲区 func main() { c := make(chan int, 1) // 有缓冲 	c &lt;- 1 // 存了 1，只能存 1 个 	fmt.Println(&lt;-c) // 1 读取出来 1 } func main() { c := make(chan int) // 无缓冲 	c &lt;- 1 // 没有缓冲区，存不进去 	fmt.Println(&lt;-c) // fatal error: all goroutines are asleep - deadlock! } 为啥报错？分析下程序执行逻辑
+ c &lt;- 1 ，由于声明的时候，没有创建缓冲区，存不进去 fmt.Println(&lt;-c)到这里要读取的时候，会先去往容量里面存，然后再读 这里存的代码 c &lt;- 1 已经执行过了，没办法在主线程再返回去调用 所以程序卡在这里  如果创建一个 go 协程函数，里面存数据，那么主线程读数据，没有数据，就会读协程里面的数据，正常输出。
+package main import &#34;fmt&#34; func main() { c := make(chan int) go func() { for i := 0; i &lt; 10; i++ { c &lt;- i } }() for i := 0; i &lt; 10; i++ { fmt.Println(&lt;-c) } } 以上无缓冲区，每次打印数据的时候都先阻塞，因为没有数据，协程数据存入后，再被读取出来。
+依次读（无数据）、存（协程）、打印数据，所以结果正常打印 0-9；
+如果是有缓冲区，则是在携程全部存完数据后，再被主线程一次性全部打印出来。
+可读可写 package main import &#34;fmt&#34; func main() { c := make(chan int, 5) var readc &lt;-chan int = c var writec chan&lt;- int = c writec &lt;- 1 // 只能写 	fmt.Println(&lt;-readc) // 读了 1 	// &lt;-readc // 存 1 读 1，再读就报错 } 关闭 package main import &#34;fmt&#34; func main() { c := make(chan int, 5) c &lt;- 1 c &lt;- 2 c &lt;- 3 c &lt;- 4 c &lt;- 5 close(c) // 必须先关再读 	// 通过循环一次读所有 	for v := range c { fmt.Println(v) } } select 有数据才读，否则忽略
+package main import &#34;fmt&#34; func main() { c1 := make(chan int, 1) c2 := make(chan int, 1) c3 := make(chan int, 1) c2 &lt;- 1 // c2 存数据了  select { case &lt;-c1: fmt.Println(&#34;c1&#34;) case &lt;-c2: fmt.Println(&#34;c2&#34;) case &lt;-c3: fmt.Println(&#34;c3&#34;) default: fmt.Println(&#34;都没有数据！&#34;) } } // 因此最后输出 c2 // 如果删除 c2 存数据的话，那么输出 default 如果上面的三个 channel 都存数据了，那么随机执行一个 case 内的代码，谁先完成执行谁。
+package main import &#34;fmt&#34; func main() { c := make(chan int) var readc &lt;-chan int = c var writec chan&lt;- int = c go SetChan(writec) GetChan(readc) } func SetChan(writec chan&lt;- int) { for i := 0; i &lt; 10; i++ { writec &lt;- i } } func GetChan(readc &lt;-chan int) { for i := 0; i &lt; 10; i++ { fmt.Println(&#34;GetChan: &#34;, &lt;-readc) } } 11、断言和反射 ⭐️ 断言 Assertion
+把一个接口类型指定为它原始的类型
+package main import &#34;fmt&#34; type User struct { Name string Age int } type Student struct { User } func (user User) SayName(name string) { fmt.Println(&#34;我的名字：&#34;, name) } func main() { user := User{ &#34;张三&#34;, 18, } student := Student{user} check(user) // User 	check(student) // Student  } func check(v interface{}) { // v.(User) 这种方式告诉 v 它是哪个结构体，这就叫断言是否是 User 	// v.(User).SayName(v.(User).Name)  switch v.(type) { case User: fmt.Println(&#34;User&#34;) case Student: fmt.Println(&#34;Student&#34;) } } ⭐️ 反射 reflect
+在编译时不知道类型的情况下，可更新变量、运行时查看值、调用方法以及直接对他们的布局进行操作的机制，称为反射。
+package main import ( &#34;fmt&#34; &#34;reflect&#34; ) type User struct { Name string Age int } func (user User) SayName(name string) { fmt.Println(&#34;我的名字：&#34;, name) } func main() { user := User{ &#34;张三&#34;, 18, } check(user) } func check(data interface{}) { // 通过反射 	t := reflect.TypeOf(data) // 获取类型 main.User 	v := reflect.ValueOf(data) // 获取数据 {张三 18} 	fmt.Println(t) fmt.Println(v) // 通过 for 循环 下标，取到该接口的每个值 	for i := 0; i &lt; t.NumField(); i++ { fmt.Println(v.Field(i)) } } package main import ( &#34;fmt&#34; &#34;reflect&#34; ) type User struct { Name string Age int } type Student struct { User Class string } func (user User) SayName(name string) { fmt.Println(&#34;我的名字：&#34;, name) } func main() { user := User{&#34;张三&#34;, 18} student := Student{user, &#34;三年二班&#34;} check(student) } func check(data interface{}) { t := reflect.TypeOf(data) v := reflect.ValueOf(data) fmt.Println(t, v) // 如果有名字，可以按照名称取值 	class := v.FieldByName(&#34;Class&#34;) fmt.Println(class) // 三年二班  // 如果没有名字，取 user 的值，按照下标取值 	user := v.FieldByIndex([]int{0}) fmt.Println(user) // {张三 18}  // 继续向下取值 	u1 := v.FieldByIndex([]int{0, 0}) u2 := v.FieldByIndex([]int{0, 1}) fmt.Println(u1, u2) // 张三 18 } package main import ( &#34;fmt&#34; &#34;reflect&#34; ) type User struct { Name string Age int } type Student struct { User Class string } func (user User) SayName(name string) { fmt.Println(&#34;我的名字：&#34;, name) } func main() { user := User{&#34;张三&#34;, 18} student := Student{user, &#34;三年二班&#34;} check(student) } func check(data interface{}) { t := reflect.TypeOf(data) // main.Student  ty := t.Kind() // 获取 t 是个啥类型 .kind() 	fmt.Println(ty) // struct  // 判断当前是啥类型 然后再去执行 	if ty == reflect.Struct { fmt.Println(&#34;in Struct&#34;) } if ty == reflect.String { fmt.Println(&#34;in String&#34;) } if ty == reflect.Int { fmt.Println(&#34;in Int&#34;) } } package main import ( &#34;fmt&#34; &#34;reflect&#34; ) type User struct { Name string Age int } type Student struct { User Class string } func (user User) SayName(name string) { fmt.Println(&#34;我的名字：&#34;, name) } func main() { user := User{&#34;张三&#34;, 18} student := Student{user, &#34;三年二班&#34;} check(&amp;student) // 修改原始数据必须传递指针  } func check(data interface{}) { value := reflect.ValueOf(data) fmt.Println(value) // &amp;{{张三 18} 三年二班}  valueElem := value.Elem() // 获取原始数据 	valueElem.FieldByName(&#34;Class&#34;).SetString(&#34;四年二班&#34;) fmt.Println(data) // &amp;{{张三 18} 四年二班} } 12、并发sync和使用 互斥锁（Mutex）  Lock() Unlock()  package main import ( &#34;fmt&#34; &#34;time&#34; ) func SyncClass() { // 等待一秒输出一次 	lockRun() lockRun() lockRun() } func lockRun() { fmt.Println(&#34;等一秒后，执行一次&#34;) time.Sleep(1 * time.Second) } func main() { SyncClass() } 上面程序每打印一次，然后就会等待一秒，直到三个函数都执行完毕，代码结束。
+修改程序为通过异步执行
+func SyncClass() { // 等待一秒输出一次 	go lockRun() go lockRun() go lockRun() // 阻塞下主线程 可以看到异步执行的输出信息  time.Sleep(5 * time.Second) } 以上执行非常快速，几乎一瞬间同时输出三条打印信息，然后等待时间结束后，程序终止。
+为了解决各异步执行程序之间的共享资源问题，防止出现数据竞争和其他并发问题，可以使用互斥锁。
+互斥锁最常见的使用方式是对共享资源进行加锁和解锁操作。
+当一个 goroutine 需要访问共享资源时，它首先尝试获取锁：
+ 如果获取到了锁，则可以进入临界区并执行相应的操作； 如果没有获取到锁，则需要等待锁被释放后再次尝试获取。  当goroutine完成对共享资源的访问后，它会将锁释放，以便其他 goroutine 可以继续访问该资源。
+package main import ( &#34;fmt&#34; &#34;sync&#34; &#34;time&#34; ) func SyncClass() { // 创建锁 必须是通过地址操作 	lock := &amp;sync.Mutex{} go lockRun(lock) go lockRun(lock) go lockRun(lock) time.Sleep(5 * time.Second) } func lockRun(lock *sync.Mutex) { lock.Lock() // 上锁  fmt.Println(&#34;等一秒后，执行一次&#34;) time.Sleep(1 * time.Second) lock.Unlock() // 执行完成后，解锁 } func main() { SyncClass() } 以上程序执行，由于主线程设置了阻塞 5 秒，所以可以看到每打印一条信息，等待一秒，然后输出下一条信息。当第一个函数 lockRun 执行时：
+ 先上锁 然后输出打印信息 等待一秒 解锁  然后才是第二个函数进入执行，重复上述操作，这就是互斥锁的作用。
+读写锁（RWMutex） 读锁：允许多人同时读，读的过程中不允许写
+写锁：仅能一人同时写，写的过程中不允许读
+package main import ( &#34;fmt&#34; &#34;sync&#34; &#34;time&#34; ) func SyncClass() { // 创建锁 必须是通过地址操作 	lock := &amp;sync.RWMutex{} go lockRun(lock) go lockRun(lock) go lockRun(lock) go readLockRun(lock) go readLockRun(lock) go readLockRun(lock) go readLockRun(lock) go readLockRun(lock) time.Sleep(5 * time.Second) } func lockRun(lock *sync.RWMutex) { // 写锁 写的时候，排斥其他的写锁和读锁 	lock.Lock() fmt.Println(&#34;等一秒后，执行一次&#34;) time.Sleep(1 * time.Second) lock.Unlock() } func readLockRun(lock *sync.RWMutex) { // 读锁；读锁间不互斥，可以同时读；但是会排斥写锁 	lock.RLock() fmt.Println(&#34;我是读锁！&#34;) time.Sleep(1 * time.Second) lock.RUnlock() } func main() { SyncClass() } /* 等一秒后，执行一次 我是读锁！ 我是读锁！ 我是读锁！ 我是读锁！ 我是读锁！ 等一秒后，执行一次 等一秒后，执行一次 */ 程序输出分析：
+ 先执行第一把写锁，写锁执行时，不会读，其他写锁不会执行； 当第一把写锁完成后，读锁全部同步执行，输出 5 次，虽然代码的调用顺序在全部写锁后； 后续写锁依次按个执行。  单例（Once） sync.Once 是一个用于实现单例模式的同步工具。sync.Once 可以确保某个函数只被执行一次，无论有多少个 goroutine 并发调用该函数。
+sync.Once 类型有一个名为 Do() 的方法，用于执行传入的函数。该方法会检查一个内部变量（称为once）是否已经被设置为true，如果尚未设置，则调用传入的函数并将 once 设置为 true。
+package main import ( &#34;fmt&#34; &#34;sync&#34; ) func SyncClass() { one := &amp;sync.Once{} for i := 0; i &lt; 10; i++ { one.Do(func() { fmt.Println(i) }) } } func main() { SyncClass() } 以上代码，输出为 0，虽然是通过 for 循环不断打印数字，但是由于 Do 函数的限制，仅执行一次。
+sync.Once 是一种非常有用的同步工具，可以用于实现单例模式、初始化操作等场景，避免竞争条件和其他并发问题，并确保程序的正确性和安全性。
+WaitGroup sync.WaitGroup 是一种同步工具，用于等待一组 goroutine 执行完毕。
+WaitGroup 可以跟踪一组并发操作的状态，并在这些操作全部完成后再继续执行。
+WaitGroup类型有三个方法：
+ Add()：用于将计数器加 1，表示要等待的 goroutine 数量增加； Done()：用于将计数器减1，表示有一个 goroutine 已经完成； Wait()：阻塞当前 goroutine，直到计数器归零  package main import ( &#34;fmt&#34; &#34;sync&#34; &#34;time&#34; ) func SyncClass() { wg := &amp;sync.WaitGroup{} wg.Add(2) go func() { time.Sleep(3 * time.Second) wg.Done() fmt.Println(&#34;等待了 3 秒，然后输出 Done 1&#34;) }() go func() { time.Sleep(5 * time.Second) wg.Done() fmt.Println(&#34;继续等待了 2 秒，然后输出 Done 2&#34;) }() wg.Wait() fmt.Println(&#34;Finish&#34;) } func main() { SyncClass() } 并发字典（Map） sync.Map 是一个线程安全的、并发访问的 map 类型。与普通的 map 不同，使用 sync.Map 类型时无需加锁即可在多个 goroutine 之间安全地并发读写数据。
+sync.Map 类型的方法：
+ Load()：用于获取指定键的值； Store()：用于设置指定键的值； Delete()：用于删除指定键的值； Range()：用于遍历所有键值对并调用指定的回调函数 LoadOrStore()：获取键值时如果没有就自动设置  package main import ( &#34;fmt&#34; &#34;sync&#34; ) func main() { m := &amp;sync.Map{} // 存储键值对 	m.Store(&#34;name&#34;, &#34;Alice&#34;) m.Store(&#34;age&#34;, 18) m.Store(&#34;gender&#34;, &#34;female&#34;) // 获取键值对 	name, _ := m.Load(&#34;name&#34;) age, _ := m.Load(&#34;age&#34;) gender, _ := m.Load(&#34;gender&#34;) fmt.Printf(&#34;name: %s, age: %d, gender: %s\n&#34;, name, age, gender) // 删除键值对 	m.Delete(&#34;gender&#34;) // 遍历所有键值对，当 bool 为 true 时，才进行下一次循环 	m.Range(func(key, value interface{}) bool { fmt.Printf(&#34;%s: %v\n&#34;, key, value) return true }) } 注意，Load()、Store() 和 Delete() 方法都不会返回任何错误信息，因此不能通过返回值来判断操作是否成功。如果需要进行错误检查，则可以在回调函数中添加额外的参数或者使用其他同步机制（如互斥锁）来保证并发安全性。
+使用 sync.Map 可以避免竞争条件和其他并发问题，并确保程序的正确性和安全性。
+并发池（Pool） sync.Pool 是一种用于对象池管理的同步机制。Pool 类型可以用于缓存已经分配的临时对象，以避免频繁地创建和销毁对象，从而提高程序的性能和效率。
+Pool 类型有两个方法：
+ Get()：用于从对象池中获取一个对象，如果池中没有可用对象，则会调用指定的函数生成一个新的对象并返回； Put()：用于将不再使用的对象放回池中，以便下次可以被重复使用。  package main import ( &#34;fmt&#34; &#34;sync&#34; ) func main() { p := &amp;sync.Pool{} // 放入 3 个对象 	p.Put(1) p.Put(2) p.Put(3) // 取出 3 个对象 	for i := 0; i &lt; 3; i++ { fmt.Println(p.Get()) } // 当池子里的对象取完后再取就是 nil 	fmt.Println(p.Get()) } 由于 Pool 类型的实现方式不同于普通的变量和对象，在使用时需要特别小心。例如，在对于 sync.Pool 类型的对象不能进行拷贝、比较和序列化等操作，否则可能会导致程序崩溃或出现其他异常。
+Cond sync.Cond 是一种条件变量，用于在多个 goroutine 之间实现等待、通知和唤醒操作。
+与互斥锁不同，使用 Cond 类型时可以使某些 goroutine 进入等待状态，直到满足特定条件后再被唤醒。
+Cond 类型有三个方法：
+ Wait()：用于使当前 goroutine 进入等待状态，并释放与 Cond 关联的互斥锁； Signal()：用于唤醒一个处于等待状态的 goroutine； Broadcast()：用于唤醒所有处于等待状态的 goroutine。  package main import ( &#34;fmt&#34; &#34;sync&#34; &#34;time&#34; ) // 将 cond 和 互斥锁关联 var cond = sync.NewCond(&amp;sync.Mutex{}) // 定义全局切片，可增删元素 var queue []int // 模拟生产一个元素，并添加到队列 func produce() { for i := 0; i &lt; 10; i++ { time.Sleep(time.Millisecond * 500) cond.L.Lock() queue = append(queue, i) fmt.Printf(&#34;produce: %d\n&#34;, i) // 生产完成后唤醒一个等待状态的 goroutine 	cond.Signal() cond.L.Unlock() } } // 模拟消费一个元素，并将其从队列中删除 func consume() { for i := 0; i &lt; 10; i++ { cond.L.Lock() // 如果队列为空，则进入等待状态 	for len(queue) == 0 { cond.Wait() } // 被唤醒则消费一个 	item := queue[0] queue = queue[1:] fmt.Printf(&#34;consume: %d\n&#34;, item) cond.L.Unlock() } } func main() { go produce() consume() } 如果消费者大于生产者，那么当队列为空时，消费者 goroutine 会一直阻塞在 cond.Wait() 方法上，导致程序出现死锁的情况。
+13、文件操作 io 包 package main import ( &#34;fmt&#34; &#34;os&#34; ) func main() { // 创建文件 	f, err := os.OpenFile(&#34;./test.txt&#34;, os.O_CREATE|os.O_RDWR, 0777) if err != nil { fmt.Println(err) return } // 写数据 	// 读数据 	for { // 设置一个切片为任意数的缓冲区，这里代表每次读 12 字节（4 个汉字） 	buffer := make([]byte, 12) byteNums, err := f.Read(buffer) if err != nil { // 当内容读取完毕后，err 为 EOF 代表结束 	fmt.Println(err) return } fmt.Println(string(buffer), byteNums) } } 14、net包 TCP 实现一个服务端和一个客户端，进行消息通信
+package main import ( &#34;fmt&#34; &#34;net&#34; ) func main() { // 监听本地 8888 端口 	listenAddr, err := net.ResolveTCPAddr(&#34;tcp&#34;, &#34;:8888&#34;) if err != nil { fmt.Println(&#34;Error resolving TCP address:&#34;, err.Error()) return } // 创建 TCP 监听器 	listener, err := net.ListenTCP(&#34;tcp&#34;, listenAddr) if err != nil { fmt.Println(&#34;Error listening on TCP port:&#34;, err.Error()) return } defer listener.Close() fmt.Println(&#34;Server is listening on &#34;, listener.Addr().String()) // 不断接受新的连接，并处理客户端发送的数据 	for { conn, err := listener.AcceptTCP() if err != nil { fmt.Println(&#34;Error accepting new connection:&#34;, err.Error()) return } fmt.Printf(&#34;New client connected: %s\n&#34;, conn.RemoteAddr().String()) go handleConnection(conn) // 处理客户端连接 	} } func handleConnection(conn *net.TCPConn) { defer conn.Close() for { // 读取客户端发送的数据 	buf := make([]byte, 1024) n, err := conn.Read(buf) if err != nil { fmt.Println(&#34;Error reading data from client:&#34;, err.Error()) break } // 输出客户端发送的数据 	data := string(buf[:n]) fmt.Printf(&#34;[ Client %s ]: %s\n&#34;, conn.RemoteAddr().String(), data) // 返回给客户端信息 	conn.Write([]byte(&#34;收到了消息: &#34; + data)) } } package main import ( &#34;bufio&#34; &#34;fmt&#34; &#34;net&#34; &#34;os&#34; ) func main() { // 连接本地 8888 端口 	serverAddr, err := net.ResolveTCPAddr(&#34;tcp&#34;, &#34;127.0.0.1:8888&#34;) if err != nil { fmt.Println(&#34;Error resolving TCP address:&#34;, err.Error()) return } // 建立连接 	conn, err := net.DialTCP(&#34;tcp&#34;, nil, serverAddr) if err != nil { fmt.Println(&#34;error connecting to TCP port:&#34;, err.Error()) return } defer conn.Close() fmt.Println(&#34;Connected to server:&#34;, conn.RemoteAddr().String()) // 向服务器发送数据 	reader := bufio.NewReader(os.Stdin) for { bytes, _, _ := reader.ReadLine() _, err = conn.Write(bytes) if err != nil { fmt.Println(&#34;Error writing data to server:&#34;, err.Error()) return } reply := make([]byte, 1024) buf, _ := conn.Read(reply) fmt.Println(string(reply[:buf])) } } HTTP  server：服务端，包含地址、端口、处理器等等 conn：用户请求来的那个链接 response：响应 request：用户请求信息 Handle：对于接收的信息进行处理并且返回的一个处理器  package main import ( &#34;io&#34; &#34;net/http&#34; ) func handle(res http.ResponseWriter, req *http.Request) { switch req.Method { case &#34;GET&#34;: res.Write([]byte(&#34;[Get]&#34;)) break case &#34;POST&#34;: // 将请求体返回去 	b, _ := io.ReadAll(req.Body) res.Write(b) // 设置 headers 	header := res.Header() header[&#34;test&#34;] = []string{&#34;test1&#34;, &#34;test2&#34;} // 设置状态码 	res.WriteHeader(http.StatusBadRequest) // 设置返回状态码为 400 	break } } func main() { http.HandleFunc(&#34;/test&#34;, handle) http.ListenAndServe(&#34;:8080&#34;, nil) } package main import ( &#34;fmt&#34; &#34;io&#34; &#34;net/http&#34; ) func main() { client := new(http.Client) req, _ := http.NewRequest(&#34;GET&#34;, &#34;http://localhost:8080/test&#34;, nil) res, _ := client.Do(req) body := res.Body b, _ := io.ReadAll(body) fmt.Println(string(b)) } RPC 远程过程调用，GO RPC 函数有特殊要求：
+ 函数首字母必须大写 必须只有两个参数，第一个参数是接收的参数，第二个参数是返回给客户端的参数 第二个参数必须是指针类型的 函数还要有一个返回值 ERROR  15、泛型 ]]></content></entry><entry><title>Golang - 根据系统平台执行对应代码</title><url>/tech/golang/%E6%A0%B9%E6%8D%AE%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0%E6%89%A7%E8%A1%8C%E5%AF%B9%E5%BA%94%E4%BB%A3%E7%A0%81/</url><categories><category>Golang</category></categories><tags><tag>Golang</tag></tags><content type="html"><![CDATA[看源码的时候发现这样一段代码
+log.Info().Msgf(&#34;%s https://httprunner.com&#34;, openCmd) main 里面的 openCmd 是个常量，在如下三个文件中都分别定义了。
+. ├── main.go ├── open_darwin.go -&gt; const openCmd = &#34;open&#34; ├── open_linux.go -&gt; const openCmd = &#34;xdg-open&#34; └── open_windows.go -&gt; const openCmd = &#34;explorer&#34; 当我追进去 openCmd 的时候，自动进入了 open_darwin.go文件，跟我的系统自动匹配。
+查看文档：https://pkg.go.dev/cmd/go#hdr-Build_constraints
+ If a file&rsquo;s name, after stripping the extension and a possible _test suffix, matches any of the following patterns:
+*_GOOS *_GOARCH *_GOOS_GOARCH
+(example: source_windows_amd64.go) where GOOS and GOARCH represent any known operating system and architecture values respectively, then the file is considered to have an implicit build constraint requiring those terms (in addition to any explicit constraints in the file).
+ 它会自动构建文件名后缀与当前系统名或系统架构匹配的 go 文件，这点就非常方便。
+当使用 goland 时，在 设置 - Go - Build Tag &amp; Vendoring 中，会自动设置当前系统为默认。
+因此，就算没有进行构建，通过常量名也可以追到对应的系统文件内。
+]]></content></entry><entry><title>功能测试 - 抓包工具 Charles 界面说明</title><url>/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-charles-%E7%95%8C%E9%9D%A2%E8%AF%B4%E6%98%8E/</url><categories><category>功能测试</category></categories><tags><tag>功能测试</tag></tags><content type="html">主菜单 这是主菜单栏的内容
+About Charles Preferences Services Hide Charles Hide Others Show All Quit Charles Aboult Charles 显示当前版本号、激活信息
+Preferences Service 一些开发者服务
+Hide Charles 隐藏 Charles 窗口，展示其他，相当于最小化，但不缩放到程序坞内
+Other Charles 仅展示 Charles 窗口，隐藏其他窗口
+Show All 全部窗口都展示
+Quit Charles 退出 Charles
+File 会话就是相当于新建一个录制窗口，可以理解为 Excel 下的 sheet 页。
+Edit View 分为四个区域（按图示分线）：
+视图展示区域 请求/响应 展示区域 请求/响应 展示类型设置 其他设置 视图展示区域 推荐使用结构化视图，测试过程中只看自己相关业务的 host 请求即可
+还可以在 Charles - Preferences - user Interface 内设置横向 或 纵向布局。
+推荐纵向，即上图侧边栏的方式展示。
+请求/响应 展示区域 overview：概述，请求的基本信息展示 request：请求详情 response：响应详情 summary：总览，选中多请求后会有汇总信息展示 chart：请求耗时图形化展示 请求-发送（上传）请求所花费的时间（深蓝色） 延迟-等待网络延迟或服务器上的处理时间所花费的时间（蓝色） 响应-接收（下载）响应所花费的时间（浅蓝色） notes：来源信息、错误信息、映射信息、Rewrite 等 求/响应 展示类型设置 View Request As View Response As 有很多可选类型，比如：HTML、CSS、JSON等，根据具体的业务返回数据类型来选择。
+其他设置 Focused Hosts 描述：「聚焦」功能，将自己关注的域名与其他域名分开展示。
+使用：点击该选项，弹出的会话框内，点击 Add，填入常用的/关注的域名，点击确定。
+示例：右图，设置的域名会单独展示出来，其他域名会收录到 Other Hosts 内
+Viewer Mappings 描述：「查看器映射」，将指定域名下的请求返回值，映射为固定格式 xml（举例，json 也行）。
+使用：右图，点击该选项，弹出的会话框内，点击 Add，填入需要映射的域名，点击确定。
+该域名下所有请求返回的响应值，最终都会以 XML 格式展示。
+Protobuf Settings ProtoBuf （Google Protocol Buffer）是由 google 公司用于数据交换的序列结构化数据格式，具有跨平台、跨语言、可扩展特性，类型于常用的 XML 及 JSON，但具有更小的传输体积、更高的编码、解码能力，特别适合于数据存储、网络数据传输等对存储体积、实时性要求高的领域。以 .proto为后缀，有自己的编译器 protoc, protoc2 和 protoc3 版本.
+这个是我没接触过的数据格式，下面列了几个文档共参考：
+Language Guide | Protocol Buffers | Google Developers
+Protobuf 有没有比 JSON 快 5 倍？-InfoQ
+ProtoBuf试用与JSON的比较
+这是 Charle Protocol Buffers 使用文档，供参考： Charles
+Proxy Proxy Stop Recording Start Throttling Enable Breakpoints Recording Settings Throttle Settings Breakpoint Settings Reverse Proxies Port Forwarding macOS Proxy Proxy Settings SSL Proxying Settings Access Control Settings External Proxy Settings Web Interface Settings Start/Stop Recording 开启/关闭 录制，开启后才会开始代理请求，正常抓包&amp;hellip;
+开启录制后，状态变更为：Stop Recording
+停止录制后，状态变更为：Start Recording
+工具栏样式如图
+Start/Stop Throttling 开启/关闭 弱网状态
+开启弱网后，状态变更为：Stop Throttling
+停止弱网后，状态变更为：Start Throttling
+工具栏样式如图:
+Enable/Disable Breakpoints 启用/禁用 断点
+允许断点后，状态变更为：disable Throttling
+停止弱网后，状态变更为：enable Throttling
+Recording Settings 点弹出设置弹框，包含：
+Options Include Exclude Tab - 1 ：Options
+1️⃣ Recording size limit（MB） 这个选项是限制请求及响应大小，如果超出 100 MB，则过滤掉，不会录制在 Charles 工具内；
+100 这个数字可以随意设置
+2️⃣ Limit recording history 这个选项是设置同一请求最大展示数量，如果开启选项，同一请求再次请求，会自动删除第一次请求的数据，所以为了避免数据丢失，建议不开启此功能或数字设置大一点
+3️⃣ Limit WebSocket transaction history 这个选项类似 2⃣️，是针对 WebSocket 的限制
+Tab - 2 ：Include
+仅录制当前列表内添加的域名请求，如果不填或全部取消选中，则将所有的请求录制到 Charles 内
+添加方法：
+点击 Add → 弹出 Edit Location → 域名粘贴在 host 内，点击任意区域自动填充 → 点击确定
+Tab - 3 ：Exclude
+与 Include 相反，仅录制当前列表外的其他域名请求
+如果不填或全部取消选中，则不排除任何域名的请求
+添加方法与 Include 一致
+Throttle Settings Breakpoints Settings Reverse Proxies 💡 正向代理隐藏真实客户端，反向代理隐藏真实服务端 ![image-20230822150055836](https://cdn.jsdelivr.net/gh/abeelan/image-hosting-service/img/image-20230822150055836.png) 官方教程: Charles
+反向代理使用案例: Charles录制反向代理
+Port Forwarding charles 端口转发丨阿西河
+Charles
+macOS/Windows Proxy 点击 勾选/取消勾选；
+是否代理 PC 浏览器的请求
+Proxy Settings Tab - Proxies HTTP Proxy：
+Port：设置端口号，默认 8888，手机连接代理时填写的端口号需要与此处保持一致，如果设置了固定端口，其他服务就不能再使用这个端口号，否则冲突； Use a dynamic port：是否设置动态端口，如果勾选则监听动态端口，可以避免与计算机上运行的其他网络服务冲突，如果开的端口很多且不清楚端口号，可以勾选使用这个功能； Enable transparent HTTP proxying：是否启动透明代理，可以先百度了解下什么是透明代理，在Charles 上具体有什么用处，我没搞懂。 SOCKS Proxy：
+Socks 服务器通常是作为一个代理服务器，充当一个中间代理的角色，与客户端以及真正的服务端建立 TCP 连接，然后负责对客户端与服务端之间的流量进行路由和转发。一个 socks 代理服务器能够与任何一种网络协议进行工作
+具体如何使用，我没搞懂。
+Tab - Options Tab - macOS/Windows SSL Proxying Settings Access Control Settings 访问控制设置
+External Proxy Settings 外部代理设置：可能在网络上有一个代理服务器，必须使用该代理服务器才能访问 Internet。在这种情况下，需要将 Charles 配置为在尝试访问 Internet 时使用现有代理。
+Web Interface Settings web 界面设置：Charles 具有 Web 界面，使您可以从浏览器或将 Web 界面用作 Web 服务的外部程序来控制Charles。使用“Proxy”菜单中的“Web Interface Settings”选项启用 Web 界面。您可以允许匿名访问，也可以配置用户名和密码。您可以通过配置为使用 Charles 作为其代理的 Web 浏览器访问 http://control.charles/ 来访问 Web 界面。
+Tools 禁用设置 No Caching Settings：禁用缓存设置 Block Cookies Settings：禁用 Cookie设置 功能设置 Map Remote Settings：远程映射设置 Map Local Settings：本地映射设置 Rewrite Settings：重写设置 Black List Settings：黑名单设置 White List Settings：白名单设置 DNS Spoofing Settings：DNS 欺骗设置 其他设置 Mirror Settings：镜像设置 Auto Save Settings：自动保存设置 Client Process Settings：客户端进程设置 请求设置 Compose：编辑修改 Repeat：重复发包 Repeat Advanced：高级重复发包 Validate：验证 Publish Gist：发布要点。 配置设置 Import/Export Settings：导入/导出设置 Profiles：配置文件 Publish Gist Settings：发布要点设置 No Caching Settings No Caching 工具可防止客户端应用程序（如 Web 浏览器）缓存任何资源。因此，始终向远程网站发出请求，您始终可以看到最新版本。
+**适用范围：**该工具可以作用于每个请求(选中 Enable No Caching 即可)，也可以仅对你配置的请求启用(启用 No Caching 的同时，请选中 Only for selected locations)。当用于选定的请求时，可以使用简单但功能强大的模式匹配将工具的效果限制为指定的主机和路径。
+**工作原理：**No Caching 工具通过操纵控制响应缓存的 HTTP 请求头来防止缓存。从请求中删除 If-Modified-Since 和 If-None-Match 请求头，添加 Pragma：no-cache 和 Cache-control：no-cache。从响应中删除 Expires，Last-Modified 和 ETag 请求头，添加 Expires：0 和 Cache-Control：no-cache。
+Block Cookies Settings Block Cookies 工具阻止了 Cookie 的发送和接收。它可用于测试网站，就像在浏览器中禁用了 Cookie 一样。 请注意，网络爬虫（例如 Google）通常不支持 Cookie，因此该工具还可用于模拟网络爬虫网站的视图。
+**适用范围：**该工具可以作用于每个请求(选中 Enable Block Cookies 即可)，也可以仅对你配置的请求启用(启用 Block Cookies 的同时，请选中 Only for selected locations)。当用于选定的请求时，可以使用简单但功能强大的模式匹配将工具的效果限制为指定的主机和路径。
+**工作原理：**Block Cookies 工具通过操纵控制响应 Cookies 的 HTTP 请求头来禁用 Cookies。从请求中移除 Cookie 请求头，防止 Cookie 值从客户端应用程序（例如 Web 浏览器）发送到远程服务器。从响应中删除 Set-Cookie 请求头，防止请求设置客户端应用程序从远程服务器接收的 Cookie。
+Map Remote Settings **Map Remote：**将请求的主机或者域名重定向到配置的主机或域名。
+**HTTPS：**Map Remote 工具可以将 HTTP 请求映射到 HTTPS 目标，反之亦然。 **站点匹配：**每个站点匹配可能包含协议、主机、端口和路径模式，以匹配特定的 URL，站点可能包括通配符。 Map Local Settings **Map Local：映射本地文件，**将本地文件的内容返回给客户端。
+比如要修改服务的某个数值或者字段，正常情况下需要操作数据库或者后端服务去修改
+通过 map local 可以直接修改本地文件，映射到客户端。
+**动态文件：**动态文件（例如包含服务器端脚本的文件）不会由 Map Local 执行，因此如果文件中有任何脚本，脚本将按原样返回到浏览器，这可能不是预期的结果。如果您想使用动态文件，就好像它们是远程网站的一部分一样，请参阅 Map Remote 工具。
+**工作原理：**当请求与 Map Local 映射匹配时，它会检查与路径匹配的本地文件。它不包括查询字符串（如果有）。如果在本地找到所请求的文件，则将其作为响应返回，就好像它是从远程站点加载的一样，因此它对客户端是透明的。如果在本地找不到所请求的文件，那么该请求会像平常一样由网站提供，返回由真正的服务器提供的数据。
+**站点匹配：**每个站点匹配可能包含协议、主机、端口和路径模式，以匹配特定的 URL。站点可能包括通配符。当您向此工具添加新站点时，可能会找到有关创建站点匹配的更多帮助。</content></entry><entry><title>禅道 - 服务迁移指南</title><url>/tech/%E7%A6%85%E9%81%93/%E6%9C%8D%E5%8A%A1%E8%BF%81%E7%A7%BB%E6%8C%87%E5%8D%97/</url><categories><category>禅道</category></categories><tags><tag>禅道</tag></tags><content type="html"> 禅道从云服务器迁移至本地服务器，基于 Docker 启动。
+原服务器 使用管理员账号登录禅道； 访问：后台 - 系统设置 - 备份 - 开始备份，备份期间确保不会有增量数据； 备份完成后登录该服务器，将三个备份文件同步至新服务器上。 新服务器 使用 docker 先启动一个新的禅道服务，配置好挂载目录； name=zentao zentaoDir=/data/docker/$name if docker ps -aqf name=$name | grep -q .; then docker rm -f $name fi docker run -d \ --name $name \ -p 8183:80 \ -v $zentaoDir/zentaopms:/www/zentaopms \ -v $zentaoDir/mysqldata:/var/lib/mysql \ -e MYSQL_ROOT_PASSWORD=xxxxxx \ --restart always \ easysoft/zentao:18.2 将同步过来的备份数据放在新服务器的如下目录 $ cp xxxxx.* /path/to/zentaopms/tmp/backup/ 使用管理员登录新创建的服务，进入备份页面，看到同步过来的备份文件，点击「还原」等待完成。 访问 通过 nginx 做虚拟主机（vhost）配置，以便通过原域名可以访问新服务。
+Nginx 中的虚拟主机（Virtual Host，通常缩写为vhost）是一种服务器配置方法，允许在单个物理服务器上托管多个不同的网站或应用程序，每个都可以使用不同的域名或主机名进行访问。
+虚拟主机的主要目的是将请求根据域名或主机名分发到不同的网站或应用程序，以实现多个网站共享同一个服务器的资源。
+编辑 nginx 配置文件：
+server { listen 80; server_name yourdomain.com; client_max_body_size 50M; # 设置请求体最大不能超过 50M，默认 1M 太小 location / { proxy_pass http://localhost:3000; # 新服务的端口号 proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } 启动容器
+NAME=nginx if docker ps -aqf name=$NAME | grep -q .; then docker rm -f $NAME fi docker run -d --name $NAME -p 80:80 \ -v path/to/your-vhost.conf:/etc/nginx/conf.d/my-vhost.conf:ro \ --net=host \ # 必须主机网络模式 否则 localhost 访问不到新服务 nginx 最后就是把原域名的解析地址切到新服务器上，完成迁移。</content></entry><entry><title>Python - Gdb 查看程序调试信息</title><url>/tech/python/gdb-%E6%9F%A5%E7%9C%8B%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF/</url><categories><category>Python</category></categories><tags><tag>Python</tag></tags><content type="html"><![CDATA[ Mac
 Python 3.7
   https://www.modb.pro/db/454999  
 安装 # 搜索仓库 $ brew search gdb # 安装 $ brew install gdb Error: python@3.10: the bottle needs the Apple Command Line Tools to be installed. You can install them, if desired, with: xcode-select --install # 出现报错，根据报错提示安装命令行工具 $ xcode-select --install # 重新安装后查看 $ which gdb /usr/local/bin/gdb $ gdb -v GNU gdb (GDB) 12.1 创建证书 打开钥匙串应用，菜单栏点击：钥匙串访问 - 证书助理 - 创建证书
@@ -697,25 +870,26 @@ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch := make(ch
 跳楼机：失重感很强，刺激。 过山车，是那种车开到最上面然后速降的，来回转了两个圈，一般。 午餐园区内解决，吃完饭在儿童游玩区休息会儿。儿子是真不累，什么都想玩一遍。
 又热又累，不想走路，就直接购买园内小火车票，10块/人，直接去滑沙项目区，这是丈母娘每次必点项目，哈哈。
 我带儿子去海边泳池区域，今天没带泳装，他直接脱光了跳进池子，太尴尬了… 赶紧追上他去商店买了泳裤。</content></entry><entry><title>Blog - Typora 历史版本查看及恢复</title><url>/tech/blog/typora-%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E6%9F%A5%E7%9C%8B%E5%8F%8A%E6%81%A2%E5%A4%8D/</url><categories><category>Blog</category></categories><tags><tag>Blog</tag></tags><content type="html">Mac 打开文本文件 -&amp;gt; 顶部菜单栏：文件 -&amp;gt; 复原到… -&amp;gt; 浏览所有版本。
-这时就会出现一个时间机器的界面，可以查看之前该文件的所有历史版本内容。</content></entry><entry><title>Jmeter&Ms - 使用方法汇总</title><url>/tech/jmeterms/ms-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url><categories><category>Jmeter&Ms</category></categories><tags><tag>Jmeter&Ms</tag></tags><content type="html">内置函数使用 请求参数栏或请求体转为 JSON-SCHEMA 后，参数值输入框中有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。
+这时就会出现一个时间机器的界面，可以查看之前该文件的所有历史版本内容。</content></entry><entry><title>Jmeter&Ms - 使用方法汇总</title><url>/tech/jmeterms/ms-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</url><categories><category>Jmeter&Ms</category></categories><tags><tag>Jmeter&Ms</tag></tags><content type="html"><![CDATA[内置函数使用 请求参数栏或请求体转为 JSON-SCHEMA 后，参数值输入框中有个编辑按钮，点击后可以在函数页面进行使用，支持预览结果以及函数配合使用。
 时间函数：
-时间戳(13位)：${__time} 时间格式化函数：
-当前时间：${__timeShift(,,,,)}
-当前时间增加一天： ${__timeShift(,,P1d,,)}
-当前时间减小一小时： ${__timeShift(,,PT-1H,,)}
-当前时间格式化展示：${__timeShift(yyyy-MM-dd HH:mm,,,,)} ==&amp;gt; 2023-07-26 18:53
-当前时间仅显示年月：${__timeShift(yyyy-MM,,,,)}==&amp;gt; 2023-08
-当前时间格式化加一分钟：${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)} ==&amp;gt; 2023-07-26 18:54
-整型相加函数（intSum）：
-${__intSum(${user_total},1)}，其中 ${user_total} 是从接口提取出来的值 ms 内置函数：
-@cname：自动生成中文名字 @ctitle：自动生成中文标题 请求体中字符转义问题 当 json 带转义转为字符串后，通过 ms 请求，\\\n 会被转义为 \n，注意检查下请求内容中的格式，否则接口数据提交时后端再次 json parse 时可能出错。如上，ms 中写请求体的时候，json 字符串中应修改换行为 \\\\\n。
-断言 正则 判断不为空：^.*(数字开头 /d，字符开头 /s) 场景 条件控制器 变量引用格式为 ${salary} 后面跟判断条件。
-循环控制器 - ForEach pk 为自定义的变量，表示每次循环的值，类似于 for i in range(10) 中的 i pks 为从上一个接口中提取出的值（通过 jsonpath，匹配多个值），这里不需要 ${} ，也不需要在后面添加 _ALL 后缀，直接使用变量名即可。 可设置循环间隔时间 使用 csv 文件参数化 创建场景 - 场景变量 - 添加左侧下拉框选择 CSV - 点击添加
+ 时间戳(13位)：${__time}  时间格式化函数：
+  当前时间：${__timeShift(,,,,)}
+  当前时间增加一天： ${__timeShift(,,P1d,,)}
+  当前时间减小一小时： ${__timeShift(,,PT-1H,,)}
+  当前时间格式化展示：${__timeShift(yyyy-MM-dd HH:mm,,,,)} ==&gt; 2023-07-26 18:53
+  当前时间仅显示年月：${__timeShift(yyyy-MM,,,,)}==&gt; 2023-08
+  当前时间格式化加一分钟：${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)} ==&gt; 2023-07-26 18:54
+  整型相加函数（intSum）：
+ ${__intSum(${user_total},1)}，其中 ${user_total} 是从接口提取出来的值  ms 内置函数：
+ @cname：自动生成中文名字 @ctitle：自动生成中文标题  请求体中字符转义问题 当 json 带转义转为字符串后，通过 ms 请求，\\\n 会被转义为 \n，注意检查下请求内容中的格式，否则接口数据提交时后端再次 json parse 时可能出错。如上，ms 中写请求体的时候，json 字符串中应修改换行为 \\\\\n。
+断言 正则  判断不为空：^.*(数字开头 /d，字符开头 /s) 日期：2023-04-23 17:00:16 -&gt; ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$ 匹配四位及四位以上数字：\d{4,}  场景 条件控制器 变量引用格式为 ${salary} 后面跟判断条件。
+循环控制器 - ForEach  pk 为自定义的变量，表示每次循环的值，类似于 for i in range(10) 中的 i pks 为从上一个接口中提取出的值（通过 jsonpath，匹配多个值），这里不需要 ${} ，也不需要在后面添加 _ALL 后缀，直接使用变量名即可。 可设置循环间隔时间  使用 csv 文件参数化 创建场景 - 场景变量 - 添加左侧下拉框选择 CSV - 点击添加
 输入变量名，多个以 分隔符 分开。
 添加文件，文件第一行为变量名，后续行为数据，点击确定。
 在后续的接口中使用 ${var_name} 使用变量。
 自定义脚本 场景特别长的时候，可以用作分割线，更清楚的表示接口集的作用。
-使用方法如下：脚本名称可用作注释，但是注意里面需要忽略脚本状态（500），不然 500 报错影响场景结果。</content></entry><entry><title>Bookmarks - 好用的在线工具</title><url>/tech/bookmarks/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/</url><categories><category>Bookmarks</category></categories><tags><tag>Bookmarks</tag></tags><content type="html">以下是一些好用的在线工具。
+使用方法如下：脚本名称可用作注释，但是注意里面需要忽略脚本状态（500），不然 500 报错影响场景结果。
+]]></content></entry><entry><title>Bookmarks - 好用的在线工具</title><url>/tech/bookmarks/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7/</url><categories><category>Bookmarks</category></categories><tags><tag>Bookmarks</tag></tags><content type="html">以下是一些好用的在线工具。
 画图工具
 excalidraw ：界面优美，不需要登录，使用方便 ⭐️ handraw : 同上，是支持中文手写版本 processon ：流程图、思维导图等等，支持各种图 翻译工具
 deepl ：中文翻译，准确度高，但是慢且收费 欧路词典，我用的 mac 客户端，相当于 deepl 的平替 Json
@@ -1233,7 +1407,7 @@ pipeline { agent any stages { stage(&#39;Test&#39;) { steps{ script { meterSpher
 使用该功能，您可以轻松地将请求示例粘贴到 JavaScript 代码中，并通过更改参数来调整和测试请求。这方面的好处是使得开发人员不必手动编写 HTTP 请求代码，而是可以通过 Chrome 自动生成代码，从而减少了代码书写的时间和工作量。
 Fetch API Fetch API 是一种用于获取和发送 HTTP 请求的新型 Web API，它提供了一种现代化的方式来处理网络请求。Fetch API 提供了一组接口，可以让 JavaScript 代码轻松地处理HTTP请求和响应。
 使用Fetch API，您可以向服务器发送 GET、POST 等各种类型的请求，并且可以控制请求头、请求体等参数。Fetch API 还支持 Promise，因此您可以轻松地使用异步方式处理请求和响应，而不必使用回调函数。
-另外，值得注意的是，Fetch API 是基于浏览器内置的 XMLHttpRequest（XHR）对象实现的，但它提供了更为简洁、易用和灵活的 API 接口。</content></entry><entry><title>功能测试 - 禅道 问题记录</title><url>/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E7%A6%85%E9%81%93-%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url><categories><category>功能测试</category></categories><tags><tag>功能测试</tag></tags><content type="html"><![CDATA[数据提取 比如用例的链接为：/testcase-view-1159.html，要获取 json 数据就将后缀的 html 变更为 josn 即可。
+另外，值得注意的是，Fetch API 是基于浏览器内置的 XMLHttpRequest（XHR）对象实现的，但它提供了更为简洁、易用和灵活的 API 接口。</content></entry><entry><title>功能测试 - 禅道 问题记录</title><url>/tech/%E7%A6%85%E9%81%93/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url><categories><category>功能测试</category></categories><tags><tag>功能测试</tag></tags><content type="html"><![CDATA[数据提取 比如用例的链接为：/testcase-view-1159.html，要获取 json 数据就将后缀的 html 变更为 josn 即可。
 放在浏览器请求后，中文用 unicode 编码了，不方便查看数据。
 这里记录将该数据格式化的过程。
 方式一 vscode 下载 JSON（beautiful json） 插件，cmd+shift+j 一键搞定。
@@ -1481,7 +1655,7 @@ $ python webtool/application.py 测试没问题的话，就把项目扔到 gitla
 FROMpython:3.10-alpine# 将当前目录中的所有��件复制到容器的 /app 目录中COPY . /app# 在容器中设置工作目录为 /appWORKDIR/app# 安装依赖项RUN pip install -r requirements.txt -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com# 启动服务EXPOSE8000CMD [&#34;python&#34;, &#34;webtool/application.py&#34;]
 Jenkins 上创建项目  创建一个自由风格的项目 配置项目源码地址 编写项目构建 shell 命令  NAME=xmind2testcase docker build -t $NAME:latest . if docker ps -aqf name=$NAME | grep -q .; then docker rm -f $NAME fi docker run --name $NAME -d -p 8000:8000 -v /volume/$NAME/webtool/uploads:/app/webtool/uploads $NAME 进行构建，访问 8000 端口，即可。
 自动构建 通过定时任务，或者 gitlab-webhook 实现自动构建，目前该服务无需求，通过手动构建即可。
-]]></content></entry><entry><title>功能测试 - 禅道 取消上传附件大小限制</title><url>/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E7%A6%85%E9%81%93-%E5%8F%96%E6%B6%88%E4%B8%8A%E4%BC%A0%E9%99%84%E4%BB%B6%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6/</url><categories><category>功能测试</category></categories><tags><tag>功能测试</tag></tags><content type="html"> 禅道18.2镜像，限制附件上传大小为 50 M，如何取消或者修改这个限制呢？
+]]></content></entry><entry><title>功能测试 - 禅道 取消上传附件大小限制</title><url>/tech/%E7%A6%85%E9%81%93/%E5%8F%96%E6%B6%88%E4%B8%8A%E4%BC%A0%E9%99%84%E4%BB%B6%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6/</url><categories><category>功能测试</category></categories><tags><tag>功能测试</tag></tags><content type="html"> 禅道18.2镜像，限制附件上传大小为 50 M，如何取消或者修改这个限制呢？
 要取消或修改禅道 18.2 镜像中的附件上传大小限制，需要按照以下步骤进行操作：
 需要修改的三个配置项：
 post_max_size：帖子大小限制 upload_max_filesize：附件大小限制 max_execution_time：上传超时时间 需要修改的三个配置文件：
