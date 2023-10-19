@@ -880,7 +880,8 @@ package main import ( &#34;fmt&#34; &#34;time&#34; ) func main() { ch := make(ch
   当前时间仅显示年月：${__timeShift(yyyy-MM,,,,)}==&gt; 2023-08
   当前时间格式化加一分钟：${__timeShift(yyyy-MM-dd HH:mm,,PT1M,,)} ==&gt; 2023-07-26 18:54
   整型相加函数（intSum）：
- ${__intSum(${user_total},1)}，其中 ${user_total} 是从接口提取出来的值  ms 内置函数：
+ ${__intSum(${user_total},1)}，其中 ${user_total} 是从接口提取出来的值  随机字符串
+ 生成一个拼接的字符串：超级管理员${__RandomString(5,abcdefghijklmnopqrstuvwxyz,)}，得到超级管理员abcde随机五位字符  ms 内置函数：
  @cname：自动生成中文名字 @ctitle：自动生成中文标题  请求体中字符转义问题 当 json 带转义转为字符串后，通过 ms 请求，\\\n 会被转义为 \n，注意检查下请求内容中的格式，否则接口数据提交时后端再次 json parse 时可能出错。如上，ms 中写请求体的时候，json 字符串中应修改换行为 \\\\\n。
 断言 正则  判断不为空：^.*(数字开头 /d，字符开头 /s) 日期：2023-04-23 17:00:16 -&gt; ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$ 匹配四位及四位以上数字：\d{4,}  场景 条件控制器 变量引用格式为 ${salary} 后面跟判断条件。
 循环控制器 - ForEach  pk 为自定义的变量，表示每次循环的值，类似于 for i in range(10) 中的 i pks 为从上一个接口中提取出的值（通过 jsonpath，匹配多个值），这里不需要 ${} ，也不需要在后面添加 _ALL 后缀，直接使用变量名即可。 可设置循环间隔时间  使用 csv 文件参数化 创建场景 - 场景变量 - 添加左侧下拉框选择 CSV - 点击添加
