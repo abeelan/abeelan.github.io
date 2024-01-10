@@ -1,4 +1,173 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Golang - 基础笔记</title><url>/tech/golang/%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/</url><categories><category>Golang</category></categories><tags><tag>Golang</tag></tags><content type="html"><![CDATA[环境配置 下载 Golang  下载地址：https://go.dev/dl/ 安装一路下一步即可  $ go version go version go1.20.5 darwin/amd64 下载 Goland  下载地址：https://www.jetbrains.com/go/download/#section=mac 激活教程：https://shimo.im/docs/WY3hd8Jt8KHgvVty/read  环境验证 打开 goland，创建项目 go-basic，项目下创建主文件 main.go 文件，作为程序入口
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>功能测试 - 抓包工具 Charles 代理Macos请求</title><url>/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7-charles-%E4%BB%A3%E7%90%86macos%E8%AF%B7%E6%B1%82/</url><categories><category>功能测试</category></categories><tags><tag>功能测试</tag></tags><content type="html">准备：Charles（4.6.1）MacOS（10.15.7）
+第一步：设置 Charles
+1）打开 Charles，勾选 macOS Proxy，开启代理本机；
+2）勾选后会弹出权限许可弹框，点击授予权限即可；
+弹框内容：macOS代理自动配置；Charles 可以自动配置您的网络设置并使用，这需要你授予权限给 Charles 代理设置应用程序。
+您只需要这样做一次。现在设置吗? 没有；授予权限
+第二步：设置 chrome 浏览器
+1）下载代理扩展插件 Proxy SwitchyOmega
+地址：https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN
+2）新建情景模式
+3）将代理配置为刚才创建好的 Charles
+第三步：验证
+打开新的浏览器窗口，百度搜索“测试”，查看 Charles 是否代理成功</content></entry><entry><title>功能测试 - 正则表达式汇总</title><url>/tech/%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%87%E6%80%BB/</url><categories><category>功能测试</category></categories><tags><tag>功能测试</tag></tags><content type="html"><![CDATA[一、校验数字的表达式 1 数字： ^[0-9]$
+2 n位的数字： ^\d{n}$
+3 至少n位的数字： ^\d{n,}$
+4 m-n位的数字：^\d{m,n}$
+5 零和非零开头的数字：^(0|[1-9][0-9]*)$
+6 非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$
+7 带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$
+8 正数、负数、和小数：想
+9 有两位小数的正实数：^[0-9]+(.[0-9]{2})?$
+10 有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$
+11 非零的正整数：^[1-9]\d*$ 或 ^([1-9][0-9]){1,3}$ 或 ^+?[1-9][0-9]$
+12 非零的负整数：^-[1-9][]0-9&quot;$ 或 ^-[1-9]\d$
+13 非负整数：^\d+$ 或 ^[1-9]\d*|0$
+14 非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$
+15 非负浮点数：^\d+(.\d+)?$ 或 ^[1-9]\d*.\d*|0.\d*[1-9]\d*|0?.0+|0$
+16 非正浮点数：^((-\d+(.\d+)?)|(0+(.0+)?))$ 或 ^(-([1-9]\d*.\d*|0.\d*[1-9]\d*))|0?.0+|0$
+17 正浮点数：^[1-9]\d*.\d*|0.\d*[1-9]\d*$ 或 ^(([0-9]+.[0-9][1-9][0-9])|([0-9][1-9][0-9].[0-9]+)|([0-9][1-9][0-9]))$
+18 负浮点数：^-([1-9]\d*.\d*|0.\d*[1-9]\d*)$ 或 ^(-(([0-9]+.[0-9][1-9][0-9])|([0-9][1-9][0-9].[0-9]+)|([0-9][1-9][0-9])))$
+19 浮点数：^(-?\d+)(.\d+)?$ 或 ^-?([1-9]\d*.\d*|0.\d*[1-9]\d*|0?.0+|0)$
+二、校验字符的表达式 1 汉字：^[\u4e00-\u9fa5]{0,}$
+2 英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$
+3 长度为3-20的所有字符：^.{3,20}$
+4 由26个英文字母组成的字符串：^[A-Za-z]+$
+5 由26个大写英文字母组成的字符串：^[A-Z]+$
+6 由26个小写英文字母组成的字符串：^[a-z]+$
+7 由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$
+8 由数字、26个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w{3,20}$
+9 中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$
+10 中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$
+11 可以输入含有^%&amp;',;=?$&quot;等字符：[^%&amp;',;=?$\x22]+
+12 禁止输入含有~的字符：[^~\x22]+
+三、特殊需求表达式 1 Email地址：^\w+([-+.]\w+)@\w+([-.]\w+).\w+([-.]\w+)*$
+2 域名：[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(/.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+/.?
+3 InternetURL：[a-zA-z]+://[^\s]* 或 ^http://([\w-]+.)+[\w-]+(/[\w-./?%&amp;=]*)?$
+4 手机号码：^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$
+5 电话号码(&ldquo;XXX-XXXXXXX&rdquo;、&ldquo;XXXX-XXXXXXXX&rdquo;、&ldquo;XXX-XXXXXXX&rdquo;、&ldquo;XXX-XXXXXXXX&rdquo;、&ldquo;XXXXXXX&quot;和&quot;XXXXXXXX)：^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$
+6 国内电话号码(0511-4405222、021-87888822)：\d{3}-\d{8}|\d{4}-\d{7}
+7 身份证号(15位、18位数字)：^\d{15}|\d{18}$
+8 短身份证号码(数字、字母x结尾)：^([0-9]){7,18}(x|X)?$ 或 ^\d{8,18}|[0-9x]{8,18}|[0-9X]{8,18}?$
+9 帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$
+10 密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：^[a-zA-Z]\w{5,17}$
+11 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间)：^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,10}$
+12 日期格式：^\d{4}-\d{1,2}-\d{1,2}
+13 一年的12个月(01～09和1～12)：^(0?[1-9]|1[0-2])$
+14 一个月的31天(01～09和1～31)：^((0?[1-9])|((1|2)[0-9])|30|31)$
+16 1.有四种钱的表示形式我们可以接受:&ldquo;10000.00&rdquo; 和 &ldquo;10,000.00&rdquo;, 和没有 &ldquo;分&rdquo; 的 &ldquo;10000&rdquo; 和 &ldquo;10,000&rdquo;：^[1-9][0-9]*$
+17 2.这表示任意一个不以0开头的数字,但是,这也意味着一个字符&quot;0&quot;不通过,所以我们采用下面的形式：^(0|[1-9][0-9]*)$
+18 3.一个0或者一个不以0开头的数字.我们还可以允许开头有一个负号：^(0|-?[1-9][0-9]*)$
+19 4.这表示一个0或者一个可能为负的开头不为0的数字.让用户以0开头好了.把负号的也去掉,因为钱总不能是负的吧.下面我们要加的是说明可能的小数部分：^[0-9]+(.[0-9]+)?$
+20 5.必须说明的是,小数点后面至少应该有1位数,所以&quot;10.&ldquo;是不通过的,但是 &ldquo;10&rdquo; 和 &ldquo;10.2&rdquo; 是通过的：^[0-9]+(.[0-9]{2})?$
+21 6.这样我们规定小数点后面必须有两位,如果你认为太苛刻了,可以这样：^[0-9]+(.[0-9]{1,2})?$
+22 7.这样就允许用户只写一位小数.下面我们该考虑数字中的逗号了,我们可以这样：^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?$
+23 8.1到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$
+24 备注：这就是最终结果了,别忘了&rdquo;+&ldquo;可以用&rdquo;*&ldquo;替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里
+25 xml文件：^([a-zA-Z]+-?)+[a-zA-Z0-9]+\.[x|X][m|M][l|L]$
+26 中文字符的正则表达式：[\u4e00-\u9fa5]
+27 双字节字符：[^\x00-\xff] (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))28 空白行的正则表达式：\n\s*\r (可以用来删除空白行)
+29 HTML标记的正则表达式：&lt;(\S*?)[^&gt;]&gt;.?&lt;/\1&gt;|&lt;.? /&gt; (网上流传的版本太糟糕，上面这个也仅仅能部分，对于复杂的嵌套标记依旧无能为力)30 首尾空白字符的正则表达式：^\s|\s*$或(^\s*)|(\s*$) (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)
+31 腾讯QQ号：[1-9][0-9]{4,} (腾讯QQ号从10000开始)
+32 中国邮政编码：[1-9]\d{5}(?!\d) (中国邮政编码为6位数字)
+33 IP地址：\d+.\d+.\d+.\d+ (提取IP地址时有用)34 IP地址：((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))
+&ldquo;^\d+$&rdquo; //非负整数（正整数 + 0）
+&ldquo;^[0-9][1-9][0-9]$&rdquo; //正整数
+&ldquo;^((-\d+)|(0+))$&rdquo; //非正整数（负整数 + 0）
+&ldquo;^-[0-9][1-9][0-9]$&rdquo; //负整数
+&ldquo;^-?\d+$&rdquo; //整数
+&ldquo;^\d+(.\d+)?$&rdquo; //非负浮点数（正浮点数 + 0）
+&ldquo;^(([0-9]+.[0-9][1-9][0-9])|([0-9][1-9][0-9].[0-9]+)|([0-9][1-9][0-9]))$&rdquo; //正浮点数
+&ldquo;^((-\d+(.\d+)?)|(0+(.0+)?))$&rdquo; //非正浮点数（负浮点数 + 0）
+&ldquo;^(-(([0-9]+.[0-9][1-9][0-9])|([0-9][1-9][0-9].[0-9]+)|([0-9][1-9][0-9])))$&rdquo; //负浮点数
+&ldquo;^(-?\d+)(.\d+)?$&rdquo; //浮点数
+&ldquo;^[A-Za-z]+$&rdquo; //由26个英文字母组成的字符串
+&ldquo;^[A-Z]+$&rdquo; //由26个英文字母的大写组成的字符串
+&ldquo;^[a-z]+$&rdquo; //由26个英文字母的小写组成的字符串
+&ldquo;^[A-Za-z0-9]+$&rdquo; //由数字和26个英文字母组成的字符串
+&ldquo;^\w+$&rdquo; //由数字、26个英文字母或者下划线组成的字符串
+&ldquo;^[\w-]+(.[\w-]+)*@[\w-]+(.[\w-]+)+$&rdquo; //email地址
+&ldquo;^[a-zA-z]+://(\w+(-\w+))(.(\w+(-\w+)))(?\S)?$&rdquo; //url
+整数或者小数：^[0-9]+.{0,1}[0-9]{0,2}$
+只能输入数字：&quot;^[0-9]*$&quot;。
+只能输入n位的数字：&quot;^\d{n}$&quot;。
+只能输入至少n位的数字：&quot;^\d{n,}$&quot;。
+只能输入m~n位的数字：。&quot;^\d{m,n}$&rdquo;
+只能输入零和非零开头的数字：&quot;^(0|[1-9][0-9]*)$&quot;。
+只能输入有两位小数的正实数：&quot;^[0-9]+(.[0-9]{2})?$&quot;。
+只能输入有1~3位小数的正实数：&quot;^[0-9]+(.[0-9]{1,3})?$&quot;。
+只能输入非零的正整数：&quot;^+?[1-9][0-9]*$&quot;。
+只能输入非零的负整数：&quot;^-[1-9][]0-9&rdquo;*$。
+只能输入长度为3的字符：&quot;^.{3}$&quot;。
+只能输入由26个英文字母组成的字符串：&quot;^[A-Za-z]+$&quot;。
+只能输入由26个大写英文字母组成的字符串：&quot;^[A-Z]+$&quot;。
+只能输入由26个小写英文字母组成的字符串：&quot;^[a-z]+$&quot;。
+只能输入由数字和26个英文字母组成的字符串：&quot;^[A-Za-z0-9]+$&quot;。
+只能输入由数字、26个英文字母或者下划线组成的字符串：&quot;^\w+$&quot;。
+验证用户密码：&quot;^[a-zA-Z]\w{5,17}$&ldquo;正确格式为：以字母开头，长度在6~18之间，只能包含字符、数字和下划线。
+验证是否含有^%&amp;'',;=?$&quot;等字符：&quot;[^%&amp;'',;=?$\x22]+&quot;。
+只能输入汉字：&quot;^[\u4e00-\u9fa5]{0,}$&rdquo;
+验证Email地址：&quot;^\w+([-+.]\w+)@\w+([-.]\w+).\w+([-.]\w+)*$&quot;。
+验证InternetURL：&quot;^http://([\w-]+.)+[\w-]+(/[\w-./?%&amp;=]*)?$&quot;。
+验证电话号码：&quot;^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$&ldquo;正确格式为：&ldquo;XXX-XXXXXXX&rdquo;、&ldquo;XXXX-XXXXXXXX&rdquo;、&ldquo;XXX-XXXXXXX&rdquo;、&ldquo;XXX-XXXXXXXX&rdquo;、&ldquo;XXXXXXX&quot;和&quot;XXXXXXXX&rdquo;。
+验证身份证号（15位或18位数字）：&quot;^\d{15}|\d{18}$&quot;。
+验证一年的12个月：&quot;^(0?[1-9]|1[0-2])$&ldquo;正确格式为：&ldquo;01&quot;～&quot;09&quot;和&quot;1&quot;～&quot;12&rdquo;。
+验证一个月的31天：&quot;^((0?[1-9])|((1|2)[0-9])|30|31)$&ldquo;正确格式
+为；&ldquo;01&quot;～&quot;09&quot;和&quot;1&quot;～&quot;31&rdquo;。
+整数或者小数：^[0-9]+.{0,1}[0-9]{0,2}$
+&ldquo;^\w+$&rdquo; //由数字、26个英文字母或者下划线组成的字符串
+&ldquo;^[\w-]+(.[\w-]+)*@[\w-]+(.[\w-]+)+$&rdquo; //email地址
+&ldquo;^[a-zA-z]+://(\w+(-\w+))(.(\w+(-\w+)))(?\S)?$&rdquo; //url
+可输入形如2008、2008-9、2008-09、2008-9-9、2008-09-09. ^(\d{4}|(\d{4}-\d{1,2})|(\d{4}-\d{1,2}-\d{1,2}))$
+邮箱验证正则表达式 \w+([-+.']\w+)@\w+([-.]\w+).\w+([-.]\w+)*
+四、网络验证应用技巧  验证 E-mail格式  public bool IsEmail(string str_Email) { return System.Text.RegularExpressions.Regex.IsMatch(str_Email,@&quot;^([\w-.]+)@(([−9]1,3.[−9]1,3.[−9]1,3.)|(([\w−]+.)+))([a−zA−Z]2,4|[−9]1,3)(?)$&quot;); }
+ 验证 IP 地址  public bool IPCheck(string IP) {
+string num = &ldquo;(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)&quot;; return Regex.IsMatch(IP,(&quot;^&rdquo; + num + &ldquo;\.&rdquo; + num + &ldquo;\.&rdquo; + num + &ldquo;\.&rdquo; + num + &ldquo;$&quot;)); }
+ 验证 URL  public bool IsUrl(string str_url) { return System.Text.RegularExpressions.Regex.IsMatch(str_url, @&ldquo;http(s)?://([\w-]+.)+[\w-]+(/[\w- ./?%&amp;=]*)?&quot;); }
+五、 常用数字验证技巧
+• 验证电话号码
+public bool IsTelephone(string str_telephone) { return System.Text.RegularExpressions.Regex.IsMatch(str_telephone, @&quot;^(\d{3,4}-)?\d{6,8}$&quot;); }
+ 输入密码条件(字符与数据同时出现)  public bool IsPassword(string str_password) { return System.Text.RegularExpressions.Regex.IsMatch(str_password, @&quot;[A-Za-z]+[0-9]&quot;); }
+ 邮政编号  public bool IsPostalcode(string str_postalcode) { return System.Text.RegularExpressions.Regex.IsMatch(str_postalcode, @&quot;^\d{6}$&quot;); }
+ 手机号码  public bool IsHandset(string str_handset) { return System.Text.RegularExpressions.Regex.IsMatch(str_handset, @&quot;^[1]+[3,5]+\d{9}$&quot;); }
+ 身份证号  public bool IsIDcard(string str_idcard) { return System.Text.RegularExpressions.Regex.IsMatch(str_idcard, @&quot;(^\d{18}$)|(^\d{15}$)&quot;); }
+ 两位小数  public bool IsDecimal(string str_decimal) { return System.Text.RegularExpressions.Regex.IsMatch(str_decimal, @&quot;^[0-9]+(.[0-9]{2})?$&quot;); }
+ 一年的12个月  public bool IsMonth(string str_Month) { return System.Text.RegularExpressions.Regex.IsMatch(str_Month, @&quot;^(0?[[1-9]|1[0-2])$&quot;); }
+ 一个月的31天  public bool IsDay(string str_day) { return System.Text.RegularExpressions.Regex.IsMatch(str_day, @&quot;^((0?[1-9])|((1|2)[0-9])|30|31)$&quot;); }
+ 数字输入  public bool IsNumber(string str_number) { return System.Text.RegularExpressions.Regex.IsMatch(str_number, @&quot;^[0-9]*$&quot;); }
+ 密码长度 (6-18位)  public bool IsPasswLength(string str_Length) { return System.Text.RegularExpressions.Regex.IsMatch(str_Length, @&quot;^\d{6,18}$&quot;); }
+ 非零的正整数  public bool IsIntNumber(string str_intNumber) { return System.Text.RegularExpressions.Regex.IsMatch(str_intNumber, @&quot;^+?[1-9][0-9]*$&quot;); }
+六、 常用字符验证技巧 1.大写字母
+public bool IsUpChar(string str_UpChar) { return System.Text.RegularExpressions.Regex.IsMatch(str_UpChar, @&quot;^[A-Z]+$&quot;); }
+2.小写字母
+public bool IsLowChar(string str_UpChar) { return System.Text.RegularExpressions.Regex.IsMatch(str_UpChar, @&quot;^[a-z]+$&quot;); }
+3.检查字符串重复出现的词
+private void btnWord_Click(object sender, EventArgs e) { System.Text.RegularExpressions.MatchCollection matches = System.Text.RegularExpressions.Regex.Matches(label1.Text, @&quot;\b(?\w+)\s+(\k)\b&rdquo;, System.Text.RegularExpressions.RegexOptions.Compiled   | System.Text.RegularExpressions.RegexOptions.IgnoreCase); if (matches.Count != 0) {
+foreach (System.Text.RegularExpressions.Match match in matches) {
+string word = match.Groups[&ldquo;word&rdquo;].Value; MessageBox.Show(word.ToString(),&ldquo;英文单词&rdquo;); } } else { MessageBox.Show(&ldquo;没有重复的单词&rdquo;); } }
+4.替换字符串
+private void button1_Click(object sender, EventArgs e) {
+string strResult = System.Text.RegularExpressions.Regex.Replace(textBox1.Text, @&quot;[A-Za-z]*?&rdquo;, textBox2.Text); MessageBox.Show(&ldquo;替换前字符:&rdquo; + &ldquo;\n&rdquo; + textBox1.Text + &ldquo;\n&rdquo; + &ldquo;替换的字符:&rdquo; + &ldquo;\n&rdquo; + textBox2.Text + &ldquo;\n&rdquo; + &ldquo;替换后的字符:&rdquo; + &ldquo;\n&rdquo; + strResult,&ldquo;替换&rdquo;); }
+5·拆分字符串
+private void button1_Click(object sender, EventArgs e) { //实例: 甲025-8343243乙0755-2228382丙029-32983298389289328932893289丁
+foreach (string s in System.Text.RegularExpressions.Regex.Split(textBox1.Text,@&quot;\d{3,4}-\d*&quot;)) {
+textBox2.Text+=s; //依次输出 &ldquo;甲乙丙丁&rdquo; } }
+6.验证输入字母
+public bool IsLetter(string str_Letter) { return System.Text.RegularExpressions.Regex.IsMatch(str_Letter, @&quot;^[A-Za-z]+$&quot;); }
+7.验证输入汉字
+public bool IsChinese(string str_chinese) { return System.Text.RegularExpressions.Regex.IsMatch(str_chinese, @&quot;^[\u4e00-\u9fa5],{0,}$&quot;); }
+8.验证输入字符串 (至少8个字符)
+public bool IsLength(string str_Length) { return System.Text.RegularExpressions.Regex.IsMatch(str_Length, @&quot;^.{8,}$&quot;); }
+来源：https://www.zhihu.com/question/48219401/answer/1476436385
+]]></content></entry><entry><title>Linux - 命令 Truncate生成大文件</title><url>/tech/linux/%E5%91%BD%E4%BB%A4-truncate%E7%94%9F%E6%88%90%E5%A4%A7%E6%96%87%E4%BB%B6/</url><categories><category>Linux</category></categories><tags><tag>Linux</tag></tags><content type="html"><![CDATA[生成各种类型的大文件
+$ truncate -s 1G test.txt $ truncate -s 1G bigfile.xmind  docx xls xmind pdf（11G）  用法：truncate 选项&hellip; 文件&hellip; 将文件缩减或扩展至指定大小。
+如果指定文件不存在则创建。
+如果指定文件超出指定大小则超出的数据将丢失。 如果指定文件小于指定大小则用0 补足。
+长选项必须使用的参数对于短选项时也是必需使用的。 -c, &ndash;no-create	不创建文件 -o, &ndash;io-blocks	将SIZE 视为IO 块数而不使用字节数 -r, &ndash;reference=文件 使用此文件的大小 -s, &ndash;size=大小	使用此大小 &ndash;help	显示此帮助信息并退出 &ndash;version	显示版本信息并退出
+SIZE 可以是一个可选的整数，后面跟着以下单位中的一个： KB 1000，K 1024，MB 10001000，M 10241024，还有 G、T、P、E、Z、Y。
+指定大小也可使用以下前缀修饰： &ldquo;+&rdquo; 增加，&quot;-&quot; 减少，&quot;&lt;&quot; 至多，&quot;&gt;&quot; 至少， &ldquo;/&rdquo; 小于等于原尺寸数字的指定数字的最小倍数，&quot;%&quot; 大于等于原尺寸数字的指定数字的最大倍数。 译者注：当输入值为m，参考值为n 时， &ldquo;/&rdquo; 运算的数学计算式为 m / n * n； &ldquo;%&rdquo; 运算的数学计算式为( m + n - 1 ) / n * n
+请注意-r 和-s 是互斥的选项。
+[tank@localhost test1]$ echo -n 1234567 &gt; test #生成一个test文件 [tank@localhost test1]$ cat test	#查看内容 1234567[tank@localhost test1]$ truncate -s 4 test #设置文件大小为4字节 [tank@localhost test1]$ cat test #查看文件内容 1234[tank@localhost test1]$ [tank@localhost test1]$ du -ah #查看文件大小 4.0K	./test 8.0K	. [tank@localhost test1]$ truncate -s 2M test #声明将test文件扩大到2M [tank@localhost test1]$ du -ah #大小没变 4.0K	./test 8.0K	. [tank@localhost test1]$ ll 总用量 4 -rw-rw-r-- 1 tank tank 2097152 8月 21 10:33 test #大小变了 ]]></content></entry><entry><title>Golang - 基础笔记</title><url>/tech/golang/%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/</url><categories><category>Golang</category></categories><tags><tag>Golang</tag></tags><content type="html"><![CDATA[环境配置 下载 Golang  下载地址：https://go.dev/dl/ 安装一路下一步即可  $ go version go version go1.20.5 darwin/amd64 下载 Goland  下载地址：https://www.jetbrains.com/go/download/#section=mac 激活教程：https://shimo.im/docs/WY3hd8Jt8KHgvVty/read  环境验证 打开 goland，创建项目 go-basic，项目下创建主文件 main.go 文件，作为程序入口
 // main.go  package main import &#34;fmt&#34; func main() { fmt.Println(&#34;hello world&#34;) } 点击左侧执行按钮，控制台出现 hello world 即可。
 2、基础知识-结构、包、变量、数据类型 项目结构  pkg：存放包 src：存放项目源码 bin：可执行文件 一个项目必须有一个 main 包和 main 函数  1.11 以后，可以随意编写自己的项目结构，建议遵循官方
 声明变量  变量以字母开头，不可以是数字或特殊字符 不能用关键字  package main import &#34;fmt&#34; func main() { // 显式声明变量的关键字 var 	// 关键字 变量名 变量类型 = 变量值 	var a string = &#34;hello world !&#34; // 隐式声明，系统自动根据值判断类型 	b := &#34;hello world !!&#34; fmt.Println(a) fmt.Println(b) } 关键字 关键字不能作为变量名的单词
@@ -1375,12 +1544,12 @@ JSR223 断言是 JMeter 内置的一种断言类型，它允许用户使用脚�
 在 JMeter 中，JSR223 断言的执行速度相对较慢，并且可能会导致大量 CPU 使用率，因此建议仅在必要时使用该断言。对于大多数情况下，内置的其他断言应该足够满足测试需求。
 BeanShell BeanShell（也称 Bsh）是一种小巧、免费且高度可扩展的 Java 脚本语言，可以直接在 JVM 中运行。在 JMeter 中，BeanShell 可以用于编写断言、前置处理器、后置处理器等逻辑处理任务。
 与 JSR223 断言不同，JMeter 内置了 BeanShell 断言，因此无需安装其他插件或库即可使用。BeanShell 语法类似于 Java，可以很容易地编写出复杂的验证逻辑和数据处理任务，同时还支持使用 Java 类和方法。
-控制台常用代码片段 // 控制台打印 log.info(&#34;hello&#34;); log.info(&#34;1&#34; + &#34;1&#34;); log.info(&#34;1+{}={}&#34;, k1, k2); // 获取变量类型名 var.getClass().getName(); 生成手机号 import org.apache.commons.lang3.RandomStringUtils; // 生成随机的手机号 String phoneNumber = &#34;1&#34; + RandomStringUtils.randomNumeric(10); // 将手机号保存到变量 vars.put(&#34;phoneNumber&#34;, phoneNumber); // 使用 ${phoneNumber} 引用该变量 注意：由于 JMeter 是多线程测试，如果生成的随机手机号用于注册等类似操作，那么需要考虑并发场景下可能出现重复手机号的情况。
+控制台常用代码片段 // 控制台打印 log.info(&#34;hello&#34;); log.info(&#34;1&#34; + &#34;1&#34;); log.info(&#34;1+{}={}&#34;, k1, k2); // 获取变量类型名 var.getClass().getName(); 后置中获取请求体 body 中的参数值 //获取当前请求body请求参数 import org.apache.jmeter.config.Arguments; Arguments arguments = sampler.getArguments(); String body = arguments.getArgument(0).getValue(); // 获取第一个表单中的值，并设置为变量 vars.put(&#34;name&#34;, body); log.info(&#34;[set var] name = &#34; + body); 生成手机号 import org.apache.commons.lang3.RandomStringUtils; // 生成随机的手机号 String phoneNumber = &#34;1&#34; + RandomStringUtils.randomNumeric(10); // 将手机号保存到变量 vars.put(&#34;phoneNumber&#34;, phoneNumber); // 使用 ${phoneNumber} 引用该变量 注意：由于 JMeter 是多线程测试，如果生成的随机手机号用于注册等类似操作，那么需要考虑并发场景下可能出现重复手机号的情况。
 生成随机中文姓名 import java.util.Random; String[] surnameArray = {&#34;赵&#34;, &#34;钱&#34;, &#34;孙&#34;, &#34;李&#34;, &#34;周&#34;, &#34;吴&#34;, &#34;郑&#34;, &#34;王&#34;}; String[] givenNameArray = {&#34;一&#34;, &#34;二&#34;, &#34;三&#34;, &#34;四&#34;, &#34;五&#34;}; String randomChineseName() { String name = &#34;&#34;; Random random = new Random(); int surnameIndex = Math.abs(random.nextInt(surnameArray.length)); int givenNameIndex = Math.abs(random.nextInt(givenNameArray.length)); String surname = surnameArray[surnameIndex]; String givenName = givenNameArray[givenNameIndex]; name = surname + givenName; return name; } String name = randomChineseName(); log.info(&#34;生成随机名字: randomName = {}&#34;, name); vars.put(&#34;randomName&#34;, name); 生成 13 位时间戳 import java.util.Date; long timestamp = new Date().getTime(); String strTimestamp = Long.toString(timestamp); log.info(&#34;Output &gt;&gt;&gt;&gt;&gt; timestamp(13): &#34; + strTimestamp); 对响应值整体进行 urldecode 解码 import java.net.URLDecoder; String response = prev.getResponseDataAsString(); log.info(&#34;{}&#34;, response); String decodedResponse = URLDecoder.decode(response, &#34;UTF-8&#34;); // decode 解码 // String encodedResponse = URLEncoder.encode(response, &#34;UTF-8&#34;); // encode 编码 log.info(&#34;{}&#34;, decodedResponse); // 将解码后的响应更新回去 prev.setResponseData(decodedResponse.getBytes()); 对响应部分字段进行 urldecode 解码 - 递归实现 import org.json.JSONArray; import org.json.JSONObject; import java.net.URLDecoder; log.info(&#34;后置脚本 开始 &gt;&gt;&gt;&gt;&gt;&#34;); void decodeJson(JSONObject json) { for (String key : json.keySet()) { Object value = json.get(key); if (value instanceof JSONObject) { decodeJson((JSONObject) value); // 递归处理子对象  } else if (value instanceof JSONArray) { JSONArray array = (JSONArray) value; for (int i = 0; i &lt; array.length(); i++) { Object item = array.get(i); if (item instanceof JSONObject) { decodeJson((JSONObject) item); // 递归处理子对象  } } } else if (value instanceof String &amp;&amp; key.contains(&#34;需要解码的字段名&#34;)) { String decodedValue = URLDecoder.decode((String) value, &#34;UTF-8&#34;); json.put(key, decodedValue); } } } // 解析 JSON 并调用递归函数 String response = prev.getResponseDataAsString(); JSONObject json = new JSONObject(response); decodeJson(json); String output = json.toString(); log.info(&#34;decodeJson: {}&#34;, output); // 将解析后的内容更新到响应体 prev.setResponseData(output); log.info(&#34;后置脚本 结束 &lt;&lt;&lt;&lt;&lt;&#34;); 修改响应头类型 // 修改响应头格式为 json prev.setResponseHeaders(&#34;Content-Type: application/json&#34;); 生成随机字符串 并 md5 import java.security.MessageDigest; import java.util.Random; // 生成随机字符串 数字 + 大写字母 String getRandomString(int length) { String str = &#34;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;; Random rand = new Random(); StringBuilder sb = new StringBuilder(length); for (int i = 0; i &lt; length; i++) { int index = rand.nextInt(str.length()); sb.append(str.charAt(index)); } return sb.toString(); } // 将 byte 数组转换为 16 进制字符串 String bytesToHex(byte[] bytes) { StringBuilder sb = new StringBuilder(); for (byte b : bytes) { sb.append(String.format(&#34;%02X&#34;, new Object[] { b })); } return sb.toString(); } String randomString = getRandomString(13); // 计算字符串的 MD5 值 MessageDigest md = MessageDigest.getInstance(&#34;MD5&#34;); byte[] digest = md.digest(randomString.getBytes()); String md5 = bytesToHex(digest).toLowerCase(); String msg_id = &#34;c&#34; + md5; log.info(&#34;Output &gt;&gt;&gt;&gt;&gt; Make msgId: &#34; + randomString + &#34; ==&gt; &#34; + msg_id); 将请求数据由 json 转为字符串并更新回请求体 import org.json.JSONObject; import java.net.URLEncoder; String request = sampler.getArguments().getArgument(0).getValue(); log.info(&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type: &#34; + request.getClass().getName()); JSONObject json = new JSONObject(request); log.info(&#34;Output &gt;&gt;&gt;&gt;&gt; 初始请求体: {}&#34;, json); // replace data JSONObject data = json.getJSONObject(&#34;data&#34;); data.put(&#34;local_msgid&#34;, msg_id); data.put(&#34;timestamp&#34;, timestamp); log.info(&#34;Output &gt;&gt;&gt;&gt;&gt; data: {}&#34;, data); // data: json -&gt; str String dataString = data.toString(); json.put(&#34;data&#34;, dataString); String updatedRequest = json.toString(); log.info(&#34;Output &gt;&gt;&gt;&gt;&gt; requests body type（update）: &#34; + updatedRequest.getClass().getName()); // 重新添加更新后的请求体 sampler.getArguments().removeAllArguments(); // sampler.addArgument(&#34;updateRequest&#34;, updatedRequest); // 会自动 urlencode，导致编码问题 sampler.addNonEncodedArgument(&#34;&#34;, updatedRequest, &#34;&#34;); String request = sampler.getArguments().getArgument(0).getValue(); log.info(&#34;Output &gt;&gt;&gt;&gt;&gt; 最终请求体: {}&#34;, request); 提取响应中列表的长度 不支持直接使用 jsonpath 的 length 函数获取长度。
 import org.json.JSONArray; import org.json.JSONObject; String response = prev.getResponseDataAsString(); JSONObject jsonResponse = new JSONObject(response); JSONArray data = jsonResponse.getJSONArray(&#34;列表名&#34;); int length = data.length(); log.info(&#34;list length: &#34; + length); // 设置为变量 vars.put(&#34;var_name&#34;, String.valueOf(length)); log.info(vars.get(&#34;var_name&#34;)); 正则 // 暂未测试通过 import java.util.regex.Matcher; import java.util.regex.Pattern; // 定义正则表达式 Pattern pattern = Pattern.compile(&#34;\&#34;id\&#34;:(.*?)&#34;); Matcher matcher = pattern.matcher(response); // 循环遍历所有匹配项，将 &#34;name&#34; 字段的值添加到列表中 while (matcher.find()) { String name = matcher.group(1); names.add(name); log.info(&#34;{}&#34;, name); } // 输出所有匹配到的 &#34;name&#34; 字段的值 for (String name : names) { log.info(&#34;Found name: &#34; + name); } // 将所有匹配到的 &#34;name&#34; 字段的值以逗号分隔的形式赋值给变量 &#34;nameList&#34; String nameList = String.join(&#34;,&#34;, names); // 将变量 &#34;nameList&#34; 添加到 JMeter 的变量列表中 vars.put(&#34;nameList&#34;, nameList); jsonpath 提取变量的所有值 jsonpath需要通过 * 提取列表的多个值，后面勾选匹配多个值，然后在下一个用例引用格式为：${var_ALL}，添加后面的 ALL 才会生效，否则找不到这个变量名。
 第二种方法就是通过脚本实现：
 import java.util.List; import java.util.ArrayList; import org.json.JSONArray; import org.json.JSONObject; import org.json.*; import com.jayway.jsonpath.JsonPath; String k1 = &#34;data&#34;; String k2 = &#34;id&#34;; log.info(&#34;=================== 提取 {} 中所有 {} 的值 ===================&#34;, k1, k2); String response = prev.getResponseDataAsString(); JSONObject resp = new JSONObject(response); String data_str = resp.get(k1).toString(); JSONArray data_array = new JSONArray(data_str); data_len = data_array.length(); Integer[] idArr = new Integer[data_array.length()]; for (int i = 0; i &lt; data_array.length(); i++) { JSONObject obj = new JSONObject(data_array.get(i).toString()); // String id = obj.get(k2).toString();  int id = Integer.parseInt(obj.get(k2).toString()); log.info(&#34;&gt;&gt;&gt; 提取 {}: {} (&#34; + id.getClass().getName() + &#34;)&#34;, k2, id); idArr[i] = id; } Arrays.sort(idArr); // 排序 String ids = Arrays.toString(idArr); ids = ids.replaceAll(&#34; &#34;,&#34;&#34;); // 去除列表元素中间的空格 log.info(&#34;&gt;&gt;&gt; idArr = &#34; + ids); vars.put(&#34;drafts_ids&#34;, ids); log.info(&#34;&gt;&gt;&gt; 将数据赋值给变量：${drafts_ids}, 类型为字符串&#34;); log.info(&#34;=================== 提取 {} 中所有 {} 的值 ===================&#34;, k1, k2); 前置脚本：将列表字符串转为列表类型填充进去 需求二：编写一个前置脚本，将请求体中 formId 的值由字符串转为列表类型，再填充到请求体内
-{ &#34;formId&#34;: &#34;[7618, 7619]&#34;, &#34;userId&#34;: &#34;0cdbcc4a2b14099822abfa9e449a0ea9&#34;, &#34;companyId&#34;: &#34;996&#34; } log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); // 该方法用于前置脚本中 // 通常是将上一接口中提取到的所有值，转为列表类型并替换到当前接口的请求中  String key = &#34;id&#34;; // 参数提取时设置的变量名 且 勾选了提取多个值 String field = &#34;ids&#34;; // 当前接口中的字段名  // ----  String values = vars.get(key + &#34;_ALL&#34;); log.info(&#34;提取到的所有值为：&#34; + values); String valuesSplit = values.replaceAll(&#34;\\[|\\]&#34;, &#34;&#34;).split(&#34;,&#34;); StringBuilder array = new StringBuilder(); for (int i = 0; i &lt; valuesSplit.length; i++) { array.append(valuesSplit[i].trim()); if (i != valuesSplit.length - 1) { array.append(&#34;,&#34;); } }; // 更新请求体中的字段 String requestBody = sampler.getArguments().getArgument(0).getValue(); requestBody = requestBody.replaceAll( &#34;\&#34;&#34; + field + &#34;\&#34;:\\s*\&#34;[^\&#34;]+\&#34;&#34;, &#34;\&#34;&#34; + field + &#34;\&#34;: [&#34; + array.toString() + &#34;]&#34; ); log.info(&#34;更新后的请求体: {}&#34;, requestBody); // 回填到请求体中 sampler.getArguments().removeAllArguments(); sampler.addNonEncodedArgument(&#34;&#34;, requestBody, &#34;&#34;); sampler.setPostBodyRaw(true); log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); 下载 zip 文件并解压缩然后读取文件内容 log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); import java.net.URL; import java.util.zip.ZipInputStream; import java.util.zip.ZipEntry; import java.io.BufferedReader; import java.io.InputStreamReader; String urlStr = vars.get(&#34;url&#34;); log.info(&#34;&gt;&gt;&gt; url: {}&#34;, urlStr); // 创建 URL 对象 并打开链接 URL url = new URL(urlStr); ZipInputStream zipStream = new ZipInputStream(url.openStream()); // 读取压缩包内的文件 ZipEntry entry = zipStream.getNextEntry(); if (entry != null &amp;&amp; !entry.isDirectory()) { // 文件内容读取  BufferedReader br = new BufferedReader(new InputStreamReader(zipStream, &#34;UTF-8&#34;)); StringBuilder sb = new StringBuilder(); String line; while ((line = br.readLine()) != null) { sb.append(line); sb.append(&#34;\n&#34;); } br.close(); log.info(&#34;&gt;&gt;&gt; File Content: \n&#34; + sb.toString()); } zipStream.close(); log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); ]]></content></entry><entry><title>随笔 - 我作为面试官的一些心得</title><url>/tech/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/</url><categories><category>随笔</category></categories><tags><tag>随笔</tag></tags><content type="html">简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题：
+{ &#34;formId&#34;: &#34;[7618, 7619]&#34;, &#34;userId&#34;: &#34;0cdbcc4a2b14099822abfa9e449a0ea9&#34;, &#34;companyId&#34;: &#34;996&#34; } log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); // 该方法用于前置脚本中 // 通常是将上一接口中提取到的所有值，转为列表类型并替换到当前接口的请求中  String key = &#34;id&#34;; // 参数提取时设置的变量名 且 勾选了提取多个值 String field = &#34;ids&#34;; // 当前接口中的字段名  // ----  String values = vars.get(key + &#34;_ALL&#34;); log.info(&#34;提取到的所有值为：&#34; + values); String valuesSplit = values.replaceAll(&#34;\\[|\\]&#34;, &#34;&#34;).split(&#34;,&#34;); StringBuilder array = new StringBuilder(); for (int i = 0; i &lt; valuesSplit.length; i++) { array.append(valuesSplit[i].trim()); if (i != valuesSplit.length - 1) { array.append(&#34;,&#34;); } }; // 更新请求体中的字段 String requestBody = sampler.getArguments().getArgument(0).getValue(); requestBody = requestBody.replaceAll( &#34;\&#34;&#34; + field + &#34;\&#34;:\\s*\&#34;[^\&#34;]+\&#34;&#34;, &#34;\&#34;&#34; + field + &#34;\&#34;: [&#34; + array.toString() + &#34;]&#34; ); log.info(&#34;更新后的请求体: {}&#34;, requestBody); // 回填到请求体中 sampler.getArguments().removeAllArguments(); sampler.addNonEncodedArgument(&#34;&#34;, requestBody, &#34;&#34;); sampler.setPostBodyRaw(true); log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); 下载 zip 文件并解压缩然后读取文件内容 log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); import java.net.URL; import java.util.zip.ZipInputStream; import java.util.zip.ZipEntry; import java.io.BufferedReader; import java.io.InputStreamReader; String urlStr = vars.get(&#34;url&#34;); log.info(&#34;&gt;&gt;&gt; url: {}&#34;, urlStr); // 创建 URL 对象 并打开链接 URL url = new URL(urlStr); ZipInputStream zipStream = new ZipInputStream(url.openStream()); // 读取压缩包内的文件 ZipEntry entry = zipStream.getNextEntry(); if (entry != null &amp;&amp; !entry.isDirectory()) { // 文件内容读取  BufferedReader br = new BufferedReader(new InputStreamReader(zipStream, &#34;UTF-8&#34;)); StringBuilder sb = new StringBuilder(); String line; while ((line = br.readLine()) != null) { sb.append(line); sb.append(&#34;\n&#34;); } br.close(); log.info(&#34;&gt;&gt;&gt; File Content: \n&#34; + sb.toString()); } zipStream.close(); log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); 脚本断言 if (!&#34;${groupName_ALL}&#34;.contains(&#34;${name}&#34;)) { AssertionResult.setFailure(true); // respCode 500  // 官方文档 按照这么来并没有提示出错误信息 todo  // AssertionResult.setFailureMessage(&#34;断言失败了！！！&#34;); } else { log.info(&#34;断言成功！&#34;); } ]]></content></entry><entry><title>随笔 - 我作为面试官的一些心得</title><url>/tech/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/</url><categories><category>随笔</category></categories><tags><tag>随笔</tag></tags><content type="html">简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题：
 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字、单词拼写、乱码、UI 错乱 大小标题不要混用，例：项目名三级标题，项目描述、职责啥的大标题加粗，头重脚轻的感觉 列举技术栈或者职责的时候，前面添加缩进符会好一点，不然一堆文字，看起来不直观 标点符号的使用，同一种类型有的用空格，有的用逗号，有的用顿号，符号语言统一下比较好 花里胡哨的模板尽量不要用，真的有点费眼睛，比如姓名一般后面就是名字吧，有个模板中间加彩色的 // 然后才是名字 基本情况对齐，姓名、电话、性别啥的，如果是多行保持对齐呀朋友们~ 同行都不对齐更过分了~（模板慎用） 用了简历模板，然后有的项空着不填，如果不想填就删除掉吧 中英文冒号混用，避免一下 技术栈 来个例子吧，到底是熟悉还是不熟悉：熟悉 Python 语言，Python 的变量和基本数据类型，输入输出语句，集合和元组操作 没有实际落地经验的框架不要写熟悉，是否有项目经验两句话就看出来了 项目描述 项目业务描述过多，有很多套话，花很大篇幅写之前的业务细节没必要，简单写下就行了
 业务的技术架构以及用到的技术栈，在这种技术架构下采用了那些测试方法
 最近的项目写在前面
