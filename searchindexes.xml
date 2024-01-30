@@ -1549,7 +1549,7 @@ BeanShell BeanShell（也称 Bsh）是一种小巧、免费且高度可扩展的
 import org.json.JSONArray; import org.json.JSONObject; String response = prev.getResponseDataAsString(); JSONObject jsonResponse = new JSONObject(response); JSONArray data = jsonResponse.getJSONArray(&#34;列表名&#34;); int length = data.length(); log.info(&#34;list length: &#34; + length); // 设置为变量 vars.put(&#34;var_name&#34;, String.valueOf(length)); log.info(vars.get(&#34;var_name&#34;)); 正则 // 暂未测试通过 import java.util.regex.Matcher; import java.util.regex.Pattern; // 定义正则表达式 Pattern pattern = Pattern.compile(&#34;\&#34;id\&#34;:(.*?)&#34;); Matcher matcher = pattern.matcher(response); // 循环遍历所有匹配项，将 &#34;name&#34; 字段的值添加到列表中 while (matcher.find()) { String name = matcher.group(1); names.add(name); log.info(&#34;{}&#34;, name); } // 输出所有匹配到的 &#34;name&#34; 字段的值 for (String name : names) { log.info(&#34;Found name: &#34; + name); } // 将所有匹配到的 &#34;name&#34; 字段的值以逗号分隔的形式赋值给变量 &#34;nameList&#34; String nameList = String.join(&#34;,&#34;, names); // 将变量 &#34;nameList&#34; 添加到 JMeter 的变量列表中 vars.put(&#34;nameList&#34;, nameList); jsonpath 提取变量的所有值 jsonpath需要通过 * 提取列表的多个值，后面勾选匹配多个值，然后在下一个用例引用格式为：${var_ALL}，添加后面的 ALL 才会生效，否则找不到这个变量名。
 第二种方法就是通过脚本实现：
 import java.util.List; import java.util.ArrayList; import org.json.JSONArray; import org.json.JSONObject; import org.json.*; import com.jayway.jsonpath.JsonPath; String k1 = &#34;data&#34;; String k2 = &#34;id&#34;; log.info(&#34;=================== 提取 {} 中所有 {} 的值 ===================&#34;, k1, k2); String response = prev.getResponseDataAsString(); JSONObject resp = new JSONObject(response); String data_str = resp.get(k1).toString(); JSONArray data_array = new JSONArray(data_str); data_len = data_array.length(); Integer[] idArr = new Integer[data_array.length()]; for (int i = 0; i &lt; data_array.length(); i++) { JSONObject obj = new JSONObject(data_array.get(i).toString()); // String id = obj.get(k2).toString();  int id = Integer.parseInt(obj.get(k2).toString()); log.info(&#34;&gt;&gt;&gt; 提取 {}: {} (&#34; + id.getClass().getName() + &#34;)&#34;, k2, id); idArr[i] = id; } Arrays.sort(idArr); // 排序 String ids = Arrays.toString(idArr); ids = ids.replaceAll(&#34; &#34;,&#34;&#34;); // 去除列表元素中间的空格 log.info(&#34;&gt;&gt;&gt; idArr = &#34; + ids); vars.put(&#34;drafts_ids&#34;, ids); log.info(&#34;&gt;&gt;&gt; 将数据赋值给变量：${drafts_ids}, 类型为字符串&#34;); log.info(&#34;=================== 提取 {} 中所有 {} 的值 ===================&#34;, k1, k2); 前置脚本：将列表字符串转为列表类型填充进去 需求二：编写一个前置脚本，将请求体中 formId 的值由字符串转为列表类型，再填充到请求体内
-{ &#34;formId&#34;: &#34;[7618, 7619]&#34;, &#34;userId&#34;: &#34;0cdbcc4a2b14099822abfa9e449a0ea9&#34;, &#34;companyId&#34;: &#34;996&#34; } log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); // 该方法用于前置脚本中 // 通常是将上一接口中提取到的所有值，转为列表类型并替换到当前接口的请求中  String key = &#34;id&#34;; // 参数提取时设置的变量名 且 勾选了提取多个值 String field = &#34;ids&#34;; // 当前接口中的字段名  // ----  String values = vars.get(key + &#34;_ALL&#34;); log.info(&#34;提取到的所有值为：&#34; + values); String valuesSplit = values.replaceAll(&#34;\\[|\\]&#34;, &#34;&#34;).split(&#34;,&#34;); StringBuilder array = new StringBuilder(); for (int i = 0; i &lt; valuesSplit.length; i++) { array.append(valuesSplit[i].trim()); if (i != valuesSplit.length - 1) { array.append(&#34;,&#34;); } }; // 更新请求体中的字段 String requestBody = sampler.getArguments().getArgument(0).getValue(); requestBody = requestBody.replaceAll( &#34;\&#34;&#34; + field + &#34;\&#34;:\\s*\&#34;[^\&#34;]+\&#34;&#34;, &#34;\&#34;&#34; + field + &#34;\&#34;: [&#34; + array.toString() + &#34;]&#34; ); log.info(&#34;更新后的请求体: {}&#34;, requestBody); // 回填到请求体中 sampler.getArguments().removeAllArguments(); sampler.addNonEncodedArgument(&#34;&#34;, requestBody, &#34;&#34;); sampler.setPostBodyRaw(true); log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); 下载 zip 文件并解压缩然后读取文件内容 log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); import java.net.URL; import java.util.zip.ZipInputStream; import java.util.zip.ZipEntry; import java.io.BufferedReader; import java.io.InputStreamReader; String urlStr = vars.get(&#34;url&#34;); log.info(&#34;&gt;&gt;&gt; url: {}&#34;, urlStr); // 创建 URL 对象 并打开链接 URL url = new URL(urlStr); ZipInputStream zipStream = new ZipInputStream(url.openStream()); // 读取压缩包内的文件 ZipEntry entry = zipStream.getNextEntry(); if (entry != null &amp;&amp; !entry.isDirectory()) { // 文件内容读取  BufferedReader br = new BufferedReader(new InputStreamReader(zipStream, &#34;UTF-8&#34;)); StringBuilder sb = new StringBuilder(); String line; while ((line = br.readLine()) != null) { sb.append(line); sb.append(&#34;\n&#34;); } br.close(); log.info(&#34;&gt;&gt;&gt; File Content: \n&#34; + sb.toString()); } zipStream.close(); log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); 脚本断言 if (!&#34;${groupName_ALL}&#34;.contains(&#34;${name}&#34;)) { AssertionResult.setFailure(true); // respCode 500  // 官方文档 按照这么来并没有提示出错误信息 todo  // AssertionResult.setFailureMessage(&#34;断言失败了！！！&#34;); } else { log.info(&#34;断言成功！&#34;); } ]]></content></entry><entry><title>随笔 - 我作为面试官的一些心得</title><url>/tech/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/</url><categories><category>随笔</category></categories><tags><tag>随笔</tag></tags><content type="html">简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题：
+{ &#34;formId&#34;: &#34;[7618, 7619]&#34;, &#34;userId&#34;: &#34;0cdbcc4a2b14099822abfa9e449a0ea9&#34;, &#34;companyId&#34;: &#34;996&#34; } log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); // 该方法用于前置脚本中 // 通常是将上一接口中提取到的所有值，转为列表类型并替换到当前接口的请求中  String key = &#34;id&#34;; // 参数提取时设置的变量名 且 勾选了提取多个值 String field = &#34;ids&#34;; // 当前接口中的字段名  // ----  String values = vars.get(key + &#34;_ALL&#34;); log.info(&#34;提取到的所有值为：&#34; + values); String valuesSplit = values.replaceAll(&#34;\\[|\\]&#34;, &#34;&#34;).split(&#34;,&#34;); StringBuilder array = new StringBuilder(); for (int i = 0; i &lt; valuesSplit.length; i++) { array.append(valuesSplit[i].trim()); if (i != valuesSplit.length - 1) { array.append(&#34;,&#34;); } }; // 更新请求体中的字段 String requestBody = sampler.getArguments().getArgument(0).getValue(); requestBody = requestBody.replaceAll( &#34;\&#34;&#34; + field + &#34;\&#34;:\\s*\&#34;[^\&#34;]+\&#34;&#34;, &#34;\&#34;&#34; + field + &#34;\&#34;: [&#34; + array.toString() + &#34;]&#34; ); log.info(&#34;更新后的请求体: {}&#34;, requestBody); // 回填到请求体中 sampler.getArguments().removeAllArguments(); sampler.addNonEncodedArgument(&#34;&#34;, requestBody, &#34;&#34;); sampler.setPostBodyRaw(true); log.info(&#34;=================== 将提取到的多个值转为列表 ===================&#34;); 下载 zip 文件并解压缩然后读取文件内容 log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); import java.net.URL; import java.util.zip.ZipInputStream; import java.util.zip.ZipEntry; import java.io.BufferedReader; import java.io.InputStreamReader; String urlStr = vars.get(&#34;url&#34;); log.info(&#34;&gt;&gt;&gt; url: {}&#34;, urlStr); // 创建 URL 对象 并打开链接 URL url = new URL(urlStr); ZipInputStream zipStream = new ZipInputStream(url.openStream()); // 读取压缩包内的文件 ZipEntry entry = zipStream.getNextEntry(); if (entry != null &amp;&amp; !entry.isDirectory()) { // 文件内容读取  BufferedReader br = new BufferedReader(new InputStreamReader(zipStream, &#34;UTF-8&#34;)); StringBuilder sb = new StringBuilder(); String line; while ((line = br.readLine()) != null) { sb.append(line); sb.append(&#34;\n&#34;); } br.close(); log.info(&#34;&gt;&gt;&gt; File Content: \n&#34; + sb.toString()); } zipStream.close(); log.info(&#34;=================== 通过链接下载 zip 文件，然后解压缩后读取 doc 文档内容 ===================&#34;); 脚本断言 if (!&#34;${groupName_ALL}&#34;.contains(&#34;${name}&#34;)) { AssertionResult.setFailure(true); // respCode 500  // 官方文档 按照这么来并没有提示出错误信息 todo  // AssertionResult.setFailureMessage(&#34;断言失败了！！！&#34;); } else { log.info(&#34;断言成功！&#34;); } 字符串分割 String fullname = vars.get(&#34;name&#34;); String[] parts = fullname.split(&#34;-&#34;); String lastPart = parts[parts.length - 1]; vars.put(&#34;lastPart&#34;, lastPart); log.info(&#34;提取的数字: lastPart = {}&#34;, lastPart); ]]></content></entry><entry><title>随笔 - 我作为面试官的一些心得</title><url>/tech/%E9%9A%8F%E7%AC%94/%E6%88%91%E4%BD%9C%E4%B8%BA%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/</url><categories><category>随笔</category></categories><tags><tag>随笔</tag></tags><content type="html">简历筛选阶段 格式 编写完简历一定要检查下简历格式，下面都是我在看简历过程中发现的问题：
 中文与英文/字母间，需要用空格 不要犯这种低级错误：错别字、单词拼写、乱码、UI 错乱 大小标题不要混用，例：项目名三级标题，项目描述、职责啥的大标题加粗，头重脚轻的感觉 列举技术栈或者职责的时候，前面添加缩进符会好一点，不然一堆文字，看起来不直观 标点符号的使用，同一种类型有的用空格，有的用逗号，有的用顿号，符号语言统一下比较好 花里胡哨的模板尽量不要用，真的有点费眼睛，比如姓名一般后面就是名字吧，有个模板中间加彩色的 // 然后才是名字 基本情况对齐，姓名、电话、性别啥的，如果是多行保持对齐呀朋友们~ 同行都不对齐更过分了~（模板慎用） 用了简历模板，然后有的项空着不填，如果不想填就删除掉吧 中英文冒号混用，避免一下 技术栈 来个例子吧，到底是熟悉还是不熟悉：熟悉 Python 语言，Python 的变量和基本数据类型，输入输出语句，集合和元组操作 没有实际落地经验的框架不要写熟悉，是否有项目经验两句话就看出来了 项目描述 项目业务描述过多，有很多套话，花很大篇幅写之前的业务细节没必要，简单写下就行了
 业务的技术架构以及用到的技术栈，在这种技术架构下采用了那些测试方法
 最近的项目写在前面
@@ -3340,9 +3340,10 @@ $ docker run --privileged \ 	-d -p 6080:6080 -p 5554:5554 -p 5555:5555 \ 	-e DEV
 验证设备
 $ docker exec -it {container} \bin\bash $ adb --version $ adb devices # 无设备，搁置 ]]></content></entry><entry><title>Bookmarks - Ycwdaaaa发帖整理</title><url>/tech/bookmarks/ycwdaaaa%E5%8F%91%E5%B8%96%E6%95%B4%E7%90%86/</url><categories><category>Bookmarks</category></categories><tags><tag>Bookmarks</tag></tags><content type="html"><![CDATA[ ycwdaaaa (孙高飞) 在 TesterHome 的发帖整理。
  更新日志：
-  【2022.01.12】create：创建该贴。
+  【2022.01.12】create：创建该帖。
   【2022.07.07】update：增加各模块发帖数量；新增最近 5 篇发帖；总贴数：141。
-  【2023.03.27】update：总贴数：145。
+  【2023.03.27】update：总帖数：145。
+  【2024.01.30】update：总帖数：157。
    花两天时间终于认真看完一遍大佬的帖子，是看完不是看懂。。。字都认识，连一块就懵了。
 浏览过程中按帖子相关性顺手整理了下：
  模块化 贴出发帖时间线 平台精华贴使用 🌟 标注；个人觉得非常有帮助的帖子使用 👍 标注 标题后增加当前模块发帖数  学习大佬的做事态度，趁热打铁，专注只搞一件事！
@@ -3374,7 +3375,7 @@ $ docker exec -it {container} \bin\bash $ adb --version $ adb devices # 无设�
 【2017.03.08】 测试开发之路 - Flask 之旅 (三):数据库  
 【2017.03.09】 测试开发之路 - Flask 之旅 (四):登录与权限控制  
 【2017.03.11】 测试开发之路 - Flask 之旅 (五):后台管理  
-三、DevOps（42） 【2016.05.19】 关于监控的讨论  
+三、DevOps（44） 【2016.05.19】 关于监控的讨论  
 【2016.06.30】 测试开发之路 - CI (开发部分的持续集成)  
 【2016.10.06】 测试开发之路 - 环境管理  
 【2016.10.17】🌟 测试开发之路 (工具篇) - Docker  
@@ -3416,7 +3417,9 @@ $ docker exec -it {container} \bin\bash $ adb --version $ adb devices # 无设�
 【2022.02.26】 k8s 集群监控平台的实现  
 【2022.04.25】🌟 混沌工程理论知识记录 &ndash; CAP  
 【2022.05.11】 混沌工程理论知识记录 &ndash; 数据同步设计  
-四、大数据测试（8） 【2017.03.16】 测试开发之路 - Spark 之旅 (一)：大数据介绍  
+【2023.03.27】 记录一次 K8S 性能问题排查  
+【2023.04.10】 记录一次 K8S Pod 启动异常问题排查  
+四、大数据测试 &amp; 人工智能测试（16） 【2017.03.16】 测试开发之路 - Spark 之旅 (一)：大数据介绍  
 【2017.03.19】🌟 测试开发之路 - Spark 之旅 (二)：基础操作  
 【2017.03.27】 测试开发之路 - Spark 之旅 (三)：Shuffle 以及性能测试初探  
 【2018.11.30】 测试开发之路 - Spark 之旅 (四)：大数据产品的一种测试方法与实现  
@@ -3424,6 +3427,14 @@ $ docker exec -it {container} \bin\bash $ adb --version $ adb devices # 无设�
 【2020.12.22】🌟 大数据测试场景科普 &ndash; 流计算篇 (下)  
 【2021.10.26】 大数据测试场景科普 &ndash; 离线造数场景  
 【2023.02.07】 分布式存储系统测试基础（一）块存储，文件存储与对象存储  
+【2023.10.12】 云原生测试是什么样子的  
+【2023.12.19】 我们是如何测试人工智能的（一）基础效果篇（内含大模型的测试内容）  
+【2023.12.29】 我们是如何测试人工智能的（二）数据挖掘篇  
+【2023.12.29】 人工智能产品测试的学习路线  
+【2024.01.05】 我们是如何测试人工智能的（三）数据构造与性能测试篇  
+【2024.01.09】 我们是如何测试人工智能的（四）补充：模型全生命周期流程与测试图  
+【2024.01.16】 我们是如何测试人工智能的（五）案例介绍：ASR 效果测试介绍  
+【2024.01.30】 我们是如何测试人工智能的（六）推荐系统拆解  
 五、深度学习基础（26） 【2017.10.22】 深度学习基础(一) - 二分类  
 【2017.10.29】 深度学习基础 (二) - 浅层神经网络  
 【2017.11.05】 深度学习基础 (三) - 深层神经网络  
@@ -3450,7 +3461,7 @@ $ docker exec -it {container} \bin\bash $ adb --version $ adb devices # 无设�
 【2018.05.20】 深度学习基础 (二十三) - 科普：深度学习业务场景与原理概览 (三)  
 【2018.06.10】 深度学习基础 (二十四) - tensorflow 中的数据流  
 【2018.06.17】 深度学习基础 (二十五) - tensorflow serving  
-六、职业经验（17） 【2016.05.02】🌟 作为一个面试官，我想说点什么  
+六、职业经验（18） 【2016.05.02】🌟 作为一个面试官，我想说点什么  
 【2016.05.25】👍 还是面试那点事 - 薪资  
 【2016.06.12】🌟 论自动化测试脚本的质量与效率  
 【2016.09.26】🌟 测试开发之路 - QA 的能力  
@@ -3467,6 +3478,7 @@ $ docker exec -it {container} \bin\bash $ adb --version $ adb devices # 无设�
 【2021.07.05】🌟 大厂面试总结  
 【2022.09.16】 聊一些对测试技术的看法  
 【2023.03.12】👍 编写简历的方法  
+【2023.06.21】 有点感慨 &ndash; 强者越强，弱者越弱  
 七、随笔（14） 【2016.06.13】 趣谈我眼中测试发展  
 【2016.06.13】 新项目的质量保障流程探讨  
 【2016.07.17】 测试总结，感悟与职业选择  
@@ -3488,9 +3500,10 @@ $ docker exec -it {container} \bin\bash $ adb --version $ adb devices # 无设�
 【2020.01.17】 进击的 2019 (一个小小工程师的又一次回首)   ：2018 年终总结
 【2022.03.22】 迟来的总结与回顾  ：2021 年终总结
 【2023.01.02】 2022 年终总结 &ndash; 一个小小工程师的再回首  
-九、招聘（3） 【2016.05.11】 第四范式招聘测试开发工程师  
+九、招聘&amp;广告（4） 【2016.05.11】 第四范式招聘测试开发工程师  
 【2016.08.18】 第四范式招聘业务测试工程师  
 【2018.11.02】 第四范式 招聘 测试开发工程师  
+【2023.08.28】 给自己的书打个广告 &ndash; 云原生测试实战  
 高钙鸡汤 摘自作者文章。
  我们之前把太多的失败因素都归结于需求，归结于产品，归结于没有文档，归结于开发不配合甚至归结于自动化根本没用等等等等。 该醒醒了 老实承认吧，你就是不懂代码 老实承认吧，你就是懒的学习 老实承认吧，你就是懒的思考 老实承认吧，你就是自以为是 老实承认吧，你就是 low
 知道自己 low 是好事，因为它激励着你前进。2 年前我承认我自己 low，所以我才能努力的变成今天这样不那么 low 了。
