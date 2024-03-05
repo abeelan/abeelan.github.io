@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="article:author" content="ABEE">
 <meta property="article:published_time" content="2023-04-23 18:19:08 +0000 UTC">
-<meta property="article:modified_time" content="2024-01-31 01:01:21 +0000 UTC">
+<meta property="article:modified_time" content="2024-03-06 01:00:05 +0000 UTC">
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
 <link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
@@ -79,7 +79,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>289</span>
+<span class=badge>292</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -137,6 +137,7 @@
 <li><a href=#生成随机中文姓名>生成随机中文姓名</a></li>
 <li><a href=#生成指定长度的随机字符串>生成指定长度的随机字符串</a></li>
 <li><a href=#生成-13-位时间戳>生成 13 位时间戳</a></li>
+<li><a href=#计算当前日期之前的工作日时长>计算当前日期之前的工作日时长</a></li>
 <li><a href=#对响应值整体进行-urldecode-解码>对响应值整体进行 urldecode 解码</a></li>
 <li><a href=#对响应部分字段进行-urldecode-解码---递归实现>对响应部分字段进行 urldecode 解码 - 递归实现</a></li>
 <li><a href=#修改响应头类型>修改响应头类型</a></li>
@@ -164,19 +165,19 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>289</span>
+<span class=site-state-item-count>292</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
 <div class="site-state-item site-state-categories">
 <a href=/categories/>
-<span class=site-state-item-count>25</span>
+<span class=site-state-item-count>26</span>
 <span class=site-state-item-name>分类</span>
 </a>
 </div>
 <div class="site-state-item site-state-tags">
 <a href=/tags/>
-<span class=site-state-item-count>25</span>
+<span class=site-state-item-count>26</span>
 <span class=site-state-item-name>标签</span>
 </a>
 </div>
@@ -216,15 +217,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=303517></div>
+<div class=item-count id=wordsCount data-count=304441></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=767></div>
+<div class=item-count id=readTimes data-times=771></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2023-06-01T15:59:44+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-04-23T18:19:08+00:00></div>
 </div>
 </div>
 </div>
@@ -280,7 +281,7 @@
 <i class="far fa-calendar-check"></i>
 </span>
 <span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2024-01-31T01:01:21+00:00 itemprop=dateModified datetime=2024-01-31T01:01:21+00:00>2024-01-31</time>
+<time title=修改时间：2024-03-06T01:00:05+00:00 itemprop=dateModified datetime=2024-03-06T01:00:05+00:00>2024-03-06</time>
 </span>
 <span class=post-meta-item>
 <span class=post-meta-item-icon>
@@ -299,14 +300,14 @@
 <span class=post-meta-item-icon>
 <i class="far fa-file-word"></i>
 </span>
-<span class=post-meta-item-text>字数：</span><span>2849</span>
+<span class=post-meta-item-text>字数：</span><span>3106</span>
 </span>
 <span class=post-meta-item title=阅读>
 <span class=post-meta-item-icon>
 <i class="far fa-clock"></i>
 </span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>6分钟</span>
+<span>7分钟</span>
 </span>
 <span class=post-meta-item title=浏览>
 <span class=post-meta-item-icon>
@@ -401,6 +402,29 @@ vars<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span 
 <span style=color:#66d9ef>long</span> timestamp <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date<span style=color:#f92672>().</span><span style=color:#a6e22e>getTime</span><span style=color:#f92672>();</span>
 String strTimestamp <span style=color:#f92672>=</span> Long<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>timestamp<span style=color:#f92672>);</span>
 log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Output &gt;&gt;&gt;&gt;&gt; timestamp(13): &#34;</span> <span style=color:#f92672>+</span> strTimestamp<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=计算当前日期之前的工作日时长>计算当前日期之前的工作日时长</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.util.Calendar<span style=color:#f92672>;</span>
+
+<span style=color:#75715e>// 获取当前日期
+</span><span style=color:#75715e></span>Calendar calendar <span style=color:#f92672>=</span> Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>();</span>
+<span style=color:#66d9ef>int</span> currentDay <span style=color:#f92672>=</span> calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>DAY_OF_MONTH</span><span style=color:#f92672>);</span> <span style=color:#75715e>// 当前日期
+</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> currentMonth <span style=color:#f92672>=</span> calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>MONTH</span><span style=color:#f92672>);</span> <span style=color:#75715e>// 当前月份（从0开始，所以需要加1）
+</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> currentYear <span style=color:#f92672>=</span> calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>YEAR</span><span style=color:#f92672>);</span> <span style=color:#75715e>// 当前年份
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// 获取当前月份的天数
+</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> daysInMonth <span style=color:#f92672>=</span> calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>getActualMaximum</span><span style=color:#f92672>(</span>Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>DAY_OF_MONTH</span><span style=color:#f92672>);</span>
+
+<span style=color:#75715e>// 计算当前日期之前非周末的天数
+</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> nonWeekendDays <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span>
+<span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 1<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> currentDay<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+    calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>set</span><span style=color:#f92672>(</span>currentYear<span style=color:#f92672>,</span> currentMonth<span style=color:#f92672>,</span> i<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>int</span> dayOfWeek <span style=color:#f92672>=</span> calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>DAY_OF_WEEK</span><span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>dayOfWeek <span style=color:#f92672>!=</span> Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>SATURDAY</span> <span style=color:#f92672>&amp;&amp;</span> dayOfWeek <span style=color:#f92672>!=</span> Calendar<span style=color:#f92672>.</span><span style=color:#a6e22e>SUNDAY</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        nonWeekendDays<span style=color:#f92672>++;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;当前日期之前非周末的天数: {}&#34;</span><span style=color:#f92672>,</span> nonWeekendDays<span style=color:#f92672>);</span>
 </code></pre></div><h3 id=对响应值整体进行-urldecode-解码>对响应值整体进行 urldecode 解码</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.net.URLDecoder<span style=color:#f92672>;</span>
 
@@ -674,6 +698,13 @@ log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span 
 </span><span style=color:#75715e></span>    <span style=color:#75715e>// AssertionResult.setFailureMessage(&#34;断言失败了！！！&#34;);
 </span><span style=color:#75715e></span><span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
     log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;断言成功！&#34;</span><span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>Double<span style=color:#f92672>.</span><span style=color:#a6e22e>compare</span><span style=color:#f92672>(</span>resultDays<span style=color:#f92672>,</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>double</span><span style=color:#f92672>)</span>nonWeekendDays<span style=color:#f92672>)</span> <span style=color:#f92672>==</span> 0<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;断言成功&#34;</span><span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+    log<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;断言失败&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Exception<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;变量值不符合预期，使步骤失败&#34;</span><span style=color:#f92672>);</span>
 <span style=color:#f92672>}</span>
 </code></pre></div><h3 id=字符串分割>字符串分割</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java>String fullname <span style=color:#f92672>=</span> vars<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>);</span>
