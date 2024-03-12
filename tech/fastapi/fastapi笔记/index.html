@@ -1,0 +1,1545 @@
+<!doctype html><html lang=zh-cn data-theme=light>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width">
+<meta name=theme-color content="#336699" media="(prefers-color-scheme: light)">
+<meta name=generator content="Hugo 0.89.0">
+<link rel="shortcut icon" type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/x-icon href=/imgs/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png>
+<link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png>
+<link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png>
+<meta itemprop=name content="Fastapi - Fastapi笔记">
+<meta itemprop=description content="It's better late than never.">
+<meta itemprop=datePublished zgotmplz>
+<meta itemprop=dateModified zgotmplz>
+<meta itemprop=image content="https://abeelan.github.io/imgs/avatar.png">
+<meta itemprop=keywords content="Fastapi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fastapi - Fastapi笔记">
+<meta property="og:description" content="It's better late than never.">
+<meta property="og:image" content="/imgs/avatar.png">
+<meta property="og:image:width" content="312">
+<meta property="og:image:height" content="312">
+<meta property="og:image:type" content="image/jpeg/png/svg/jpg">
+<meta property="og:url" content="https://abeelan.github.io/tech/fastapi/fastapi%E7%AC%94%E8%AE%B0/">
+<meta property="og:site_name" content="ABEE">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="ABEE">
+<meta property="article:published_time" content="2024-03-07 15:42:42 +0000 UTC">
+<meta property="article:modified_time" content="2024-03-12 01:00:10 +0000 UTC">
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css>
+<link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css>
+<link rel=stylesheet href=/css/main.min.416f334245da30571f15db9831a2d6c55688e61dcb41988411ebe865602b54fd.css>
+<style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style>
+<script type=text/javascript>(function(){localDB={set:function(b,c,a){if(a===0)return;const d=new Date,e=a*864e5,f={value:c,expiry:d.getTime()+e};localStorage.setItem(b,JSON.stringify(f))},get:function(a){const b=localStorage.getItem(a);if(!b)return void 0;const c=JSON.parse(b),d=new Date;return d.getTime()>c.expiry?(localStorage.removeItem(a),void 0):c.value}},theme={active:function(){const a=localDB.get('theme');if(a==void 0)return;theme.toggle(a),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(a){theme.toggle(a.matches?'dark':'light')})},toggle:function(a){document.documentElement.setAttribute('data-theme',a),localDB.set('theme',a,2);const b=document.querySelector('iframe.giscus-frame');if(b){const c={setConfig:{theme:a}};b.contentWindow.postMessage({giscus:c},'https://giscus.app')}}},theme.active()})(window)</script>
+<script class=next-config data-name=page type=application/json>{"comments":true,"isHome":false,"isPage":true,"path":"fastapi%E7%AC%94%E8%AE%B0","permalink":"https://abeelan.github.io/tech/fastapi/fastapi%E7%AC%94%E8%AE%B0/","title":"Fastapi - Fastapi笔记"}</script>
+<script type=text/javascript>document.addEventListener('DOMContentLoaded',()=>{var a=document.createElement('script');a.charset="UTF-8",a.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",a.async=!1,a.defer=!0,document.head.appendChild(a),a.onload=function(){NexT.utils.fmtBusuanzi()}})</script>
+<title>Fastapi - Fastapi笔记 - ABEE</title>
+<noscript>
+<link rel=stylesheet href=/css/noscript.css>
+</noscript>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage class=use-motion>
+<div class=headband></div>
+<main class=main>
+<header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner>
+<div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle aria-label=切换导航栏 role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<a href=/ class=brand rel=start>
+<i class=logo-line></i>
+<h1 class=site-title>ABEE</h1>
+<i class=logo-line></i>
+</a>
+<p class=site-subtitle itemprop=description>个人工作/学习笔记 📒</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger">
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul class="main-menu menu">
+<li class="menu-item menu-item-home">
+<a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>主页
+</a>
+</li>
+<li class="menu-item menu-item-about">
+<a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于
+</a>
+</li>
+<li class="menu-item menu-item-archives">
+<a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>293</span>
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索
+</a>
+</li>
+</ul>
+</nav>
+<div class=search-pop-overlay>
+<div class="popup search-popup">
+<div class=search-header>
+<span class=search-icon>
+<i class="fa fa-search"></i>
+</span>
+<div class=search-input-container>
+<input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input>
+</div>
+<span class=popup-btn-close role=button>
+<i class="fa fa-times-circle"></i>
+</span>
+</div>
+<div class="search-result-container no-result">
+<div class=search-result-icon>
+<i class="fa fa-spinner fa-pulse fa-5x"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="toggle sidebar-toggle" role=button>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+<aside class=sidebar>
+<div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+<ul class=sidebar-nav>
+<li class=sidebar-nav-toc>
+文章目录
+</li>
+<li class=sidebar-nav-overview>
+站点概览
+</li>
+</ul>
+<div class=sidebar-panel-container>
+<div class="post-toc-wrap sidebar-panel">
+<div class="post-toc animated"><nav id=TableOfContents>
+<ul>
+<li><a href=#http-协议>http 协议</a>
+<ul>
+<li><a href=#简介>简介</a></li>
+<li><a href=#http协议特性>http协议特性</a></li>
+<li><a href=#http请求协议与响应协议>http请求协议与响应协议</a></li>
+<li><a href=#api-接口>api 接口</a></li>
+</ul>
+</li>
+<li><a href=#quick-start>quick start</a>
+<ul>
+<li><a href=#路径操作>路径操作</a>
+<ul>
+<li><a href=#路径操作装饰器>路径操作装饰器</a></li>
+<li><a href=#include_router>include_router</a></li>
+</ul>
+</li>
+<li><a href=#请求与响应>请求与响应</a>
+<ul>
+<li><a href=#路径参数>路径参数</a></li>
+<li><a href=#42查询参数请求参数>4.2、查询参数（请求参数）</a></li>
+<li><a href=#43请求体数据>4.3、请求体数据</a></li>
+<li><a href=#44form表单数据>4.4、form表单数据</a></li>
+<li><a href=#文件上传>文件上传</a></li>
+<li><a href=#reqeust-对象>Reqeust 对象</a></li>
+<li><a href=#请求静态文件>请求静态文件</a></li>
+<li><a href=#响应模型相关参数>响应模型相关参数</a></li>
+</ul>
+</li>
+<li><a href=#五jinja2模板>五、jinja2模板</a>
+<ul>
+<li><a href=#jinja2-的变量>jinja2 的变量</a></li>
+<li><a href=#jinja2-的过滤器>jinja2 的过滤器</a></li>
+<li><a href=#jinja2-的控制结构>jinja2 的控制结构</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#orm操作>ORM操作</a>
+<ul>
+<li><a href=#创建模型>创建模型</a></li>
+<li><a href=#aerich-迁移工具>aerich 迁移工具</a></li>
+<li><a href=#api-接口与-restful-规范>api 接口与 restful 规范</a></li>
+<li><a href=#选课系统接口开发>选课系统接口开发</a></li>
+</ul>
+</li>
+<li><a href=#中间件与cors>中间件与CORS</a>
+<ul>
+<li><a href=#中间件>中间件</a></li>
+<li><a href=#cors>CORS</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div>
+<div class="site-overview-wrap sidebar-panel">
+<div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image alt=ABEE src=/imgs/img-lazy-loading.gif data-src=/imgs/avatar.png>
+<p class=site-author-name itemprop=name>ABEE</p>
+<div class=site-description itemprop=description>It's better late than never.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+<nav class=site-state>
+<div class="site-state-item site-state-posts">
+<a href=/archives/>
+<span class=site-state-item-count>293</span>
+<span class=site-state-item-name>帖子</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>26</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>26</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+</div>
+<div class="links-of-social site-overview-item animated">
+<span class=links-of-social-item>
+<a href=https://github.com/abeelan title="Github → https://github.com/abeelan" rel=noopener class=hvr-icon-pulse target=_blank>
+<i class="fab fa-github fa-fw hvr-icon"></i>Github
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id=siteinfo-card-widget class=sidebar-card-widget>
+<div class=item-headline>
+<i class="fas fa-chart-line"></i>
+<span>网站资讯</span>
+</div>
+<div class=siteinfo>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div>
+<div class=item-count id=runTimes data-publishdate=2023-06-01T17:50:58+00:00></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-user"></i>总访客数：
+</div>
+<div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name>
+<i class="fas fa fa-eye"></i>页面浏览：
+</div>
+<div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-font"></i>总字数：</div>
+<div class=item-count id=wordsCount data-count=315514></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
+<div class=item-count id=readTimes data-times=795></div>
+</div>
+<div class=siteinfo-item>
+<div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-07-11T15:02:37+00:00></div>
+</div>
+</div>
+</div>
+</aside>
+<div class=sidebar-dimmer></div>
+</header>
+<div class=tool-buttons>
+<div id=goto-comments class="button goto-comments" title=直达评论>
+<i class="fas fa-comments"></i>
+</div>
+<div id=toggle-theme class=button title=深浅模式切换>
+<i class="fas fa-adjust"></i>
+</div>
+<div class=back-to-top role=button title=返回顶部>
+<i class="fa fa-arrow-up"></i>
+<span>0%</span>
+</div>
+</div>
+<div class=reading-progress-bar></div>
+<a role=button class="book-mark-link book-mark-link-fixed"></a>
+<noscript>
+<div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<div class="main-inner post posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/fastapi/fastapi%E7%AC%94%E8%AE%B0/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Fastapi - Fastapi笔记">
+<meta itemprop=description content="fastapi，一个用于构建 API 的现代、快速（高性能）的web框架。 fastapi是建立在 Starlette 和 Pydantic 基础上的，Pydantic 是一个基于 Pytho">
+</span>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">Fastapi - Fastapi笔记 </h1>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2024-03-07 15:42:42 +0000 UTC" itemprop="dateCreated datePublished" datetime="2024-03-07 15:42:42 +0000 UTC">2024-03-07</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2024-03-12T01:00:10+00:00 itemprop=dateModified datetime=2024-03-12T01:00:10+00:00>2024-03-12</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/fastapi itemprop=url rel=index>
+<span itemprop=name>Fastapi</span>
+</a>
+</span>
+</span>
+</div>
+<div class=post-meta-items>
+<span class=post-meta-item title=字数>
+<span class=post-meta-item-icon>
+<i class="far fa-file-word"></i>
+</span>
+<span class=post-meta-item-text>字数：</span><span>11035</span>
+</span>
+<span class=post-meta-item title=阅读>
+<span class=post-meta-item-icon>
+<i class="far fa-clock"></i>
+</span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>23分钟</span>
+</span>
+<span class=post-meta-item title=浏览>
+<span class=post-meta-item-icon>
+<i class="far fa-eye"></i>
+</span>
+<span class=post-meta-item-text>
+浏览：
+</span>
+<span id=busuanzi_value_page_pv data-path=/tech/fastapi/fastapi%E7%AC%94%E8%AE%B0/>
+<i class="fa fa-sync fa-spin"></i>
+</span>
+</span>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+<p><code>fastapi</code>，一个用于构建 API 的现代、快速（高性能）的web框架。</p>
+<p><code>fastapi</code>是建立在 Starlette 和 Pydantic 基础上的，Pydantic 是一个基于
+<a href="https://so.csdn.net/so/search?q=Python%e7%b1%bb&spm=1001.2101.3001.7020" title=Python类 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Python类
+<i class="fa fa-external-link-alt"></i>
+</a>型提示来定义数据验证、序列化和文档的库。Starlette是一种轻量级的ASGI框架/工具包，是构建高性能Asyncio服务的理性选择。</p>
+<blockquote>
+<ul>
+<li>快速：可与 NodeJS 和 Go 比肩的<code>极高性能</code>（归功于 <code>Starlette</code> 和 <code>Pydantic</code>），是最快的 Python web 框架之一。</li>
+<li>高效编码：提高功能开发速度约 200％ 至 300％。</li>
+<li>更少bug：减少约 40％ 的人为（开发者）导致错误。</li>
+<li>智能：极佳的编辑器支持。处处皆可自动补全，减少调试时间。</li>
+<li>简单：设计的<code>易于使用和学习</code>，阅读文档的时间更短。</li>
+<li>简短：使代码重复最小化。通过不同的参数声明实现丰富功能。</li>
+<li>健壮：生产可用级别的代码。还有<code>自动生成的交互式文档</code>。</li>
+</ul>
+</blockquote>
+<p>依赖：Python 3.6 及更高版本，FastAPI 站在以下巨人的肩膀之上</p>
+<blockquote>
+<p>
+<a href=https://www.starlette.io/ title=Starlette rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Starlette
+<i class="fa fa-external-link-alt"></i>
+</a> 负责 web 部分(Asyncio)</p>
+<p>
+<a href=https://pydantic-docs.helpmanual.io/ title=Pydantic rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Pydantic
+<i class="fa fa-external-link-alt"></i>
+</a> 负责数据部分(类型提示)</p>
+</blockquote>
+<p>FastApi是站在前人肩膀上，集成了多种框架的优点的新秀框架。它出现的比较晚，2018年底才发布在github上。广泛应用于当前各种前后端分离的项目开发，测试运维自动化以及微服务的场景中。</p>
+<h2 id=http-协议>http 协议</h2>
+<ol>
+<li>什么是请求头请求体，响应头响应体</li>
+<li>URL地址包括什么</li>
+<li>get请求和post请求到底是什么</li>
+<li>Content-Type是什么</li>
+</ol>
+<h3 id=简介>简介</h3>
+<p>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于万维网（WWW:World Wide Web ）服务器与本地浏览器之间传输超文本的传送协议。HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。HTTP协议工作于客户端-服务端架构为上。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/0004b486bc794a44b9de095abbe830c5.png alt=img></p>
+<h3 id=http协议特性>http协议特性</h3>
+<ol>
+<li>基于TCP/IP协议：http协议是基于TCP/IP协议之上的应用层协议。</li>
+<li>基于请求－响应模式：HTTP协议规定,请求从客户端发出,最后服务器端响应该请求并 返回。换句话说,肯定是先从客户端开始建立通信的,服务器端在没有 接收到请求之前不会发送响应</li>
+<li>无状态保存：HTTP是一种不保存状态,即无状态(stateless)协议。HTTP协议 自身不对请求和响应之间的通信状态进行保存。也就是说在HTTP这个 级别,协议对于发送过的请求或响应都不做持久化处理。使用HTTP协议,每当有新的请求发送时,就会有对应的新响应产 生。协议本身并不保留之前一切的请求或响应报文的信息。这是为了更快地处理大量事务,确保协议的可伸缩性,而特意把HTTP协议设计成 如此简单的。</li>
+<li>短连接：
+<ul>
+<li>HTTP1.0默认使用的是短连接。浏览器和服务器每进行一次HTTP操作，就建立一次连接，任务结束就中断连接。</li>
+<li>HTTP/1.1起，默认使用长连接。要使用长连接，客户端和服务器的HTTP首部的Connection都要设置为keep-alive，才能支持长连接。</li>
+<li>HTTP长连接，指的是复用TCP连接。多个HTTP请求可以复用同一个TCP连接，这就节省了TCP连接建立和断开的消耗。</li>
+</ul>
+</li>
+</ol>
+<h3 id=http请求协议与响应协议>http请求协议与响应协议</h3>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/f21a3a0d088345f39498267d16f39e33.png alt=img></p>
+<p>http协议包含由浏览器发送数据到服务器需要遵循的请求协议与服务器发送数据到浏览器需要遵循的请求协议。用于HTTP协议交互的信被为HTTP报文。请求端(客户端)的HTTP报文 做请求报文,响应端(服务器端)的 做响应报文。HTTP报文本身是由多行数据构成的字文本。</p>
+<blockquote>
+<p>一个完整的URL包括：协议、ip、端口、路径、参数</p>
+<p>例如：
+<a href="https://www.baidu.com/s?wd=yuan" title="https://www.baidu.com/s?wd=yuan" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+https://www.baidu.com/s?wd=yuan
+<i class="fa fa-external-link-alt"></i>
+</a> 其中https是协议，www.baidu.com 是IP，端口默认80，/s是路径，参数是wd=yuan</p>
+<p>请求方式: get与post请求</p>
+<ul>
+<li>GET提交的数据会放在URL之后，以?分割URL和传输数据，参数之间以&相连，如EditBook?name=test1&id=123456. POST方法是把提交的数据放在HTTP包的请求体中.</li>
+<li>GET提交的数据大小有限制（因为浏览器对URL的长度有限制），而POST方法提交的数据没有限制</li>
+</ul>
+<p>响应状态码：状态码的职 是当客户端向服务器端发送请求时, 返回的请求 结果。借助状态码,用户可以知道服务器端是正常 理了请求,还是出 现了 。状态码如200 OK,以3位数字和原因 组成。</p>
+</blockquote>
+<h3 id=api-接口>api 接口</h3>
+<p>在开发Web应用中，有两种应用模式：</p>
+<p>1、前后端不分离，客户端看到的内容和所有界面效果都是由服务端提供出来的。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/9d05dd539d3f4a32ac2066cd17093fa8.png alt=img></p>
+<p>2、前后端分离【把前端的界面效果(html，css，js分离到另一个服务端，python服务端只需要返回数据即可)】</p>
+<p>前端形成一个独立的网站，服务端构成一个独立的网站</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/62558cf0038d4df7a17edc51e8bc3a57.png alt=img></p>
+<p>应用程序编程接口（Application Programming Interface，API接口），就是应用程序对外提供了一个操作数据的入口，这个入口可以是一个函数或类方法，也可以是一个url地址或者一个网络地址。当客户端调用这个入口，应用程序则会执行对应代码操作，给客户端完成相对应的功能。</p>
+<p>当然，api接口在工作中是比较常见的开发内容，有时候，我们会调用其他人编写的api接口，有时候，我们也需要提供api接口给其他人操作。由此就会带来一个问题，api接口往往都是一个函数、类方法、或者url或其他网络地址，不断是哪一种，当api接口编写过程中，我们都要考虑一个问题就是这个接口应该怎么编写？接口怎么写的更加容易维护和清晰，这就需要大家在调用或者编写api接口的时候要有一个明确的编写规范！！！</p>
+<p>为了在团队内部形成共识、防止个人习惯差异引起的混乱，我们都需要找到一种大家都觉得很好的接口实现规范，而且这种规范能够让后端写的接口，用途一目了然，减少客户端和服务端双方之间的合作成本。</p>
+<p>目前市面上大部分公司开发人员使用的接口实现规范主要有：restful、RPC。</p>
+<p>REST全称是Representational State Transfer，中文意思是表述（编者注：通常译为表征）性状态转移。 它首次出现在2000年Roy Fielding的博士论文中。</p>
+<p>RESTful是一种专门为Web 开发而定义API接口的设计风格，尤其适用于前后端分离的应用模式中。</p>
+<p>关键：面向资源开发</p>
+<p>这种风格的理念认为后端开发任务就是提供数据的，对外提供的是数据资源的访问接口，所以在定义接口时，客户端访问的URL路径就表示这种要操作的数据资源。</p>
+<p>而对于数据资源分别使用POST、DELETE、GET、UPDATE等请求动作来表达对数据的增删查改。</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:left>请求方法</th>
+<th style=text-align:left>请求地址</th>
+<th style=text-align:left>后端操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:left>POST</td>
+<td style=text-align:left>/student/</td>
+<td style=text-align:left>增加学生</td>
+</tr>
+<tr>
+<td style=text-align:left>GET</td>
+<td style=text-align:left>/student/</td>
+<td style=text-align:left>获取所有学生</td>
+</tr>
+<tr>
+<td style=text-align:left>GET</td>
+<td style=text-align:left>/student/1</td>
+<td style=text-align:left>获取id为1的学生</td>
+</tr>
+<tr>
+<td style=text-align:left>PUT</td>
+<td style=text-align:left>/student/1</td>
+<td style=text-align:left>修改id为1的学生</td>
+</tr>
+<tr>
+<td style=text-align:left>DELETE</td>
+<td style=text-align:left>/student/1</td>
+<td style=text-align:left>删除id为1的学生</td>
+</tr>
+</tbody>
+</table>
+<p>restful 规范是一种通用的规范，不限制语言和开发框架的使用。事实上，我们可以使用任何一门语言，任何一个框架都可以实现符合restful规范的API接口。</p>
+<h2 id=quick-start>quick start</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 安装</span>
+$ pip install fastapi
+
+<span style=color:#75715e># 你还会需要一个 ASGI 服务器，生产环境可以使用 [Uvicorn](https://www.uvicorn.org/)</span>
+$ pip install uvicorn
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># FastAPI 是一个为你的 API 提供了所有功能的 Python 类。</span>
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI  
+
+<span style=color:#75715e># 这个实例将是创建你所有 API 的主要交互对象。这个 app 同样在如下命令中被 uvicorn 所引用</span>
+app <span style=color:#f92672>=</span> FastAPI() 
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>root</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Hello yuan&#34;</span>}
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    <span style=color:#f92672>import</span> uvicorn
+	uvicorn<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#34;main:app&#34;</span>, host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;127.0.0.1&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>, debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, reload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</code></pre></div><p>也可以通过以下命令运行服务器：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>$ uvicorn main:app --reload
+
+INFO:     Uvicorn running on http://127.0.0.1:8000 <span style=color:#f92672>(</span>Press CTRL+C to quit<span style=color:#f92672>)</span>
+INFO:     Started reloader process <span style=color:#f92672>[</span>73408<span style=color:#f92672>]</span>
+INFO:     Started server process <span style=color:#f92672>[</span>73408<span style=color:#f92672>]</span>
+INFO:     Waiting <span style=color:#66d9ef>for</span> application startup
+INFO:     Application startup complete
+</code></pre></div><blockquote>
+<p>（1）导入 FastAPI。
+（2）创建一个 app 实例。
+（3）编写一个路径操作装饰器（如 @app.get(“/”)）。
+（4）编写一个路径操作函数（如上面的 def root(): …）
+（5）定义返回值
+（6）运行开发服务器（如 uvicorn main:app &ndash;reload）</p>
+</blockquote>
+<p>此外，fastapi有着<strong>非常棒的交互式 API 文档</strong>，这一点很吸引人。</p>
+<p>跳转到
+<a href="https://link.zhihu.com/?target=http%3A//127.0.0.1%3A8000/docs" title=http://127.0.0.1:8000/docs rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+http://127.0.0.1:8000/docs
+<i class="fa fa-external-link-alt"></i>
+</a>。你将会看到<strong>自动生成</strong>的交互式 API 文档，可以用来测试。</p>
+<h3 id=路径操作>路径操作</h3>
+<h4 id=路径操作装饰器>路径操作装饰器</h4>
+<p>fastapi支持各种请求方式：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#e6db74>&#34;&#34;&#34;
+</span><span style=color:#e6db74>@app.get()
+</span><span style=color:#e6db74>@app.post()
+</span><span style=color:#e6db74>@app.put()
+</span><span style=color:#e6db74>@app.patch()
+</span><span style=color:#e6db74>@app.delete()
+</span><span style=color:#e6db74>@app.options()
+</span><span style=color:#e6db74>@app.head()
+</span><span style=color:#e6db74>@app.trace()
+</span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+
+<span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/get&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_test</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;get方法&#34;</span>}
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/post&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post_test</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;post方法&#34;</span>}
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>put(<span style=color:#e6db74>&#34;/put&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put_test</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;put方法&#34;</span>}
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>delete(<span style=color:#e6db74>&#34;/delete&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete_test</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;delete方法&#34;</span>}
+</code></pre></div><p>路径操作装饰器参数：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(
+    <span style=color:#e6db74>&#34;/items/</span><span style=color:#e6db74>{item_id}</span><span style=color:#e6db74>&#34;</span>,
+    response_model<span style=color:#f92672>=</span>Item,
+    status_code<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK,
+    tags<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;AAA&#34;</span>],  <span style=color:#75715e># 文档页面按照 tags 分类</span>
+    summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;this is summary&#34;</span>,  <span style=color:#75715e># 接口后面显示的概述</span>
+    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;this is description&#34;</span>,  <span style=color:#75715e># 接口详情显示的描述信息</span>
+    response_description<span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;this is response_description&#34;</span>,  <span style=color:#75715e># 接口详情页 响应 的描述信息</span>
+    deprecated<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,  <span style=color:#75715e># 是否废弃 废弃会置灰＋删除线显示</span>
+)
+</code></pre></div><h4 id=include_router>include_router</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># main.py</span>
+
+<span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union
+
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+<span style=color:#f92672>import</span> uvicorn
+<span style=color:#f92672>from</span> apps <span style=color:#f92672>import</span> app01, app02
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+app<span style=color:#f92672>.</span>include_router(app01, prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/app01&#34;</span>, tags<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;第一章节：商城接口&#34;</span>, ])
+app<span style=color:#f92672>.</span>include_router(app02, prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/app02&#34;</span>, tags<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;第二章节：用户中心接口&#34;</span>, ])
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+	uvicorn<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#34;main:app&#34;</span>, host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;127.0.0.1&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>, debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, reload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># app01.py</span>
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> APIRouter
+
+app01 <span style=color:#f92672>=</span> APIRouter()
+
+<span style=color:#a6e22e>@app01</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/shop/food&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>shop_food</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;shop&#34;</span>: <span style=color:#e6db74>&#34;food&#34;</span>}
+
+<span style=color:#a6e22e>@app01</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/shop/bed&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>shop_food</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;shop&#34;</span>: <span style=color:#e6db74>&#34;bed&#34;</span>}
+
+<span style=color:#75715e># app02.py</span>
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> APIRouter
+
+app02 <span style=color:#f92672>=</span> APIRouter()
+
+<span style=color:#a6e22e>@app02</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/user/login&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>user_login</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;user&#34;</span>: <span style=color:#e6db74>&#34;login&#34;</span>}
+
+<span style=color:#a6e22e>@app02</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/user/reg&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>user_reg</span>():
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;user&#34;</span>: <span style=color:#e6db74>&#34;reg&#34;</span>}
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/76701d08f7064f7e88d1866b253d69e1.png alt=img></p>
+<h3 id=请求与响应>请求与响应</h3>
+<h4 id=路径参数>路径参数</h4>
+<h5 id=1基本用法>（1）基本用法</h5>
+<p>以使用与 Python 格式化字符串相同的语法来声明路径"参数"或"变量"：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/user/</span><span style=color:#e6db74>{user_id}</span><span style=color:#e6db74>&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_user</span>(user_id):
+    print(user_id, type(user_id))
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;user_id&#34;</span>: user_id}
+</code></pre></div><p>路径参数 <code>user_id</code> 的值将作为参数 <code>user_id</code> 传递给你的函数。</p>
+<h5 id=2有类型的路径参数>（2）有类型的路径参数</h5>
+<p>你可以使用标准的 Python 类型标注为函数中的路径参数声明类型。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/user/</span><span style=color:#e6db74>{user_id}</span><span style=color:#e6db74>&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_user</span>(user_id: int):
+    print(user_id, type(user_id))
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;user_id&#34;</span>: user_id}
+</code></pre></div><p>在这个例子中，<code>user_id</code> 被声明为 <code>int</code> 类型。</p>
+<blockquote>
+<p>这将为你的函数提供编辑器支持，包括错误检查、代码补全等等。</p>
+</blockquote>
+<h5 id=3注意顺序>（3）注意顺序</h5>
+<p>在创建<em>路径操作</em>时，你会发现有些情况下路径是固定的。</p>
+<p>比如 <code>/users/me</code>，我们假设它用来获取关于当前用户的数据.</p>
+<p>然后，你还可以使用路径 <code>/user/{username}</code> 来通过用户名 获取关于特定用户的数据。</p>
+<p>由于<em>路径操作</em>是按顺序依次运行的，你需要确保路径 <code>/user/me</code> 声明在路径 <code>/user/{username}</code>之前：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/user/me&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>read_user_me</span>():
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;username&#34;</span>: <span style=color:#e6db74>&#34;the current user&#34;</span>}
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/user/</span><span style=color:#e6db74>{username}</span><span style=color:#e6db74>&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>read_user</span>(username: str):
+<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;username&#34;</span>: username}
+</code></pre></div><p>否则，<code>/user/{username}</code> 的路径还将与 <code>/user/me</code> 相匹配，&ldquo;认为"自己正在接收一个值为 <code>"me"</code> 的 <code>username</code> 参数。</p>
+<h4 id=42查询参数请求参数>4.2、查询参数（请求参数）</h4>
+<p>路径函数中声明不属于路径参数的其他函数参数时，它们将被自动解释为"查询字符串"参数，就是 url? 之后用<code>&</code>分割的 key-value 键值对。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/jobs/</span><span style=color:#e6db74>{kd}</span><span style=color:#e6db74>&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_jobs</span>(kd: str, city: Union[str, <span style=color:#66d9ef>None</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>, xl: Union[str, <span style=color:#66d9ef>None</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>):  <span style=color:#75715e># 有默认值即可选，否则必选</span>
+    <span style=color:#66d9ef>if</span> city <span style=color:#f92672>or</span> xl:
+        <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;kd&#34;</span>: kd, <span style=color:#e6db74>&#34;city&#34;</span>: city, <span style=color:#e6db74>&#34;xl&#34;</span>: xl}
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;kd&#34;</span>: kd}
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/cdc5542c54d24f2c84df7ead5ab22490.png alt=img></p>
+<p>在这个例子中，函数参数 <code>city</code>和<code>xl</code> 是可选的，并且默认值为 <code>None</code>。</p>
+<p>自python3.5开始，PEP484为python引入了类型注解(type hints)，typing的主要作用有：</p>
+<blockquote>
+<ol>
+<li>类型检查，防止运行时出现参数、返回值类型不符。</li>
+<li>作为开发文档附加说明，方便使用者调用时传入和返回参数类型。</li>
+<li>模块加入不会影响程序的运行不会报正式的错误，pycharm支持typing检查错误时会出现黄色警告。</li>
+</ol>
+</blockquote>
+<p><code>type hints</code>主要是要指示函数的输入和输出的数据类型，数据类型在typing 包中，基本类型有str list dict等等，</p>
+<p>Union 是当有多种可能的数据类型时使用，比如函数有可能根据不同情况有时返回str或返回list，那么就可以写成Union[list, str]
+Optional 是Union的一个简化， 当 数据类型中有可能是None时，比如有可能是str也有可能是None，则Optional[str], 相当于Union[str, None]</p>
+<h4 id=43请求体数据>4.3、请求体数据</h4>
+<p>当你需要将数据从客户端（例如浏览器）发送给 API 时，你将其作为「请求体」发送。<strong>请求</strong>体是客户端发送给 API 的数据。<strong>响应</strong>体是 API 发送给客户端的数据。</p>
+<p>FastAPI 基于 <code>Pydantic</code> ，<code>Pydantic</code> 主要用来做类型强制检查（校验数据）。不符合类型要求就会抛出异常。</p>
+<p>对于 API 服务，支持类型检查非常有用，会让服务更加健壮，也会加快开发速度，因为开发者再也不用自己写一行一行的做类型检查。</p>
+<p>安装上手<code>pip install pydantic</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union, List, Optional
+
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+<span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel, Field, ValidationError, validator
+<span style=color:#f92672>import</span> uvicorn
+<span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> date
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Addr</span>(BaseModel):
+    province: str
+    city: str
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span>(BaseModel):
+    name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;root&#39;</span>
+    <span style=color:#75715e># name: str = Field(regex=&#34;^a&#34;)  # 限定字符串方式一：以 a 开头的正则使用</span>
+    age: int <span style=color:#f92672>=</span> Field(default<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, lt<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>, gt<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)  <span style=color:#75715e># 对数据进行校验</span>
+    birth: Optional[date] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+    friends: List[int] <span style=color:#f92672>=</span> []
+    description: Union[str, <span style=color:#66d9ef>None</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+    addr: Optional[Addr] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>  <span style=color:#75715e># 支持类型嵌套</span>
+    <span style=color:#75715e># Optional[Addr] 等同于 Union[Addr, None]，可以省去 None</span>
+	
+    <span style=color:#75715e># 限定字符串方式二：已被官方废弃，在新的版本中不推荐</span>
+    <span style=color:#a6e22e>@validator</span>(<span style=color:#e6db74>&#39;name&#39;</span>)
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>name_must_alpha</span>(cls, v):
+        <span style=color:#66d9ef>assert</span> v<span style=color:#f92672>.</span>isalpha(), <span style=color:#e6db74>&#39;name must be alpha&#39;</span>
+        <span style=color:#66d9ef>return</span> v
+    
+    <span style=color:#75715e># 限定字符串方式二：推荐使用 @field_validator 装饰器</span>
+    <span style=color:#75715e># 用法说明：https://docs.pydantic.dev/2.0/usage/validators/</span>
+    <span style=color:#a6e22e>@field_validator</span>(<span style=color:#e6db74>&#39;name&#39;</span>)
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>name_must_contain_space</span>(cls, v):
+        <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#39; &#39;</span> <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> v:
+            <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ValueError</span>(<span style=color:#e6db74>&#39;must contain a space&#39;</span>)
+        <span style=color:#66d9ef>return</span> v<span style=color:#f92672>.</span>title()
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Data</span>(BaseModel):  <span style=color:#75715e># 类型嵌套</span>
+    users: List[User]
+
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/data/&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_data</span>(data: Data):
+    <span style=color:#75715e># 添加数据库</span>
+    <span style=color:#66d9ef>return</span> data
+
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    <span style=color:#66d9ef>try</span>:
+        User(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>,<span style=color:#f92672>...</span>)
+    <span style=color:#66d9ef>except</span> ValidationError <span style=color:#66d9ef>as</span> e:
+        print(e<span style=color:#f92672>.</span>json())  
+</code></pre></div><p>测试：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>{
+  <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;rain&#34;</span>,
+  <span style=color:#e6db74>&#34;age&#34;</span>: <span style=color:#ae81ff>32</span>,
+  <span style=color:#e6db74>&#34;birth&#34;</span>: <span style=color:#e6db74>&#34;2022-09-29&#34;</span>,
+  <span style=color:#e6db74>&#34;friends&#34;</span>: [],
+  <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;最帅的讲fastapi的老师&#34;</span>
+}
+</code></pre></div><p>和声明查询参数时一样，当一个模型属性具有默认值时，它不是必需的。否则它是一个必需属性。将默认值设为 <code>None</code> 可使其成为可选属性。</p>
+<p>FastAPI 会自动将定义的模型类转化为<code>JSON Schema</code>，Schema 成为 OpenAPI 生成模式的一部分，并显示在 API 交互文档中，查看 API 交互文档如下，该接口将接收<code>application/json</code>类型的参数。</p>
+<p>FastAPI 支持同时定义 Path 参数、Query 参数和请求体参数，FastAPI 将会正确识别并获取数据。</p>
+<blockquote>
+<p>参数在 url 中也声明了，它将被解释为 path 参数</p>
+<p>参数是单一类型（例如int、float、str、bool等），它将被解释为 query 参数</p>
+<p>参数类型为继承 Pydantic 模块的<code>BaseModel</code>类的数据模型类，则它将被解释为请求体参数</p>
+</blockquote>
+<h4 id=44form表单数据>4.4、form表单数据</h4>
+<p>在 OAuth2 规范的一种使用方式（密码流）中，需要将用户名、密码作为表单字段发送，而不是 JSON。</p>
+<p>FastAPI 可以使用<strong>Form</strong>组件来接收表单数据，需要先使用<code>pip install python-multipart</code>命令进行安装。</p>
+<blockquote>
+<p>pip install python-multipart</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, Form
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/regin&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>regin</span>(
+    username: str <span style=color:#f92672>=</span> Form(<span style=color:#f92672>...</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>16</span>, min_length<span style=color:#f92672>=</span><span style=color:#ae81ff>8</span>, regex<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;[a-zA-Z]&#39;</span>),
+	password: str <span style=color:#f92672>=</span> Form(<span style=color:#f92672>...</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>16</span>, min_length<span style=color:#f92672>=</span><span style=color:#ae81ff>8</span>, regex<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;[0-9]&#39;</span>)
+):
+	print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;username:</span><span style=color:#e6db74>{</span>username<span style=color:#e6db74>}</span><span style=color:#e6db74>,password:</span><span style=color:#e6db74>{</span>password<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+    <span style=color:#75715e># 注册，todo 实现添加数据库的操作</span>
+	<span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;username&#34;</span>: username}
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/2b608df2ff274c37b8756ed731eefaac.png alt=img></p>
+<h4 id=文件上传>文件上传</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, File, UploadFile
+<span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> List
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+<span style=color:#75715e># file: bytes = File()：适合小文件上传</span>
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/files/&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_file</span>(file: bytes <span style=color:#f92672>=</span> File()):
+    print(<span style=color:#e6db74>&#34;file:&#34;</span>, file)
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;file_size&#34;</span>: len(file)}
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/multiFiles/&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_files</span>(files: List[bytes] <span style=color:#f92672>=</span> File()):
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;file_sizes&#34;</span>: [len(file) <span style=color:#66d9ef>for</span> file <span style=color:#f92672>in</span> files]}
+
+
+<span style=color:#75715e># file: UploadFile：适合大文件上传</span>
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/uploadFile/&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_upload_file</span>(file: UploadFile):
+    <span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>file<span style=color:#f92672>.</span>filename<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>, <span style=color:#e6db74>&#39;wb&#39;</span>) <span style=color:#66d9ef>as</span> f:
+        <span style=color:#66d9ef>for</span> chunk <span style=color:#f92672>in</span> iter(<span style=color:#66d9ef>lambda</span>: file<span style=color:#f92672>.</span>file<span style=color:#f92672>.</span>read(<span style=color:#ae81ff>1024</span>), <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&#39;</span>):
+            f<span style=color:#f92672>.</span>write(chunk)
+
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;filename&#34;</span>: file<span style=color:#f92672>.</span>filename}
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/multiUploadFiles/&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_upload_files</span>(files: List[UploadFile]):
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;filenames&#34;</span>: [file<span style=color:#f92672>.</span>filename <span style=color:#66d9ef>for</span> file <span style=color:#f92672>in</span> files]}
+</code></pre></div><h4 id=reqeust-对象>Reqeust 对象</h4>
+<p>有些情况下我们希望能直接访问<em>Request</em>对象。</p>
+<p>例如我们在路径操作函数中想获取客户端的IP地址，需要在函数中声明<strong>Request</strong>类型的参数，FastAPI 就会自动传递 Request 对象给这个参数，我们就可以获取到 Request 对象及其属性信息，例如 header、url、cookie、session 等。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> Request
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/items&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>items</span>(request: Request):
+    <span style=color:#66d9ef>return</span> {
+        <span style=color:#e6db74>&#34;请求URL：&#34;</span>: request<span style=color:#f92672>.</span>url,
+        <span style=color:#e6db74>&#34;请求ip：&#34;</span>: request<span style=color:#f92672>.</span>client<span style=color:#f92672>.</span>host,
+        <span style=color:#e6db74>&#34;请求宿主：&#34;</span>: request<span style=color:#f92672>.</span>headers<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;user-agent&#34;</span>),
+        <span style=color:#e6db74>&#34;cookies&#34;</span>: request<span style=color:#f92672>.</span>cookies,
+    }
+</code></pre></div><h4 id=请求静态文件>请求静态文件</h4>
+<p>在 Web 开发中，需要请求很多静态资源文件（不是由服务器生成的文件），如 css/js 和图片文件等。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> fastapi.staticfiles <span style=color:#f92672>import</span> StaticFiles
+
+app <span style=color:#f92672>=</span> FastAPI()
+app<span style=color:#f92672>.</span>mount(<span style=color:#e6db74>&#34;/static&#34;</span>,StaticFiles(directory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;static&#34;</span>))
+</code></pre></div><h4 id=响应模型相关参数>响应模型相关参数</h4>
+<p><strong>参数一：response_model</strong></p>
+<p>前面写的这么多路径函数最终 return 的都是自定义结构的字典，FastAPI 提供了 response_model 参数，声明 return 响应体的模型</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 路径操作</span>
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/items/&#34;</span>, response_model<span style=color:#f92672>=</span>Item)
+
+<span style=color:#75715e># 路径函数</span>
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_item</span>(item: Item):
+    <span style=color:#f92672>...</span>
+</code></pre></div><blockquote>
+<p>response_model 是路径操作的参数，并不是路径函数的参数哦</p>
+</blockquote>
+<p>FastAPI将使用<code>response_model</code>进行以下操作：</p>
+<ul>
+<li>将输出数据转换为response_model中声明的数据类型。</li>
+<li>验证数据结构和类型</li>
+<li>将输出数据限制为该model定义的</li>
+<li>添加到OpenAPI中</li>
+<li>在自动文档系统中使用。</li>
+</ul>
+<p>你可以在任意的路径操作中使用 <code>response_model</code> 参数来声明用于响应的模型</p>
+<p>案例：</p>
+<ul>
+<li>注册功能</li>
+<li>输入账号、密码、昵称、邮箱，注册成功后返回个人信息</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union
+
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+<span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel, EmailStr
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserIn</span>(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+    full_name: Union[str, <span style=color:#66d9ef>None</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserOut</span>(BaseModel):
+    username: str
+    email: EmailStr
+    full_name: Union[str, <span style=color:#66d9ef>None</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/user/&#34;</span>, response_model<span style=color:#f92672>=</span>UserOut)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_user</span>(user: UserIn):
+    <span style=color:#66d9ef>return</span> user
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/82b9bedd33fa4effb1ff9f8295de0a25.png alt=img></p>
+<p><strong>参数二：response_model_exclude_unset</strong></p>
+<p>通过上面的例子，我们学到了如何用response_model控制响应体结构，但是如果它们实际上没有存储，则可能要从结果中忽略它们。例如，如果model在NoSQL数据库中具有很多可选属性，但是不想发送很长的JSON响应，其中包含默认值。</p>
+<p>案例：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> List, Union
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+<span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Item</span>(BaseModel):
+    name: str
+    description: Union[str, <span style=color:#66d9ef>None</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+    price: float
+    tax: float <span style=color:#f92672>=</span> <span style=color:#ae81ff>10.5</span>
+    tags: List[str] <span style=color:#f92672>=</span> []
+
+items <span style=color:#f92672>=</span> {
+    <span style=color:#e6db74>&#34;foo&#34;</span>: {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Foo&#34;</span>, <span style=color:#e6db74>&#34;price&#34;</span>: <span style=color:#ae81ff>50.2</span>},
+    <span style=color:#e6db74>&#34;bar&#34;</span>: {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Bar&#34;</span>, <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;The bartenders&#34;</span>, <span style=color:#e6db74>&#34;price&#34;</span>: <span style=color:#ae81ff>62</span>, <span style=color:#e6db74>&#34;tax&#34;</span>: <span style=color:#ae81ff>20.2</span>},
+    <span style=color:#e6db74>&#34;baz&#34;</span>: {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Baz&#34;</span>, <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#66d9ef>None</span>, <span style=color:#e6db74>&#34;price&#34;</span>: <span style=color:#ae81ff>50.2</span>, <span style=color:#e6db74>&#34;tax&#34;</span>: <span style=color:#ae81ff>10.5</span>, <span style=color:#e6db74>&#34;tags&#34;</span>: []},
+}
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/items/</span><span style=color:#e6db74>{item_id}</span><span style=color:#e6db74>&#34;</span>, response_model<span style=color:#f92672>=</span>Item, response_model_exclude_unset<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>read_item</span>(item_id: str):
+    <span style=color:#66d9ef>return</span> items[item_id]
+</code></pre></div><p>请求：http://127.0.0.1:8080/items/foo</p>
+<p>不设置unset参数：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Foo&#34;</span>,
+  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#66d9ef>null</span>,
+  <span style=color:#f92672>&#34;price&#34;</span>: <span style=color:#ae81ff>50.2</span>,
+  <span style=color:#f92672>&#34;tax&#34;</span>: <span style=color:#ae81ff>10.5</span>,
+  <span style=color:#f92672>&#34;tags&#34;</span>: []
+}
+</code></pre></div><p>设置unset参数：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Foo&#34;</span>,
+  <span style=color:#f92672>&#34;price&#34;</span>: <span style=color:#ae81ff>50.2</span>
+}
+</code></pre></div><p>使用路径操作装饰器的 <code>response_model</code> 参数来定义响应模型，特别是确保私有数据被过滤掉。使用 <code>response_model_exclude_unset</code> 来仅返回显式设定的值。
+除了<code>response_model_exclude_unset</code>以外，还有<code>response_model_exclude_defaults</code>和<code>response_model_exclude_none</code>，我们可以很直观的了解到他们的意思，不返回是默认值的字段和不返回是None的字段。</p>
+<p><strong>参数三：INCLUDE和EXCLUDE</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># response_model_exclude</span>
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/items/</span><span style=color:#e6db74>{item_id}</span><span style=color:#e6db74>&#34;</span>, response_model<span style=color:#f92672>=</span>Item, response_model_exclude<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;description&#34;</span>}, )
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>read_item</span>(item_id: str):
+    <span style=color:#66d9ef>return</span> items[item_id]
+
+<span style=color:#75715e># response_model_include  </span>
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/items/</span><span style=color:#e6db74>{item_id}</span><span style=color:#e6db74>&#34;</span>, response_model<span style=color:#f92672>=</span>Item, response_model_include<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;name&#34;</span>, <span style=color:#e6db74>&#34;price&#34;</span>}, )
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>read_item</span>(item_id: str):
+    <span style=color:#66d9ef>return</span> items[item_id]
+</code></pre></div><h3 id=五jinja2模板>五、jinja2模板</h3>
+<p>要了解jinja2，那么需要先理解模板的概念。模板在Python的web开发中⼴泛使⽤，它能够有效的将业务逻辑和页⾯逻辑分开，使代码可读性增强、并且更加容易理解和维护。
+模板简单来说就是⼀个其中包涵占位变量表⽰动态的部分的⽂件，模板⽂件在经过动态赋值后，返回给⽤户。</p>
+<p>jinja2是Flask作者开发的⼀个模板系统，起初是仿django模板的⼀个模板引擎，为Flask提供模板⽀持，由于其灵活，快速和安全等优点被⼴泛使⽤。</p>
+<p>在jinja2中，存在三种语法：</p>
+<blockquote>
+<ol>
+<li>变量取值 {{ }}</li>
+<li>控制结构 {% %}</li>
+</ol>
+</blockquote>
+<h4 id=jinja2-的变量>jinja2 的变量</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, Request
+<span style=color:#f92672>from</span> fastapi.templating <span style=color:#f92672>import</span> Jinja2Templates
+<span style=color:#f92672>import</span> uvicorn
+
+<span style=color:#75715e># 实例化 FastAPI对象</span>
+app <span style=color:#f92672>=</span> FastAPI()
+
+<span style=color:#75715e># 实例化Jinja2对象，并将文件夹路径设置为以templates命令的文件夹</span>
+templates <span style=color:#f92672>=</span> Jinja2Templates(directory<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;templates&#34;</span>)  
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>hello</span>(request: Request):
+    <span style=color:#66d9ef>return</span> templates<span style=color:#f92672>.</span>TemplateResponse(
+        <span style=color:#e6db74>&#39;index.html&#39;</span>,
+        {
+            <span style=color:#e6db74>&#39;request&#39;</span>: request,  <span style=color:#75715e># 注意，返回模板响应时，必须有request键值对，且值为Request请求对象</span>
+            <span style=color:#e6db74>&#39;user&#39;</span>: <span style=color:#e6db74>&#39;yuan&#39;</span>,
+            <span style=color:#e6db74>&#34;books&#34;</span>: [<span style=color:#e6db74>&#34;金瓶梅&#34;</span>, <span style=color:#e6db74>&#34;聊斋&#34;</span>, <span style=color:#e6db74>&#34;剪灯新话&#34;</span>, <span style=color:#e6db74>&#34;国色天香&#34;</span>],
+            <span style=color:#e6db74>&#34;booksDict&#34;</span>: {
+                <span style=color:#e6db74>&#34;金瓶梅&#34;</span>: {<span style=color:#e6db74>&#34;price&#34;</span>: <span style=color:#ae81ff>100</span>, <span style=color:#e6db74>&#34;publish&#34;</span>: <span style=color:#e6db74>&#34;苹果出版社&#34;</span>},
+                <span style=color:#e6db74>&#34;聊斋&#34;</span>: {<span style=color:#e6db74>&#34;price&#34;</span>: <span style=color:#ae81ff>200</span>, <span style=color:#e6db74>&#34;publish&#34;</span>: <span style=color:#e6db74>&#34;橘子出版社&#34;</span>},
+            }
+        }
+    )
+    
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    uvicorn<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#34;main:app&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>, debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, reload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-html data-lang=html><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+&lt;<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style=color:#f92672>title</span>&gt;Title&lt;/<span style=color:#f92672>title</span>&gt;
+&lt;/<span style=color:#f92672>head</span>&gt;
+&lt;<span style=color:#f92672>body</span>&gt;
+
+
+&lt;<span style=color:#f92672>h1</span>&gt;{{ user}}&lt;/<span style=color:#f92672>h1</span>&gt;
+
+&lt;<span style=color:#f92672>p</span>&gt;{{ books.0 }}&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;<span style=color:#f92672>p</span>&gt;{{ books.1 }}&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;<span style=color:#f92672>p</span>&gt;{{ books.2 }}&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;<span style=color:#f92672>p</span>&gt;{{ books.3 }}&lt;/<span style=color:#f92672>p</span>&gt;
+
+&lt;<span style=color:#f92672>p</span>&gt;{{ booksDict.金瓶梅.price }}&lt;/<span style=color:#f92672>p</span>&gt;
+
+
+&lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div><h4 id=jinja2-的过滤器>jinja2 的过滤器</h4>
+<p>变量可以通过“过滤器”进⾏修改，过滤器可以理解为是jinja2⾥⾯的内置函数和字符串处理函数。常⽤的过滤器有：</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:left>过滤器名称</th>
+<th style=text-align:left>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:left>capitialize</td>
+<td style=text-align:left>把值的⾸字母转换成⼤写，其他⼦母转换为⼩写</td>
+</tr>
+<tr>
+<td style=text-align:left>lower</td>
+<td style=text-align:left>把值转换成⼩写形式</td>
+</tr>
+<tr>
+<td style=text-align:left>title</td>
+<td style=text-align:left>把值中每个单词的⾸字母都转换成⼤写</td>
+</tr>
+<tr>
+<td style=text-align:left>trim</td>
+<td style=text-align:left>把值的⾸尾空格去掉</td>
+</tr>
+<tr>
+<td style=text-align:left>striptags</td>
+<td style=text-align:left>渲染之前把值中所有的HTML标签都删掉</td>
+</tr>
+<tr>
+<td style=text-align:left>join</td>
+<td style=text-align:left>拼接多个值为字符串</td>
+</tr>
+<tr>
+<td style=text-align:left>round</td>
+<td style=text-align:left>默认对数字进⾏四舍五⼊，也可以⽤参数进⾏控制</td>
+</tr>
+<tr>
+<td style=text-align:left>safe</td>
+<td style=text-align:left>渲染时值不转义</td>
+</tr>
+</tbody>
+</table>
+<p>那么如何使⽤这些过滤器呢？只需要在变量后⾯使⽤管道(|)分割，多个过滤器可以链式调⽤，前⼀个过滤器的输出会作为后⼀个过滤器的输⼊。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>{{ <span style=color:#e6db74>&#39;abc&#39;</span><span style=color:#f92672>|</span> captialize  }}  <span style=color:#75715e># Abc</span>
+{{ <span style=color:#e6db74>&#39;abc&#39;</span><span style=color:#f92672>|</span> upper }} <span style=color:#75715e># ABC</span>
+{{ <span style=color:#e6db74>&#39;hello world&#39;</span><span style=color:#f92672>|</span> title }} <span style=color:#75715e># Hello World</span>
+{{ <span style=color:#e6db74>&#34;hello world&#34;</span><span style=color:#f92672>|</span> replace(<span style=color:#e6db74>&#39;world&#39;</span>,<span style=color:#e6db74>&#39;yuan&#39;</span>) <span style=color:#f92672>|</span> upper }} <span style=color:#75715e># HELLO YUAN</span>
+{{ <span style=color:#ae81ff>18.18</span> <span style=color:#f92672>|</span> round <span style=color:#f92672>|</span> int }} <span style=color:#75715e># 18</span>
+</code></pre></div><h4 id=jinja2-的控制结构>jinja2 的控制结构</h4>
+<h5 id=531分支控制>5.3.1、分支控制</h5>
+<p>jinja2中的if语句类似与Python的if语句，它也具有单分⽀，多分⽀等多种结构，不同的是，条件语句不需要使⽤冒号结尾，⽽结束控制语句，需要使⽤endif关键字。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>{<span style=color:#f92672>%</span> <span style=color:#66d9ef>if</span> age <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>18</span> <span style=color:#f92672>%</span>}
+
+    <span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>成年区<span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+
+{<span style=color:#f92672>%</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>%</span>}
+    
+    <span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>未成年区<span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+
+{<span style=color:#f92672>%</span> endif <span style=color:#f92672>%</span>}
+</code></pre></div><h5 id=532循环控制>5.3.2、循环控制</h5>
+<p>jinja2中的for循环⽤于迭代Python的数据类型，包括列表，元组和字典。在jinja2中不存在while循环。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python>{<span style=color:#f92672>%</span> <span style=color:#66d9ef>for</span> book <span style=color:#f92672>in</span> books <span style=color:#f92672>%</span>}
+    <span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>{{ book }}<span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+{<span style=color:#f92672>%</span> endfor <span style=color:#f92672>%</span>}
+</code></pre></div><h2 id=orm操作>ORM操作</h2>
+<p>在大型的web开发中，我们肯定会用到数据库操作，那么FastAPI也支持数据库的开发，你可以用 PostgreSQL、MySQL、 SQLite Oracle 等。本文用SQLite为例。我们看下在fastapi是如何操作设计数据库的。</p>
+<p>fastapi是一个很优秀的框架，但是缺少一个合适的orm，官方代码里面使用的是sqlalchemy，Tortoise ORM 是受 Django 启发的易于使用的异步 ORM （对象关系映射器）。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/dae58a64fd964dfbb626f49bc3684942.png alt=img></p>
+<p>
+<a href=https://tortoise-orm.readthedocs.io/en/latest/index.html title="Tortoise ORM文档" rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+Tortoise ORM文档
+<i class="fa fa-external-link-alt"></i>
+</a></p>
+<blockquote>
+<p>Tortoise ORM 目前支持以下
+<a href=https://tortoise-orm.readthedocs.io/en/latest/databases.html#databases title=数据库 rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+数据库
+<i class="fa fa-external-link-alt"></i>
+</a>：</p>
+<ul>
+<li>PostgreSQL >= 9.4（使用<code>asyncpg</code>）</li>
+<li>SQLite（使用<code>aiosqlite</code>）</li>
+<li>MySQL/MariaDB（使用<code>aiomysql</code>或使用
+<a href=https://github.com/long2ice/asyncmy title=asyncmy rel="noopener external nofollow noreferrer" target=_blank class=exturl>
+asyncmy
+<i class="fa fa-external-link-alt"></i>
+</a>）</li>
+</ul>
+</blockquote>
+<h3 id=创建模型>创建模型</h3>
+<p>以选课系统为例：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> tortoise.models <span style=color:#f92672>import</span> Model
+<span style=color:#f92672>from</span> tortoise <span style=color:#f92672>import</span> fields
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Clas</span>(Model):
+    name <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>255</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;班级名称&#39;</span>)
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Teacher</span>(Model):
+    id <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>IntField(pk<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+    name <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>255</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;姓名&#39;</span>)
+    tno <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>IntField(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;账号&#39;</span>)
+    pwd <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>255</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;密码&#39;</span>)
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Student</span>(Model):
+    id <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>IntField(pk<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+    sno <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>IntField(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;学号&#39;</span>)
+    pwd <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>255</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;密码&#39;</span>)
+    name <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>255</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;姓名&#39;</span>)
+    <span style=color:#75715e># 一对多</span>
+    clas <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>ForeignKeyField(<span style=color:#e6db74>&#39;models.Clas&#39;</span>, related_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;students&#39;</span>)
+    <span style=color:#75715e># 多对多</span>
+    courses <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>ManyToManyField(<span style=color:#e6db74>&#39;models.Course&#39;</span>, related_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;students&#39;</span>,description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;学生选课表&#39;</span>)
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Course</span>(Model):
+    id <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>IntField(pk<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+    name <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>255</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;课程名&#39;</span>)
+    teacher <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>ForeignKeyField(<span style=color:#e6db74>&#39;models.Teacher&#39;</span>, related_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;courses&#39;</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;课程讲师&#39;</span>)
+</code></pre></div><h3 id=aerich-迁移工具>aerich 迁移工具</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># main.py</span>
+
+<span style=color:#f92672>import</span> uvicorn
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+<span style=color:#f92672>from</span> tortoise.contrib.fastapi <span style=color:#f92672>import</span> register_tortoise
+<span style=color:#f92672>from</span> settings <span style=color:#f92672>import</span> TORTOISE_ORM
+
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+<span style=color:#75715e># 该方法会在fastapi启动时触发，内部通过传递进去的app对象，监听服务启动和终止事件</span>
+<span style=color:#75715e># 当检测到启动事件时，会初始化Tortoise对象，如果generate_schemas为True则还会进行数据库迁移</span>
+<span style=color:#75715e># 当检测到终止事件时，会关闭连接</span>
+register_tortoise(
+    app,
+    config<span style=color:#f92672>=</span>TORTOISE_ORM,
+    <span style=color:#75715e># generate_schemas=True,  # 如果数据库为空，则自动生成对应表单，生产环境不要开</span>
+    <span style=color:#75715e># add_exception_handlers=True,  # 生产环境不要开，会泄露调试信息</span>
+)
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    uvicorn<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#39;main:app&#39;</span>, host<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;127.0.0.1&#39;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8000</span>, reload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
+                debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, workers<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># settings.py</span>
+
+<span style=color:#f92672>import</span> uvicorn
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+<span style=color:#f92672>from</span> tortoise.contrib.fastapi <span style=color:#f92672>import</span> register_tortoise
+<span style=color:#f92672>from</span> settings <span style=color:#f92672>import</span> TORTOISE_ORM
+
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+<span style=color:#75715e># 该方法会在fastapi启动时触发，内部通过传递进去的app对象，监听服务启动和终止事件</span>
+<span style=color:#75715e># 当检测到启动事件时，会初始化Tortoise对象，如果generate_schemas为True则还会进行数据库迁移</span>
+<span style=color:#75715e># 当检测到终止事件时，会关闭连接</span>
+register_tortoise(
+    app,
+    config<span style=color:#f92672>=</span>TORTOISE_ORM,
+    <span style=color:#75715e># generate_schemas=True,  # 如果数据库为空，则自动生成对应表单，生产环境不要开</span>
+    <span style=color:#75715e># add_exception_handlers=True,  # 生产环境不要开，会泄露调试信息</span>
+)
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    uvicorn<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#39;main:app&#39;</span>, host<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;127.0.0.1&#39;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8000</span>, reload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
+                debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, workers<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+</code></pre></div><p><code>aerich</code>是一种 ORM 迁移工具，需要结合<code>tortoise</code>异步 orm 框架使用。安装 aerich 命令：<code>pip install aerich</code>。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 1. 初始化配置，只需要使用一次</span>
+$ aerich init -t settings.TORTOISE_ORM <span style=color:#75715e># TORTOISE_ORM配置的位置)</span>
+</code></pre></div><blockquote>
+<p>初始化完会在当前目录生成一个文件：pyproject.toml和一个文件夹：migrations</p>
+<ul>
+<li><code>pyproject.toml</code>：保存配置文件路径，低版本可能是<code>aerich.ini</code></li>
+<li><code>migrations</code>：存放迁移文件</li>
+</ul>
+</blockquote>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/99a079cae0604f968afdee17e974f807.png alt=img></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 2. 初始化数据库，一般情况下只用一次</span>
+$ aerich init-db
+</code></pre></div><blockquote>
+<ol>
+<li>此时数据库中就有相应的表格</li>
+<li>如果<code>TORTOISE_ORM</code>配置文件中的<code>models</code>改了名，则执行这条命令时需要增加<code>--app</code>参数，来指定你修改的名字</li>
+</ol>
+</blockquote>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/4768bef0bb2642a7b30c4a5e0030afaf.png alt=img></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># 3. 更新模型并进行迁移</span>
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Admin</span>(Model):
+    <span style=color:#75715e># 修改model类，重新生成迁移文件,比如添加一个字段</span>
+    <span style=color:#f92672>...</span>
+    xxx <span style=color:#f92672>=</span> fields<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>255</span>)
+
+<span style=color:#75715e># 执行命令行    </span>
+<span style=color:#960050;background-color:#1e0010>$</span> aerich migrate [<span style=color:#f92672>--</span>name] (标记修改操作) 
+<span style=color:#75715e># 给执行的动作起一个名字，比如添加一个教室字段</span>
+<span style=color:#960050;background-color:#1e0010>$</span> aerich migrate <span style=color:#f92672>--</span>name add_column
+</code></pre></div><blockquote>
+<p>迁移文件名的格式为 {version_num}<em>{datetime}</em>{name|update}.json。</p>
+</blockquote>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/9c2b07293b8b4f948d9ee6afd941c6dc.png alt=img></p>
+<p>注意，此时sql并没有执行，数据库中admin表中没有xxx字段</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/bf6d8a19e1e844269f5c31bfb9cbf412.png alt=img></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 4. 重新执行迁移，写入数据库</span>
+$ aerich upgrade
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/d5fb03f4894c47b5b11e6fdace0af07c.png alt=img></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 回到上一个版本</span>
+$ aerich downgrade
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/95230631c5f340dda596fb46a5bde8b2.png alt=img></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=color:#75715e># 6. 查看历史迁移记录</span>
+$ aerich history
+</code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/dfead9922cdd4a4c8dba6e09eee36452.png alt=img></p>
+<h3 id=api-接口与-restful-规范>api 接口与 restful 规范</h3>
+<p><strong>api 接口</strong></p>
+<p>应用程序编程接口（Application Programming Interface，API接口），就是应用程序对外提供了一个操作数据的入口，这个入口可以是一个函数或类方法，也可以是一个url地址或者一个网络地址。当客户端调用这个入口，应用程序则会执行对应代码操作，给客户端完成相对应的功能。</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/0bde6c568f1744e699cd8243b02e9b9b.png alt=img></p>
+<p>当然，api接口在工作中是比较常见的开发内容，有时候，我们会调用其他人编写的api接口，有时候，我们也需要提供api接口给其他人操作。由此就会带来一个问题，api接口往往都是一个函数、类方法、或者url或其他网络地址，不断是哪一种，当api接口编写过程中，我们都要考虑一个问题就是这个接口应该怎么编写？接口怎么写的更加容易维护和清晰，这就需要大家在调用或者编写api接口的时候要有一个明确的编写规范！！！</p>
+<p><strong>restful 规范</strong></p>
+<p>为了在团队内部形成共识、防止个人习惯差异引起的混乱，我们都需要找到一种大家都觉得很好的接口实现规范，而且这种规范能够让后端写的接口，用途一目了然，减少客户端和服务端双方之间的合作成本。</p>
+<p>目前市面上大部分公司开发人员使用的接口实现规范主要有：restful、RPC。</p>
+<p>REST与技术无关，代表的是一种软件架构风格，REST是Representational State Transfer的简称，中文翻译为“表征状态转移”或“表现层状态转化”。</p>
+<p>简单来说，REST的含义就是客户端与Web服务器之间进行交互的时候，使用HTTP协议中的4个请求方法代表不同的动作。</p>
+<blockquote>
+<p>GET 用来获取资源</p>
+<p>POST 用来新建资源</p>
+<p>PUT 用来更新资源</p>
+<p>DELETE 用来删除资源。</p>
+</blockquote>
+<p>只要API程序遵循了REST风格，那就可以称其为RESTful API。目前在前后端分离的架构中，前后端基本都是通过RESTful API来进行交互。</p>
+<p>例如，我们现在要编写一个选课系统的接口，我们可以查询对一个学生进行查询、创建、更新和删除等操作，我们在编写程序的时候就要设计客户端浏览器与我们Web服务端交互的方式和路径。</p>
+<p>而对于数据资源分别使用POST、DELETE、GET、UPDATE等请求动作来表达对数据的增删查改。</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:left><strong>请求方法</strong></th>
+<th style=text-align:left><strong>请求地址</strong></th>
+<th style=text-align:left><strong>后端操作</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:left>GET</td>
+<td style=text-align:left>/students</td>
+<td style=text-align:left>获取所有学生</td>
+</tr>
+<tr>
+<td style=text-align:left>POST</td>
+<td style=text-align:left>/students</td>
+<td style=text-align:left>增加学生</td>
+</tr>
+<tr>
+<td style=text-align:left>GET</td>
+<td style=text-align:left>/students/1</td>
+<td style=text-align:left>获取编号为1的学生</td>
+</tr>
+<tr>
+<td style=text-align:left>PUT</td>
+<td style=text-align:left>/students/1</td>
+<td style=text-align:left>修改编号为1的学生</td>
+</tr>
+<tr>
+<td style=text-align:left>DELETE</td>
+<td style=text-align:left>/students/1</td>
+<td style=text-align:left>删除编号为1的学生</td>
+</tr>
+</tbody>
+</table>
+<h3 id=选课系统接口开发>选课系统接口开发</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#75715e># api/student.py</span>
+
+<span style=color:#f92672>from</span> fastapi.exceptions <span style=color:#f92672>import</span> HTTPException
+
+<span style=color:#f92672>from</span> models <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+
+<span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
+<span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> List, Union
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> APIRouter
+
+api_student <span style=color:#f92672>=</span> APIRouter()
+
+
+<span style=color:#a6e22e>@api_student</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/student&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getAllStudent</span>():
+    <span style=color:#75715e># 全部查询</span>
+    students <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> Student<span style=color:#f92672>.</span>all()<span style=color:#f92672>.</span>values(<span style=color:#e6db74>&#34;name&#34;</span>, <span style=color:#e6db74>&#34;clas__name&#34;</span>)
+    
+    <span style=color:#75715e># 过滤查询 filter</span>
+    <span style=color:#75715e># xx__gt  xx__range 范围 xx__in </span>
+    <span style=color:#75715e># students = await Student.filter(name__icontains=&#39;a&#39;).values(&#34;name&#34;, &#34;clas__name&#34;)</span>
+    <span style=color:#75715e># print(&#34;students&#34;, students)</span>
+    <span style=color:#75715e># for i in students:</span>
+    <span style=color:#75715e>#     print(i)</span>
+    
+    <span style=color:#75715e># 过滤查询 get</span>
+    <span style=color:#75715e># rain = await Student.get(name=&#39;rain&#39;)</span>
+    <span style=color:#75715e># print(rain, type(rain))</span>
+    <span style=color:#75715e># print(rain.sno)</span>
+    
+    <span style=color:#75715e># valuse 查询</span>
+    <span style=color:#75715e># .values(&#34;name&#34;) 相当于 select name from xxx</span>
+
+    <span style=color:#66d9ef>return</span> students
+
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>StudentModel</span>(BaseModel):
+    name: str
+    pwd: str
+    sno: int
+    clas_id: Union[int, <span style=color:#66d9ef>None</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+    courses: List[int] <span style=color:#f92672>=</span> []
+
+
+<span style=color:#a6e22e>@api_student</span><span style=color:#f92672>.</span>post(<span style=color:#e6db74>&#34;/student&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>addStudent</span>(stu: StudentModel):
+    <span style=color:#75715e># 添加数据库操作</span>
+    <span style=color:#75715e># 方式1</span>
+    <span style=color:#75715e># student = Student(name=stu.name, pwd=stu.pwd, sno=stu.sno, clas_id=stu.clas)</span>
+    <span style=color:#75715e># await student.save()</span>
+    <span style=color:#75715e># 方式2</span>
+    student <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> Student<span style=color:#f92672>.</span>create(name<span style=color:#f92672>=</span>stu<span style=color:#f92672>.</span>name, pwd<span style=color:#f92672>=</span>stu<span style=color:#f92672>.</span>pwd, sno<span style=color:#f92672>=</span>stu<span style=color:#f92672>.</span>sno, clas_id<span style=color:#f92672>=</span>stu<span style=color:#f92672>.</span>clas_id)
+    print(student, dir(student))
+
+    <span style=color:#75715e># 添加多对多关系记录</span>
+    courses <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> Course<span style=color:#f92672>.</span>filter(id__in<span style=color:#f92672>=</span>stu<span style=color:#f92672>.</span>courses)
+    print(<span style=color:#e6db74>&#34;courses&#34;</span>, courses)
+    <span style=color:#66d9ef>await</span> student<span style=color:#f92672>.</span>courses<span style=color:#f92672>.</span>add(<span style=color:#f92672>*</span>courses)
+    print(<span style=color:#e6db74>&#34;student&#34;</span>, student<span style=color:#f92672>.</span>courses)
+
+    <span style=color:#66d9ef>return</span> student
+
+
+<span style=color:#a6e22e>@api_student</span><span style=color:#f92672>.</span>put(<span style=color:#e6db74>&#34;/student/</span><span style=color:#e6db74>{student_id}</span><span style=color:#e6db74>&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>update_student</span>(student_id: int, student: StudentModel):
+    data <span style=color:#f92672>=</span> student<span style=color:#f92672>.</span>dict(exclude_unset<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+    courses <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>pop(<span style=color:#e6db74>&#34;courses&#34;</span>)
+    print(data, courses)
+    <span style=color:#66d9ef>await</span> Student<span style=color:#f92672>.</span>filter(id<span style=color:#f92672>=</span>student_id)<span style=color:#f92672>.</span>update(<span style=color:#f92672>**</span>data)
+
+    courses <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> Course<span style=color:#f92672>.</span>filter(id__in<span style=color:#f92672>=</span>student<span style=color:#f92672>.</span>courses)
+    edit_student <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> Student<span style=color:#f92672>.</span>get(id<span style=color:#f92672>=</span>student_id)
+    <span style=color:#66d9ef>await</span> edit_student<span style=color:#f92672>.</span>courses<span style=color:#f92672>.</span>clear()
+    <span style=color:#66d9ef>await</span> edit_student<span style=color:#f92672>.</span>courses<span style=color:#f92672>.</span>add(<span style=color:#f92672>*</span>courses)
+
+    <span style=color:#66d9ef>return</span> student
+
+
+<span style=color:#a6e22e>@api_student</span><span style=color:#f92672>.</span>delete(<span style=color:#e6db74>&#34;/student/</span><span style=color:#e6db74>{student_id}</span><span style=color:#e6db74>&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete_student</span>(student_id: int):
+    deleted_count <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> Student<span style=color:#f92672>.</span>filter(id<span style=color:#f92672>=</span>student_id)<span style=color:#f92672>.</span>delete()  <span style=color:#75715e># 条件删除</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> deleted_count:
+        <span style=color:#66d9ef>raise</span> HTTPException(status_code<span style=color:#f92672>=</span><span style=color:#ae81ff>404</span>, detail<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Student </span><span style=color:#e6db74>{</span>student_id<span style=color:#e6db74>}</span><span style=color:#e6db74> not found&#34;</span>)
+    <span style=color:#66d9ef>return</span> {}
+</code></pre></div><h2 id=中间件与cors>中间件与CORS</h2>
+<h3 id=中间件>中间件</h3>
+<p>你可以向 <strong>FastAPI</strong> 应用添加中间件.</p>
+<p>&ldquo;中间件"是一个函数,它在每个<strong>请求</strong>被特定的路径操作处理之前,以及在每个<strong>响应</strong>之后工作.</p>
+<p><img src=/imgs/img-lazy-loading.gif data-src=https://img-blog.csdnimg.cn/5e787991fd584533abb3a8d658862cca.png alt=img></p>
+<blockquote>
+<p>如果你使用了 <code>yield</code> 关键字依赖, 依赖中的退出代码将在执行中间件<em>后</em>执行.</p>
+<p>如果有任何后台任务(稍后记录), 它们将在执行中间件<em>后</em>运行.</p>
+</blockquote>
+<p>要创建中间件你可以在函数的顶部使用装饰器 <code>@app.middleware("http")</code>.</p>
+<p>中间件参数接收如下参数：</p>
+<blockquote>
+<ul>
+<li>
+<p><code>request</code>.</p>
+</li>
+<li>
+<p>一个函数<code>call_next</code>它将接收request，作为参数.</p>
+<ul>
+<li>这个函数将 <code>request</code> 传递给相应的 <em>路径操作</em>.</li>
+<li>然后它将返回由相应的<em>路径操作</em>生成的 <code>response</code>.</li>
+</ul>
+</li>
+<li>
+<p>然后你可以在返回 <code>response</code> 前进一步修改它.</p>
+</li>
+</ul>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>import</span> uvicorn
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+
+<span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> Request
+<span style=color:#f92672>from</span> fastapi.responses <span style=color:#f92672>import</span> Response
+<span style=color:#f92672>import</span> time
+
+app <span style=color:#f92672>=</span> FastAPI()
+
+
+<span style=color:#75715e># 中间件装饰器</span>
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>middleware(<span style=color:#e6db74>&#34;http&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>m2</span>(request: Request, call_next):
+    <span style=color:#75715e># 请求代码块</span>
+    print(<span style=color:#e6db74>&#34;m2 request&#34;</span>)
+    response <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> call_next(request)
+    <span style=color:#75715e># 响应代码块</span>
+    response<span style=color:#f92672>.</span>headers[<span style=color:#e6db74>&#34;author&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;yuan&#34;</span>
+    print(<span style=color:#e6db74>&#34;m2 response&#34;</span>)
+    <span style=color:#66d9ef>return</span> response
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>middleware(<span style=color:#e6db74>&#34;http&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>m1</span>(request: Request, call_next):
+    <span style=color:#e6db74>&#34;&#34;&#34;函数顺序越下面，越先执行&#34;&#34;&#34;</span>
+    <span style=color:#75715e># 请求代码块</span>
+    print(<span style=color:#e6db74>&#34;m1 request&#34;</span>)
+    <span style=color:#75715e># if request.client.host in [&#34;127.0.0.1&#34;, ]:  # 黑名单</span>
+    <span style=color:#75715e>#     return Response(content=&#34;visit forbidden&#34;)</span>
+
+    <span style=color:#75715e># if request.url.path in [&#34;/user&#34;]:</span>
+    <span style=color:#75715e>#     return Response(content=&#34;visit forbidden&#34;)</span>
+
+    start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+
+    response <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> call_next(request)
+    <span style=color:#75715e># 响应代码块</span>
+    print(<span style=color:#e6db74>&#34;m1 response&#34;</span>)
+    end <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+    response<span style=color:#f92672>.</span>headers[<span style=color:#e6db74>&#34;ProcessTimer&#34;</span>] <span style=color:#f92672>=</span> str(end <span style=color:#f92672>-</span> start)
+    <span style=color:#66d9ef>return</span> response
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/user&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_user</span>():
+    time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>3</span>)
+    print(<span style=color:#e6db74>&#34;get_user函数执行&#34;</span>)
+    <span style=color:#66d9ef>return</span> {
+        <span style=color:#e6db74>&#34;user&#34;</span>: <span style=color:#e6db74>&#34;current user&#34;</span>
+    }
+
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/item/</span><span style=color:#e6db74>{item_id}</span><span style=color:#e6db74>&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_item</span>(item_id: int):
+    time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>2</span>)
+    print(<span style=color:#e6db74>&#34;get_item函数执行&#34;</span>)
+    <span style=color:#66d9ef>return</span> {
+        <span style=color:#e6db74>&#34;item_id&#34;</span>: item_id
+    }
+
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    uvicorn<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#39;main:app&#39;</span>, host<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;127.0.0.1&#39;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8030</span>, reload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
+                debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, workers<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+</code></pre></div><h3 id=cors>CORS</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-html data-lang=html><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+&lt;<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style=color:#f92672>title</span>&gt;Title&lt;/<span style=color:#f92672>title</span>&gt;
+    &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+&lt;/<span style=color:#f92672>head</span>&gt;
+&lt;<span style=color:#f92672>body</span>&gt;
+
+&lt;<span style=color:#f92672>p</span>&gt;click&lt;/<span style=color:#f92672>p</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  
+    <span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;p&#34;</span>).<span style=color:#a6e22e>click</span>(<span style=color:#66d9ef>function</span> () {
+        <span style=color:#a6e22e>$</span>.<span style=color:#a6e22e>ajax</span>({
+            <span style=color:#a6e22e>url</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;http://127.0.0.1:8080/&#34;</span>,
+            <span style=color:#a6e22e>success</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>res</span>) {
+                <span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;p&#34;</span>).<span style=color:#a6e22e>html</span>(<span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>message</span>)
+            },
+        })
+    })
+
+&lt;/<span style=color:#f92672>script</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>middleware(<span style=color:#e6db74>&#34;http&#34;</span>)
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>CORSMiddleware</span>(request: Request, call_next):
+    response <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> call_next(request)
+    print(response<span style=color:#f92672>.</span>headers)
+    <span style=color:#66d9ef>return</span> response
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+<span style=color:#f92672>from</span> fastapi.middleware.cors <span style=color:#f92672>import</span> CORSMiddleware
+
+app <span style=color:#f92672>=</span> FastAPI()
+origins <span style=color:#f92672>=</span> [
+    <span style=color:#e6db74>&#34;http://localhost:63342&#34;</span>
+]
+
+app<span style=color:#f92672>.</span>add_middleware(
+    CORSMiddleware,
+    allow_origins<span style=color:#f92672>=</span>origins,  <span style=color:#75715e># *：代表所有客户端</span>
+    allow_credentials<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
+    allow_methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;GET&#34;</span>],
+    allow_headers<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;*&#34;</span>],
+)
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;/&#34;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>():
+    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Hello World&#34;</span>}
+
+
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+    <span style=color:#f92672>import</span> uvicorn
+
+    uvicorn<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#34;main:app&#34;</span>, host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;127.0.0.1&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>, debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, reload<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/fastapi>
+Fastapi
+</a>
+</div>
+<div class=addthis_inline_share_toolbox style=text-align:center></div>
+<hr>
+<div class=reward-container>
+<div><i class="fa-solid fa-mug-hot"></i>请我喝杯咖啡吧 ヾ(^▽^*)))</div>
+<button>赞赏</button>
+<div class=post-reward>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/ali-pay.jpg alt="ABEE - 支付宝">
+<span>支付宝</span>
+</div>
+<div class=post-reward-item>
+<img src=/imgs/img-lazy-loading.gif data-src=/imgs/wechat-pay.jpg alt="ABEE - 微信">
+<span>微信</span>
+</div>
+</div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=/tech/booknotes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/ rel=prev title="Booknotes - 《计算机系统原理》">
+Booknotes - 《计算机系统原理》
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+</footer>
+</article>
+</div>
+<div id=comments class=post-comments>
+<div class=comment-head>
+<div class=comment-headline>
+<i class="fas fa-comments fa-fw"></i>
+<span>评论交流</span>
+</div>
+</div>
+<div class=comment-wrap>
+<div><div class=comment-loading>
+<i class="fa fa-sync fa-spin"></i>
+</div><div class=giscus-container></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+&copy;
+<span itemprop=copyrightYear>
+2023 - 2024
+</span>
+<span class=with-love>
+<i class="fa fa-heart"></i>
+</span>
+<span class=author itemprop=copyrightHolder>ABEE</span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#336699","enable":true,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":false,"giscus":{"cfg":{"category":"Comments","categoryid":"DIC_kwDOJaSA684CW2kC","emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"abeelan/abeelan.github.io","repoid":"R_kgDOJaSA6w","theme":"light_tritanopia"},"js":"https://giscus.app/client.js"},"hostname":"https://abeelan.github.io","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1"}</script>
+<script type=text/javascript src=/js/main.min.1d9b2de404f7724da1d867644752be389255e13dcf22ec8a95e590c4546881e9.js defer></script>
+</body>
+</html>

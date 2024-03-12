@@ -74,7 +74,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>292</span>
+<span class=badge>293</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -133,7 +133,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>292</span>
+<span class=site-state-item-count>293</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -185,15 +185,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=304441></div>
+<div class=item-count id=wordsCount data-count=315514></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=771></div>
+<div class=item-count id=readTimes data-times=795></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2024-02-07T18:37:44+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-07-11T15:02:37+00:00></div>
 </div>
 </div>
 </div>
@@ -218,6 +218,69 @@
 <div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
 </noscript>
 <div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/pytest-mark%E4%BD%9C%E7%94%A8/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Python - Pytest Mark作用">
+<meta itemprop=description content="参数化用例 单参数 import pytest search_list = [&#34;a&#34;, &#34;b&#34;] @pytest.mark.parametrize(&#34;name&#34;, search_list) def test_search(name): assert name in search_list 多参数 @pytest.mark.parametrize( &#34;input_num, expect&#34;, [(&#34;3+5&#34;, 8), (&#34;2+3&#34;, 5), (&#34;6+3&#34;, 9)], # 多参数传递需要通过列表或元组嵌套的方式传递 ids=[&#34;add1&#34;, &#34;add2&#34;, &#34;add3&#34;] # 用例标识，个数与前面">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/python/pytest-mark%E4%BD%9C%E7%94%A8/ itemprop=url class=post-title-link>Python - Pytest Mark作用</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-08-14 19:08:10 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 19:08:10 +0000 UTC">2023-08-14</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/python itemprop=url rel=index>
+<span itemprop=name>Python</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+参数化用例 单参数 import pytest search_list = ["a", "b"] @pytest.mark.parametrize("name", search_list) def test_search(name): assert name in search_list 多参数 @pytest.mark.parametrize( "input_num, expect", [("3+5", 8), ("2+3", 5), ("6+3", 9)], # 多参数传递需要通过列表或元组嵌套的方式传递 ids=["add1", "add2", "add3"] # 用例标识，个数与前面
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/python/pytest-mark%E4%BD%9C%E7%94%A8/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
 <link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/python/mitmproxy/>
@@ -778,69 +841,6 @@ python 项目中的依赖库，可以创建一个requirements.txt文件来管理
 <footer class=post-footer>
 <div class=post-button>
 <a class=btn href=/tech/python/%E8%A3%85%E9%A5%B0%E5%99%A8/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/%E7%AE%97%E6%B3%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="算法 - 代理模式">
-<meta itemprop=description content="为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/%E7%AE%97%E6%B3%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/ itemprop=url class=post-title-link>算法 - 代理模式</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-08-14 18:53:51 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-08-14 18:53:51 +0000 UTC">2023-08-14</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-08-15T01:01:05+00:00 itemprop=dateModified datetime=2023-08-15T01:01:05+00:00>2023-08-15</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/%E7%AE%97%E6%B3%95 itemprop=url rel=index>
-<span itemprop=name>算法</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/%E7%AE%97%E6%B3%95/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/#more rel=contents>
 阅读全文 &#187;
 </a>
 </div>

@@ -74,7 +74,7 @@
 </li>
 <li class="menu-item menu-item-archives">
 <a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
-<span class=badge>292</span>
+<span class=badge>293</span>
 </a>
 </li>
 <li class="menu-item menu-item-search">
@@ -133,7 +133,7 @@
 <nav class=site-state>
 <div class="site-state-item site-state-posts">
 <a href=/archives/>
-<span class=site-state-item-count>292</span>
+<span class=site-state-item-count>293</span>
 <span class=site-state-item-name>帖子</span>
 </a>
 </div>
@@ -185,15 +185,15 @@
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-font"></i>总字数：</div>
-<div class=item-count id=wordsCount data-count=304441></div>
+<div class=item-count id=wordsCount data-count=315514></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div>
-<div class=item-count id=readTimes data-times=771></div>
+<div class=item-count id=readTimes data-times=795></div>
 </div>
 <div class=siteinfo-item>
 <div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div>
-<div class=item-count id=last-push-date data-lastpushdate=2024-02-07T18:37:44+00:00></div>
+<div class=item-count id=last-push-date data-lastpushdate=2023-07-11T15:02:37+00:00></div>
 </div>
 </div>
 </div>
@@ -218,6 +218,69 @@
 <div class=noscript-warning>Theme NexT works best with JavaScript enabled</div>
 </noscript>
 <div class="main-inner index posts-expand">
+<div class=post-block>
+<article itemscope itemtype=http://schema.org/Article class=post-content lang>
+<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/golang/gin-restful%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/>
+<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
+<meta itemprop=image content="/imgs/avatar.png">
+<meta itemprop=name content="ABEE">
+</span>
+<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
+<meta itemprop=name content="ABEE">
+<meta itemprop=description content="It's better late than never.">
+</span>
+<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
+<meta itemprop=name content="Golang - Gin Restful请求方式">
+<meta itemprop=description content="四大请求方式 package main import ( &#34;encoding/json&#34; &#34;fmt&#34; &#34;github.com/gin-gonic/gin&#34; ) /* 实现文章接口的增删改查 */ type ArticleModel struct { Title string `json:&#34;title&#34;` Content string `json:&#34;content&#34;` } type ResponseModel struct { Code int `json:&#34;code&#34;` Data any `json:&#34;data&#34;` Msg string `json:&#34;msg&#34;` } func getList(ctx *gin.Context) { // 需要搜索、分页 articles := []ArticleModel{ {&#">
+</span>
+<header class=post-header>
+<h2 class=post-title itemprop="name headline">
+<a href=/tech/golang/gin-restful%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/ itemprop=url class=post-title-link>Golang - Gin Restful请求方式</a> </h2>
+<div class=post-meta-container>
+<div class=post-meta-items>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar"></i>
+</span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-06-13 00:03:19 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-06-13 00:03:19 +0000 UTC">2023-06-13</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-calendar-check"></i>
+</span>
+<span class=post-meta-item-text>更新于：</span>
+<time title=修改时间：2023-06-25T14:07:32+00:00 itemprop=dateModified datetime=2023-06-25T14:07:32+00:00>2023-06-25</time>
+</span>
+<span class=post-meta-item>
+<span class=post-meta-item-icon>
+<i class="far fa-folder-open"></i>
+</span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing>
+<a href=/categories/golang itemprop=url rel=index>
+<span itemprop=name>Golang</span>
+</a>
+</span>
+</span>
+<div class=post-meta-items>
+</div>
+</div>
+</div>
+</header>
+<div class="post-body autonumber" itemprop=articleBody>
+四大请求方式 package main import ( "encoding/json" "fmt" "github.com/gin-gonic/gin" ) /* 实现文章接口的增删改查 */ type ArticleModel struct { Title string `json:"title"` Content string `json:"content"` } type ResponseModel struct { Code int `json:"code"` Data any `json:"data"` Msg string `json:"msg"` } func getList(ctx *gin.Context) { // 需要搜索、分页 articles := []ArticleModel{ {&#
+</div>
+<footer class=post-footer>
+<div class=post-button>
+<a class=btn href=/tech/golang/gin-restful%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/#more rel=contents>
+阅读全文 &#187;
+</a>
+</div>
+<div class=post-eof></div>
+</footer>
+</article>
+</div>
 <div class=post-block>
 <article itemscope itemtype=http://schema.org/Article class=post-content lang>
 <link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/httprunner/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/>
@@ -778,69 +841,6 @@ isort 是一个自动格式化导入的工具。 安装依赖： $ poetry add -D
 <footer class=post-footer>
 <div class=post-button>
 <a class=btn href=/tech/docker/%E6%90%AD%E5%BB%BAmysql%E6%9C%8D%E5%8A%A1/#more rel=contents>
-阅读全文 &#187;
-</a>
-</div>
-<div class=post-eof></div>
-</footer>
-</article>
-</div>
-<div class=post-block>
-<article itemscope itemtype=http://schema.org/Article class=post-content lang>
-<link itemprop=mainEntityOfPage href=https://abeelan.github.io/tech/docker/%E6%90%AD%E5%BB%BAzentao%E7%A6%85%E9%81%93%E6%9C%8D%E5%8A%A1/>
-<span hidden itemprop=author itemscope itemtype=http://schema.org/Person>
-<meta itemprop=image content="/imgs/avatar.png">
-<meta itemprop=name content="ABEE">
-</span>
-<span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization>
-<meta itemprop=name content="ABEE">
-<meta itemprop=description content="It's better late than never.">
-</span>
-<span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork>
-<meta itemprop=name content="Docker - 搭建Zentao禅道服务">
-<meta itemprop=description content="$ docker run --name zentao -p 8081:80 \ -v /volume/zentao/zentaopms:/www/zentaopms \ -v /volume/zentao/mysqldata:/var/lib/mysql \ -e MYSQL_ROOT_PASSWORD=123456 \ -d \ easysoft/zentao:latest">
-</span>
-<header class=post-header>
-<h2 class=post-title itemprop="name headline">
-<a href=/tech/docker/%E6%90%AD%E5%BB%BAzentao%E7%A6%85%E9%81%93%E6%9C%8D%E5%8A%A1/ itemprop=url class=post-title-link>Docker - 搭建Zentao禅道服务</a> </h2>
-<div class=post-meta-container>
-<div class=post-meta-items>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar"></i>
-</span>
-<span class=post-meta-item-text>发表于：</span>
-<time title="发表于：2023-06-01 15:46:01 +0000 UTC" itemprop="dateCreated datePublished" datetime="2023-06-01 15:46:01 +0000 UTC">2023-06-01</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-calendar-check"></i>
-</span>
-<span class=post-meta-item-text>更新于：</span>
-<time title=修改时间：2023-06-02T16:42:04+00:00 itemprop=dateModified datetime=2023-06-02T16:42:04+00:00>2023-06-02</time>
-</span>
-<span class=post-meta-item>
-<span class=post-meta-item-icon>
-<i class="far fa-folder-open"></i>
-</span>
-<span class=post-meta-item-text>分类于：</span>
-<span itemprop=about itemscope itemtype=http://schema.org/Thing>
-<a href=/categories/docker itemprop=url rel=index>
-<span itemprop=name>Docker</span>
-</a>
-</span>
-</span>
-<div class=post-meta-items>
-</div>
-</div>
-</div>
-</header>
-<div class="post-body autonumber" itemprop=articleBody>
-$ docker run --name zentao -p 8081:80 \ -v /volume/zentao/zentaopms:/www/zentaopms \ -v /volume/zentao/mysqldata:/var/lib/mysql \ -e MYSQL_ROOT_PASSWORD=123456 \ -d \ easysoft/zentao:latest
-</div>
-<footer class=post-footer>
-<div class=post-button>
-<a class=btn href=/tech/docker/%E6%90%AD%E5%BB%BAzentao%E7%A6%85%E9%81%93%E6%9C%8D%E5%8A%A1/#more rel=contents>
 阅读全文 &#187;
 </a>
 </div>
